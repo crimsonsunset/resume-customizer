@@ -17,227 +17,98 @@
   <meta name="description" content="Modern resume optimization with AI-powered matching" />
 </svelte:head>
 
-<main class="container">
-  <header class="hero">
-    <h1>🚀 Resume Optimizer</h1>
-    <p class="subtitle">Modern resume optimization with AI-powered matching</p>
+<main class="container mx-auto px-4 py-8 max-w-6xl">
+  <header class="text-center mb-12">
+    <h1 class="text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+      🚀 Resume Optimizer
+    </h1>
+    <p class="text-xl opacity-70">
+      Modern resume optimization with AI-powered matching
+    </p>
   </header>
 
-  <section class="status-card">
-    <h2>🎯 SvelteKit Web App Ready</h2>
-    <div class="status-grid">
-      <div class="status-item">
-        <span class="status-icon">✅</span>
-        <span>SvelteKit configured</span>
+  <div class="card bg-base-100 shadow-xl mb-8">
+    <div class="card-body">
+      <h2 class="card-title text-2xl">🎯 SvelteKit Web App Ready</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+        <div class="alert alert-success">
+          <span>✅ SvelteKit configured</span>
+        </div>
+        <div class="alert alert-success">
+          <span>✅ Netlify adapter ready</span>
+        </div>
+        <div class="alert alert-success">
+          <span>✅ Path aliases working</span>
+        </div>
+        <div class="alert alert-success">
+          <span>✅ CSS isolation configured</span>
+        </div>
+        <div class="alert alert-success">
+          <span>✅ DaisyUI 5.0.46 ready</span>
+        </div>
+        <div class="alert alert-info">
+          <span>🔄 JSON data integration (next)</span>
+        </div>
       </div>
-      <div class="status-item">
-        <span class="status-icon">✅</span>
-        <span>Netlify adapter ready</span>
+    </div>
+  </div>
+
+  <section class="mb-8">
+    <h2 class="text-3xl font-bold mb-6">🚀 Coming Soon</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="card bg-base-100 shadow-lg">
+        <div class="card-body">
+          <h3 class="card-title text-lg">📄 Resume Preview</h3>
+          <p>Live preview of your resume with real-time updates</p>
+        </div>
       </div>
-      <div class="status-item">
-        <span class="status-icon">✅</span>
-        <span>Path aliases working</span>
+      
+      <div class="card bg-base-100 shadow-lg">
+        <div class="card-body">
+          <h3 class="card-title text-lg">🎨 Theme Selector</h3>
+          <p>Multiple professional themes with custom color schemes</p>
+        </div>
       </div>
-      <div class="status-item">
-        <span class="status-icon">✅</span>
-        <span>CSS isolation configured</span>
+      
+      <div class="card bg-base-100 shadow-lg">
+        <div class="card-body">
+          <h3 class="card-title text-lg">🔧 Interactive Controls</h3>
+          <p>Toggle sections, adjust spacing, and customize layout</p>
+        </div>
       </div>
-      <div class="status-item">
-        <span class="status-icon">🔄</span>
-        <span>shadcn-svelte (next)</span>
-      </div>
-      <div class="status-item">
-        <span class="status-icon">🔄</span>
-        <span>JSON data integration (next)</span>
+      
+      <div class="card bg-base-100 shadow-lg">
+        <div class="card-body">
+          <h3 class="card-title text-lg">📊 Skills Highlighting</h3>
+          <p>Prioritize relevant skills based on job requirements</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="features-preview">
-    <h2>🚀 Coming Soon</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <h3>📄 Resume Preview</h3>
-        <p>Live preview of your resume with real-time updates</p>
-      </div>
-      <div class="feature-card">
-        <h3>🎨 Theme Selector</h3>
-        <p>Multiple professional themes with custom color schemes</p>
-      </div>
-      <div class="feature-card">
-        <h3>🔧 Interactive Controls</h3>
-        <p>Toggle sections, adjust spacing, and customize layout</p>
-      </div>
-      <div class="feature-card">
-        <h3>📊 Skills Highlighting</h3>
-        <p>Prioritize relevant skills based on job requirements</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="tech-stack">
-    <h2>🛠️ Technology Stack</h2>
-    <div class="tech-grid">
-      <span class="tech-badge">SvelteKit</span>
-      <span class="tech-badge">Vite</span>
-      <span class="tech-badge">Playwright</span>
-      <span class="tech-badge">Netlify</span>
-      <span class="tech-badge">CSS Grid</span>
-      <span class="tech-badge">ES Modules</span>
+  <section class="mb-8">
+    <h2 class="text-3xl font-bold mb-6">🛠️ Technology Stack</h2>
+    <div class="flex flex-wrap gap-2">
+      <div class="badge badge-primary">SvelteKit</div>
+      <div class="badge badge-secondary">Vite</div>
+      <div class="badge badge-accent">Playwright</div>
+      <div class="badge badge-primary">Netlify</div>
+      <div class="badge badge-secondary">CSS Grid</div>
+      <div class="badge badge-accent">ES Modules</div>
+      <div class="badge badge-primary">Tailwind CSS 4</div>
+      <div class="badge badge-secondary">DaisyUI 5.0.46</div>
     </div>
   </section>
 
   {#if mounted}
-    <section class="dev-info">
-      <h3>🔧 Development Status</h3>
-      <p>App mounted successfully! SvelteKit is running in development mode.</p>
-      <p>Next steps: shadcn-svelte integration → JSON data loading → Resume preview</p>
-    </section>
+    <div class="alert alert-success shadow-lg">
+      <div>
+        <h3 class="text-lg font-bold">🔧 Development Status</h3>
+        <div class="text-sm">
+          <p>App mounted successfully! SvelteKit is running in development mode.</p>
+          <p>Next steps: JSON data loading → Resume preview → Interactive controls</p>
+        </div>
+      </div>
+    </div>
   {/if}
-</main>
-
-<style>
-  /* Scoped web-ui styles - isolated from resume styles */
-  :global(.web-ui) {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #f8f9fa;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-
-  .hero {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .hero h1 {
-    font-size: 3rem;
-    margin: 0;
-    color: #2c3e50;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .subtitle {
-    font-size: 1.25rem;
-    color: #6c757d;
-    margin: 0.5rem 0 0 0;
-  }
-
-  .status-card {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-
-  .status-card h2 {
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-  }
-
-  .status-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-  }
-
-  .status-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-  }
-
-  .status-icon {
-    font-size: 1.25rem;
-  }
-
-  .features-preview {
-    margin-bottom: 2rem;
-  }
-
-  .features-preview h2 {
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .feature-card {
-    background: white;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border: 1px solid #e9ecef;
-  }
-
-  .feature-card h3 {
-    color: #495057;
-    margin-bottom: 0.75rem;
-  }
-
-  .feature-card p {
-    color: #6c757d;
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  .tech-stack {
-    margin-bottom: 2rem;
-  }
-
-  .tech-stack h2 {
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-  }
-
-  .tech-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .tech-badge {
-    background: #667eea;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.875rem;
-    font-weight: 500;
-  }
-
-  .dev-info {
-    background: #e8f5e8;
-    border: 1px solid #4caf50;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .dev-info h3 {
-    color: #2e7d32;
-    margin-bottom: 0.75rem;
-  }
-
-  .dev-info p {
-    color: #388e3c;
-    margin: 0.5rem 0;
-  }
-</style> 
+</main> 
