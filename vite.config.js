@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { sveltekit } from '@sveltejs/kit/vite'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -40,14 +41,9 @@ export default defineConfig(({ command, mode }) => {
     }
   }
   
-  // Web app build configuration
+  // SvelteKit web app configuration
   return {
-    root: 'src/web',
-    build: {
-      outDir: '../../dist/web',
-      emptyOutDir: true,
-      sourcemap: true
-    },
+    plugins: [sveltekit()],
     
     // Path aliases (matches tsconfig.json)
     resolve: {
