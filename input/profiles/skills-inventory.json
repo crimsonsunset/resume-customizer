@@ -1,0 +1,2137 @@
+{
+  "metadata": {
+    "lastUpdated": "2025-07-09",
+    "totalSkills": 187,
+    "source": "LinkedIn profile + experience analysis + session discussion + additional skills research + LinkedIn skills sync + resume skills sync"
+  },
+  "skills": {
+    "javascript": {
+      "name": "JavaScript",
+      "aliases": [
+        "JS",
+        "ECMAScript"
+      ],
+      "proficiency": "expert",
+      "yearsExperience": 8,
+      "lastUsed": "2025-07-09",
+      "linkedinEndorsements": 45,
+      "contexts": [
+        "frontend",
+        "backend",
+        "mobile"
+      ],
+      "relatedSkills": [
+        "typescript",
+        "nodejs",
+        "react"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "typescript": {
+      "name": "TypeScript",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "lastUsed": "2025-07-09",
+      "linkedinEndorsements": 23,
+      "contexts": [
+        "frontend",
+        "backend"
+      ],
+      "relatedSkills": [
+        "javascript",
+        "react",
+        "angular"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "html": {
+      "name": "HTML",
+      "proficiency": "expert",
+      "yearsExperience": 8,
+      "lastUsed": "2025-07-09",
+      "contexts": [
+        "frontend"
+      ],
+      "relatedSkills": [
+        "css",
+        "javascript"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "css": {
+      "name": "CSS/Sass",
+      "aliases": [
+        "CSS",
+        "Sass",
+        "SCSS"
+      ],
+      "proficiency": "expert",
+      "yearsExperience": 8,
+      "lastUsed": "2025-07-09",
+      "contexts": [
+        "frontend"
+      ],
+      "relatedSkills": [
+        "html",
+        "javascript"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "python": {
+      "name": "Python",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "backend",
+        "scripting"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "php": {
+      "name": "PHP",
+      "proficiency": "advanced",
+      "yearsExperience": 5,
+      "contexts": [
+        "backend"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "sql": {
+      "name": "SQL",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "backend",
+        "database"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "java": {
+      "name": "Java",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "backend"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "xml": {
+      "name": "XML",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "linkedinEndorsements": 19,
+      "contexts": [
+        "data",
+        "configuration"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "json": {
+      "name": "JSON",
+      "proficiency": "expert",
+      "yearsExperience": 6,
+      "contexts": [
+        "data",
+        "apis"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "yaml": {
+      "name": "YAML",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "contexts": [
+        "configuration",
+        "devops"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "react": {
+      "name": "React",
+      "proficiency": "expert",
+      "yearsExperience": 6,
+      "lastUsed": "2025-07-09",
+      "linkedinEndorsements": 38,
+      "contexts": [
+        "frontend",
+        "spa"
+      ],
+      "relatedSkills": [
+        "javascript",
+        "typescript",
+        "jsx"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "angular": {
+      "name": "Angular",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "contexts": [
+        "frontend",
+        "enterprise"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "vue": {
+      "name": "Vue.js",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "frontend"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "svelte": {
+      "name": "Svelte",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "frontend"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "sveltekit": {
+      "name": "SvelteKit",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "frontend",
+        "fullstack"
+      ],
+      "relatedSkills": [
+        "svelte"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "jquery": {
+      "name": "jQuery",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "frontend"
+      ],
+      "marketDemand": "low",
+      "trending": "down"
+    },
+    "redux": {
+      "name": "Redux",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "contexts": [
+        "frontend",
+        "state-management"
+      ],
+      "relatedSkills": [
+        "react"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "zustand": {
+      "name": "Zustand",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "frontend",
+        "state-management"
+      ],
+      "relatedSkills": [
+        "react"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "rxjs": {
+      "name": "RxJS",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "frontend",
+        "reactive"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "nextjs": {
+      "name": "Next.js",
+      "proficiency": "advanced",
+      "yearsExperience": 3,
+      "contexts": [
+        "frontend",
+        "fullstack"
+      ],
+      "relatedSkills": [
+        "react",
+        "typescript"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "gatsby": {
+      "name": "Gatsby",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "frontend",
+        "static-site"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "tailwindcss": {
+      "name": "Tailwind CSS",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "frontend",
+        "styling"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "bootstrap": {
+      "name": "Bootstrap",
+      "proficiency": "advanced",
+      "yearsExperience": 5,
+      "contexts": [
+        "frontend",
+        "styling"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "materialui": {
+      "name": "Material-UI/MUI",
+      "proficiency": "advanced",
+      "yearsExperience": 3,
+      "contexts": [
+        "frontend",
+        "react"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "styledcomponents": {
+      "name": "Styled Components",
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
+      "contexts": [
+        "frontend",
+        "react"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "chakraui": {
+      "name": "Chakra UI",
+      "proficiency": "beginner",
+      "yearsExperience": 2,
+      "contexts": [
+        "frontend",
+        "react"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "bulma": {
+      "name": "Bulma",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "frontend",
+        "styling"
+      ],
+      "marketDemand": "low",
+      "trending": "stable"
+    },
+    "framermotion": {
+      "name": "Framer Motion",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "frontend",
+        "animation"
+      ],
+      "relatedSkills": [
+        "react"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "reactrouter": {
+      "name": "React Router",
+      "proficiency": "expert",
+      "yearsExperience": 6,
+      "contexts": [
+        "frontend",
+        "spa"
+      ],
+      "relatedSkills": [
+        "react"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "reacthookform": {
+      "name": "React Hook Form",
+      "proficiency": "advanced",
+      "yearsExperience": 3,
+      "contexts": [
+        "frontend",
+        "forms"
+      ],
+      "relatedSkills": [
+        "react"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "nodejs": {
+      "name": "Node.js",
+      "proficiency": "advanced",
+      "yearsExperience": 10,
+      "contexts": [
+        "backend",
+        "runtime"
+      ],
+      "relatedSkills": [
+        "javascript",
+        "express"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "express": {
+      "name": "Express",
+      "proficiency": "advanced",
+      "yearsExperience": 10,
+      "contexts": [
+        "backend",
+        "api"
+      ],
+      "relatedSkills": [
+        "nodejs"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "nestjs": {
+      "name": "Nest.js",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "backend",
+        "enterprise"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "restapis": {
+      "name": "REST APIs",
+      "proficiency": "advanced",
+      "yearsExperience": 13,
+      "contexts": [
+        "backend",
+        "api"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "graphql": {
+      "name": "GraphQL",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "backend",
+        "api"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "webapis": {
+      "name": "Web APIs",
+      "proficiency": "advanced",
+      "yearsExperience": 13,
+      "contexts": [
+        "frontend",
+        "backend"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "websockets": {
+      "name": "WebSockets",
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
+      "contexts": [
+        "backend",
+        "realtime"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "webrtc": {
+      "name": "WebRTC",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "frontend",
+        "realtime"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "serviceworkers": {
+      "name": "Service Workers",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "frontend",
+        "pwa"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "helmet": {
+      "name": "Helmet",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "backend",
+        "security"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "cors": {
+      "name": "CORS",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "backend",
+        "security"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "bcrypt": {
+      "name": "Bcrypt",
+      "proficiency": "advanced",
+      "yearsExperience": 3,
+      "contexts": [
+        "backend",
+        "security"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "multer": {
+      "name": "Multer",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "backend",
+        "file-upload"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "socketio": {
+      "name": "Socket.io",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "backend",
+        "realtime"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "nodemailer": {
+      "name": "Nodemailer",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "backend",
+        "email"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "cron": {
+      "name": "Cron/node-cron",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "backend",
+        "scheduling"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "auth0": {
+      "name": "auth0",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "backend",
+        "authentication"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "jwt": {
+      "name": "JWT",
+      "proficiency": "advanced",
+      "yearsExperience": 2,
+      "contexts": [
+        "backend",
+        "authentication"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "oauth": {
+      "name": "OAuth",
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
+      "contexts": [
+        "backend",
+        "authentication"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "firebaseauth": {
+      "name": "Firebase Auth",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "backend",
+        "authentication"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "mongodb": {
+      "name": "MongoDB",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "backend",
+        "database"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "mongoose": {
+      "name": "Mongoose",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "backend",
+        "database"
+      ],
+      "relatedSkills": [
+        "mongodb"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "postgresql": {
+      "name": "PostgreSQL",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "backend",
+        "database"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "mysql": {
+      "name": "MySQL",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "backend",
+        "database"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "redis": {
+      "name": "Redis",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "backend",
+        "caching"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "supabase": {
+      "name": "Supabase",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "backend",
+        "database"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "git": {
+      "name": "Git",
+      "proficiency": "expert",
+      "yearsExperience": 13,
+      "contexts": [
+        "development",
+        "version-control"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "github": {
+      "name": "GitHub",
+      "proficiency": "expert",
+      "yearsExperience": 13,
+      "contexts": [
+        "development",
+        "collaboration"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "gitlab": {
+      "name": "GitLab",
+      "proficiency": "advanced",
+      "yearsExperience": 13,
+      "contexts": [
+        "development",
+        "devops"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "bitbucket": {
+      "name": "Bitbucket",
+      "proficiency": "advanced",
+      "yearsExperience": 13,
+      "contexts": [
+        "development",
+        "collaboration"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "githubactions": {
+      "name": "GitHub Actions",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "devops",
+        "cicd"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "npm": {
+      "name": "npm",
+      "proficiency": "expert",
+      "yearsExperience": 10,
+      "contexts": [
+        "development",
+        "package-management"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "webpack": {
+      "name": "Webpack",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "contexts": [
+        "development",
+        "build-tools"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "vite": {
+      "name": "Vite",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "development",
+        "build-tools"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "nx": {
+      "name": "Nx",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "development",
+        "monorepo"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "eslint": {
+      "name": "ESLint",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "contexts": [
+        "development",
+        "quality"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "prettier": {
+      "name": "Prettier",
+      "proficiency": "advanced",
+      "yearsExperience": 3,
+      "contexts": [
+        "development",
+        "formatting"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "webstorm": {
+      "name": "WebStorm",
+      "proficiency": "expert",
+      "yearsExperience": 13,
+      "contexts": [
+        "development",
+        "ide"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "cursor": {
+      "name": "Cursor",
+      "proficiency": "advanced",
+      "yearsExperience": 1,
+      "contexts": [
+        "development",
+        "ai-coding"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "vscode": {
+      "name": "VS Code",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "contexts": [
+        "development",
+        "ide"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "commandline": {
+      "name": "Command Line",
+      "proficiency": "expert",
+      "yearsExperience": 8,
+      "contexts": [
+        "development",
+        "system"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "jest": {
+      "name": "Jest",
+      "proficiency": "advanced",
+      "yearsExperience": 3,
+      "contexts": [
+        "testing",
+        "javascript"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "vitest": {
+      "name": "Vitest",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "testing",
+        "javascript"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "karma": {
+      "name": "Karma",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "testing",
+        "javascript"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "cypress": {
+      "name": "Cypress",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "testing",
+        "e2e"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "puppeteer": {
+      "name": "Puppeteer",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "testing",
+        "automation"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "playwright": {
+      "name": "Playwright",
+      "proficiency": "beginner",
+      "yearsExperience": 2,
+      "contexts": [
+        "testing",
+        "e2e"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "sinon": {
+      "name": "Sinon",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "testing",
+        "mocking"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "chai": {
+      "name": "Chai",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "testing",
+        "assertion"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "mocha": {
+      "name": "Mocha",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "testing",
+        "framework"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "docker": {
+      "name": "Docker",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "devops",
+        "containerization"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "kubernetes": {
+      "name": "Kubernetes",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "devops",
+        "orchestration"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "aws": {
+      "name": "AWS",
+      "proficiency": "intermediate",
+      "yearsExperience": 5,
+      "contexts": [
+        "devops",
+        "cloud"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "gcp": {
+      "name": "Google Cloud Platform",
+      "proficiency": "beginner",
+      "yearsExperience": 2,
+      "contexts": [
+        "devops",
+        "cloud"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "azure": {
+      "name": "Azure",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "devops",
+        "cloud"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "cicd": {
+      "name": "CI/CD",
+      "proficiency": "intermediate",
+      "yearsExperience": 5,
+      "contexts": [
+        "devops",
+        "automation"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "nginx": {
+      "name": "Nginx",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "devops",
+        "web-server"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "pm2": {
+      "name": "PM2",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "devops",
+        "process-management"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "letsencrypt": {
+      "name": "Let's Encrypt",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "devops",
+        "security"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "cloudflare": {
+      "name": "CloudFlare",
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
+      "contexts": [
+        "devops",
+        "cdn"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "heroku": {
+      "name": "Heroku",
+      "proficiency": "advanced",
+      "yearsExperience": 2,
+      "contexts": [
+        "devops",
+        "deployment"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "vercel": {
+      "name": "Vercel",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "devops",
+        "deployment"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "netlify": {
+      "name": "Netlify",
+      "proficiency": "intermediate",
+      "yearsExperience": 6,
+      "contexts": [
+        "devops",
+        "deployment"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "cdn": {
+      "name": "CDN",
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
+      "contexts": [
+        "devops",
+        "performance"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "reactnative": {
+      "name": "React Native",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "mobile",
+        "react"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "pwa": {
+      "name": "Progressive Web Apps",
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
+      "contexts": [
+        "mobile",
+        "web"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "googleanalytics": {
+      "name": "Google Analytics",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "contexts": [
+        "analytics",
+        "marketing"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "googlemaps": {
+      "name": "Google Maps API",
+      "proficiency": "advanced",
+      "yearsExperience": 2,
+      "contexts": [
+        "frontend",
+        "maps"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "lighthouse": {
+      "name": "Lighthouse",
+      "proficiency": "intermediate",
+      "yearsExperience": 5,
+      "contexts": [
+        "performance",
+        "quality"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "corewebvitals": {
+      "name": "Core Web Vitals",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "performance",
+        "seo"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "seo": {
+      "name": "SEO",
+      "proficiency": "advanced",
+      "yearsExperience": 5,
+      "contexts": [
+        "marketing",
+        "web"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "ssl": {
+      "name": "HTTPS/SSL",
+      "proficiency": "advanced",
+      "yearsExperience": 2,
+      "contexts": [
+        "security",
+        "web"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "datadog": {
+      "name": "Datadog",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "monitoring",
+        "devops"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "sentry": {
+      "name": "Sentry",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "monitoring",
+        "error-tracking"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "newrelic": {
+      "name": "New Relic",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "monitoring",
+        "performance"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "rollbar": {
+      "name": "Rollbar",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "monitoring",
+        "error-tracking"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "logrocket": {
+      "name": "LogRocket",
+      "proficiency": "beginner",
+      "yearsExperience": 3,
+      "contexts": [
+        "monitoring",
+        "session-replay"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "twilio": {
+      "name": "Twilio",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "api",
+        "communication"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "sendgrid": {
+      "name": "SendGrid",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "api",
+        "email"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "pusher": {
+      "name": "Pusher",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "api",
+        "realtime"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "agile": {
+      "name": "Agile",
+      "proficiency": "advanced",
+      "yearsExperience": 13,
+      "contexts": [
+        "management",
+        "process"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "scrum": {
+      "name": "Scrum",
+      "proficiency": "advanced",
+      "yearsExperience": 13,
+      "contexts": [
+        "management",
+        "process"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "kanban": {
+      "name": "Kanban",
+      "proficiency": "advanced",
+      "yearsExperience": 13,
+      "contexts": [
+        "management",
+        "process"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "jira": {
+      "name": "Jira",
+      "proficiency": "advanced",
+      "yearsExperience": 13,
+      "contexts": [
+        "management",
+        "tracking"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "confluence": {
+      "name": "Confluence",
+      "proficiency": "advanced",
+      "yearsExperience": 13,
+      "contexts": [
+        "management",
+        "documentation"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "asana": {
+      "name": "Asana",
+      "proficiency": "advanced",
+      "yearsExperience": 2,
+      "contexts": [
+        "management",
+        "tracking"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "trello": {
+      "name": "Trello",
+      "proficiency": "advanced",
+      "yearsExperience": 2,
+      "contexts": [
+        "management",
+        "tracking"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "notion": {
+      "name": "Notion",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "contexts": [
+        "management",
+        "documentation"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "teammanagement": {
+      "name": "Team Management",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "leadership",
+        "management"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "technicalleadership": {
+      "name": "Technical Leadership",
+      "proficiency": "advanced",
+      "yearsExperience": 8,
+      "contexts": [
+        "leadership",
+        "technical"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "stakeholdermanagement": {
+      "name": "Stakeholder Management",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "leadership",
+        "communication"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "crossteamcollaboration": {
+      "name": "Cross-team Collaboration",
+      "proficiency": "expert",
+      "yearsExperience": 8,
+      "contexts": [
+        "leadership",
+        "collaboration"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "strategicplanning": {
+      "name": "Strategic Planning",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "leadership",
+        "strategy"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "technicalvision": {
+      "name": "Technical Vision & Roadmapping",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "leadership",
+        "strategy"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "mentoring": {
+      "name": "Mentoring",
+      "proficiency": "advanced",
+      "yearsExperience": 8,
+      "contexts": [
+        "leadership",
+        "development"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "processimprovement": {
+      "name": "Process Improvement",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "leadership",
+        "optimization"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "requirementsanalysis": {
+      "name": "Requirements Analysis",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "leadership",
+        "analysis"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "productstrategy": {
+      "name": "Product Strategy",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "business",
+        "strategy"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "technicalarchitecture": {
+      "name": "Technical Architecture",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "technical",
+        "architecture"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "systemdesign": {
+      "name": "System Design",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "technical",
+        "architecture"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "codereview": {
+      "name": "Code Review",
+      "proficiency": "expert",
+      "yearsExperience": 6,
+      "contexts": [
+        "development",
+        "quality"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "openaiapi": {
+      "name": "OpenAI API",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai",
+        "api"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "claudeapi": {
+      "name": "Claude API",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai",
+        "api"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "llms": {
+      "name": "LLMs",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai",
+        "ml"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "promptengineering": {
+      "name": "Prompt Engineering",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai",
+        "optimization"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "aiintegration": {
+      "name": "AI Integration",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai",
+        "development"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "n8n": {
+      "name": "n8n",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai",
+        "automation"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "langchain": {
+      "name": "LangChain",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai",
+        "framework"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "huggingface": {
+      "name": "Hugging Face",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai",
+        "ml"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "tensorflowjs": {
+      "name": "TensorFlow.js",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai",
+        "ml"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "wordpress": {
+      "name": "WordPress",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "contexts": [
+        "cms",
+        "web"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "drupal": {
+      "name": "Drupal",
+      "proficiency": "advanced",
+      "yearsExperience": 1,
+      "contexts": [
+        "cms",
+        "web"
+      ],
+      "marketDemand": "low",
+      "trending": "stable"
+    },
+    "headlesscms": {
+      "name": "Headless CMS",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "cms",
+        "api"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "lodash": {
+      "name": "Lodash",
+      "proficiency": "expert",
+      "yearsExperience": 6,
+      "contexts": [
+        "javascript",
+        "utilities"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "momentjs": {
+      "name": "Moment.js",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "contexts": [
+        "javascript",
+        "dates"
+      ],
+      "marketDemand": "medium",
+      "trending": "down"
+    },
+    "axios": {
+      "name": "Axios",
+      "proficiency": "advanced",
+      "yearsExperience": 4,
+      "contexts": [
+        "javascript",
+        "http"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "cheerio": {
+      "name": "Cheerio",
+      "proficiency": "advanced",
+      "yearsExperience": 2,
+      "contexts": [
+        "nodejs",
+        "parsing"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "i18next": {
+      "name": "i18next",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "javascript",
+        "internationalization"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "testautomation": {
+      "name": "Test Automation",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "testing",
+        "quality"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "aisoftwaredevelopment": {
+      "name": "AI Software Development",
+      "proficiency": "beginner",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai",
+        "development"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "datavisualization": {
+      "name": "Data Visualization",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "frontend",
+        "analytics"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "offlinedevelopment": {
+      "name": "Offline Development",
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
+      "contexts": [
+        "mobile",
+        "pwa"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "thirdpartyintegrations": {
+      "name": "3rd Party Integrations",
+      "proficiency": "advanced",
+      "yearsExperience": 8,
+      "contexts": [
+        "api",
+        "integration"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "userinterfacedesign": {
+      "name": "User Interface Design",
+      "proficiency": "advanced",
+      "yearsExperience": 10,
+      "contexts": [
+        "design",
+        "frontend"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "iframes": {
+      "name": "Iframes",
+      "proficiency": "intermediate",
+      "yearsExperience": 5,
+      "contexts": [
+        "frontend",
+        "integration"
+      ],
+      "marketDemand": "low",
+      "trending": "stable"
+    },
+    "bem": {
+      "name": "Block Element Modifier (BEM)",
+      "proficiency": "advanced",
+      "yearsExperience": 6,
+      "contexts": [
+        "css",
+        "methodology"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "reduxthunk": {
+      "name": "Redux Thunk",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "frontend",
+        "state-management"
+      ],
+      "relatedSkills": [
+        "redux",
+        "react"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "backendwebdevelopment": {
+      "name": "Back-End Web Development",
+      "proficiency": "advanced",
+      "yearsExperience": 8,
+      "contexts": [
+        "backend",
+        "api"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "datasynchronization": {
+      "name": "Data Synchronization",
+      "proficiency": "advanced",
+      "yearsExperience": 5,
+      "contexts": [
+        "backend",
+        "integration"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "webdevelopment": {
+      "name": "Web Development",
+      "proficiency": "expert",
+      "yearsExperience": 13,
+      "contexts": [
+        "frontend",
+        "backend"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "webservices": {
+      "name": "Web Services",
+      "proficiency": "advanced",
+      "yearsExperience": 10,
+      "contexts": [
+        "api",
+        "integration"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "contentmanagement": {
+      "name": "Content Management",
+      "proficiency": "advanced",
+      "yearsExperience": 8,
+      "contexts": [
+        "cms",
+        "content"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "databases": {
+      "name": "Databases",
+      "proficiency": "advanced",
+      "yearsExperience": 10,
+      "contexts": [
+        "backend",
+        "data"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "mobileapplications": {
+      "name": "Mobile Applications",
+      "proficiency": "intermediate",
+      "yearsExperience": 6,
+      "contexts": [
+        "mobile",
+        "development"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "blockchain": {
+      "name": "Blockchain",
+      "proficiency": "beginner",
+      "yearsExperience": 2,
+      "contexts": [
+        "crypto",
+        "web3"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "nft": {
+      "name": "Non-Fungible Tokens (NFTs)",
+      "proficiency": "beginner",
+      "yearsExperience": 2,
+      "contexts": [
+        "crypto",
+        "web3"
+      ],
+      "marketDemand": "low",
+      "trending": "down"
+    },
+    "linux": {
+      "name": "Linux",
+      "proficiency": "intermediate",
+      "yearsExperience": 8,
+      "contexts": [
+        "system",
+        "development"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "windows": {
+      "name": "Windows",
+      "proficiency": "advanced",
+      "yearsExperience": 15,
+      "contexts": [
+        "system",
+        "development"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "android": {
+      "name": "Android",
+      "proficiency": "intermediate",
+      "yearsExperience": 8,
+      "contexts": [
+        "mobile",
+        "testing"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "macos": {
+      "name": "Mac OS",
+      "proficiency": "expert",
+      "yearsExperience": 12,
+      "contexts": [
+        "system",
+        "development"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "microsoftoffice": {
+      "name": "Microsoft Office",
+      "proficiency": "advanced",
+      "yearsExperience": 15,
+      "contexts": [
+        "productivity",
+        "business"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "photoshop": {
+      "name": "Photoshop",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "design",
+        "graphics"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "excel": {
+      "name": "Excel",
+      "proficiency": "advanced",
+      "yearsExperience": 12,
+      "contexts": [
+        "analytics",
+        "business"
+      ],
+      "marketDemand": "high",
+      "trending": "stable"
+    },
+    "cplusplus": {
+      "name": "C++",
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
+      "contexts": [
+        "programming",
+        "systems"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "teaching": {
+      "name": "Teaching",
+      "proficiency": "advanced",
+      "yearsExperience": 8,
+      "contexts": [
+        "education",
+        "mentoring"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "figma": {
+      "name": "Figma",
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
+      "contexts": [
+        "design",
+        "prototyping"
+      ],
+      "marketDemand": "high",
+      "trending": "up"
+    },
+    "sketch": {
+      "name": "Sketch",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "design",
+        "prototyping"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "xcode": {
+      "name": "XCode",
+      "proficiency": "beginner",
+      "yearsExperience": 3,
+      "contexts": [
+        "mobile",
+        "ios"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "web3sdks": {
+      "name": "web3 SDKs",
+      "proficiency": "beginner",
+      "yearsExperience": 2,
+      "contexts": [
+        "crypto",
+        "web3"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "nock": {
+      "name": "Nock",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "testing",
+        "mocking"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "winston": {
+      "name": "Winston",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "backend",
+        "logging"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "storybook": {
+      "name": "Storybook",
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
+      "contexts": [
+        "frontend",
+        "documentation"
+      ],
+      "marketDemand": "medium",
+      "trending": "up"
+    },
+    "aha": {
+      "name": "aha",
+      "proficiency": "intermediate",
+      "yearsExperience": 6,
+      "contexts": [
+        "product",
+        "roadmapping"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "pendo": {
+      "name": "Pendo",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "analytics",
+        "product"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    },
+    "allstacks": {
+      "name": "Allstacks",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "analytics",
+        "development"
+      ],
+      "marketDemand": "low",
+      "trending": "stable"
+    },
+    "sumologic": {
+      "name": "Sumologic",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "logging",
+        "monitoring"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable"
+    }
+  }
+}

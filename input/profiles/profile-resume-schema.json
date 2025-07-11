@@ -1,0 +1,149 @@
+{
+  "meta": {
+    "last_updated": "2025-01-15",
+    "version": "1.0",
+    "source": "linkedin-parser"
+  },
+  
+  "basic_info": {
+    "name": "Joseph Sangiorgio",
+    "headline": "Engineering Leader with proven success in emerging tech",
+    "location": "Denver, CO 80209",
+    "summary": "Hello, and thank you for visiting my profile! My journey in technology began...",
+    "contact": {
+      "email": "jsangio1@gmail.com",
+      "phone": "917-626-6319",
+      "address": "515 S Emerson St, Denver, CO 80209",
+      "linkedin": "https://linkedin.com/in/joesangiorgio",
+      "website": "https://joesangiorgio.com"
+    }
+  },
+
+  "resume_config": {
+    "versions": {
+      "full": {
+        "name": "Complete Resume",
+        "target_length": "unlimited",
+        "include_all_sections": true,
+        "section_order": ["summary", "experience", "projects", "education", "skills"]
+      },
+      "short": {
+        "name": "One-Page Resume", 
+        "target_length": "1_page",
+        "experience_limit": 3,
+        "projects_limit": 2,
+        "section_order": ["summary", "experience", "skills", "education"]
+      },
+      "leadership": {
+        "name": "Management-Focused",
+        "emphasis": ["leadership", "management", "strategy"],
+        "filter_skills": ["Technical Leadership", "Engineering Management", "Team Management"],
+        "experience_filter": "management_roles_only"
+      },
+      "technical": {
+        "name": "Technical Deep-Dive",
+        "emphasis": ["technical", "development", "architecture"],
+        "filter_skills": ["JavaScript", "React", "Node.js", "AWS"],
+        "projects_priority": "high"
+      }
+    },
+    "default_version": "full"
+  },
+
+  "experience": [
+    {
+      "title": "Principal Engineer (Founding Team)",
+      "company": "FORA",
+      "duration": "Jan 2024 - Present",
+      "description": "Pioneered enterprise-grade AI-assisted development practices",
+      "bulletPoints": ["Pioneered enterprise-grade AI-assisted development practices"],
+      "skills": ["JavaScript", "Product Strategy", "Technical Leadership"],
+      
+      "resume_metadata": {
+        "priority": "high",
+        "relevance": {
+          "leadership": 9,
+          "technical": 8,
+          "management": 7
+        },
+        "featured_bullets": [0, 2, 4],
+        "short_version_bullets": [0, 2],
+        "achievements": [
+          { "metric": "AI development workflow", "impact": "100% adoption" },
+          { "metric": "deployment time", "impact": "50% reduction" }
+        ]
+      }
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "Fora Suite of Products",
+      "company": "FORA", 
+      "date": "Jan 2024 - Present",
+      "description": "Architected comprehensive error boundary system",
+      "bulletPoints": ["Architected comprehensive error boundary system"],
+      "skills": ["ChakraUI", "Statsig", "Vite Plugins"],
+      
+      "resume_metadata": {
+        "category": "professional",
+        "priority": "high",
+        "show_in_versions": ["full", "technical"],
+        "technical_focus": true,
+        "leadership_relevance": "medium"
+      }
+    }
+  ],
+
+  "skills": [
+    {
+      "name": "JavaScript",
+      "endorsements": 19,
+      "associations": {
+        "experiences": "FORA, iCIMS",
+        "projects": ["Fora Suite of Products"]
+      },
+      
+      "resume_metadata": {
+        "category": "technical",
+        "proficiency": "expert",
+        "years_experience": 12,
+        "show_in_versions": ["full", "technical", "short"],
+        "priority": "high"
+      }
+    }
+  ],
+
+  "resume_templates": {
+    "modern": {
+      "sections": {
+        "summary": { "style": "paragraph", "max_lines": 4 },
+        "experience": { "bullet_style": "•", "date_format": "MM/YY" },
+        "projects": { "show_company": true, "group_by": "relevance" },
+        "skills": { "format": "grouped", "show_endorsements": false }
+      }
+    },
+    "ats_friendly": {
+      "sections": {
+        "summary": { "style": "bullet_points", "keyword_density": "high" },
+        "experience": { "bullet_style": "•", "date_format": "Month Year" },
+        "skills": { "format": "comma_separated", "alphabetical": true }
+      }
+    }
+  },
+
+  "job_targeting": {
+    "current_target": {
+      "role": "Senior Engineering Manager",
+      "company": "TechCorp",
+      "job_description": "...",
+      "key_requirements": ["team leadership", "scalable systems", "AI/ML"],
+      "emphasized_skills": ["Technical Leadership", "Engineering Management", "AI"],
+      "customizations": {
+        "summary_focus": "leadership and AI experience",
+        "experience_emphasis": ["FORA", "iCIMS Director role"],
+        "projects_filter": ["technical", "leadership"]
+      }
+    }
+  }
+} 

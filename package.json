@@ -1,0 +1,58 @@
+{
+  "name": "resume-optimizer",
+  "version": "1.0.0",
+  "description": "Modern resume optimization tool with CLI, web app, and AI-powered matching",
+  "author": "crimsonsunset",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run build:cli && npm run build:web",
+    "build:cli": "BUILD_CLI=true vite build",
+    "build:web": "vite build",
+    "lint": "eslint src/",
+    "lint:fix": "eslint --fix src/",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "dev": "npm run dev:cli",
+    "dev:cli": "BUILD_CLI=true vite build --watch",
+    "dev:web": "vite --open",
+    "preview:web": "vite preview",
+    "clean": "shx rm -rf dist node_modules/.cache",
+    "cli": "npm run build:cli --silent && node dist/cli/convert.js",
+    "test": "echo 'No tests specified'",
+    "html-to-pdf": "npm run cli -- html-to-pdf",
+    "json-to-html": "npm run cli -- json-to-html",
+    "json-to-pdf": "npm run cli -- json-to-pdf"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "playwright": "^1.54.0",
+    "@netlify/functions": "^2.8.2"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.2.3",
+    "@oclif/prettier-config": "^0.2.1",
+    "eslint": "^9.16.0",
+    "eslint-config-oclif": "^6.0.0",
+    "eslint-config-prettier": "^10.0.1",
+    "prettier": "^3.0.0",
+    "shx": "^0.3.4",
+    "vite": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "resume",
+    "optimization",
+    "cli",
+    "web-app",
+    "ai",
+    "pdf",
+    "html",
+    "typescript",
+    "netlify"
+  ]
+} 
