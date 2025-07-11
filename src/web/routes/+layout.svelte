@@ -1,4 +1,7 @@
 <script>
+  // Import global CSS with Tailwind and shadcn-svelte
+  import '../app.css'
+  
   // Future: Global state management, theme handling, etc.
   import { onMount } from 'svelte'
   
@@ -10,16 +13,9 @@
 <slot />
 
 <style>
-  /* Global styles for web-ui scope */
+  /* Additional global styles for web-ui scope */
   :global(.web-ui *) {
     box-sizing: border-box;
-  }
-  
-  /* Reset some defaults while preserving resume styles */
-  :global(.web-ui body) {
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
   }
   
   /* Ensure resume container is completely isolated */
