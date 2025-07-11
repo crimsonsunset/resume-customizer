@@ -35,6 +35,7 @@ Thumbs.db
 .parcel-cache/
 .next/
 .nuxt/
+.svelte-kit/
 .vuepress/dist/
 
 # Output directories
