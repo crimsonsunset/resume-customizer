@@ -12,15 +12,4 @@
 
 <slot />
 
-<style>
-  /* Additional global styles for web-ui scope */
-  :global(.web-ui *) {
-    box-sizing: border-box;
-  }
-  
-  /* Ensure resume container is completely isolated */
-  :global(.resume-container) {
-    /* Resume styles remain completely untouched */
-    isolation: isolate;
-  }
-</style> 
+ 

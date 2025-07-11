@@ -1,0 +1,6 @@
+
+
+/src/web/immutable/*
+  cache-control: public
+  cache-control: immutable
+  cache-control: max-age=31536000

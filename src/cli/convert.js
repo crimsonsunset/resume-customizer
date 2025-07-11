@@ -134,39 +134,54 @@ async function convertHtmlToPdf(inputFile, outputFile, cssFile = null) {
     const htmlContent = await fsPromises.readFile(inputFile, 'utf8');
     const inputDir = path.dirname(inputFile);
     
-    // Auto-detect and resolve CSS files from HTML <link> tags
+    // Auto-detect CSS files from <link> tags
     const linkRegex = /<link[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*>/gi;
-    const detectedCssFiles = [];
     let match;
+    const potentialCssFiles = [];
     
     while ((match = linkRegex.exec(htmlContent)) !== null) {
       const cssPath = match[1];
       const resolvedPath = path.resolve(inputDir, cssPath);
-      
-      try {
-        await fsPromises.access(resolvedPath);
-        detectedCssFiles.push(resolvedPath);
-        console.log(chalk.gray('🔗 Auto-detected CSS:'), cssPath);
-      } catch {
-        console.warn(chalk.yellow('⚠️  Could not resolve CSS file:'), cssPath);
-      }
+      potentialCssFiles.push({ cssPath, resolvedPath });
     }
+    
+    // Check all CSS files in parallel
+    const cssFileChecks = await Promise.allSettled(
+      potentialCssFiles.map(async ({ cssPath, resolvedPath }) => {
+        try {
+          await fsPromises.access(resolvedPath);
+          console.log(chalk.gray('🔗 Auto-detected CSS:'), cssPath);
+          return resolvedPath;
+        } catch {
+          console.warn(chalk.yellow('⚠️  Could not resolve CSS file:'), cssPath);
+          throw new Error(`Could not resolve ${cssPath}`);
+        }
+      })
+    );
+    
+    // Extract successful CSS files
+    const detectedCssFiles = cssFileChecks
+      .filter(result => result.status === 'fulfilled')
+      .map(result => result.value);
     
     // Collect all CSS content (auto-detected + optional additional)
     const allCssContent = [];
     
-    // Add auto-detected CSS files
-    for (const cssPath of detectedCssFiles) {
-      const cssContent = await fsPromises.readFile(cssPath, 'utf8');
-      allCssContent.push(cssContent);
-    }
-    
-    // Add optional additional CSS file
+    // Read all CSS files in parallel
+    const cssFilesToRead = [...detectedCssFiles];
     if (cssFile) {
-      const cssContent = await fsPromises.readFile(cssFile, 'utf8');
-      allCssContent.push(cssContent);
+      cssFilesToRead.push(cssFile);
       console.log(chalk.gray('➕ Additional CSS:'), cssFile);
     }
+    
+    if (cssFilesToRead.length > 0) {
+      const cssContents = await Promise.all(
+        cssFilesToRead.map(cssPath => fsPromises.readFile(cssPath, 'utf8'))
+      );
+      allCssContent.push(...cssContents);
+    }
+
+
     
     // Process HTML with injected CSS
     let processedHtml = htmlContent;
