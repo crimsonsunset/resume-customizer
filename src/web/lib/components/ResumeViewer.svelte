@@ -295,4 +295,46 @@
 .resume-viewer :global(.section-content h4) {
     /* Additional debug info */
 }
+
+/* Recommendations section specific styling */
+.resume-viewer :global(.recommendation-item) {
+
+    margin-bottom: var(--spacing-xxl);
+}
+
+.resume-viewer :global(.recommendation-item h4) {
+    margin-bottom: var(--spacing-xs);
+    font-weight: bold;
+    color: var(--color-text-medium);
+    font-style: italic;
+}
+
+.resume-viewer :global(.recommendation-item .title-date) {
+    margin: 0;
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+.resume-viewer :global(.recommendation-item .relationship) {
+    margin: 0;
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-small);
+    color: var(--color-text-light);
+    font-style: italic;
+}
+
+.resume-viewer :global(.recommendation-quote) {
+    margin: 0;
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--color-primary);
+    border-radius: 4px;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text);
+    font-style: normal;
+}
 </style>
