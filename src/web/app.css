@@ -1,6 +1,8 @@
 /* Tailwind CSS 4 + DaisyUI 5 */
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: all;
+}
 
 /* Global styles for web-ui scope */
 .web-ui * {

@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte'
+  import ThemeSelector from '@web/lib/components/ThemeSelector.svelte'
   
   // Future: Import from stores
   // import { profileStore, skillsStore } from '@web/lib/stores'
@@ -19,9 +20,14 @@
 
 <main class="container mx-auto px-4 py-8 max-w-6xl">
   <header class="text-center mb-12">
-    <h1 class="text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-      🚀 Resume Optimizer
-    </h1>
+    <div class="flex justify-center items-center mb-4">
+      <h1 class="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        🚀 Resume Optimizer
+      </h1>
+      <div class="ml-4">
+        <ThemeSelector />
+      </div>
+    </div>
     <p class="text-xl opacity-70">
       Modern resume optimization with AI-powered matching
     </p>
@@ -46,8 +52,8 @@
         <div class="alert alert-success">
           <span>✅ DaisyUI 5.0.46 ready</span>
         </div>
-        <div class="alert alert-info">
-          <span>🔄 JSON data integration (next)</span>
+        <div class="alert alert-success">
+          <span>✅ Theme selector working</span>
         </div>
       </div>
     </div>
@@ -66,7 +72,7 @@
       <div class="card bg-base-100 shadow-lg">
         <div class="card-body">
           <h3 class="card-title text-lg">🎨 Theme Selector</h3>
-          <p>Multiple professional themes with custom color schemes</p>
+          <p>✅ Now working! Switch between 35 professional themes</p>
         </div>
       </div>
       
@@ -106,6 +112,7 @@
         <h3 class="text-lg font-bold">🔧 Development Status</h3>
         <div class="text-sm">
           <p>App mounted successfully! SvelteKit is running in development mode.</p>
+          <p>🎨 Theme selector is now working with all 35 DaisyUI themes!</p>
           <p>Next steps: JSON data loading → Resume preview → Interactive controls</p>
         </div>
       </div>

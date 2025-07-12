@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store'
 import { browser } from '$app/environment'
 
-// DaisyUI built-in themes
+// DaisyUI 5 built-in themes (all 35 themes)
 export const DAISY_THEMES = [
   'light',
   'dark', 
@@ -35,6 +35,9 @@ export const DAISY_THEMES = [
   'dim',
   'nord',
   'sunset',
+  'caramellatte',
+  'abyss',
+  'silk',
 ]
 
 // Get initial theme from localStorage or default to 'light'
@@ -100,6 +103,9 @@ export const getThemeInfo = (theme) => {
     dim: '🔅 Dim',
     nord: '🏔️ Nord',
     sunset: '🌅 Sunset',
+    caramellatte: '🍮 Caramel Latte',
+    abyss: '🌊 Abyss',
+    silk: '🎀 Silk',
   }
   
   return themeNames[theme] || theme
