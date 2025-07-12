@@ -22,7 +22,7 @@
 
 <svelte:window on:click={handleClickOutside} />
 
-<div class="dropdown" class:dropdown-open={isOpen}>
+<div class="dropdown dropdown-end" class:dropdown-open={isOpen}>
   <!-- Dropdown trigger -->
   <div 
     tabindex="0" 
@@ -38,27 +38,28 @@
   </div>
   
   <!-- Dropdown content -->
-  <ul class="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-64 max-h-96 overflow-y-auto">
-    <li class="menu-title">
-      <span>Choose Theme</span>
-    </li>
-    <div class="divider my-1"></div>
+  <div class="dropdown-content z-[1] p-4 shadow-lg bg-base-100 rounded-box w-96 max-h-96 overflow-y-auto">
+    <div class="mb-3">
+      <h3 class="font-semibold text-lg">Choose Theme</h3>
+      <p class="text-sm opacity-70">Select from {DAISY_THEMES.length} professional themes</p>
+    </div>
     
-    {#each DAISY_THEMES as theme}
-      <li>
+    <div class="grid grid-cols-2 gap-2">
+      {#each DAISY_THEMES as theme}
         <button
-          class="justify-start"
-          class:active={$currentTheme === theme}
+          class="btn btn-sm justify-start text-left h-auto py-2 px-3"
+          class:btn-primary={$currentTheme === theme}
+          class:btn-ghost={$currentTheme !== theme}
           on:click={() => handleThemeSelect(theme)}
         >
-          <span class="flex-1 text-left">{getThemeInfo(theme)}</span>
+          <span class="flex-1 text-left text-sm">{getThemeInfo(theme)}</span>
           {#if $currentTheme === theme}
-            <span class="text-success">✓</span>
+            <span class="text-success ml-2">✓</span>
           {/if}
         </button>
-      </li>
-    {/each}
-  </ul>
+      {/each}
+    </div>
+  </div>
 </div>
 
 <style>
@@ -66,8 +67,17 @@
     border: 1px solid hsl(var(--bc) / 0.2);
   }
   
-  .menu li button.active {
+  .btn-ghost:hover {
+    background-color: hsl(var(--b2));
+  }
+  
+  .btn-primary {
     background-color: hsl(var(--p) / 0.1);
     color: hsl(var(--pc));
+    border-color: hsl(var(--p) / 0.3);
+  }
+  
+  .btn-primary:hover {
+    background-color: hsl(var(--p) / 0.2);
   }
 </style> 
