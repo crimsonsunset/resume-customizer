@@ -8,6 +8,7 @@ import ExperienceSection from '@web/lib/components/resume/ExperienceSection.svel
 import SkillsSection from '@web/lib/components/resume/SkillsSection.svelte'
 import ProjectsSection from '@web/lib/components/resume/ProjectsSection.svelte'
 import EducationSection from '@web/lib/components/resume/EducationSection.svelte'
+import VolunteeringSection from '@web/lib/components/resume/VolunteeringSection.svelte'
 import ActivitiesSection from '@web/lib/components/resume/ActivitiesSection.svelte'
 
 export async function load({ url }) {
@@ -64,6 +65,14 @@ export async function load({ url }) {
       firstEducationInstitution: finalData.sections?.education?.education?.[0]?.institution || 'none'
     })
 
+    // Log volunteering data
+    console.log('🤝 Volunteering data:', {
+      volunteeringExists: Boolean(finalData.sections?.volunteering),
+      volunteeringCount: finalData.sections?.volunteering?.length || 0,
+      firstVolunteerRole: finalData.sections?.volunteering?.[0]?.role || 'none',
+      firstVolunteerOrg: finalData.sections?.volunteering?.[0]?.organization || 'none'
+    })
+
     // Log activities data
     console.log('🎭 Activities data:', {
       activitiesExists: Boolean(finalData.sections?.activities),
@@ -112,6 +121,12 @@ export async function load({ url }) {
           config: { preset: presetParam }
         } 
       }),
+      volunteering: () => render(VolunteeringSection, { 
+        props: { 
+          volunteering: finalData.sections?.volunteering || [],
+          config: { preset: presetParam }
+        } 
+      }),
       activities: () => render(ActivitiesSection, { 
         props: { 
           activities: finalData.sections?.activities || {},
@@ -121,7 +136,7 @@ export async function load({ url }) {
     }
     
     // Get section order from data or use default
-    const sectionOrder = finalData.sections_order || ['objective', 'experience', 'projects', 'skills', 'education', 'activities']
+    const sectionOrder = finalData.sections_order || ['objective', 'experience', 'projects', 'skills', 'education', 'volunteering', 'activities']
     console.log('📋 Sections order:', sectionOrder)
     
     // Render sections in specified order
