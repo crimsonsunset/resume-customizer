@@ -1,12 +1,15 @@
 <script>
-  // Import global CSS with Tailwind and shadcn-svelte
-  import '../app.css'
+  // Import global CSS with Tailwind and DaisyUI
+  import '@web/app.css'
   
-  // Future: Global state management, theme handling, etc.
+  // Theme management
   import { onMount } from 'svelte'
+  import { currentTheme } from '@web/lib/stores/theme.js'
   
   onMount(() => {
-    console.log('🎨 SvelteKit Layout Loaded')
+    // Initialize theme on app load
+    const theme = $currentTheme
+    document.documentElement.dataset.theme = theme
   })
 </script>
 

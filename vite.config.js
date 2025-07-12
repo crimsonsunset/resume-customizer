@@ -21,6 +21,7 @@ export default defineConfig(({ command, mode }) => {
     // CLI build configuration
     return {
       root: '.',
+      publicDir: false, // Don't copy public files for CLI build
       build: {
         outDir: 'dist/cli',
         emptyOutDir: true,

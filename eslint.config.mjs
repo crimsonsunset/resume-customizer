@@ -69,7 +69,12 @@ export default [
       'no-undef': 'off',
       
       // Allow await in loops for CLI operations
-      'no-await-in-loop': 'warn'
+      'no-await-in-loop': 'warn',
+      
+      // Allow SvelteKit imports like $app/environment
+      'import/no-unresolved': ['error', { 
+        ignore: ['^\\$app/', '^\\$env/', '^\\$lib/', '^\\$service-worker']
+      }]
     }
   }
 ] 
