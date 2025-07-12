@@ -31,7 +31,7 @@ export function loadAllProfileSections() {
     
     // Load all sections
     const sections = {}
-    const sectionFiles = ['experience.json', 'projects.json', 'education.json', 'skills.json', 'recommendations.json', 'activities.json']
+    const sectionFiles = ['experience.json', 'projects.json', 'education.json', 'skills.json', 'recommendations.json', 'volunteering.json', 'activities.json']
     
     for (const file of sectionFiles) {
       try {
