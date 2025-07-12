@@ -7,6 +7,7 @@ import ObjectiveSection from '@web/lib/components/resume/ObjectiveSection.svelte
 import ExperienceSection from '@web/lib/components/resume/ExperienceSection.svelte'
 import SkillsSection from '@web/lib/components/resume/SkillsSection.svelte'
 import ProjectsSection from '@web/lib/components/resume/ProjectsSection.svelte'
+import EducationSection from '@web/lib/components/resume/EducationSection.svelte'
 
 export async function load({ url }) {
   try {
@@ -55,6 +56,13 @@ export async function load({ url }) {
       firstProjectName: finalData.sections?.projects?.[0]?.name || 'none'
     })
     
+    // Log education data
+    console.log('🎓 Education data:', {
+      educationExists: Boolean(finalData.sections?.education?.education),
+      educationCount: finalData.sections?.education?.education?.length || 0,
+      firstEducationInstitution: finalData.sections?.education?.education?.[0]?.institution || 'none'
+    })
+    
     // Render each component with the data
     console.log('🎨 Rendering ResumeHeader...')
     const headerResult = render(ResumeHeader, { 
@@ -88,11 +96,17 @@ export async function load({ url }) {
           projects: finalData.sections?.projects || [],
           config: { preset: presetParam }
         } 
+      }),
+      education: () => render(EducationSection, { 
+        props: { 
+          education: finalData.sections?.education?.education || [],
+          config: { preset: presetParam }
+        } 
       })
     }
     
     // Get section order from data or use default
-    const sectionOrder = finalData.sections_order || ['objective', 'experience', 'projects', 'skills']
+    const sectionOrder = finalData.sections_order || ['objective', 'experience', 'projects', 'skills', 'education']
     
     // Render sections in specified order
     const sectionResults = []
