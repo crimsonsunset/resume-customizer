@@ -1,14 +1,15 @@
 <script>
   import { currentTheme, DAISY_THEMES, setTheme, getThemeInfo } from '@web/lib/stores/theme.js'
   import { onMount } from 'svelte'
+  import { delay } from 'lodash-es'
   
   let isOpen = false
   let storeReady = false
   
   // Wait for store to be properly initialized to prevent text flash
   onMount(() => {
-    // Small delay to ensure store has stabilized
-    setTimeout(() => {
+    // Use lodash delay instead of setTimeout for better reliability
+    delay(() => {
       storeReady = true
     }, 0)
   })
