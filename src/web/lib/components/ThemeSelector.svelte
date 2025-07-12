@@ -1,7 +1,17 @@
 <script>
   import { currentTheme, DAISY_THEMES, setTheme, getThemeInfo } from '@web/lib/stores/theme.js'
+  import { onMount } from 'svelte'
   
   let isOpen = false
+  let storeReady = false
+  
+  // Wait for store to be properly initialized to prevent text flash
+  onMount(() => {
+    // Small delay to ensure store has stabilized
+    setTimeout(() => {
+      storeReady = true
+    }, 0)
+  })
   
   const handleThemeSelect = (theme) => {
     setTheme(theme)
@@ -31,7 +41,14 @@
     on:click={toggleDropdown}
     on:keydown={(e) => e.key === 'Enter' && toggleDropdown()}
   >
-    🎨 {getThemeInfo($currentTheme)}
+    <!-- Show skeleton until store is ready to prevent flash -->
+    {#if storeReady}
+      🎨 {getThemeInfo($currentTheme)}
+    {:else}
+      <div class="flex items-center">
+        🎨 <div class="skeleton w-20 h-4 ml-2"></div>
+      </div>
+    {/if}
     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
     </svg>

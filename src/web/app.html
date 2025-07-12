@@ -5,6 +5,30 @@
     <link rel="icon" href="%sveltekit.assets%/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
+    <!-- 
+      THEME FLASH PREVENTION:
+      This inline script runs immediately (blocking) BEFORE any CSS loads.
+      
+      Why this fixes the flash:
+      1. SSR renders HTML with no theme data (server can't access localStorage)
+      2. CSS loads with default 'light' theme, causing flash
+      3. Later, JS hydration applies saved theme from localStorage
+      4. This script eliminates steps 2-3 by setting theme BEFORE CSS processes
+      
+      Result: No flash, theme applied immediately on page load
+    -->
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('daisy-theme') || 'light'
+          document.documentElement.dataset.theme = savedTheme
+        } catch (e) {
+          // Fallback for browsers with localStorage disabled
+          document.documentElement.dataset.theme = 'light'
+        }
+      })()
+    </script>
+    
     <!-- App metadata -->
     <title>Resume Optimizer</title>
     <meta name="description" content="Modern resume optimization tool with AI-powered matching" />
