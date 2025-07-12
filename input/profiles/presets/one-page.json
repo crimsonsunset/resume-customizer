@@ -126,6 +126,9 @@
     "projects": {
       "max_entries": 2
     },
-    "sections_order": ["objective", "education", "skills", "experience", "projects", "volunteering", "honors-awards", "activities"]
+    "recommendations": {
+      "max_entries": 3
+    },
+    "sections_order": ["objective", "education", "skills", "experience", "projects", "volunteering", "honors-awards", "recommendations", "activities"]
   }
 } 
