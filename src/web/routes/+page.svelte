@@ -201,10 +201,14 @@
 
     <!-- Right Resume Preview -->
     <div class="flex-1 h-screen overflow-y-auto">
-      <div class="p-8">
-        <ResumeViewer>
-          {@html data.resumeContent}
-        </ResumeViewer>
+      <div class="p-4">
+        <div class="card bg-base-100 shadow-sm border border-base-300">
+          <div class="card-body p-8">
+            <ResumeViewer>
+              {@html data.resumeContent}
+            </ResumeViewer>
+          </div>
+        </div>
       </div>
     </div>
   </div>

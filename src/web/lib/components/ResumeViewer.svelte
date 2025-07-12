@@ -87,6 +87,7 @@
     margin-bottom: var(--spacing-header);
     padding-bottom: var(--spacing-xl);
     border-bottom: 2px solid var(--color-primary);
+    background: white;
     /* Debug: Show header boundaries */
     border: 1px solid orange;
 }
@@ -109,7 +110,7 @@
 /* Main content using CSS Grid - Optimized for better balance */
 .resume-viewer :global(.resume-content) {
     border: 3px solid red;
-    background-color: rgba(255, 0, 0, 0.05);
+    background: white;
     display: grid;
     grid-template-columns: var(--column-left-width) 1fr;
     column-gap: var(--column-gap);
