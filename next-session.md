@@ -220,3 +220,78 @@ Complete Phase 2A: JSON Integration & Dynamic Content - Wire up all web applicat
 ---
 
 *This plan provides a complete roadmap for implementing JSON-driven dynamic content while preserving the existing architecture and CSS foundation.* 
+
+---
+
+## 🎯 **Future Enhancement: Bullet Point Prioritization Slider**
+
+### **Feature Concept**
+Add a control panel slider that prioritizes specific bullet points under each section with bullets. Users can slide in 15% increments (100%, 85%, 70%, 55%, 40%, 25%, 15%) to control how much of each section they want to display.
+
+### **Implementation Strategy: Option 1 - Simple Priority Scores**
+
+**Data Structure Enhancement:**
+```json
+{
+  "bulletPoints": [
+    "Pioneered enterprise-grade AI-assisted development practices...",
+    "Architected foundational technology stack...", 
+    "Influenced product strategy and technical direction...",
+    "Developed progressive web app infrastructure..."
+  ],
+  "bullet_priorities": [9, 8, 7, 6, 5, 4, 3, 2]
+}
+```
+
+**Slider Logic:**
+- **100%** = show all bullets
+- **85%** = show bullets with priority ≥ 2  
+- **70%** = show bullets with priority ≥ 4
+- **55%** = show bullets with priority ≥ 6
+- **40%** = show bullets with priority ≥ 7
+- **25%** = show bullets with priority ≥ 8
+- **15%** = show bullets with priority ≥ 9
+
+**Implementation Code:**
+```javascript
+// 15% increments
+const percentages = [100, 85, 70, 55, 40, 25, 15];
+const selectedPercentage = percentages[sliderValue];
+
+// Calculate minimum priority threshold
+const maxPriority = Math.max(...bullet_priorities);
+const minThreshold = maxPriority * (selectedPercentage / 100);
+
+// Filter bullets
+const visibleBullets = bulletPoints.filter((bullet, index) => 
+  bullet_priorities[index] >= minThreshold
+);
+```
+
+**Benefits:**
+- **Easy to implement** - Single array of numbers per entry
+- **Intuitive** - Higher numbers = more important content
+- **Flexible** - Handles any number of bullets
+- **Performant** - Simple array filtering
+- **Future-proof** - Can enhance later with metadata
+
+**Migration Strategy:**
+1. **Add priority arrays** to existing experience and project entries
+2. **Use AI assistance** to generate initial scores based on:
+   - Keywords (quantified results, leadership terms, technical depth)
+   - Sentence structure and impact language
+   - Position in original array (first = likely more important)
+3. **Manual refinement** - Adjust priorities based on user preferences
+
+**URL Parameter Addition:**
+- `bullet_density`: 100|85|70|55|40|25|15 (percentage of bullets to show)
+- Example: `/?version=technical&sections=experience,projects&bullet_density=70`
+
+**Files to Modify:**
+- `input/profiles/profile.json` - Add `bullet_priorities` arrays
+- `src/web/routes/+page.server.js` - Add bullet filtering logic
+- `src/web/routes/+page.svelte` - Add bullet density slider control
+
+---
+
+*This enhancement would provide granular control over resume content density while maintaining the same architectural patterns.* 
