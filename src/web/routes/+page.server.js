@@ -8,6 +8,7 @@ import ExperienceSection from '@web/lib/components/resume/ExperienceSection.svel
 import SkillsSection from '@web/lib/components/resume/SkillsSection.svelte'
 import ProjectsSection from '@web/lib/components/resume/ProjectsSection.svelte'
 import EducationSection from '@web/lib/components/resume/EducationSection.svelte'
+import ActivitiesSection from '@web/lib/components/resume/ActivitiesSection.svelte'
 
 export async function load({ url }) {
   try {
@@ -62,6 +63,14 @@ export async function load({ url }) {
       educationCount: finalData.sections?.education?.education?.length || 0,
       firstEducationInstitution: finalData.sections?.education?.education?.[0]?.institution || 'none'
     })
+
+    // Log activities data
+    console.log('🎭 Activities data:', {
+      activitiesExists: Boolean(finalData.sections?.activities),
+      activitiesCount: finalData.sections?.activities?.activities?.length || 0,
+      personalInterestsCount: finalData.sections?.activities?.personal_interests?.length || 0,
+      firstActivityOrg: finalData.sections?.activities?.activities?.[0]?.organization || 'none'
+    })
     
     // Render each component with the data
     console.log('🎨 Rendering ResumeHeader...')
@@ -102,11 +111,18 @@ export async function load({ url }) {
           education: finalData.sections?.education?.education || [],
           config: { preset: presetParam }
         } 
+      }),
+      activities: () => render(ActivitiesSection, { 
+        props: { 
+          activities: finalData.sections?.activities || {},
+          config: { preset: presetParam }
+        } 
       })
     }
     
     // Get section order from data or use default
-    const sectionOrder = finalData.sections_order || ['objective', 'experience', 'projects', 'skills', 'education']
+    const sectionOrder = finalData.sections_order || ['objective', 'experience', 'projects', 'skills', 'education', 'activities']
+    console.log('📋 Sections order:', sectionOrder)
     
     // Render sections in specified order
     const sectionResults = []
