@@ -6,8 +6,8 @@
 <style>
 /* Resume Styles - CSS Grid Layout (Playwright Compatible) */
 
-/* CSS Variables */
-:root {
+/* CSS Variables - Scoped to resume viewer only */
+.resume-viewer {
     /* Font sizes */
     --font-size-base: 9pt;
     --font-size-header: 22pt;
@@ -42,16 +42,8 @@
     --line-height-tight: 1.2;
     --line-height-normal: 1.3;
     --line-height-relaxed: 1.25;
-}
-
-/* Reset and base styles */
-.resume-viewer * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.resume-viewer {
+    
+    /* Base styling */
     font-family: 'Arial', 'Helvetica', sans-serif;
     font-size: var(--font-size-base);
     line-height: var(--line-height-normal);
@@ -67,6 +59,13 @@
     print-color-adjust: exact;
     /* Debug: Show body boundaries */
     border: 2px solid purple;
+}
+
+/* Reset and base styles */
+.resume-viewer * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Add responsive padding for web viewing */
@@ -292,4 +291,4 @@
 .resume-viewer :global(.section-content h4) {
     /* Additional debug info */
 }
-</style> 
+</style>
