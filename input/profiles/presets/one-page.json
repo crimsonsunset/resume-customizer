@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "name": "One-Page Resume",
+    "description": "Compact resume optimized for single-page layout with curated skills and essential content"
+  },
+  "overrides": {
+    "objective": "To obtain a senior leadership position in the web development space in order to provide ongoing value to a company. Comfortable managing medium to large sized engineering teams across multiple disciplines. Proven capabilities within a distributed staffing and management model.",
+    "skills": {
+      "Leadership": [
+        "Team Management",
+        "Mentoring", 
+        "Strategic Planning",
+        "Product Strategy",
+        "Technical Vision & Roadmapping",
+        "Stakeholder Relations",
+        "Cross-team Collaboration",
+        "Agile Methodologies",
+        "Requirements Analysis",
+        "Process Improvement"
+      ],
+      "Programming Languages": [
+        "JavaScript/Typescript",
+        "JSX",
+        "HTML",
+        "CSS/Sass",
+        "XML",
+        "JSON",
+        "YAML",
+        "Python",
+        "PHP",
+        "SQL",
+        "Java"
+      ],
+      "Frameworks & Libraries": [
+        "React",
+        "Redux",
+        "React Router",
+        "React Hook Form",
+        "React Native",
+        "Zustand",
+        "Framer Motion",
+        "Angular",
+        "RxJS",
+        "Vue.js",
+        "Next.js",
+        "SvelteKit",
+        "Node.js",
+        "Express",
+        "Nest.js",
+        "GraphQL",
+        "Mongoose",
+        "Socket.io",
+        "MUI",
+        "Tailwind",
+        "Bootstrap",
+        "Styled Components",
+        "Enterprise AI APIs",
+        "Prompt Engineering",
+        "LLMs",
+        "Blockchain",
+        "WebRTC",
+        "Storybook",
+        "Service Workers",
+        "Auth0"
+      ],
+      "Tools & Platforms": [
+        "Jira",
+        "Notion",
+        "Git",
+        "GitHub",
+        "GitHub Actions",
+        "CI/CD",
+        "Cursor",
+        "npm",
+        "Command Line Tools",
+        "Webpack",
+        "Vite",
+        "ESLint",
+        "Prettier",
+        "Jest",
+        "Cypress",
+        "Playwright",
+        "Vitest",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Netlify",
+        "MongoDB",
+        "PostgreSQL",
+        "Redis",
+        "Google Analytics",
+        "New Relic",
+        "Rollbar",
+        "Lighthouse",
+        "Sumologic",
+        "Allstacks",
+        "Figma",
+        "Headless CMS",
+        "Nginx",
+        "CloudFlare",
+        "Mapping APIs"
+      ],
+      "Concepts & Methodologies": [
+        "REST APIs",
+        "Web APIs",
+        "3rd Party Integrations",
+        "OAuth",
+        "JWT",
+        "HTTPS/SSL",
+        "User Interface Design",
+        "Progressive Web Apps",
+        "Mobile Applications",
+        "Data Synchronization",
+        "SEO",
+        "Test Automation",
+        "AI Integration"
+      ],
+      "Operating Systems": [
+        "Proficient in Windows, Mac, or Linux, Android and iOS"
+      ]
+    },
+    "experience": {
+      "max_entries": 3,
+      "bullet_priority_threshold": 7
+    },
+    "projects": {
+      "max_entries": 2
+    },
+    "sections_order": ["objective", "experience", "skills", "education"]
+  }
+} 
