@@ -1,17 +1,38 @@
 # Resume Optimizer
 
-A modern resume optimization tool with CLI, future web app, and AI-powered matching capabilities.
+A modern resume optimization tool with CLI, web application, and AI-powered matching capabilities.
 
 ## ✨ Features
 
+### Web Application (Ready to Use)
+- **Interactive Resume Customizer** with split-screen design
+- **34 DaisyUI Themes** with seamless switching
+- **Resume Version Controls** (full/short/leadership/technical)
+- **Section Toggles** with select all/none functionality
+- **Responsive Design** optimized for all devices
+- **PDF-Ready Styling** with scoped CSS architecture
+
+### CLI Tool (Production Ready)
 - **Modern HTML → PDF** conversion with Playwright (CSS Grid, modern layouts)
 - **ES Module** architecture with path aliases
 - **Consistent tooling** (ESLint, Prettier, TypeScript support)
-- **Netlify-ready** structure for future web app deployment
 - **Shared utilities** for CLI and web components
 
 ## 🚀 Quick Start
 
+### Web Application
+```bash
+# Install dependencies
+npm install
+
+# Start the web development server
+npm run dev:web
+
+# Open browser to localhost:3000
+# Customize your resume with interactive controls
+```
+
+### CLI Tool
 ```bash
 # Install dependencies
 npm install
@@ -28,42 +49,62 @@ npm run cli -- --help
 ```
 resume-optimizer/
 ├── src/
-│   ├── cli/                 # CLI tool (current focus)
-│   │   └── convert.js       # Main CLI script
+│   ├── cli/                 # CLI tool (production ready)
+│   │   └── convert.js       # Main CLI script with Playwright
 │   ├── shared/              # Shared utilities
 │   │   └── resume-generator.js # Resume generation logic
-│   ├── web/                 # Future web app
-│   │   └── README.md        # Web app planning
+│   ├── web/                 # SvelteKit Web Application
+│   │   ├── app.html         # App shell with theme loading
+│   │   ├── routes/          # SvelteKit routes
+│   │   │   ├── +page.svelte # Main resume customizer interface
+│   │   │   └── +page.server.js # Server-side data loading
+│   │   └── lib/
+│   │       └── components/  # Svelte components
+│   │           ├── ThemeSelector.svelte # 34 theme selector
+│   │           └── ResumeViewer.svelte  # Scoped resume display
 │   └── functions/           # Netlify Functions (future)
 ├── input/                   # Input data (organized by type)
-│   ├── profiles/            # Profile data (original + working copies)
-│   │   ├── profile.json     # Original profile (never modified)
+│   ├── profiles/            # Profile data with rich metadata
+│   │   ├── profile.json     # Full profile with resume_config
 │   │   ├── profile-working.json # Working copy for edits
-│   │   └── skills-*.json    # Skills data
+│   │   ├── skills-inventory.json # Skills with proficiency data
+│   │   ├── skills-categories.json # Skill categorization
+│   │   └── profile-resume-schema.json # Data structure schema
 │   ├── templates/           # CSS templates
-│   │   └── resume-styles.css # CSS Grid layout
+│   │   └── resume-styles.css # CSS Grid layout (scoped in components)
 │   ├── working/             # Auto-saved working files
-│   ├── examples/            # Sample resumes
-│   └── assets/              # Images, fonts, etc.
-├── output/                  # Generated files
-├── netlify/                 # Netlify configuration
-├── public/                  # Static assets
+│   └── examples/            # Sample resumes (HTML/cleaned)
+├── output/                  # Generated files (HTML/PDF)
+├── public/                  # Static assets for web app
+├── package.json             # Unified CLI + web app scripts
+├── vite.config.js           # SvelteKit + build configuration
+├── tailwind.config.js       # DaisyUI + Tailwind CSS 4 config
 └── netlify.toml            # Netlify deployment config
 ```
 
 ## 🛠️ Available Commands
 
 ```bash
-# Development
-npm run dev              # Run CLI in development mode
-npm run lint             # Run ESLint
-npm run format           # Format code with Prettier
+# Web Application Development
+npm run dev:web          # Start SvelteKit development server
+npm run build:web        # Build web app for production
+npm run preview:web      # Preview built web app
+
+# CLI Development
+npm run dev:cli          # Run CLI in development mode
+npm run build:cli        # Build CLI for production
 
 # CLI Operations
 npm run cli -- --help    # Show all commands
 npm run html-to-pdf      # Convert HTML to PDF
 npm run json-to-html     # Generate HTML from profile.json
 npm run json-to-pdf      # Generate PDF from profile.json
+
+# Development Tools
+npm run lint             # Run ESLint
+npm run lint:fix         # Fix ESLint errors
+npm run format           # Format code with Prettier
+npm run clean            # Clean build artifacts
 ```
 
 ## 🎯 Project Organization
@@ -89,19 +130,33 @@ npm run json-to-pdf      # Generate PDF from profile.json
 
 ## 🚀 Technology Stack
 
+### Web Application
+- **Framework**: SvelteKit with server-side rendering
+- **Styling**: DaisyUI 5.0.46 + Tailwind CSS 4 
+- **Architecture**: Slot-based components with scoped CSS
+- **State Management**: URL parameters + SvelteKit stores
+- **Themes**: 34 responsive DaisyUI themes
+
+### CLI Tool  
 - **Runtime**: Node.js with ES Modules
 - **PDF Generation**: Playwright (Chrome-based, CSS Grid support)
+- **Data**: JSON profiles with structured metadata
+
+### Development Tools
 - **Linting**: ESLint with oclif configuration
 - **Formatting**: Prettier
 - **TypeScript**: Type checking and path aliases
-- **Future Deployment**: Netlify Functions + Static hosting
+- **Build**: Vite for web app, Node.js for CLI
+- **Deployment**: Netlify-ready structure
 
 ## 📋 Roadmap
 
-- ✅ **Phase 1**: CLI tool with modern PDF generation
-- ✅ **Phase 2**: Clean file organization with input/ structure
-- 🎯 **Phase 3**: Enhanced HTML editing and content optimization
-- 🔮 **Phase 4**: Recruiter-facing web application
+- ✅ **Phase 1A**: CLI tool with modern PDF generation
+- ✅ **Phase 1B**: SvelteKit web application with theme system
+- 🎯 **Phase 2A**: JSON-driven dynamic content generation (next)
+- 🔮 **Phase 2B**: Enhanced CLI workflow features  
+- 🔮 **Phase 3**: ResumeWorded integration and AI optimization
+- 🔮 **Phase 4**: Advanced features and deployment
 
 ## 🔧 Technical Details
 
