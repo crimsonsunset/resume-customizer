@@ -128,7 +128,7 @@ resume-optimizer/
 ├── node_modules/            # Dependencies (includes Playwright + Chromium)
 ├── input/                   # 📂 Legacy files
 ├── output/                  # 📂 Active working files
-│   ├── resume-wiped.html    # Clean semantic HTML structure
+│   ├── base-resume.html       # Clean semantic HTML structure
 │   ├── resume-styles.css    # CSS Grid layout styles
 │   └── *.pdf               # Generated high-quality PDFs
 └── working/                 # 📂 Experiments and variants
@@ -137,13 +137,13 @@ resume-optimizer/
 ### Command Structure Design
 ```bash
 # Modern Playwright-powered conversion
-node convert.js html-to-pdf output/resume-wiped.html --css output/resume-styles.css
+node convert.js html-to-pdf input/examples/base-resume.html --css input/templates/resume-styles.css
 
 # Quick testing and iteration
-node convert.js html-to-pdf output/resume-wiped.html --css output/resume-styles.css -o test.pdf
+node convert.js html-to-pdf input/examples/base-resume.html --css input/templates/resume-styles.css -o test.pdf
 
 # Custom styling experiments
-node convert.js html-to-pdf output/resume-wiped.html --css experimental.css -o variant.pdf
+node convert.js html-to-pdf input/examples/base-resume.html --css experimental.css -o variant.pdf
 ```
 
 ---

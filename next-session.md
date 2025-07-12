@@ -24,7 +24,7 @@ Complete Phase 2A: JSON Integration & Dynamic Content - Wire up all web applicat
 
 ### ✅ **Architectural Foundation**
 - **Slot-Based Design**: ResumeViewer accepts any HTML content via `{@html data.resumeContent}`
-- **Server-Side Loading**: `+page.server.js` currently loads static HTML from `output/resume-wiped.html`
+- **Server-Side Loading**: `+page.server.js` currently loads static HTML from `input/examples/base-resume.html`
 - **Component Isolation**: Resume styling completely isolated from DaisyUI components
 - **Preserved CSS Classes**: Current HTML uses exact same CSS classes as original PDF-ready resume
 
