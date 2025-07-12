@@ -126,6 +126,6 @@
     "projects": {
       "max_entries": 2
     },
-    "sections_order": ["objective", "experience", "skills", "education"]
+    "sections_order": ["objective", "skills", "experience", "education"]
   }
 } 

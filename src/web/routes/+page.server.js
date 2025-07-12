@@ -56,39 +56,43 @@ export async function load({ url }) {
     })
     console.log('✅ ResumeHeader rendered, length:', headerResult.body.length)
     
-    console.log('🎨 Rendering ObjectiveSection...')
-    const objectiveResult = render(ObjectiveSection, { 
-      props: { 
-        objective: finalData.objective || null
-      } 
-    })
-    console.log('✅ ObjectiveSection rendered, length:', objectiveResult.body.length)
+    // Create component renderers map
+    const componentRenderers = {
+      objective: () => render(ObjectiveSection, { 
+        props: { 
+          objective: finalData.objective || null
+        } 
+      }),
+      experience: () => render(ExperienceSection, { 
+        props: { 
+          experiences: finalData.sections?.experience || [],
+          bulletDensity: 100
+        } 
+      }),
+      skills: () => render(SkillsSection, { 
+        props: { 
+          skillsData: finalData.sections?.skills || { skills: [] },
+          config: { preset: presetParam }
+        } 
+      })
+    }
     
-    console.log('🎨 Rendering ExperienceSection...')
-    const experienceResult = render(ExperienceSection, { 
-      props: { 
-        experiences: finalData.sections?.experience || [],
-        bulletDensity: 100
-      } 
-    })
-    console.log('✅ ExperienceSection rendered, length:', experienceResult.body.length)
+    // Get section order from data or use default
+    const sectionOrder = finalData.sections_order || ['objective', 'experience', 'skills']
     
-    console.log('🎨 Rendering SkillsSection...')
-    const skillsResult = render(SkillsSection, { 
-      props: { 
-        skillsData: finalData.sections?.skills || { skills: [] },
-        config: { preset: presetParam }
-      } 
-    })
-    console.log('✅ SkillsSection rendered, length:', skillsResult.body.length)
+    // Render sections in specified order
+    const sectionResults = []
+    for (const sectionName of sectionOrder) {
+      if (componentRenderers[sectionName]) {
+        console.log(`🎨 Rendering ${sectionName}Section...`)
+        const result = componentRenderers[sectionName]()
+        console.log(`✅ ${sectionName}Section rendered, length:`, result.body.length)
+        sectionResults.push(result.body)
+      }
+    }
     
-    // Combine all rendered HTML
-    const resumeContent = `
-      ${headerResult.body}
-      ${objectiveResult.body}
-      ${experienceResult.body}
-      ${skillsResult.body}
-    `
+    // Combine header + sections in order
+    const resumeContent = [headerResult.body, ...sectionResults].join('\n')
     
     console.log('🎨 Components rendered successfully')
     console.log('📏 Total content length:', resumeContent.length)

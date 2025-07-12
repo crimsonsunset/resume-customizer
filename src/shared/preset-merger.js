@@ -81,18 +81,32 @@ export function mergePresetWithRawData(rawData, preset) {
   // Apply experience filtering
   if (overrides.experience) {
     merged.sections = merged.sections || {}
-    merged.sections.experience = {
-      ...merged.sections.experience,
-      filters: overrides.experience
+    // Preserve the original experience array structure
+    if (Array.isArray(merged.sections.experience)) {
+      // Keep the array and add metadata
+      merged.sections.experience.preset_filters = overrides.experience
+    } else {
+      // If it's not an array, preserve existing structure and add filters
+      merged.sections.experience = {
+        ...merged.sections.experience,
+        preset_filters: overrides.experience
+      }
     }
   }
   
   // Apply project filtering
   if (overrides.projects) {
     merged.sections = merged.sections || {}
-    merged.sections.projects = {
-      ...merged.sections.projects,
-      filters: overrides.projects
+    // Preserve the original projects array structure
+    if (Array.isArray(merged.sections.projects)) {
+      // Keep the array and add metadata
+      merged.sections.projects.preset_filters = overrides.projects
+    } else {
+      // If it's not an array, preserve existing structure and add filters
+      merged.sections.projects = {
+        ...merged.sections.projects,
+        preset_filters: overrides.projects
+      }
     }
   }
   

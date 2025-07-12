@@ -46,8 +46,11 @@
   function getFilteredExperiences(experiences, config) {
     let filtered = [...experiences]
     
+    // Get filters from config or from preset_filters attached to the array
+    const filters = config || experiences.preset_filters || {}
+    
     // Apply management role filtering
-    if (config.experience_filter === 'management_roles_only') {
+    if (filters.experience_filter === 'management_roles_only') {
       filtered = filtered.filter(exp => {
         const title = exp.title.toLowerCase()
         return title.includes('manager') || 
@@ -57,9 +60,10 @@
       })
     }
     
-    // Apply experience limit
-    if (config.experience_limit) {
-      filtered = filtered.slice(0, config.experience_limit)
+    // Apply experience limit (check both config paths)
+    const maxEntries = filters.experience_limit || filters.max_entries
+    if (maxEntries) {
+      filtered = filtered.slice(0, maxEntries)
     }
     
     return filtered
