@@ -218,12 +218,15 @@
 .resume-viewer :global(.section-content ul) {
     margin-bottom: var(--spacing-md);
     padding-left: 1.2em;
+    list-style-type: disc;
+    list-style-position: outside;
 }
 
 .resume-viewer :global(.section-content li) {
     margin-bottom: var(--spacing-sm);
     line-height: var(--line-height-relaxed);
     text-align: justify;
+    display: list-item;
 }
 
 .resume-viewer :global(.section-content a) {
