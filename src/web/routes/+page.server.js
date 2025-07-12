@@ -91,8 +91,13 @@ export async function load({ url }) {
       }
     }
     
-    // Combine header + sections in order
-    const resumeContent = [headerResult.body, ...sectionResults].join('\n')
+    // Combine header + sections in order with proper CSS Grid structure
+    const resumeContent = `
+      ${headerResult.body}
+      <div class="resume-content">
+        ${sectionResults.join('\n')}
+      </div>
+    `
     
     console.log('🎨 Components rendered successfully')
     console.log('📏 Total content length:', resumeContent.length)
