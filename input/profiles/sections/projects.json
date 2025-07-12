@@ -1,0 +1,374 @@
+[
+  {
+    "name": "Fora Suite of Products",
+    "company": "FORA",
+    "date": "Jan 2024 - Present",
+    "description": "• Architected comprehensive error boundary system with automatic component wrapping via custom Vite plugin, Rollbar integration, error classification, and context-aware reporting with feature flag data• Developed Instagram story-style UI system for meeting content navigation with multi-panel architecture, read/unread tracking, advanced interactions, and deep-linking capabilities• Built enterprise-grade tour platform with guided onboarding, dynamic configuration, and integrated analytics for user engagement tracking• Extended admin platform capabilities with robust error handling, dynamic form validation components, and enhanced onboarding user experience",
+    "bulletPoints": [
+      "Architected comprehensive error boundary system with automatic component wrapping via custom Vite plugin, Rollbar integration, error classification, and context-aware reporting with feature flag data",
+      "Developed Instagram story-style UI system for meeting content navigation with multi-panel architecture, read/unread tracking, advanced interactions, and deep-linking capabilities",
+      "Built enterprise-grade tour platform with guided onboarding, dynamic configuration, and integrated analytics for user engagement tracking",
+      "Extended admin platform capabilities with robust error handling, dynamic form validation components, and enhanced onboarding user experience"
+    ],
+    "skills": [
+      "ChakraUI",
+      "Statsig",
+      "Vite Plugins",
+      "React Query"
+    ],
+    "url": "https://fora.day"
+  },
+  {
+    "name": "Home Automation Platform",
+    "company": "Personal",
+    "date": "Oct 2017 - Present",
+    "description": "• Configured a heavily customized version of Home Assistant, an python-based open source home automation platform• Utilized Jinja2 templates to create actions, scripts and automations that link together several IoT devices• Wrote YAML configuration to enable communication across entities to one centralized Raspberry Pi3 server• Made server frontend globally accessible by enabling port forwarding and adding SSL certificate from LetsEncrypt.org• Created several different home-grown utility scripts and frontend widgets to further tailor and extend the platform • Contributed to Home Assistant community, posted aforementioned utility scripts for other members to use",
+    "bulletPoints": [
+      "Configured a heavily customized version of Home Assistant, an python-based open source home automation platform",
+      "Utilized Jinja2 templates to create actions, scripts and automations that link together several IoT devices",
+      "Wrote YAML configuration to enable communication across entities to one centralized Raspberry Pi3 server",
+      "Made server frontend globally accessible by enabling port forwarding and adding SSL certificate from LetsEncrypt.org",
+      "Created several different home-grown utility scripts and frontend widgets to further tailor and extend the platform",
+      "Contributed to Home Assistant community, posted aforementioned utility scripts for other members to use"
+    ],
+    "skills": [
+      "YAML",
+      "Python",
+      "Raspberry Pi",
+      "Home Assistant"
+    ],
+    "url": "https://www.home-assistant.io/"
+  },
+  {
+    "name": "JoeSangiorgio.com",
+    "company": "Personal",
+    "date": "Jun 2017 - Present",
+    "description": "• Data driven dashboard style portfolio site built on Vue; complete with user preference menu and sitewide tour prompt• Aggregates all professional/personal information and serves and entry point for hiring managers• Driven by publicly available API: written in Node.js, documented with Swagger, and hosted on Heroku • Uses many Vue addon libraries, such as Vuetify for UI components, and vue-router for native browser routing",
+    "bulletPoints": [
+      "Data driven dashboard style portfolio site built on Vue; complete with user preference menu and sitewide tour prompt",
+      "Aggregates all professional/personal information and serves and entry point for hiring managers",
+      "Driven by publicly available API: written in Node.js, documented with Swagger, and hosted on Heroku",
+      "Uses many Vue addon libraries, such as Vuetify for UI components, and vue-router for native browser routing"
+    ],
+    "skills": [
+      "Vuetify",
+      "Swagger API",
+      "API Development",
+      "Vue.js"
+    ],
+    "url": "http://www.joesangiorgio.com/"
+  },
+  {
+    "name": "Multi-Service JavaScript-Based Home Assistant Add-on",
+    "company": "Personal",
+    "date": "Jan 2025 - Apr 2025",
+    "description": "• Developed comprehensive Home Assistant add-on to master containerized service orchestration utilizing Docker and s6-overlay supervision system• Implemented sophisticated container lifecycle management including initialization scripts, inter-service dependency resolution, and graceful shutdown orchestration• Architected full-stack solution (SvelteKit/Node.js/MongoDB) within Home Assistant ecosystem, navigating undocumented integration patterns to successfully deploy JavaScript technologies in an addon environment• Created sophisticated headless browser automation tool using Cypress to handle complex web workflows including reservation interactions, waitlist management operations, and detailed status reporting within the addon UI",
+    "bulletPoints": [
+      "Developed comprehensive Home Assistant add-on to master containerized service orchestration utilizing Docker and s6-overlay supervision system",
+      "Implemented sophisticated container lifecycle management including initialization scripts, inter-service dependency resolution, and graceful shutdown orchestration",
+      "Architected full-stack solution (SvelteKit/Node.js/MongoDB) within Home Assistant ecosystem, navigating undocumented integration patterns to successfully deploy JavaScript technologies in an addon environment",
+      "Created sophisticated headless browser automation tool using Cypress to handle complex web workflows including reservation interactions, waitlist management operations, and detailed status reporting within the addon UI"
+    ],
+    "skills": [
+      "DaisyUI",
+      "s6",
+      "Cypress.io",
+      "Docker Products",
+      "Home Assistant",
+      "WebSocket",
+      "Docker"
+    ]
+  },
+  {
+    "name": "CMS-Driven Career Site Pages",
+    "company": "iCIMS",
+    "date": "Jan 2023 - Aug 2024",
+    "description": "• Directed development of comprehensive visual page builder enabling HR teams to create branded career sites with custom recruitment widgets, template systems, and drag-and-drop content management capabilities• Oversaw headless CMS architecture deployment requiring significant API development through modernized Node.js infrastructure and coordinated job data integration• Established strategic partnership with Apostrophe product team as a key enterprise customer, contributing to platform roadmap, including i18n features, and maintained regular collaboration on product roadmap initiatives• Led phased rollout beginning with pilot customers waiting for CMS capabilities, established regular feedback sessions for product refinement, and oversaw transition to full-scale deployment",
+    "bulletPoints": [
+      "Directed development of comprehensive visual page builder enabling HR teams to create branded career sites with custom recruitment widgets, template systems, and drag-and-drop content management capabilities",
+      "Oversaw headless CMS architecture deployment requiring significant API development through modernized Node.js infrastructure and coordinated job data integration",
+      "Established strategic partnership with Apostrophe product team as a key enterprise customer, contributing to platform roadmap, including i18n features, and maintained regular collaboration on product roadmap initiatives",
+      "Led phased rollout beginning with pilot customers waiting for CMS capabilities, established regular feedback sessions for product refinement, and oversaw transition to full-scale deployment"
+    ],
+    "skills": [
+      "Cross-team Collaboration",
+      "Content Management Systems (CMS)",
+      "Product Management"
+    ]
+  },
+  {
+    "name": "iCIMS Attract Backend Services: Importer, Job, Event, Document",
+    "company": "iCIMS",
+    "date": "Feb 2021 - Aug 2024",
+    "description": "",
+    "bulletPoints": [],
+    "skills": [
+      "Data Synchronization",
+      "Team Management",
+      "Microservices",
+      "Back-End Web Development"
+    ]
+  },
+  {
+    "name": "iCIMS CRM",
+    "company": "Jibe, Inc.",
+    "date": "Jun 2018 - Aug 2024",
+    "description": "• The Candidate Relationship Management application is a flagship product within the iCIMS Talent Cloud software suite• Mainly targeted at recruiters, the multilingual iCIMS CRM allows users to build talent pipelines that can reach candidates anywhere in the world via job alerts, text, and email campaigns • Communication administration enables users to search, create & configure automated follow-up emails and text promotions based on candidate action and engagement• Industry-leading AI engine fuels discovery of best-fit talent, using either the job description or “ideal candidate” resume • Advanced filtering and sorting capabilities also allow for a more manual, traditional approach to candidate searches• Contains tools for in-person and virtual sourcing events such as job fairs; Works with sister mobile apps to bring event attendees directly into the CRM (affording for seamless, trackable future communication)• Tight integration with iCIMS analytics platform enables admin users to keep track of valuable metrics about both internal and external usage• Advanced permissioning affords administrators granular-level control over the entire CRM feature set; customers can configure and protect all aspects of the application across large recruiter user base",
+    "bulletPoints": [
+      "The Candidate Relationship Management application is a flagship product within the iCIMS Talent Cloud software suite",
+      "Mainly targeted at recruiters, the multilingual iCIMS CRM allows users to build talent pipelines that can reach candidates anywhere in the world via job alerts, text, and email campaigns",
+      "Communication administration enables users to search, create & configure automated follow-up emails and text promotions based on candidate action and engagement",
+      "Industry-leading AI engine fuels discovery of best-fit talent, using either the job description or “ideal candidate” resume",
+      "Advanced filtering and sorting capabilities also allow for a more manual, traditional approach to candidate searches",
+      "Contains tools for in-person and virtual sourcing events such as job fairs; Works with sister mobile apps to bring event attendees directly into the CRM (affording for seamless, trackable future communication)",
+      "Tight integration with iCIMS analytics platform enables admin users to keep track of valuable metrics about both internal and external usage",
+      "Advanced permissioning affords administrators granular-level control over the entire CRM feature set; customers can configure and protect all aspects of the application across large recruiter user base"
+    ],
+    "skills": [
+      "Angular",
+      "Node.js",
+      "Internationalization"
+    ]
+  },
+  {
+    "name": "iCIMS Admin Application",
+    "company": "iCIMS",
+    "date": "Jan 2023 - Jan 2024",
+    "description": "• Managed a team of full stack offshore developers to create an admin application spanning the breadth of iCIMS • Built from the ground up, the Admin Application communicates with microservices across all of iCIMS infrastructure• Web-based interface allows users to quickly stand up new clients, alter configurations, and centralizes error reports• First app of its kind to utilize customized react material componentry, icims continuous integration / deployment pipeline• Deprecated antiquated piecemeal processes that cost developer hours, saving the company significant yearly costs",
+    "bulletPoints": [
+      "Managed a team of full stack offshore developers to create an admin application spanning the breadth of iCIMS",
+      "Built from the ground up, the Admin Application communicates with microservices across all of iCIMS infrastructure",
+      "Web-based interface allows users to quickly stand up new clients, alter configurations, and centralizes error reports",
+      "First app of its kind to utilize customized react material componentry, icims continuous integration / deployment pipeline",
+      "Deprecated antiquated piecemeal processes that cost developer hours, saving the company significant yearly costs"
+    ],
+    "skills": [
+      "Material-UI",
+      "Offshore Application Development"
+    ]
+  },
+  {
+    "name": "Gumbit.xyz",
+    "company": "Personal",
+    "date": "Jan 2021 - Jul 2022",
+    "description": "• Co-founded and became technical lead of NYC-based NFT creation company: Programmed Success Incorporated• Partnered with influencer street artist PJ O’Rourke to create three diverse NFT collections, released over several months• Single-handedly responsible for all development and design related tasks such as Gumbit styleguide/ design language, custom minting website, NFT generation, smart contract creation, and connection to ethereum network• Utilized industry standard software tooling, and agile best practices to allocate/assign work to different team members• Self-taught concepts, fundamentals, and libraries of blockchain development that became backbone of the project• Minting website utilized cutting-edge technology such as sveltekit, netlify CMS, thirdweb, serverless functions, etc• NFT Collection creation process made use of an existing open-source generation tool, but required heavy custom script development (via node.js) and feature addition due to complexity of desired output (920 total layers, 5 different poses)",
+    "bulletPoints": [
+      "Co-founded and became technical lead of NYC-based NFT creation company: Programmed Success Incorporated",
+      "Partnered with influencer street artist PJ O’Rourke to create three diverse NFT collections, released over several months",
+      "Single-handedly responsible for all development and design related tasks such as Gumbit styleguide/ design language, custom minting website, NFT generation, smart contract creation, and connection to ethereum network",
+      "Utilized industry standard software tooling, and agile best practices to allocate/assign work to different team members",
+      "Self-taught concepts, fundamentals, and libraries of blockchain development that became backbone of the project",
+      "Minting website utilized cutting-edge technology such as sveltekit, netlify CMS, thirdweb, serverless functions, etc",
+      "NFT Collection creation process made use of an existing open-source generation tool, but required heavy custom script development (via node.js) and feature addition due to complexity of desired output (920 total layers, 5 different poses)"
+    ],
+    "skills": [
+      "Svelte",
+      "Blockchain",
+      "Bulma (CSS Framework)",
+      "Non-Fungible Tokens (NFTs)"
+    ],
+    "url": "https://gumbitnft.netlify.app/"
+  },
+  {
+    "name": "Allclear.app",
+    "company": "Personal",
+    "date": "Apr 2020 - Dec 2020",
+    "description": "• Co-founded a nonprofit dedicated to fighting COVID-19 by empowering communities with technology and data• The service, the first of its kind, is a free web application that was the most comprehensive database available in the country at that time for locating COVID-19 tests• Head developer for the front end application; powered by React, custom CRA, Context API, Google Places & Maps API• Lead a team of diverse volunteers through an entire product lifecycle, from ideation through feature-complete delivery• Top commit contributor to the overall application, responsible for heavy organization, optimization, and SEO efforts• Allclear application and work therein was featured on medium blogs, allclear socials, and even the New York Times",
+    "bulletPoints": [
+      "Co-founded a nonprofit dedicated to fighting COVID-19 by empowering communities with technology and data",
+      "The service, the first of its kind, is a free web application that was the most comprehensive database available in the country at that time for locating COVID-19 tests",
+      "Head developer for the front end application; powered by React, custom CRA, Context API, Google Places & Maps API",
+      "Lead a team of diverse volunteers through an entire product lifecycle, from ideation through feature-complete delivery",
+      "Top commit contributor to the overall application, responsible for heavy organization, optimization, and SEO efforts",
+      "Allclear application and work therein was featured on medium blogs, allclear socials, and even the New York Times"
+    ],
+    "skills": [
+      "React.js",
+      "Search Engine Optimization (SEO)",
+      "Google Maps API"
+    ],
+    "url": "https://github.com/allcleardev/allclear-app"
+  },
+  {
+    "name": "Jessandjoe.co",
+    "company": "Personal",
+    "date": "Mar 2019 - Aug 2019",
+    "description": "• Repurposed heavily customized gatsby template for website that conveys information about destination wedding• Project doubled as an early adoption experiment that made use of upcoming tech such as typescript and CSS-in-JS• Implemented SEO best practices, custom animated transitions, photo grid, fetching via graphQL, as well as other features• Static information on the website is translated from markdown, and can be updated without the need for complex code changes• Progressive Web App technology allowed for offline and low-service usage situations (IE: parts of the CO mountains)• Implemented Text message updates via third party API for automated day-of-event notifications to all wedding guests",
+    "bulletPoints": [
+      "Repurposed heavily customized gatsby template for website that conveys information about destination wedding",
+      "Project doubled as an early adoption experiment that made use of upcoming tech such as typescript and CSS-in-JS",
+      "Implemented SEO best practices, custom animated transitions, photo grid, fetching via graphQL, as well as other features",
+      "Static information on the website is translated from markdown, and can be updated without the need for complex code changes",
+      "Progressive Web App technology allowed for offline and low-service usage situations (IE: parts of the CO mountains)",
+      "Implemented Text message updates via third party API for automated day-of-event notifications to all wedding guests"
+    ],
+    "skills": [
+      "GatsbyJS",
+      "TypeScript",
+      "GraphQL",
+      "Progressive Web Applications (PWAs)"
+    ],
+    "url": "https://github.com/crimsonsunset/wedding-site"
+  },
+  {
+    "name": "Marvel.com Site Overhaul",
+    "company": "Marvel Entertainment",
+    "date": "Aug 2017 - May 2018",
+    "description": "• Worked on a team of 15 developers on a drastic ground-up revamp of Marvel.com• All aspects of the website were completely rebuilt: Drupal CMS, PHP Backend, Node.js Layer, React/Redux Application• Project had an extremely short timeline, which necessitated strong collaboration from all members of a large team• Defined extensible JSON structures for component API by working closely with back end developers• Responsible for building complex multi-variant components that relied heavily on user interaction• Contributed to elaborate webpack scripting setup which allowed the application to run in several different environments• Improved SEO by utilizing Next.js to implement server-side rendering from the node layer of the stack• Collaborated with a team that spanned several disciplines and countries to create a polished finished product• Made extensive use of Atlassian project software (Jira, Confluence) to document, track, and coordinate",
+    "bulletPoints": [
+      "Worked on a team of 15 developers on a drastic ground-up revamp of Marvel.com",
+      "All aspects of the website were completely rebuilt: Drupal CMS, PHP Backend, Node.js Layer, React/Redux Application",
+      "Project had an extremely short timeline, which necessitated strong collaboration from all members of a large team",
+      "Defined extensible JSON structures for component API by working closely with back end developers",
+      "Responsible for building complex multi-variant components that relied heavily on user interaction",
+      "Contributed to elaborate webpack scripting setup which allowed the application to run in several different environments",
+      "Improved SEO by utilizing Next.js to implement server-side rendering from the node layer of the stack",
+      "Collaborated with a team that spanned several disciplines and countries to create a polished finished product",
+      "Made extensive use of Atlassian project software (Jira, Confluence) to document, track, and coordinate"
+    ],
+    "skills": [
+      "React.js",
+      "Webpack",
+      "Redux.js",
+      "Next.js",
+      "Drupal"
+    ],
+    "url": "https://marvel.com"
+  },
+  {
+    "name": "www.RateThatTruck.com",
+    "company": "Personal",
+    "date": "Jun 2013 - Jun 2017",
+    "description": "• Turned personal passion into a prominent food truck blog that brings ratings and reviews to food enthusiasts• Utilized Wordpress, JavaScript, and PHP to create a cohesive site that is up to modern web standards",
+    "bulletPoints": [
+      "Turned personal passion into a prominent food truck blog that brings ratings and reviews to food enthusiasts",
+      "Utilized Wordpress, JavaScript, and PHP to create a cohesive site that is up to modern web standards"
+    ],
+    "skills": [
+      "WordPress",
+      "JavaScript",
+      "PHP"
+    ],
+    "url": "http://www.ratethattruck.com"
+  },
+  {
+    "name": "Custom Content Management System for Marvel Cinematic Universe",
+    "company": "Marvel Entertainment",
+    "date": "Jan 2017 - May 2017",
+    "description": "• React project built from scratch, featured autosaving and utilized Redux-Form to track changes within a given view • Created project architecture that allowed for maximum extensibility and drastically reduced future development time• Wrote 25+ configurable components to properly model and display complex data structures stored in graph database • Implemented application level state management utilizing asynchronous Redux actions and reducers • Took full advantage of ES6/ES7 syntax, embracing component classes, spread operators, arrow functions, etc.• Incorporated several open source component libraries, adapting their existing codebase to meet the requirements laid out by project stakeholders",
+    "bulletPoints": [
+      "React project built from scratch, featured autosaving and utilized Redux-Form to track changes within a given view",
+      "Created project architecture that allowed for maximum extensibility and drastically reduced future development time",
+      "Wrote 25+ configurable components to properly model and display complex data structures stored in graph database",
+      "Implemented application level state management utilizing asynchronous Redux actions and reducers",
+      "Took full advantage of ES6/ES7 syntax, embracing component classes, spread operators, arrow functions, etc.",
+      "Incorporated several open source component libraries, adapting their existing codebase to meet the requirements laid out by project stakeholders"
+    ],
+    "skills": [
+      "React.js",
+      "Redux Thunk",
+      "Graph Databases"
+    ]
+  },
+  {
+    "name": "Internal Tool: Code Generating/ Administrative Tagging System",
+    "company": "Marvel Entertainment",
+    "date": "Apr 2016 - Sep 2016",
+    "description": "• Marvel's first React project, allowed employees to create comic promo codes, administer website ad tags, etc• Shepherded project through three drastically different phases ( jQuery to ES5 React to ES6 React) • Created configuration-based architecture, which allows developers to add new pages and forms with simple JSON • Learned Webpack to provide deeper understanding into build complex build chain processes (plugins, dev-server with proxy, loaders) • Utilized React-Router (v2-4) to provide consistent user-facing routing across the application • Implemented Block Element Modifier (BEM) Sass styling throughout all views and components",
+    "bulletPoints": [
+      "Marvel's first React project, allowed employees to create comic promo codes, administer website ad tags, etc",
+      "Shepherded project through three drastically different phases ( jQuery to ES5 React to ES6 React)",
+      "Created configuration-based architecture, which allows developers to add new pages and forms with simple JSON",
+      "Learned Webpack to provide deeper understanding into build complex build chain processes (plugins, dev-server with proxy, loaders)",
+      "Utilized React-Router (v2-4) to provide consistent user-facing routing across the application",
+      "Implemented Block Element Modifier (BEM) Sass styling throughout all views and components"
+    ],
+    "skills": [
+      "Webpack",
+      "Block Element Modifier (BEM)",
+      "SASS",
+      "React Router"
+    ]
+  },
+  {
+    "name": "Marvel Insider Program",
+    "company": "Marvel Entertainment",
+    "date": "Jan 2016 - Apr 2016",
+    "description": "• Interfaced with third party vendor, implemented sitewide points economy that allowed users to redeem points for prizes • Primarily tasked with drastic re-skinning of vendor's unstyled embedded dashboard widgets • Could only style widgets utilizing plain CSS and pseudo selectors because content was locked in iframe• Drastic creativity was necessary to match designs to static HTML structure in embedded widgets",
+    "bulletPoints": [
+      "Interfaced with third party vendor, implemented sitewide points economy that allowed users to redeem points for prizes",
+      "Primarily tasked with drastic re-skinning of vendor's unstyled embedded dashboard widgets",
+      "Could only style widgets utilizing plain CSS and pseudo selectors because content was locked in iframe",
+      "Drastic creativity was necessary to match designs to static HTML structure in embedded widgets"
+    ],
+    "skills": [
+      "Iframes",
+      "CSS",
+      "User Interface Design",
+      "3rd Party Integrations"
+    ],
+    "url": "https://marvel.com/insider"
+  },
+  {
+    "name": "CEO Organizational App",
+    "company": "ScrollMotion",
+    "date": "Sep 2013 - Jun 2015",
+    "description": "• Created a robust front end that allowed users to view calendars, appointments, and talking points• Interfaced with Django CMS to populate JSON objects that were used as data stores for the app• Built in offline functionality that handled data mismatches, ensuring freshest information was on the CMS",
+    "bulletPoints": [
+      "Created a robust front end that allowed users to view calendars, appointments, and talking points",
+      "Interfaced with Django CMS to populate JSON objects that were used as data stores for the app",
+      "Built in offline functionality that handled data mismatches, ensuring freshest information was on the CMS"
+    ],
+    "skills": [
+      "Offline Development",
+      "JSON",
+      "Django"
+    ]
+  },
+  {
+    "name": "Highcharts.js Plugin/Interface Layer",
+    "company": "ScrollMotion",
+    "date": "Sep 2014 - Jun 2015",
+    "description": "• Solely responsible for creating JavaScript communication medium from JSON to Highcharts.js• Brought robust charting solution to the ScrollMotion platform, adding an integral layer that is used in several apps today• Exposed all useful design and configuration properties, translating them to interact natively with Highcharts.js API",
+    "bulletPoints": [
+      "Solely responsible for creating JavaScript communication medium from JSON to Highcharts.js",
+      "Brought robust charting solution to the ScrollMotion platform, adding an integral layer that is used in several apps today",
+      "Exposed all useful design and configuration properties, translating them to interact natively with Highcharts.js API"
+    ],
+    "skills": [
+      "Data Visualization",
+      "API Development",
+      "JavaScript"
+    ]
+  },
+  {
+    "name": "Pension Risk Calculator App",
+    "company": "ScrollMotion",
+    "date": "Oct 2012 - Jun 2015",
+    "description": "• Implemented a graphical version of a pension modeler, ported over directly from an excel spreadsheet• Used ScrollMotion’s platform to create graphs using rudimentary composition elements• Effectively handled assorted input variables and used them to calculate desired visual and numerical output",
+    "bulletPoints": [
+      "Implemented a graphical version of a pension modeler, ported over directly from an excel spreadsheet",
+      "Used ScrollMotion’s platform to create graphs using rudimentary composition elements",
+      "Effectively handled assorted input variables and used them to calculate desired visual and numerical output"
+    ],
+    "skills": [
+      "Data Visualization",
+      "User Interface Design",
+      "JavaScript"
+    ]
+  },
+  {
+    "name": "Quiz App (In App Store)",
+    "company": "ScrollMotion",
+    "date": "Jun 2014 - Jun 2015",
+    "description": "• Worked in a small team to create a visually stunning sales enablement app under a very tight deadline• Creatively brought together design and function, producing an efficient backend and a beautiful display layer",
+    "bulletPoints": [
+      "Worked in a small team to create a visually stunning sales enablement app under a very tight deadline",
+      "Creatively brought together design and function, producing an efficient backend and a beautiful display layer"
+    ],
+    "skills": [
+      "Offline Development",
+      "JavaScript"
+    ]
+  }
+]

@@ -1,0 +1,74 @@
+{
+  "courses": [
+    {
+      "credential_id": "Algorithms",
+      "date": "",
+      "institution": "CS333",
+      "name": "Algorithms"
+    },
+    {
+      "credential_id": "",
+      "date": "",
+      "institution": "CS240",
+      "name": "Data Structures"
+    },
+    {
+      "credential_id": "",
+      "date": "",
+      "institution": "CS342",
+      "name": "Design Patterns"
+    },
+    {
+      "credential_id": "",
+      "date": "",
+      "institution": "CS328",
+      "name": "Internet Programming"
+    },
+    {
+      "credential_id": "",
+      "date": "",
+      "institution": "CS210/220/325",
+      "name": "Machine Organization"
+    },
+    {
+      "credential_id": "",
+      "date": "",
+      "institution": "CS350",
+      "name": "Operating Systems"
+    },
+    {
+      "credential_id": "",
+      "date": "",
+      "institution": "CS110",
+      "name": "Programming Concepts and Applications"
+    },
+    {
+      "credential_id": "",
+      "date": "",
+      "institution": "CS471",
+      "name": "Programming Languages"
+    },
+    {
+      "credential_id": "",
+      "date": "",
+      "institution": "CS140",
+      "name": "Programming With Objects"
+    },
+    {
+      "credential_id": "",
+      "date": "",
+      "institution": "CS345",
+      "name": "Software Engineering"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Binghamton University",
+      "degree": "Bachelors, Computer Science",
+      "field": "",
+      "dates": "",
+      "description": "Held position of President, Vice President, and Brotherhood Chair of Theta Tau. Responsibilities included:• Opened lines of communication between members through use of Google Applications• Managed 34 active members, coordinated philanthropic, professional, and social events Activities",
+      "activities": "Activities and societies: Theta Tau Professional Engineering Fraternity,Snocats Skiing/Snowboarding Club,Racquetball Club,Tennis Club"
+    }
+  ]
+}

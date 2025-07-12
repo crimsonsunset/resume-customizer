@@ -1,0 +1,843 @@
+[
+  {
+    "name": "Amazon Web Services (AWS)",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "2 experiences across FORA and 1 other company",
+      "projects": []
+    }
+  },
+  {
+    "name": "Test Automation",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "3 experiences at iCIMS",
+      "projects": []
+    }
+  },
+  {
+    "name": "Requirements Analysis",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "6 experiences across FORA and 3 other companies",
+      "projects": []
+    }
+  },
+  {
+    "name": "Software Development Life Cycle (SDLC)",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "9 experiences across FORA and 5 other companies",
+      "projects": []
+    }
+  },
+  {
+    "name": "AI Software Development",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Stakeholder Management",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "5 experiences across FORA and 2 other companies",
+      "projects": []
+    }
+  },
+  {
+    "name": "Agile Methodologies",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "9 experiences across FORA and 5 other companies",
+      "projects": []
+    }
+  },
+  {
+    "name": "Docker Products",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Multi-Service JavaScript-Based Home Assistant Add-on"
+      ]
+    }
+  },
+  {
+    "name": "Data Visualization",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Highcharts.js Plugin/Interface Layer",
+        "Pension Risk Calculator App"
+      ]
+    }
+  },
+  {
+    "name": "WebSocket",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Multi-Service JavaScript-Based Home Assistant Add-on"
+      ]
+    }
+  },
+  {
+    "name": "Offline Development",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "CEO Organizational App",
+        "Quiz App (In App Store)"
+      ]
+    }
+  },
+  {
+    "name": "3rd Party Integrations",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Marvel Insider Program"
+      ]
+    }
+  },
+  {
+    "name": "User Interface Design",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Marvel Insider Program",
+        "Pension Risk Calculator App"
+      ]
+    }
+  },
+  {
+    "name": "Iframes",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Marvel Insider Program"
+      ]
+    }
+  },
+  {
+    "name": "React Router",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Internal Tool: Code Generating/ Administrative Tagging System"
+      ]
+    }
+  },
+  {
+    "name": "SASS",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Internal Tool: Code Generating/ Administrative Tagging System"
+      ]
+    }
+  },
+  {
+    "name": "Block Element Modifier (BEM)",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Internal Tool: Code Generating/ Administrative Tagging System"
+      ]
+    }
+  },
+  {
+    "name": "DaisyUI",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Multi-Service JavaScript-Based Home Assistant Add-on"
+      ]
+    }
+  },
+  {
+    "name": "Bulma (CSS Framework)",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Gumbit.xyz"
+      ]
+    }
+  },
+  {
+    "name": "Graph Databases",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Custom Content Management System for Marvel Cinematic Universe"
+      ]
+    }
+  },
+  {
+    "name": "Redux Thunk",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Custom Content Management System for Marvel Cinematic Universe"
+      ]
+    }
+  },
+  {
+    "name": "Redux.js",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Marvel.com Site Overhaul"
+      ]
+    }
+  },
+  {
+    "name": "Next.js",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Marvel.com Site Overhaul"
+      ]
+    }
+  },
+  {
+    "name": "Drupal",
+    "endorsements": 1,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Marvel.com Site Overhaul"
+      ]
+    }
+  },
+  {
+    "name": "Vue.js",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "JoeSangiorgio.com"
+      ]
+    }
+  },
+  {
+    "name": "Swagger API",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "JoeSangiorgio.com"
+      ]
+    }
+  },
+  {
+    "name": "API Development",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "JoeSangiorgio.com",
+        "Highcharts.js Plugin/Interface Layer"
+      ]
+    }
+  },
+  {
+    "name": "Vuetify",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "JoeSangiorgio.com"
+      ]
+    }
+  },
+  {
+    "name": "YAML",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Home Automation Platform"
+      ]
+    }
+  },
+  {
+    "name": "Raspberry Pi",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Home Automation Platform"
+      ]
+    }
+  },
+  {
+    "name": "Product Management",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "CMS-Driven Career Site Pages"
+      ]
+    }
+  },
+  {
+    "name": "Cross-team Collaboration",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "CMS-Driven Career Site Pages"
+      ]
+    }
+  },
+  {
+    "name": "Angular",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "iCIMS CRM"
+      ]
+    }
+  },
+  {
+    "name": "Internationalization",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "iCIMS CRM"
+      ]
+    }
+  },
+  {
+    "name": "Material-UI",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "iCIMS Admin Application"
+      ]
+    }
+  },
+  {
+    "name": "Team Management",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "iCIMS Attract Backend Services: Importer, Job, Event, Document"
+      ]
+    }
+  },
+  {
+    "name": "Back-End Web Development",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "iCIMS Attract Backend Services: Importer, Job, Event, Document"
+      ]
+    }
+  },
+  {
+    "name": "Data Synchronization",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "iCIMS Attract Backend Services: Importer, Job, Event, Document"
+      ]
+    }
+  },
+  {
+    "name": "Vite Plugins",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Fora Suite of Products"
+      ]
+    }
+  },
+  {
+    "name": "ChakraUI",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Fora Suite of Products"
+      ]
+    }
+  },
+  {
+    "name": "React Query",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Fora Suite of Products"
+      ]
+    }
+  },
+  {
+    "name": "Statsig",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Fora Suite of Products"
+      ]
+    }
+  },
+  {
+    "name": "Google Maps API",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Allclear.app"
+      ]
+    }
+  },
+  {
+    "name": "Search Engine Optimization (SEO)",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Allclear.app"
+      ]
+    }
+  },
+  {
+    "name": "Svelte",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Gumbit.xyz"
+      ]
+    }
+  },
+  {
+    "name": "Blockchain",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Gumbit.xyz"
+      ]
+    }
+  },
+  {
+    "name": "Non-Fungible Tokens (NFTs)",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Gumbit.xyz"
+      ]
+    }
+  },
+  {
+    "name": "GatsbyJS",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Jessandjoe.co"
+      ]
+    }
+  },
+  {
+    "name": "TypeScript",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Jessandjoe.co"
+      ]
+    }
+  },
+  {
+    "name": "GraphQL",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Jessandjoe.co"
+      ]
+    }
+  },
+  {
+    "name": "Progressive Web Applications (PWAs)",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Jessandjoe.co"
+      ]
+    }
+  },
+  {
+    "name": "Home Automation Platform",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Docker",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Multi-Service JavaScript-Based Home Assistant Add-on"
+      ]
+    }
+  },
+  {
+    "name": "s6",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Multi-Service JavaScript-Based Home Assistant Add-on"
+      ]
+    }
+  },
+  {
+    "name": "Cypress.io",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Multi-Service JavaScript-Based Home Assistant Add-on"
+      ]
+    }
+  },
+  {
+    "name": "Artificial Intelligence (AI)",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Product Strategy",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Content Management Systems (CMS)",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "CMS-Driven Career Site Pages"
+      ]
+    }
+  },
+  {
+    "name": "JavaScript",
+    "endorsements": 37,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "www.RateThatTruck.com",
+        "Highcharts.js Plugin/Interface Layer",
+        "Pension Risk Calculator App",
+        "Quiz App (In App Store)"
+      ]
+    }
+  },
+  {
+    "name": "HTML",
+    "endorsements": 13,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "CSS",
+    "endorsements": 29,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Marvel Insider Program"
+      ]
+    }
+  },
+  {
+    "name": "Web Development",
+    "endorsements": 20,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "React.js",
+    "endorsements": 2,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Allclear.app",
+        "Marvel.com Site Overhaul",
+        "Custom Content Management System for Marvel Cinematic Universe"
+      ]
+    }
+  },
+  {
+    "name": "jQuery",
+    "endorsements": 14,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "JSON",
+    "endorsements": 6,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "CEO Organizational App"
+      ]
+    }
+  },
+  {
+    "name": "Microsoft Office",
+    "endorsements": 12,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "XML",
+    "endorsements": 19,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Git",
+    "endorsements": 12,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Databases",
+    "endorsements": 10,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Python",
+    "endorsements": 8,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "Home Automation Platform"
+      ]
+    }
+  },
+  {
+    "name": "SQL",
+    "endorsements": 4,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Linux",
+    "endorsements": 4,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "WordPress",
+    "endorsements": 4,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "www.RateThatTruck.com"
+      ]
+    }
+  },
+  {
+    "name": "Java",
+    "endorsements": 3,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Photoshop",
+    "endorsements": 4,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Windows",
+    "endorsements": 3,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "PHP",
+    "endorsements": 3,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "www.RateThatTruck.com"
+      ]
+    }
+  },
+  {
+    "name": "Node.js",
+    "endorsements": 4,
+    "associations": {
+      "experiences": "",
+      "projects": [
+        "iCIMS CRM"
+      ]
+    }
+  },
+  {
+    "name": "C++",
+    "endorsements": 2,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Android",
+    "endorsements": 3,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Mac OS",
+    "endorsements": 3,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "MongoDB",
+    "endorsements": 3,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Mobile Applications",
+    "endorsements": 1,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Unix",
+    "endorsements": 2,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Express.js",
+    "endorsements": 2,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Excel",
+    "endorsements": 1,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Web Services",
+    "endorsements": 1,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Content Management",
+    "endorsements": 1,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Teaching",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  },
+  {
+    "name": "Mentoring",
+    "endorsements": 0,
+    "associations": {
+      "experiences": "",
+      "projects": []
+    }
+  }
+]
