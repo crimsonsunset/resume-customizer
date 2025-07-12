@@ -48,7 +48,7 @@
     font-size: var(--font-size-base);
     line-height: var(--line-height-normal);
     color: var(--color-text);
-    background: var(--color-bg);
+    background: white;
     /* Web-specific: limit width to page size and center */
     max-width: var(--page-width);
     margin: 0 auto;

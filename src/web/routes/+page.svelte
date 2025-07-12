@@ -200,7 +200,7 @@
     </div>
 
     <!-- Right Resume Preview -->
-    <div class="flex-1 bg-white h-screen overflow-y-auto">
+    <div class="flex-1 h-screen overflow-y-auto">
       <div class="p-8">
         <ResumeViewer>
           {@html data.resumeContent}
