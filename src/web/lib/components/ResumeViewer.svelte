@@ -58,7 +58,6 @@
     color-adjust: exact;
     print-color-adjust: exact;
     /* Debug: Show body boundaries */
-    border: 2px solid purple;
 }
 
 /* Reset and base styles */
@@ -89,7 +88,6 @@
     border-bottom: 2px solid var(--color-primary);
     background: white;
     /* Debug: Show header boundaries */
-    border: 1px solid orange;
 }
 
 .resume-viewer :global(.header h1) {
@@ -109,7 +107,6 @@
 
 /* Main content using CSS Grid - Optimized for better balance */
 .resume-viewer :global(.resume-content) {
-    border: 3px solid red;
     background: white;
     display: grid;
     grid-template-columns: var(--column-left-width) 1fr;
@@ -137,8 +134,6 @@
     line-height: var(--line-height-tight);
     text-decoration: underline;
     /* Debug: Show section label boundaries */
-    border: 1px dashed green;
-    background-color: rgba(0, 255, 0, 0.1);
 }
 
 /* Section content (right column) - Optimized spacing */
@@ -146,8 +141,6 @@
     margin-bottom: var(--spacing-section);
     line-height: var(--line-height-normal);
     /* Debug: Show section content boundaries */
-    border: 1px dashed blue;
-    background-color: rgba(0, 0, 255, 0.05);
 }
 
 /* Typography improvements */
@@ -300,6 +293,20 @@
 .resume-viewer :global(.recommendation-item) {
 
     margin-bottom: var(--spacing-xxl);
+}
+
+/* Break long words in section labels */
+.resume-viewer :global(.section-label) {
+    word-break: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+}
+
+/* Force word breaking specifically for recommendations section */
+.resume-viewer :global(.recommendations-section .section-label) {
+    word-break: break-all;
+    line-height: var(--line-height-tight);
 }
 
 .resume-viewer :global(.recommendation-item h4) {
