@@ -14,22 +14,15 @@
   
   // Section visibility - only include sections that are actually rendered in current preset
   let visibleSections = {}
-  let initializedPreset = null
   
   // Initialize visibility state based on available sections from server
-  $: {
-    if (data.availableSections && selectedVersion !== initializedPreset) {
-      // Only reinitialize when preset changes, not on every reactive update
-      console.log('🔄 Preset changed, reinitializing sections for:', selectedVersion)
-      const newVisibleSections = {}
-      // Set all available sections to visible by default
-      data.availableSections.forEach(section => {
-        newVisibleSections[section] = true
-      })
-      visibleSections = newVisibleSections
-      initializedPreset = selectedVersion
-      console.log('🎯 Initialized visibility for available sections:', visibleSections)
-    }
+  $: if (data.availableSections) {
+    // Set all available sections to visible by default
+    const newVisibleSections = {}
+    data.availableSections.forEach(section => {
+      newVisibleSections[section] = visibleSections[section] ?? true // Keep existing state or default to true
+    })
+    visibleSections = newVisibleSections
   }
   
   // Accordion state - Primary expanded, others collapsed
@@ -45,38 +38,9 @@
   onMount(() => {
     mounted = true
     console.log('🚀 Resume Customizer Loaded!')
-    console.log('📋 Initial section visibility state:', visibleSections)
-    
-    // Check if resume content has data-section attributes
-    setTimeout(() => {
-      const allDataSectionElements = document.querySelectorAll('[data-section]')
-      console.log(`🏷️ Found ${allDataSectionElements.length} elements with data-section attributes:`)
-      allDataSectionElements.forEach((el, i) => {
-        console.log(`  ${i + 1}. [data-section="${el.getAttribute('data-section')}"] - ${el.tagName}`)
-      })
-      
-      // Also check for missing sections we expect
-      const expectedSections = ['certifications', 'courses']
-      expectedSections.forEach(section => {
-        const sectionElements = document.querySelectorAll(`[data-section="${section}"]`)
-        if (sectionElements.length === 0) {
-          console.warn(`❌ Missing expected section: ${section}`)
-          // Check if section exists but without data-section attribute
-          const sectionByText = Array.from(document.querySelectorAll('.section-label'))
-            .find(el => el.textContent.toLowerCase().includes(section.toLowerCase()))
-          if (sectionByText) {
-            console.log(`  🔍 Found section by text but missing data-section:`, sectionByText.parentElement)
-          }
-        }
-      })
-    }, 1000)
   })
   
-  const toggleSection = (section) => {
-    const oldValue = visibleSections[section]
-    visibleSections[section] = !visibleSections[section]
-    console.log(`🔄 Toggle section "${section}": ${oldValue} → ${visibleSections[section]}`)
-  }
+
   
   const selectAllSections = () => {
     Object.keys(visibleSections).forEach(section => {
