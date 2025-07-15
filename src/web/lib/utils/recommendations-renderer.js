@@ -97,11 +97,12 @@ export class RecommendationsRenderer {
   /**
    * Renders the main section wrapper
    */
-  renderSectionWrapper(label, content) {
+  renderSectionWrapper(label, content, sectionType = 'recommendations') {
     // Break "Recommendations" at the specific point the user wants
     const formattedLabel = label === 'Recommendations' ? 'Recommend-<br/>ations' : label
+    const dataAttr = sectionType ? ` data-section="${sectionType}"` : ''
     
-    return `<div class="section-wrapper recommendations-section">
+    return `<div class="section-wrapper recommendations-section"${dataAttr}>
   <div class="section-label">${formattedLabel}</div>
   <div class="section-content">
     ${content}

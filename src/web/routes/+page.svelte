@@ -11,12 +11,32 @@
   let selectedVersion = data.preset || 'full'
   let showPresetDropdown = false
   let density = 'medium'
+  
+  // Section visibility organized by weight/importance
   let visibleSections = {
-    summary: true,
+    // Primary (main content) - expanded by default
     experience: true,
-    projects: true,
     education: true,
-    skills: true
+    skills: true,
+    projects: true,
+    // Credentials (proof points) 
+    certifications: true,
+    'honors-awards': true,
+    courses: true,
+    // Social Proof
+    recommendations: true,
+    volunteering: true,
+    // Personality
+    activities: true,
+    objective: true
+  }
+  
+  // Accordion state - Primary expanded, others collapsed
+  let accordionState = {
+    primary: true,
+    credentials: false,
+    socialProof: false,
+    personality: false
   }
   
   // Resume data is now loaded from the server via data.resumeContent
@@ -34,6 +54,11 @@
     Object.keys(visibleSections).forEach(section => {
       visibleSections[section] = true
     })
+    // Also expand all accordions to show what was selected
+    accordionState.primary = true
+    accordionState.credentials = true
+    accordionState.socialProof = true
+    accordionState.personality = true
   }
   
   const selectNoneSections = () => {
@@ -63,11 +88,23 @@
   
   // Get current preset info for display
   $: currentPreset = data.availablePresets.find(p => p.value === selectedVersion) || data.availablePresets[0]
+  
+  // Generate CSS to hide invisible sections  
+  $: sectionVisibilityCSS = Object.entries(visibleSections)
+    .filter(([section, visible]) => !visible)
+    .map(([section]) => `[data-section="${section}"]`)
+    .map(selector => `${selector} { display: none !important; }`)
+    .join('\n')
 </script>
 
 <svelte:head>
   <title>Resume Optimizer - Web App</title>
   <meta name="description" content="Modern resume optimization with AI-powered matching" />
+  {#if sectionVisibilityCSS}
+    <style>
+      {sectionVisibilityCSS}
+    </style>
+  {/if}
 </svelte:head>
 
 <div class="min-h-screen bg-base-200">
@@ -149,16 +186,91 @@
               </div>
             </div>
             <div class="space-y-2">
-              {#each Object.entries(visibleSections) as [section, visible]}
-                <label class="flex items-center space-x-2 cursor-pointer">
-                  <input 
-                    type="checkbox" 
-                    class="checkbox checkbox-sm" 
-                    bind:checked={visibleSections[section]}
-                  />
-                  <span class="text-sm capitalize">{section}</span>
-                </label>
-              {/each}
+              
+              <!-- Primary Sections (Main Content) -->
+              <div class="collapse collapse-arrow bg-base-200" class:collapse-open={accordionState.primary}>
+                <input type="checkbox" bind:checked={accordionState.primary} />
+                <div class="collapse-title text-sm font-medium">
+                  📋 Primary Sections
+                </div>
+                <div class="collapse-content space-y-2">
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.experience} />
+                    <span class="text-sm">Experience</span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.education} />
+                    <span class="text-sm">Education</span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.skills} />
+                    <span class="text-sm">Skills</span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.projects} />
+                    <span class="text-sm">Projects</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Credentials (Proof Points) -->
+              <div class="collapse collapse-arrow bg-base-200" class:collapse-open={accordionState.credentials}>
+                <input type="checkbox" bind:checked={accordionState.credentials} />
+                <div class="collapse-title text-sm font-medium">
+                  🏆 Credentials
+                </div>
+                <div class="collapse-content space-y-2">
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.certifications} />
+                    <span class="text-sm">Certifications</span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections['honors-awards']} />
+                    <span class="text-sm">Honors & Awards</span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.courses} />
+                    <span class="text-sm">Relevant Coursework</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Social Proof -->
+              <div class="collapse collapse-arrow bg-base-200" class:collapse-open={accordionState.socialProof}>
+                <input type="checkbox" bind:checked={accordionState.socialProof} />
+                <div class="collapse-title text-sm font-medium">
+                  💬 Social Proof
+                </div>
+                <div class="collapse-content space-y-2">
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.recommendations} />
+                    <span class="text-sm">Recommendations</span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.volunteering} />
+                    <span class="text-sm">Volunteering</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Personality -->
+              <div class="collapse collapse-arrow bg-base-200" class:collapse-open={accordionState.personality}>
+                <input type="checkbox" bind:checked={accordionState.personality} />
+                <div class="collapse-title text-sm font-medium">
+                  🎭 Personality
+                </div>
+                <div class="collapse-content space-y-2">
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.activities} />
+                    <span class="text-sm">Activities & Interests</span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.objective} />
+                    <span class="text-sm">Objective</span>
+                  </label>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -244,7 +356,9 @@
         <div class="card bg-base-100 shadow-sm border border-base-300">
           <div class="card-body p-8">
             <ResumeViewer>
-              {@html data.resumeContent}
+              <div class="resume-with-visibility-controls">
+                {@html data.resumeContent}
+              </div>
             </ResumeViewer>
           </div>
         </div>

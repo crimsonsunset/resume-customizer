@@ -34,7 +34,7 @@ export class ActivitiesRenderer {
       content += this.renderPersonalInterests(personalInterests)
     }
 
-    return this.renderSectionWrapper(this.sectionLabel, content)
+    return this.renderSectionWrapper(this.sectionLabel, content, 'activities')
   }
 
   /**
@@ -90,10 +90,11 @@ export class ActivitiesRenderer {
   /**
    * Render section wrapper
    */
-  renderSectionWrapper(sectionLabel, content) {
+  renderSectionWrapper(sectionLabel, content, sectionType = 'activities') {
     if (!content) return ''
     
-    return `<div class="section-wrapper">
+    const dataAttr = sectionType ? ` data-section="${sectionType}"` : ''
+    return `<div class="section-wrapper"${dataAttr}>
   <div class="section-label">${sectionLabel}</div>
   <div class="section-content">
     ${content}

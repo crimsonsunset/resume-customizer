@@ -8,6 +8,7 @@ export class CertificationsRenderer extends SectionRenderer {
   constructor(options = {}) {
     super({
       sectionLabel: 'Certifications',
+      sectionType: 'certifications',
       groupBy: null, // No grouping - display as single line items
       filterStrategy: CertificationsRenderer.certificationsFilterStrategy,
       itemRenderer: CertificationsRenderer.certificationsItemRenderer,

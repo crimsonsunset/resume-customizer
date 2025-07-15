@@ -128,8 +128,9 @@ export class SkillsRenderer {
   /**
    * Renders the main section wrapper
    */
-  renderSectionWrapper(label, content) {
-    return `<div class="section-wrapper">
+  renderSectionWrapper(label, content, sectionType = 'skills') {
+    const dataAttr = sectionType ? ` data-section="${sectionType}"` : ''
+    return `<div class="section-wrapper"${dataAttr}>
   <div class="section-label">${label}</div>
   <div class="section-content">
     ${content}

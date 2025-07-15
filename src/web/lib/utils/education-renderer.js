@@ -8,6 +8,7 @@ export class EducationRenderer extends SectionRenderer {
   constructor(options = {}) {
     super({
       sectionLabel: 'Education',
+      sectionType: 'education',
       groupBy: null, // No grouping needed for education
       filterStrategy: EducationRenderer.educationFilterStrategy,
       itemRenderer: EducationRenderer.educationItemRenderer,

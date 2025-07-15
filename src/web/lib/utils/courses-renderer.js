@@ -8,6 +8,7 @@ export class CoursesRenderer extends SectionRenderer {
   constructor(options = {}) {
     super({
       sectionLabel: 'Relevant Coursework',
+      sectionType: 'courses',
       groupBy: null, // No grouping needed for courses
       filterStrategy: CoursesRenderer.coursesFilterStrategy,
       itemRenderer: CoursesRenderer.coursesItemRenderer,
@@ -39,12 +40,12 @@ export class CoursesRenderer extends SectionRenderer {
   render(courses, config = {}) {
     const filteredCourses = this.constructor.coursesFilterStrategy(courses, config)
     
-    if (!filteredCourses.length) return ''
+    if (filteredCourses.length === 0) return ''
 
     const courseItems = filteredCourses
       .map(course => this.constructor.coursesItemRenderer(course))
       .join('')
 
-    return this.renderSectionWrapper(this.sectionLabel, `<div class="courses-list">${courseItems}</div>`)
+    return this.renderSectionWrapper(this.sectionLabel, `<div class="courses-list">${courseItems}</div>`, 'courses')
   }
 } 

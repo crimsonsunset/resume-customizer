@@ -8,6 +8,7 @@ export class VolunteeringRenderer extends SectionRenderer {
   constructor(options = {}) {
     super({
       sectionLabel: 'Volunteering',
+      sectionType: 'volunteering',
       groupBy: 'organization',
       filterStrategy: VolunteeringRenderer.volunteeringFilterStrategy,
       itemRenderer: VolunteeringRenderer.volunteeringItemRenderer,

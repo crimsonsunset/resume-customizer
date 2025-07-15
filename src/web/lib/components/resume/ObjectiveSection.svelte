@@ -5,7 +5,7 @@
 </script>
 
 {#if hasObjective}
-<div class="section-wrapper">
+<div class="section-wrapper" data-section="objective">
   <div class="section-label">Objective</div>
   <div class="section-content">
     <p>{objective}</p>

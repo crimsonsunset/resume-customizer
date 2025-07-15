@@ -6,7 +6,8 @@ import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
 export class ProjectsRenderer extends SectionRenderer {
   constructor(options = {}) {
     super({
-      sectionLabel: 'Projects', // Not used due to custom render override
+      sectionLabel: 'Projects',
+      sectionType: 'projects', // Not used due to custom render override
       groupBy: null, // Custom grouping logic
       filterStrategy: ProjectsRenderer.projectsFilterStrategy,
       itemRenderer: ProjectsRenderer.projectItemRenderer,
@@ -26,13 +27,13 @@ export class ProjectsRenderer extends SectionRenderer {
     // Work Projects section
     if (workProjects.length > 0) {
       const workContent = workProjects.map(project => this.itemRenderer(project)).join('\n')
-      sections.push(this.renderSectionWrapper('Work Projects', workContent))
+      sections.push(this.renderSectionWrapper('Work Projects', workContent, 'projects'))
     }
     
     // Supplemental Projects section  
     if (personalProjects.length > 0) {
       const personalContent = personalProjects.map(project => this.itemRenderer(project)).join('\n')
-      sections.push(this.renderSectionWrapper('Supplemental Projects', personalContent))
+      sections.push(this.renderSectionWrapper('Supplemental Projects', personalContent, 'projects'))
     }
     
     return sections.join('\n')

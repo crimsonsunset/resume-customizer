@@ -5,6 +5,7 @@
 export class SectionRenderer {
   constructor(options = {}) {
     this.sectionLabel = options.sectionLabel || 'Section'
+    this.sectionType = options.sectionType || null
     this.groupBy = options.groupBy || null
     this.itemRenderer = options.itemRenderer || this.defaultItemRenderer
     this.headerRenderer = options.headerRenderer || this.defaultHeaderRenderer
@@ -20,7 +21,8 @@ export class SectionRenderer {
     
     return this.renderSectionWrapper(
       this.sectionLabel,
-      groupedData.map(group => this.renderGroup(group)).join('\n')
+      groupedData.map(group => this.renderGroup(group)).join('\n'),
+      this.sectionType
     )
   }
 
@@ -69,8 +71,9 @@ export class SectionRenderer {
   /**
    * Renders the main section wrapper
    */
-  renderSectionWrapper(label, content) {
-    return `<div class="section-wrapper">
+  renderSectionWrapper(label, content, sectionType = null) {
+    const dataAttr = sectionType ? ` data-section="${sectionType}"` : ''
+    return `<div class="section-wrapper"${dataAttr}>
   <div class="section-label">${label}</div>
   <div class="section-content">
     ${content}

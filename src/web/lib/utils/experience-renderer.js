@@ -9,6 +9,7 @@ export class ExperienceRenderer extends SectionRenderer {
     
     super({
       sectionLabel: 'Experience',
+      sectionType: 'experience',
       groupBy: 'company',
       filterStrategy: ExperienceRenderer.experienceFilterStrategy,
       itemRenderer: (experience) => ExperienceRenderer.experienceItemRenderer(experience, bulletDensity),

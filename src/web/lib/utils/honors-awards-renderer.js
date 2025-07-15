@@ -8,6 +8,7 @@ export class HonorsAwardsRenderer extends SectionRenderer {
   constructor(options = {}) {
     super({
       sectionLabel: 'Honors & Awards',
+      sectionType: 'honors-awards',
       groupBy: 'issuer',
       filterStrategy: HonorsAwardsRenderer.honorsAwardsFilterStrategy,
       itemRenderer: HonorsAwardsRenderer.honorsAwardsItemRenderer,
