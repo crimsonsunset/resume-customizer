@@ -8,6 +8,8 @@ import ExperienceSection from '@web/lib/components/resume/ExperienceSection.svel
 import SkillsSection from '@web/lib/components/resume/SkillsSection.svelte'
 import ProjectsSection from '@web/lib/components/resume/ProjectsSection.svelte'
 import EducationSection from '@web/lib/components/resume/EducationSection.svelte'
+import CoursesSection from '@web/lib/components/resume/CoursesSection.svelte'
+import CertificationsSection from '@web/lib/components/resume/CertificationsSection.svelte'
 import VolunteeringSection from '@web/lib/components/resume/VolunteeringSection.svelte'
 import HonorsAwardsSection from '@web/lib/components/resume/HonorsAwardsSection.svelte'
 import RecommendationsSection from '@web/lib/components/resume/RecommendationsSection.svelte'
@@ -98,6 +100,22 @@ export async function load({ url }) {
       personalInterestsCount: finalData.sections?.activities?.personal_interests?.length || 0,
       firstActivityOrg: finalData.sections?.activities?.activities?.[0]?.organization || 'none'
     })
+
+    // Log courses data
+    console.log('📚 Courses data:', {
+      coursesExists: Boolean(finalData.sections?.education?.courses),
+      coursesCount: finalData.sections?.education?.courses?.length || 0,
+      firstCourseName: finalData.sections?.education?.courses?.[0]?.name || 'none',
+      firstCourseInstitution: finalData.sections?.education?.courses?.[0]?.institution || 'none'
+    })
+
+    // Log certifications data
+    console.log('📜 Certifications data:', {
+      certificationsExists: Boolean(finalData.sections?.certifications),
+      certificationsCount: finalData.sections?.certifications?.length || 0,
+      firstCertName: finalData.sections?.certifications?.[0]?.name || 'none',
+      firstCertOrg: finalData.sections?.certifications?.[0]?.issuing_organization || 'none'
+    })
     
     // Render each component with the data
     console.log('🎨 Rendering ResumeHeader...')
@@ -139,6 +157,18 @@ export async function load({ url }) {
           config: { preset: presetParam }
         } 
       }),
+      courses: () => render(CoursesSection, { 
+        props: { 
+          courses: finalData.sections?.education?.courses || [],
+          config: { preset: presetParam }
+        } 
+      }),
+      certifications: () => render(CertificationsSection, { 
+        props: { 
+          certifications: finalData.sections?.certifications || [],
+          config: { preset: presetParam }
+        } 
+      }),
       volunteering: () => render(VolunteeringSection, { 
         props: { 
           volunteering: finalData.sections?.volunteering || [],
@@ -166,7 +196,7 @@ export async function load({ url }) {
     }
     
     // Get section order from data or use default
-    const sectionOrder = finalData.sections_order || ['objective', 'experience', 'projects', 'skills', 'education', 'volunteering', 'honors-awards', 'recommendations', 'activities']
+    const sectionOrder = finalData.sections_order || ['objective', 'education', 'courses', 'certifications', 'skills', 'experience', 'projects', 'volunteering', 'honors-awards', 'recommendations', 'activities']
     console.log('📋 Sections order:', sectionOrder)
     
     // Render sections in specified order
