@@ -12,23 +12,24 @@
   let showPresetDropdown = false
   let density = 'medium'
   
-  // Section visibility organized by weight/importance
-  let visibleSections = {
-    // Primary (main content) - expanded by default
-    experience: true,
-    education: true,
-    skills: true,
-    projects: true,
-    // Credentials (proof points) 
-    certifications: true,
-    'honors-awards': true,
-    courses: true,
-    // Social Proof
-    recommendations: true,
-    volunteering: true,
-    // Personality
-    activities: true,
-    objective: true
+  // Section visibility - only include sections that are actually rendered in current preset
+  let visibleSections = {}
+  let initializedPreset = null
+  
+  // Initialize visibility state based on available sections from server
+  $: {
+    if (data.availableSections && selectedVersion !== initializedPreset) {
+      // Only reinitialize when preset changes, not on every reactive update
+      console.log('🔄 Preset changed, reinitializing sections for:', selectedVersion)
+      const newVisibleSections = {}
+      // Set all available sections to visible by default
+      data.availableSections.forEach(section => {
+        newVisibleSections[section] = true
+      })
+      visibleSections = newVisibleSections
+      initializedPreset = selectedVersion
+      console.log('🎯 Initialized visibility for available sections:', visibleSections)
+    }
   }
   
   // Accordion state - Primary expanded, others collapsed
@@ -44,10 +45,37 @@
   onMount(() => {
     mounted = true
     console.log('🚀 Resume Customizer Loaded!')
+    console.log('📋 Initial section visibility state:', visibleSections)
+    
+    // Check if resume content has data-section attributes
+    setTimeout(() => {
+      const allDataSectionElements = document.querySelectorAll('[data-section]')
+      console.log(`🏷️ Found ${allDataSectionElements.length} elements with data-section attributes:`)
+      allDataSectionElements.forEach((el, i) => {
+        console.log(`  ${i + 1}. [data-section="${el.getAttribute('data-section')}"] - ${el.tagName}`)
+      })
+      
+      // Also check for missing sections we expect
+      const expectedSections = ['certifications', 'courses']
+      expectedSections.forEach(section => {
+        const sectionElements = document.querySelectorAll(`[data-section="${section}"]`)
+        if (sectionElements.length === 0) {
+          console.warn(`❌ Missing expected section: ${section}`)
+          // Check if section exists but without data-section attribute
+          const sectionByText = Array.from(document.querySelectorAll('.section-label'))
+            .find(el => el.textContent.toLowerCase().includes(section.toLowerCase()))
+          if (sectionByText) {
+            console.log(`  🔍 Found section by text but missing data-section:`, sectionByText.parentElement)
+          }
+        }
+      })
+    }, 1000)
   })
   
   const toggleSection = (section) => {
+    const oldValue = visibleSections[section]
     visibleSections[section] = !visibleSections[section]
+    console.log(`🔄 Toggle section "${section}": ${oldValue} → ${visibleSections[section]}`)
   }
   
   const selectAllSections = () => {
@@ -89,23 +117,45 @@
   // Get current preset info for display
   $: currentPreset = data.availablePresets.find(p => p.value === selectedVersion) || data.availablePresets[0]
   
-  // Generate CSS to hide invisible sections  
-  $: sectionVisibilityCSS = Object.entries(visibleSections)
-    .filter(([section, visible]) => !visible)
-    .map(([section]) => `[data-section="${section}"]`)
-    .map(selector => `${selector} { display: none !important; }`)
-    .join('\n')
+  // Helper function to check if a section is available in current preset
+  const isSectionAvailable = (section) => {
+    return data.availableSections && data.availableSections.includes(section)
+  }
+  
+  // Get available sections by category for the sidebar
+  $: availableSectionsByCategory = {
+    primary: data.availableSections ? data.availableSections.filter(s => ['experience', 'education', 'skills', 'projects'].includes(s)) : [],
+    credentials: data.availableSections ? data.availableSections.filter(s => ['certifications', 'honors-awards', 'courses'].includes(s)) : [],
+    socialProof: data.availableSections ? data.availableSections.filter(s => ['recommendations', 'volunteering'].includes(s)) : [],
+    personality: data.availableSections ? data.availableSections.filter(s => ['activities', 'objective'].includes(s)) : []
+  }
+  
+  // Apply section visibility by toggling CSS classes
+  $: if (mounted && Object.keys(visibleSections).length > 0) {
+    Object.entries(visibleSections).forEach(([section, visible]) => {
+      const elements = document.querySelectorAll(`[data-section="${section}"]`)
+      elements.forEach(element => {
+        if (visible) {
+          element.classList.remove('section-hidden')
+        } else {
+          element.classList.add('section-hidden')
+        }
+      })
+    })
+  }
 </script>
 
 <svelte:head>
   <title>Resume Optimizer - Web App</title>
   <meta name="description" content="Modern resume optimization with AI-powered matching" />
-  {#if sectionVisibilityCSS}
-    <style>
-      {sectionVisibilityCSS}
-    </style>
-  {/if}
 </svelte:head>
+
+<style>
+  /* CSS to hide sections based on visibility state - needs to override ResumeViewer specificity */
+  :global(.resume-viewer .section-wrapper.section-hidden) {
+    display: none !important;
+  }
+</style>
 
 <div class="min-h-screen bg-base-200">
   <!-- Header -->
@@ -194,22 +244,15 @@
                   📋 Primary Sections
                 </div>
                 <div class="collapse-content space-y-2">
-                  <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.experience} />
-                    <span class="text-sm">Experience</span>
-                  </label>
-                  <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.education} />
-                    <span class="text-sm">Education</span>
-                  </label>
-                  <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.skills} />
-                    <span class="text-sm">Skills</span>
-                  </label>
-                  <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.projects} />
-                    <span class="text-sm">Projects</span>
-                  </label>
+                  {#each availableSectionsByCategory.primary as section}
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                      <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections[section]} />
+                      <span class="text-sm capitalize">{section.replace('-', ' & ')}</span>
+                    </label>
+                  {/each}
+                  {#if availableSectionsByCategory.primary.length === 0}
+                    <p class="text-xs text-base-content/60">No primary sections in this preset</p>
+                  {/if}
                 </div>
               </div>
 
@@ -220,18 +263,19 @@
                   🏆 Credentials
                 </div>
                 <div class="collapse-content space-y-2">
-                  <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.certifications} />
-                    <span class="text-sm">Certifications</span>
-                  </label>
-                  <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections['honors-awards']} />
-                    <span class="text-sm">Honors & Awards</span>
-                  </label>
-                  <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.courses} />
-                    <span class="text-sm">Relevant Coursework</span>
-                  </label>
+                  {#each availableSectionsByCategory.credentials as section}
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                      <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections[section]} />
+                      <span class="text-sm">
+                        {#if section === 'honors-awards'}Honors & Awards
+                        {:else if section === 'courses'}Relevant Coursework  
+                        {:else}{section.charAt(0).toUpperCase() + section.slice(1)}{/if}
+                      </span>
+                    </label>
+                  {/each}
+                  {#if availableSectionsByCategory.credentials.length === 0}
+                    <p class="text-xs text-base-content/60">No credential sections in this preset</p>
+                  {/if}
                 </div>
               </div>
 
@@ -242,14 +286,15 @@
                   💬 Social Proof
                 </div>
                 <div class="collapse-content space-y-2">
-                  <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.recommendations} />
-                    <span class="text-sm">Recommendations</span>
-                  </label>
-                  <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.volunteering} />
-                    <span class="text-sm">Volunteering</span>
-                  </label>
+                  {#each availableSectionsByCategory.socialProof as section}
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                      <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections[section]} />
+                      <span class="text-sm capitalize">{section}</span>
+                    </label>
+                  {/each}
+                  {#if availableSectionsByCategory.socialProof.length === 0}
+                    <p class="text-xs text-base-content/60">No social proof sections in this preset</p>
+                  {/if}
                 </div>
               </div>
 
@@ -260,14 +305,18 @@
                   🎭 Personality
                 </div>
                 <div class="collapse-content space-y-2">
-                  <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.activities} />
-                    <span class="text-sm">Activities & Interests</span>
-                  </label>
-                  <label class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections.objective} />
-                    <span class="text-sm">Objective</span>
-                  </label>
+                  {#each availableSectionsByCategory.personality as section}
+                    <label class="flex items-center space-x-2 cursor-pointer">
+                      <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections[section]} />
+                      <span class="text-sm">
+                        {#if section === 'activities'}Activities & Interests
+                        {:else}Objective{/if}
+                      </span>
+                    </label>
+                  {/each}
+                  {#if availableSectionsByCategory.personality.length === 0}
+                    <p class="text-xs text-base-content/60">No personality sections in this preset</p>
+                  {/if}
                 </div>
               </div>
 

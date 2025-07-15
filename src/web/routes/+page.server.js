@@ -276,7 +276,8 @@ export async function load({ url }) {
       resumeContent,
       preset: presetParam || 'full',
       bulletDensity: 100,
-      availablePresets
+      availablePresets,
+      availableSections: sectionOrder // Add the sections that are actually rendered
     }
   } catch (error) {
     console.error('❌ Error in server load:', error.message)
