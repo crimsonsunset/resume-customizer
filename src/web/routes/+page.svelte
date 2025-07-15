@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte'
+  import { fade, slide } from 'svelte/transition'
   import ThemeSelector from '@web/lib/components/ThemeSelector.svelte'
   import ResumeViewer from '@web/lib/components/ResumeViewer.svelte'
   
@@ -94,7 +95,7 @@
     personality: data.availableSections ? data.availableSections.filter(s => ['activities', 'objective'].includes(s)) : []
   }
   
-  // Apply section visibility by toggling CSS classes
+  // Apply section visibility with smooth CSS Grid animations
   $: if (mounted && Object.keys(visibleSections).length > 0) {
     Object.entries(visibleSections).forEach(([section, visible]) => {
       const elements = document.querySelectorAll(`[data-section="${section}"]`)
@@ -115,13 +116,43 @@
 </svelte:head>
 
 <style>
-  /* CSS to hide sections based on visibility state - needs to override ResumeViewer specificity */
+  /* Modern CSS Grid animation for smooth section hide/show - animate content and hide wrapper margins */
   :global(.resume-viewer .section-wrapper.section-hidden) {
-    display: none !important;
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+  }
+  
+  :global(.resume-viewer .section-wrapper.section-hidden .section-label) {
+    opacity: 0;
+    transition: opacity 300ms ease;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  :global(.resume-viewer .section-content) {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 300ms ease, opacity 300ms ease;
+    overflow: hidden;
+  }
+  
+  :global(.resume-viewer .section-wrapper.section-hidden .section-content) {
+    grid-template-rows: 0fr;
+    opacity: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  :global(.resume-viewer .section-content > *) {
+    min-height: 0;
+    overflow: hidden;
   }
 </style>
 
-<div class="min-h-screen bg-base-200">
+<div class="min-h-screen bg-base-200" in:fade={{ delay: 100, duration: 400 }}>
   <!-- Header -->
   <header class="bg-base-100 border-b border-base-300 px-6 py-4">
     <div class="flex justify-between items-center max-w-7xl mx-auto">
@@ -130,7 +161,7 @@
       </div>
       <div class="flex items-center space-x-4">
         <ThemeSelector />
-        <button class="btn btn-primary" on:click={exportToPDF}>
+        <button class="btn btn-primary transition-transform hover:scale-105 active:scale-95" on:click={exportToPDF}>
           📥 Export PDF
         </button>
       </div>
@@ -150,7 +181,7 @@
             
             <!-- DaisyUI Dropdown -->
             <div class="dropdown w-full" class:dropdown-open={showPresetDropdown}>
-              <div tabindex="0" role="button" class="btn btn-sm w-full justify-between" 
+              <div tabindex="0" role="button" class="btn btn-sm w-full justify-between transition-all hover:shadow-md" 
                    on:click={() => showPresetDropdown = !showPresetDropdown}
                    on:blur={() => setTimeout(() => showPresetDropdown = false, 150)}>
                 <span class="text-left truncate">{currentPreset.name}</span>
@@ -184,14 +215,14 @@
               <h3 class="card-title text-sm">👁️ Visible Sections</h3>
               <div class="flex space-x-1">
                 <button 
-                  class="btn btn-xs btn-outline" 
+                  class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
                   on:click={selectAllSections}
                   title="Select All"
                 >
                   All
                 </button>
                 <button 
-                  class="btn btn-xs btn-outline" 
+                  class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
                   on:click={selectNoneSections}
                   title="Select None"
                 >
@@ -202,15 +233,15 @@
             <div class="space-y-2">
               
               <!-- Primary Sections (Main Content) -->
-              <div class="collapse collapse-arrow bg-base-200" class:collapse-open={accordionState.primary}>
+              <div class="collapse collapse-arrow bg-base-200 transition-all hover:bg-base-300" class:collapse-open={accordionState.primary}>
                 <input type="checkbox" bind:checked={accordionState.primary} />
                 <div class="collapse-title text-sm font-medium">
                   📋 Primary Sections
                 </div>
                 <div class="collapse-content space-y-2">
                   {#each availableSectionsByCategory.primary as section}
-                    <label class="flex items-center space-x-2 cursor-pointer">
-                      <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections[section]} />
+                    <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
+                      <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
                       <span class="text-sm capitalize">{section.replace('-', ' & ')}</span>
                     </label>
                   {/each}
@@ -221,15 +252,15 @@
               </div>
 
               <!-- Credentials (Proof Points) -->
-              <div class="collapse collapse-arrow bg-base-200" class:collapse-open={accordionState.credentials}>
+              <div class="collapse collapse-arrow bg-base-200 transition-all hover:bg-base-300" class:collapse-open={accordionState.credentials}>
                 <input type="checkbox" bind:checked={accordionState.credentials} />
                 <div class="collapse-title text-sm font-medium">
                   🏆 Credentials
                 </div>
                 <div class="collapse-content space-y-2">
                   {#each availableSectionsByCategory.credentials as section}
-                    <label class="flex items-center space-x-2 cursor-pointer">
-                      <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections[section]} />
+                    <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
+                      <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
                       <span class="text-sm">
                         {#if section === 'honors-awards'}Honors & Awards
                         {:else if section === 'courses'}Relevant Coursework  
@@ -244,15 +275,15 @@
               </div>
 
               <!-- Social Proof -->
-              <div class="collapse collapse-arrow bg-base-200" class:collapse-open={accordionState.socialProof}>
+              <div class="collapse collapse-arrow bg-base-200 transition-all hover:bg-base-300" class:collapse-open={accordionState.socialProof}>
                 <input type="checkbox" bind:checked={accordionState.socialProof} />
                 <div class="collapse-title text-sm font-medium">
                   💬 Social Proof
                 </div>
                 <div class="collapse-content space-y-2">
                   {#each availableSectionsByCategory.socialProof as section}
-                    <label class="flex items-center space-x-2 cursor-pointer">
-                      <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections[section]} />
+                    <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
+                      <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
                       <span class="text-sm capitalize">{section}</span>
                     </label>
                   {/each}
@@ -263,15 +294,15 @@
               </div>
 
               <!-- Personality -->
-              <div class="collapse collapse-arrow bg-base-200" class:collapse-open={accordionState.personality}>
+              <div class="collapse collapse-arrow bg-base-200 transition-all hover:bg-base-300" class:collapse-open={accordionState.personality}>
                 <input type="checkbox" bind:checked={accordionState.personality} />
                 <div class="collapse-title text-sm font-medium">
                   🎭 Personality
                 </div>
                 <div class="collapse-content space-y-2">
                   {#each availableSectionsByCategory.personality as section}
-                    <label class="flex items-center space-x-2 cursor-pointer">
-                      <input type="checkbox" class="checkbox checkbox-sm" bind:checked={visibleSections[section]} />
+                    <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
+                      <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
                       <span class="text-sm">
                         {#if section === 'activities'}Activities & Interests
                         {:else}Objective{/if}
