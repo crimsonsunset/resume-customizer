@@ -38,6 +38,7 @@ Thumbs.db
 .svelte-kit/
 public/
 .vuepress/dist/
+.specstory/
 
 # Output directories
 #output/
