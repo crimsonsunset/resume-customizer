@@ -8,7 +8,7 @@ export class CertificationsRenderer extends SectionRenderer {
   constructor(options = {}) {
     super({
       sectionLabel: 'Certifications',
-      groupBy: 'issuing_organization',
+      groupBy: null, // No grouping - display as single line items
       filterStrategy: CertificationsRenderer.certificationsFilterStrategy,
       itemRenderer: CertificationsRenderer.certificationsItemRenderer,
       ...options
@@ -27,13 +27,11 @@ export class CertificationsRenderer extends SectionRenderer {
    */
   static certificationsItemRenderer(certification) {
     const credentialId = certification.credential_id 
-      ? `<p class="credential-id">${certification.credential_id}</p>`
+      ? ` - ${certification.credential_id}`
       : ''
     
     return `<div class="certification-item">
-  <h4>${certification.name}</h4>
-  <p class="issuing-org">${certification.issuing_organization}</p>
-  ${credentialId}
+  <h4>${certification.name} (${certification.issuing_organization})${credentialId}</h4>
 </div>`
   }
 } 

@@ -1,5 +1,7 @@
 import { render } from 'svelte/server'
-import { loadAllProfileSections, applyPreset } from '@shared/preset-merger.js'
+import { loadAllProfileSections, applyPreset, loadPreset } from '@shared/preset-merger.js'
+import { readdirSync } from 'node:fs'
+import path from 'node:path'
 
 // Import resume section components
 import ResumeHeader from '@web/lib/components/resume/ResumeHeader.svelte'
@@ -15,9 +17,57 @@ import HonorsAwardsSection from '@web/lib/components/resume/HonorsAwardsSection.
 import RecommendationsSection from '@web/lib/components/resume/RecommendationsSection.svelte'
 import ActivitiesSection from '@web/lib/components/resume/ActivitiesSection.svelte'
 
+/**
+ * Loads available presets from the presets directory
+ * @returns {Array} Array of preset objects with name, value, and description
+ */
+function loadAvailablePresets() {
+  try {
+    const presetsPath = path.join(process.cwd(), 'input', 'profiles', 'presets')
+    const files = readdirSync(presetsPath).filter(file => file.endsWith('.json'))
+    
+    const presets = []
+    
+    // Add default "full" option
+    presets.push({
+      value: 'full',
+      name: 'Comprehensive Resume',
+      description: 'Complete professional history and achievements'
+    })
+    
+    // Load each preset file
+    for (const file of files) {
+      const presetName = file.replace('.json', '')
+      const preset = loadPreset(presetName)
+      if (preset && preset.meta) {
+        presets.push({
+          value: presetName,
+          name: preset.meta.name || presetName,
+          description: preset.meta.description || `${presetName} preset`
+        })
+      }
+    }
+    
+    return presets
+  } catch (error) {
+    console.warn('⚠️ Could not load presets:', error.message)
+          return [
+        {
+          value: 'full',
+          name: 'Comprehensive Resume', 
+          description: 'Complete professional history and achievements'
+        }
+      ]
+  }
+}
+
 export async function load({ url }) {
   try {
     console.log('🔄 Starting server load...')
+    
+    // Load available presets
+    const availablePresets = loadAvailablePresets()
+    console.log('📋 Available presets:', availablePresets.map(p => p.name))
     
     // Load raw JSON data
     const rawData = loadAllProfileSections()
@@ -225,7 +275,8 @@ export async function load({ url }) {
     return {
       resumeContent,
       preset: presetParam || 'full',
-      bulletDensity: 100
+      bulletDensity: 100,
+      availablePresets
     }
   } catch (error) {
     console.error('❌ Error in server load:', error.message)
@@ -233,7 +284,8 @@ export async function load({ url }) {
     return {
       resumeContent: `<p>Error: ${error.message}</p>`,
       preset: 'full',
-      bulletDensity: 100
+      bulletDensity: 100,
+      availablePresets: [{ value: 'full', name: 'Comprehensive Resume', description: 'Complete professional history and achievements' }]
     }
   }
 } 
