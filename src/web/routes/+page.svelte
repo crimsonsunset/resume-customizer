@@ -95,15 +95,46 @@
     personality: data.availableSections ? data.availableSections.filter(s => ['activities', 'objective'].includes(s)) : []
   }
   
-  // Apply section visibility with smooth CSS Grid animations
+  // Store original section content for restoration
+  let sectionStorage = {}
+  
+  // Apply section visibility with DOM manipulation after animation
   $: if (mounted && Object.keys(visibleSections).length > 0) {
     Object.entries(visibleSections).forEach(([section, visible]) => {
       const elements = document.querySelectorAll(`[data-section="${section}"]`)
       elements.forEach(element => {
         if (visible) {
-          element.classList.remove('section-hidden')
+          // Showing: restore element if it was removed, then animate in
+          if (element.style.display === 'none') {
+            element.style.display = ''
+            element.classList.add('section-hidden')
+            // Force reflow then animate in
+            element.offsetHeight
+            element.classList.remove('section-hidden')
+          } else {
+            element.classList.remove('section-hidden')
+          }
         } else {
-          element.classList.add('section-hidden')
+          // Hiding: animate out then remove from DOM
+          if (!element.classList.contains('section-hidden')) {
+            // Store original content if not already stored
+            if (!sectionStorage[section]) {
+              sectionStorage[section] = {
+                element: element,
+                parent: element.parentNode,
+                nextSibling: element.nextSibling
+              }
+            }
+            
+            element.classList.add('section-hidden')
+            
+            // Remove element after animation completes
+            setTimeout(() => {
+              if (element.classList.contains('section-hidden')) {
+                element.style.display = 'none'
+              }
+            }, 300) // Match transition duration
+          }
         }
       })
     })
@@ -116,20 +147,10 @@
 </svelte:head>
 
 <style>
-  /* Modern CSS Grid animation for smooth section hide/show - animate content and hide wrapper margins */
-  :global(.resume-viewer .section-wrapper.section-hidden) {
-    margin-bottom: 0 !important;
-    margin-top: 0 !important;
-    padding: 0 !important;
-  }
-  
+  /* CSS Grid height collapse animation + fade, then DOM removal */
   :global(.resume-viewer .section-wrapper.section-hidden .section-label) {
     opacity: 0;
     transition: opacity 300ms ease;
-    margin: 0 !important;
-    padding: 0 !important;
-    height: 0;
-    overflow: hidden;
   }
   
   :global(.resume-viewer .section-content) {
@@ -142,8 +163,6 @@
   :global(.resume-viewer .section-wrapper.section-hidden .section-content) {
     grid-template-rows: 0fr;
     opacity: 0;
-    margin: 0 !important;
-    padding: 0 !important;
   }
   
   :global(.resume-viewer .section-content > *) {
