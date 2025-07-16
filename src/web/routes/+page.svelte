@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import { fade, slide } from 'svelte/transition'
+  import { delay } from 'lodash-es'
   import ThemeSelector from '@web/lib/components/ThemeSelector.svelte'
   import ResumeViewer from '@web/lib/components/ResumeViewer.svelte'
   
@@ -67,7 +68,7 @@
   const showToast = (message) => {
     toastMessage = message
     toastVisible = true
-    setTimeout(() => {
+    delay(() => {
       toastVisible = false
     }, 3000)
   }
@@ -226,12 +227,12 @@
             
             element.classList.add('section-hidden')
             
-            // Remove element after animation completes
-            setTimeout(() => {
+            // Remove element during animation (200ms earlier to avoid snap)
+            delay(() => {
               if (element.classList.contains('section-hidden')) {
                 element.style.display = 'none'
               }
-            }, 300) // Match transition duration
+            }, 250) // Remove at 250ms instead of 300ms
           }
         }
       })
@@ -300,7 +301,8 @@
             <div class="dropdown w-full" class:dropdown-open={showPresetDropdown}>
               <div tabindex="0" role="button" class="btn btn-sm w-full justify-between transition-all hover:shadow-md" 
                    on:click={() => showPresetDropdown = !showPresetDropdown}
-                   on:blur={() => setTimeout(() => showPresetDropdown = false, 150)}>
+                   on:keydown={(e) => e.key === 'Enter' && (showPresetDropdown = !showPresetDropdown)}
+                   on:blur={() => delay(() => showPresetDropdown = false, 150)}>
                 <span class="text-left truncate">{currentPreset.name}</span>
                 <svg class="w-4 h-4 transition-transform" class:rotate-180={showPresetDropdown} 
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -308,7 +310,7 @@
                 </svg>
               </div>
               
-              <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full mt-1 border border-base-300">
+              <ul class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full mt-1 border border-base-300">
                 {#each data.availablePresets as preset}
                   <li>
                     <button class="text-left" on:click={() => changePreset(preset.value)}
