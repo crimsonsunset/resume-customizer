@@ -16,6 +16,9 @@ import VolunteeringSection from '@web/lib/components/resume/VolunteeringSection.
 import HonorsAwardsSection from '@web/lib/components/resume/HonorsAwardsSection.svelte'
 import RecommendationsSection from '@web/lib/components/resume/RecommendationsSection.svelte'
 import ActivitiesSection from '@web/lib/components/resume/ActivitiesSection.svelte'
+import HeadlineSection from '@web/lib/components/resume/HeadlineSection.svelte'
+import LocationSection from '@web/lib/components/resume/LocationSection.svelte'
+import SummarySection from '@web/lib/components/resume/SummarySection.svelte'
 
 /**
  * Loads available presets from the presets directory
@@ -79,7 +82,7 @@ export async function load({ url }) {
     console.log('🎯 Preset parameter:', presetParam)
     
     // Get density and mode parameters
-    const densityParam = parseInt(url.searchParams.get('density') || '100')
+    const densityParam = Number.parseInt(url.searchParams.get('density') || '100', 10)
     const modeParam = url.searchParams.get('mode') || 'manual'
     console.log('📏 Density parameter:', densityParam, 'Mode:', modeParam)
     
@@ -92,7 +95,14 @@ export async function load({ url }) {
     // Log basic info
     console.log('👤 Basic info:', {
       name: finalData.basic_info?.name,
+      headline: finalData.basic_info?.headline,
+      location: finalData.basic_info?.location,
+      summary: finalData.basic_info?.summary,
       email: finalData.basic_info?.contact?.email,
+      phone: finalData.basic_info?.contact?.phone,
+      address: finalData.basic_info?.contact?.address,
+      linkedin: finalData.basic_info?.contact?.linkedin,
+      website: finalData.basic_info?.contact?.website,
       hasContact: Boolean(finalData.basic_info?.contact)
     })
     
@@ -247,11 +257,26 @@ export async function load({ url }) {
           activities: finalData.sections?.activities || {},
           config: { preset: presetParam }
         } 
+      }),
+      headline: () => render(HeadlineSection, {
+        props: {
+          headline: finalData.basic_info?.headline || ''
+        }
+      }),
+      location: () => render(LocationSection, {
+        props: {
+          location: finalData.basic_info?.location || ''
+        }
+      }),
+      summary: () => render(SummarySection, {
+        props: {
+          summary: finalData.basic_info?.summary || ''
+        }
       })
     }
     
     // Get section order from data or use default
-    const sectionOrder = finalData.sections_order || ['objective', 'education', 'courses', 'certifications', 'skills', 'experience', 'projects', 'volunteering', 'honors-awards', 'recommendations', 'activities']
+    const sectionOrder = finalData.sections_order || ['headline', 'summary', 'objective', 'experience', 'projects', 'skills', 'education', 'courses', 'certifications', 'volunteering', 'honors-awards', 'recommendations', 'activities', 'location']
     console.log('📋 Sections order:', sectionOrder)
     
     // Render sections in specified order
