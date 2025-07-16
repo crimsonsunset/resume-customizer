@@ -198,10 +198,11 @@
   
   // Get available sections by category for the sidebar
   $: availableSectionsByCategory = {
-    primary: data.availableSections ? data.availableSections.filter(s => ['experience', 'education', 'skills', 'projects'].includes(s)) : [],
+    primary: data.availableSections ? data.availableSections.filter(s => ['headline', 'summary', 'experience', 'education', 'skills', 'projects'].includes(s)) : [],
     credentials: data.availableSections ? data.availableSections.filter(s => ['certifications', 'honors-awards', 'courses'].includes(s)) : [],
     socialProof: data.availableSections ? data.availableSections.filter(s => ['recommendations', 'volunteering'].includes(s)) : [],
     personality: data.availableSections ? data.availableSections.filter(s => ['activities', 'objective'].includes(s)) : []
+    // Note: 'location' excluded from filtering since it's already displayed in the resume header
   }
   
   // Store original section content for restoration

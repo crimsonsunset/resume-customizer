@@ -6,7 +6,7 @@
 
 {#if hasHeadline}
 <div class="section-wrapper" data-section="headline">
-  <div class="section-label">Professional Headline</div>
+  <div class="section-label">Headline</div>
   <div class="section-content">
     <p>{headline}</p>
   </div>

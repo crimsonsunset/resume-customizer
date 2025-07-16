@@ -201,7 +201,8 @@ export async function load({ url }) {
       experience: () => render(ExperienceSection, { 
         props: { 
           experiences: finalData.sections?.experience || [],
-          bulletDensity: modeParam === 'density' ? densityParam : 100
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          config: { preset: presetParam }
         } 
       }),
       skills: () => render(SkillsSection, { 
@@ -267,6 +268,7 @@ export async function load({ url }) {
         props: {
           location: finalData.basic_info?.location || ''
         }
+        // Note: location renderer kept for future use but excluded from user controls (shown in header)
       }),
       summary: () => render(SummarySection, {
         props: {
@@ -276,7 +278,7 @@ export async function load({ url }) {
     }
     
     // Get section order from data or use default
-    const sectionOrder = finalData.sections_order || ['headline', 'summary', 'objective', 'experience', 'projects', 'skills', 'education', 'courses', 'certifications', 'volunteering', 'honors-awards', 'recommendations', 'activities', 'location']
+    const sectionOrder = finalData.sections_order || ['headline', 'objective', 'summary', 'education', 'skills', 'experience', 'projects', 'honors-awards', 'volunteering', 'recommendations', 'activities', 'certifications', 'courses', 'location']
     console.log('📋 Sections order:', sectionOrder)
     
     // Render sections in specified order

@@ -6,6 +6,8 @@
 
 // Section name mapping for compact URL encoding
 const SECTION_CODES = {
+  'headline': 'head',
+  'summary': 'sum',
   'objective': 'obj',
   'experience': 'exp', 
   'projects': 'proj',
@@ -16,7 +18,8 @@ const SECTION_CODES = {
   'volunteering': 'vol',
   'honors-awards': 'award',
   'recommendations': 'rec',
-  'activities': 'act'
+  'activities': 'act',
+  'location': 'loc' // Note: location kept for future use but currently excluded from filtering (shown in header)
 }
 
 // Reverse mapping for decoding

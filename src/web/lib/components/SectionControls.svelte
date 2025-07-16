@@ -13,10 +13,11 @@
   
   // Category configuration for section controls
   const categoryConfig = {
-    primary: { sections: ['experience', 'education', 'skills', 'projects'] },
+    primary: { sections: ['headline', 'summary', 'experience', 'education', 'skills', 'projects'] },
     credentials: { sections: ['certifications', 'honors-awards', 'courses'] },
     socialProof: { sections: ['recommendations', 'volunteering'] },
     personality: { sections: ['activities', 'objective'] }
+    // Note: 'location' excluded from controls since it's already displayed in the resume header
   }
   
   /**
