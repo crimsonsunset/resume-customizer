@@ -146,59 +146,22 @@
     accordionState.personality = true
   }
 
-  // Category-specific selection functions
-  const selectAllPrimary = () => {
-    availableSectionsByCategory.primary?.forEach(section => {
-      visibleSections[section] = true
-    })
-    visibleSections = { ...visibleSections }
+  // Category configuration for section controls
+  const categoryConfig = {
+    primary: { sections: ['experience', 'education', 'skills', 'projects'] },
+    credentials: { sections: ['certifications', 'honors-awards', 'courses'] },
+    socialProof: { sections: ['recommendations', 'volunteering'] },
+    personality: { sections: ['activities', 'objective'] }
   }
 
-  const selectNonePrimary = () => {
-    availableSectionsByCategory.primary?.forEach(section => {
-      visibleSections[section] = false
-    })
-    visibleSections = { ...visibleSections }
-  }
-
-  const selectAllCredentials = () => {
-    availableSectionsByCategory.credentials?.forEach(section => {
-      visibleSections[section] = true
-    })
-    visibleSections = { ...visibleSections }
-  }
-
-  const selectNoneCredentials = () => {
-    availableSectionsByCategory.credentials?.forEach(section => {
-      visibleSections[section] = false
-    })
-    visibleSections = { ...visibleSections }
-  }
-
-  const selectAllSocialProof = () => {
-    availableSectionsByCategory.socialProof?.forEach(section => {
-      visibleSections[section] = true
-    })
-    visibleSections = { ...visibleSections }
-  }
-
-  const selectNoneSocialProof = () => {
-    availableSectionsByCategory.socialProof?.forEach(section => {
-      visibleSections[section] = false
-    })
-    visibleSections = { ...visibleSections }
-  }
-
-  const selectAllPersonality = () => {
-    availableSectionsByCategory.personality?.forEach(section => {
-      visibleSections[section] = true
-    })
-    visibleSections = { ...visibleSections }
-  }
-
-  const selectNonePersonality = () => {
-    availableSectionsByCategory.personality?.forEach(section => {
-      visibleSections[section] = false
+  /**
+   * Generic function to set visibility for all sections in a category
+   * @param {string} categoryName - The category name (primary, credentials, etc.)
+   * @param {boolean} isVisible - Whether to show (true) or hide (false) all sections
+   */
+  const setCategoryVisibility = (categoryName, isVisible) => {
+    availableSectionsByCategory[categoryName]?.forEach(section => {
+      visibleSections[section] = isVisible
     })
     visibleSections = { ...visibleSections }
   }
@@ -503,14 +466,14 @@
                     <div class="flex gap-2 mb-3">
                       <button 
                         class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={selectAllPrimary}
+                        on:click={() => setCategoryVisibility('primary', true)}
                         title="Select All Primary"
                       >
                         All
                       </button>
                       <button 
                         class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={selectNonePrimary}
+                        on:click={() => setCategoryVisibility('primary', false)}
                         title="Select None Primary"
                       >
                         None
@@ -540,14 +503,14 @@
                     <div class="flex gap-2 mb-3">
                       <button 
                         class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={selectAllCredentials}
+                        on:click={() => setCategoryVisibility('credentials', true)}
                         title="Select All Credentials"
                       >
                         All
                       </button>
                       <button 
                         class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={selectNoneCredentials}
+                        on:click={() => setCategoryVisibility('credentials', false)}
                         title="Select None Credentials"
                       >
                         None
@@ -581,14 +544,14 @@
                     <div class="flex gap-2 mb-3">
                       <button 
                         class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={selectAllSocialProof}
+                        on:click={() => setCategoryVisibility('socialProof', true)}
                         title="Select All Social Proof"
                       >
                         All
                       </button>
                       <button 
                         class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={selectNoneSocialProof}
+                        on:click={() => setCategoryVisibility('socialProof', false)}
                         title="Select None Social Proof"
                       >
                         None
@@ -618,14 +581,14 @@
                     <div class="flex gap-2 mb-3">
                       <button 
                         class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={selectAllPersonality}
+                        on:click={() => setCategoryVisibility('personality', true)}
                         title="Select All Personality"
                       >
                         All
                       </button>
                       <button 
                         class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={selectNonePersonality}
+                        on:click={() => setCategoryVisibility('personality', false)}
                         title="Select None Personality"
                       >
                         None
