@@ -1,26 +1,65 @@
 import { chromium } from 'playwright'
 import { error } from '@sveltejs/kit'
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
+
+/**
+ * Load CSS template based on preset name with fallback
+ * @param {string} preset - The preset name (e.g., 'one-page', 'technical')
+ * @returns {Promise<string>} CSS content
+ */
+async function loadCssTemplate(preset) {
+  try {
+    // Try preset-specific CSS first: preset-name.css
+    if (preset && preset !== 'full') {
+      try {
+        const presetCssPath = path.join(process.cwd(), 'input', 'templates', `${preset}.css`)
+        const css = await readFile(presetCssPath, 'utf8')
+        console.log(`✅ Loaded preset CSS: ${preset}.css`)
+        return css
+      } catch {
+        console.log(`⚠️ No preset CSS found for ${preset}, using default`)
+      }
+    }
+    
+    // Fallback to default resume-styles.css
+    const defaultCssPath = path.join(process.cwd(), 'input', 'templates', 'resume-styles.css')
+    const css = await readFile(defaultCssPath, 'utf8')
+    console.log('✅ Loaded default CSS: resume-styles.css')
+    return css
+  } catch (error_) {
+    console.error('❌ Failed to load CSS template:', error_.message)
+    throw new Error(`Could not load CSS template: ${error_.message}`)
+  }
+}
 
 /**
  * Generate PDF from HTML content using Playwright
- * @param {Request} request - The request object containing HTML and CSS
+ * @param {Request} request - The request object containing HTML, preset/css, and filename
  * @returns {Response} PDF file as response
  */
 export async function POST({ request }) {
   try {
-    const { html, css, filename = 'resume.pdf' } = await request.json()
+    const { html, preset = 'full', css, cssMethod = 'css', filename = 'resume.pdf' } = await request.json()
     
     if (!html) {
       throw error(400, 'HTML content is required')
     }
     
+    console.log(`🎯 Generating PDF with method: ${cssMethod}, preset: ${preset}`)
+    
+    // Determine CSS based on method
+    const finalCss = cssMethod === 'preset' 
+      ? await loadCssTemplate(preset)  // Use preset-based CSS loading (new method)
+      : css || await loadCssTemplate(preset)  // Use direct CSS (original method for compatibility)
+    
     // Inject CSS into HTML like the CLI does
     let processedHtml = html
-    if (css) {
+    if (finalCss) {
       // Add CSS before closing </head> tag or create head if doesn't exist
       processedHtml = processedHtml.includes('</head>') 
-        ? processedHtml.replace('</head>', `<style>${css}</style></head>`)
-        : processedHtml.replace('<html>', `<html><head><style>${css}</style></head>`)
+        ? processedHtml.replace('</head>', `<style>${finalCss}</style></head>`)
+        : processedHtml.replace('<html>', `<html><head><style>${finalCss}</style></head>`)
     }
     
     // Ensure we have a proper HTML document structure
@@ -30,7 +69,7 @@ export async function POST({ request }) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  ${css ? `<style>${css}</style>` : ''}
+  ${finalCss ? `<style>${finalCss}</style>` : ''}
 </head>
 <body>
   ${html}
@@ -60,6 +99,8 @@ export async function POST({ request }) {
     
     await browser.close()
     
+    console.log(`✅ PDF generated successfully: ${filename}`)
+    
     // Return PDF as download
     // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return new Response(pdf, {
@@ -70,7 +111,7 @@ export async function POST({ request }) {
     })
     
   } catch (error_) {
-    console.error('PDF generation error:', error_)
+    console.error('❌ PDF generation error:', error_)
     throw error(500, `PDF generation failed: ${error_.message}`)
   }
 } 

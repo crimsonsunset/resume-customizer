@@ -59,7 +59,8 @@ body {
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
     print-color-adjust: exact;
-    
+    /* Debug: Show body boundaries */
+    border: 2px solid purple;
 }
 
 /* Add responsive padding for web viewing */
@@ -81,7 +82,8 @@ body {
     margin-bottom: var(--spacing-header);
     padding-bottom: var(--spacing-xl);
     border-bottom: 2px solid var(--color-primary);
-    
+    /* Debug: Show header boundaries */
+    border: 1px solid orange;
 }
 
 .header h1 {
@@ -101,17 +103,21 @@ body {
 
 /* Main content using CSS Grid - Optimized for better balance */
 .resume-content {
-    
+    border: 3px solid red;
+    background-color: rgba(255, 0, 0, 0.05);
     display: grid;
     grid-template-columns: var(--column-left-width) 1fr;
     column-gap: var(--column-gap);
     row-gap: var(--row-gap);
-      align-items: start;
+    align-items: start;
+    /* Debug: Show grid info */
+    position: relative;
 }
 
 /* Section wrapper for table-like behavior */
 .section-wrapper {
-      display: contents;
+    display: contents;
+    /* Debug: Show section wrapper boundaries (won't show due to display:contents) */
 }
 
 /* Section labels (left column) - Enhanced styling with underlines */
@@ -124,14 +130,18 @@ body {
     letter-spacing: 0.5px;
     line-height: var(--line-height-tight);
     text-decoration: underline;
-    
+    /* Debug: Show section label boundaries */
+    border: 1px dashed green;
+    background-color: rgba(0, 255, 0, 0.1);
 }
 
 /* Section content (right column) - Optimized spacing */
 .section-content {
     margin-bottom: var(--spacing-section);
     line-height: var(--line-height-normal);
-    
+    /* Debug: Show section content boundaries */
+    border: 1px dashed blue;
+    background-color: rgba(0, 0, 255, 0.05);
 }
 
 /* Typography improvements */

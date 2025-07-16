@@ -104,7 +104,7 @@
       
       const resumeHTML = resumeElement.innerHTML
       
-      // Extract CSS styles from the page
+      // Extract CSS styles from the page (needed for compatibility with hardcoded HTML approach)
       const allStyles = []
       
       // Get inline styles from style tags
@@ -143,7 +143,8 @@
       const currentYear = today.getFullYear()
       const filename = `joseph-sangiorgio-resume-${currentYear}.pdf`
       
-      // Call the PDF generation API
+      // Call the PDF generation API - use preset method for web app, CSS method for compatibility
+      console.log(`📄 Generating PDF with preset: ${selectedVersion}`)
       const response = await fetch('/api/generate-pdf', {
         method: 'POST',
         headers: {
@@ -151,7 +152,9 @@
         },
         body: JSON.stringify({
           html: resumeHTML,
-          css: combinedCSS,
+          preset: selectedVersion,     // Use preset for server-side CSS template selection
+          css: combinedCSS,           // Also send extracted CSS as fallback
+          cssMethod: 'preset',        // Tell backend to prefer preset method
           filename: filename
         })
       })
