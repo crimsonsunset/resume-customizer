@@ -14,7 +14,7 @@
   // Resume state management  
   let selectedVersion = data.preset || 'full'
   let showPresetDropdown = false
-  let density = 'medium'
+  let density = 100 // Content density: 0-100% (0 = minimal, 100 = full content)
   
   // Section visibility - only include sections that are actually rendered in current preset
   let visibleSections = {}
@@ -135,9 +135,13 @@
 
   
   const selectAllSections = () => {
-    Object.keys(visibleSections).forEach(section => {
-      visibleSections[section] = true
-    })
+    const newVisibleSections = {}
+    if (data.availableSections) {
+      data.availableSections.forEach(section => {
+        newVisibleSections[section] = true
+      })
+    }
+    visibleSections = newVisibleSections
     // Also expand all accordions to show what was selected
     accordionState.primary = true
     accordionState.credentials = true
@@ -146,9 +150,13 @@
   }
   
   const selectNoneSections = () => {
-    Object.keys(visibleSections).forEach(section => {
-      visibleSections[section] = false
-    })
+    const newVisibleSections = {}
+    if (data.availableSections) {
+      data.availableSections.forEach(section => {
+        newVisibleSections[section] = false
+      })
+    }
+    visibleSections = newVisibleSections
   }
   
   // Toast notification system
@@ -209,10 +217,10 @@
       
       const combinedCSS = allStyles.join('\n\n')
       
-      // Generate filename: joseph-sangiorgio-resume-2025-07-15.pdf
+      // Generate filename: joseph-sangiorgio-resume-2025.pdf
       const today = new Date()
-      const dateString = today.toISOString().split('T')[0] // YYYY-MM-DD format
-      const filename = `joseph-sangiorgio-resume-${dateString}.pdf`
+      const currentYear = today.getFullYear()
+      const filename = `joseph-sangiorgio-resume-${currentYear}.pdf`
       
       // Call the PDF generation API
       const response = await fetch('/api/generate-pdf', {
@@ -537,29 +545,36 @@
         <!-- Density Controls -->
         <div class="card bg-base-100 shadow-sm border border-base-300">
           <div class="card-body p-4">
-            <h3 class="card-title text-sm">📏 Spacing Density</h3>
-            <div class="btn-group btn-group-vertical w-full">
-              <button 
-                class="btn btn-sm" 
-                class:btn-active={density === 'compact'}
-                on:click={() => density = 'compact'}
-              >
-                Compact
-              </button>
-              <button 
-                class="btn btn-sm" 
-                class:btn-active={density === 'medium'}
-                on:click={() => density = 'medium'}
-              >
-                Medium
-              </button>
-              <button 
-                class="btn btn-sm" 
-                class:btn-active={density === 'spacious'}
-                on:click={() => density = 'spacious'}
-              >
-                Spacious
-              </button>
+            <h3 class="card-title text-sm">📏 Content Density</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center text-xs">
+                <button 
+                  class="btn btn-xs btn-ghost text-base-content/70 hover:text-base-content"
+                  on:click={() => density = 10}
+                >
+                  Minimal
+                </button>
+                <span class="font-medium">{density}%</span>
+                <button 
+                  class="btn btn-xs btn-ghost text-base-content/70 hover:text-base-content"
+                  on:click={() => density = 100}
+                >
+                  Full
+                </button>
+              </div>
+              <input 
+                type="range" 
+                min="10" 
+                max="100" 
+                step="10"
+                bind:value={density}
+                class="range range-primary range-sm" 
+              />
+              <div class="flex justify-between text-xs text-base-content/50">
+                <span>10%</span>
+                <span>50%</span>
+                <span>100%</span>
+              </div>
             </div>
           </div>
         </div>
