@@ -2,6 +2,8 @@
   import { onMount } from 'svelte'
   import { fade, slide } from 'svelte/transition'
   import { delay } from 'lodash-es'
+  import { page } from '$app/stores'
+  import { goto } from '$app/navigation'
   import ThemeSelector from '@web/lib/components/ThemeSelector.svelte'
   import ResumeViewer from '@web/lib/components/ResumeViewer.svelte'
   
@@ -17,14 +19,102 @@
   // Section visibility - only include sections that are actually rendered in current preset
   let visibleSections = {}
   
-  // Initialize visibility state based on available sections from server
-  $: if (data.availableSections) {
-    // Set all available sections to visible by default
-    const newVisibleSections = {}
-    data.availableSections.forEach(section => {
-      newVisibleSections[section] = visibleSections[section] ?? true // Keep existing state or default to true
+  // Section name mapping for compact URL encoding
+  const sectionCodes = {
+    'objective': 'obj',
+    'experience': 'exp', 
+    'projects': 'proj',
+    'education': 'edu',
+    'skills': 'skills',
+    'certifications': 'cert',
+    'courses': 'course',
+    'volunteering': 'vol',
+    'honors-awards': 'award',
+    'recommendations': 'rec',
+    'activities': 'act'
+  }
+  
+  // Reverse mapping for decoding
+  const codeToSection = Object.fromEntries(
+    Object.entries(sectionCodes).map(([section, code]) => [code, section])
+  )
+  
+  /**
+   * Encode visible sections to URL-friendly string
+   * @param {Object} sections - Object with section names as keys, boolean visibility as values
+   * @returns {string} Comma-separated compact codes for visible sections
+   */
+  const encodeSectionsForURL = (sections) => {
+    return Object.entries(sections)
+      .filter(([_, visible]) => visible)
+      .map(([section, _]) => sectionCodes[section] || section)
+      .sort()
+      .join(',')
+  }
+  
+  /**
+   * Decode URL string to sections visibility object
+   * @param {string} urlString - Comma-separated compact codes
+   * @param {Array} availableSections - Available sections from server
+   * @returns {Object} Section visibility object
+   */
+  const decodeSectionsFromURL = (urlString, availableSections) => {
+    if (!urlString || !availableSections) return {}
+    
+    const visibleCodes = urlString.split(',').filter(Boolean)
+    const visibleSectionNames = visibleCodes.map(code => codeToSection[code] || code)
+    
+    const result = {}
+    availableSections.forEach(section => {
+      result[section] = visibleSectionNames.includes(section)
     })
-    visibleSections = newVisibleSections
+    return result
+  }
+  
+  // Initialize visibility state from URL first, then from available sections
+  $: if (data.availableSections) {
+    const urlSections = $page.url.searchParams.get('sections')
+    
+    if (urlSections && !Object.keys(visibleSections).length) {
+      // First load: initialize from URL if present
+      visibleSections = decodeSectionsFromURL(urlSections, data.availableSections)
+    } else if (!Object.keys(visibleSections).length) {
+      // First load: no URL params, default all to visible
+      const newVisibleSections = {}
+      data.availableSections.forEach(section => {
+        newVisibleSections[section] = true
+      })
+      visibleSections = newVisibleSections
+    } else {
+      // Subsequent preset changes: preserve existing state for sections that exist
+      const newVisibleSections = {}
+      data.availableSections.forEach(section => {
+        newVisibleSections[section] = visibleSections[section] ?? true
+      })
+      visibleSections = newVisibleSections
+    }
+  }
+  
+  // Update URL when section visibility changes
+  $: if (mounted && Object.keys(visibleSections).length > 0) {
+    const encodedSections = encodeSectionsForURL(visibleSections)
+    const currentSections = $page.url.searchParams.get('sections')
+    
+    if (encodedSections !== currentSections) {
+      const newURL = new URL($page.url)
+      if (encodedSections) {
+        newURL.searchParams.set('sections', encodedSections)
+      } else {
+        newURL.searchParams.delete('sections')
+      }
+      
+      // Update URL without causing navigation/reload
+      goto(newURL.toString(), { 
+        replaceState: true, 
+        noScroll: true,
+        keepFocus: true
+      })
+    }
   }
   
   // Accordion state - Primary expanded, others collapsed
@@ -119,9 +209,10 @@
       
       const combinedCSS = allStyles.join('\n\n')
       
-      // Generate filename: joseph-sangiorgio-resume-2025.pdf
-      const currentYear = new Date().getFullYear()
-      const filename = `joseph-sangiorgio-resume-${currentYear}.pdf`
+      // Generate filename: joseph-sangiorgio-resume-2025-07-15.pdf
+      const today = new Date()
+      const dateString = today.toISOString().split('T')[0] // YYYY-MM-DD format
+      const filename = `joseph-sangiorgio-resume-${dateString}.pdf`
       
       // Call the PDF generation API
       const response = await fetch('/api/generate-pdf', {
@@ -168,14 +259,19 @@
     selectedVersion = presetValue
     showPresetDropdown = false
     
-    // Navigate to new preset URL
-    const url = new URL(window.location)
+    // Navigate to new preset URL while preserving section visibility
+    const newURL = new URL($page.url)
     if (presetValue === 'full') {
-      url.searchParams.delete('preset')
+      newURL.searchParams.delete('preset')
     } else {
-      url.searchParams.set('preset', presetValue)
+      newURL.searchParams.set('preset', presetValue)
     }
-    window.location.href = url.toString()
+    
+    // Use SvelteKit navigation for smoother experience
+    goto(newURL.toString(), { 
+      noScroll: true,
+      keepFocus: true
+    })
   }
   
   // Get current preset info for display
