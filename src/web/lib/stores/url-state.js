@@ -6,7 +6,9 @@ import {
   updateURLWithSections, 
   updateURLWithPreset,
   areSectionsDifferent,
-  preserveSectionState
+  preserveSectionState,
+  initializeDensityMode,
+  updateURLWithDensity
 } from '@web/lib/utils/url-state-manager.js'
 
 /**
@@ -16,6 +18,11 @@ import {
 
 // Section visibility store
 export const sectionVisibilityStore = writable({})
+
+// Density and mode stores
+export const densityStore = writable(100)
+export const contentModeStore = writable('manual')
+export const densityInitializedStore = writable(false)
 
 // Mounted state to avoid SSR issues
 export const mountedStore = writable(false)
@@ -86,4 +93,39 @@ export const shouldUpdateURL = (newSections, previousSections, isMounted) => {
   return isMounted && 
          Object.keys(newSections).length > 0 && 
          areSectionsDifferent(newSections, previousSections)
+}
+
+/**
+ * Updates density and content mode and syncs to URL
+ * @param {number} density - Density percentage (10-100)
+ * @param {string} contentMode - Content mode ('manual' or 'density')
+ * @param {URL} currentURL - Current page URL
+ * @param {boolean} updateURL - Whether to update the URL
+ */
+export const updateDensityMode = (density, contentMode, currentURL, updateURL = true) => {
+  console.log('📏 updateDensityMode:', { density, contentMode, updateURL })
+  densityStore.set(density)
+  contentModeStore.set(contentMode)
+  
+  if (updateURL && browser) {
+    const newURL = updateURLWithDensity(currentURL, density, contentMode)
+    console.log('🔗 URL updating to:', newURL.toString())
+    goto(newURL.toString(), { 
+      replaceState: true, 
+      noScroll: true,
+      keepFocus: true
+    })
+  }
+}
+
+/**
+ * Initializes density and mode from URL parameters
+ * @param {URLSearchParams} searchParams - URL search parameters
+ */
+export const initializeDensity = (searchParams) => {
+  const { density, contentMode } = initializeDensityMode(searchParams)
+  console.log('🎯 initializeDensity:', { density, contentMode })
+  densityStore.set(density)
+  contentModeStore.set(contentMode)
+  densityInitializedStore.set(true)
 } 

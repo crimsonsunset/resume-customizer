@@ -1,6 +1,7 @@
 <script>
   export let visibleSections
   export let availableSectionsByCategory
+  export let disabled = false // Gray out controls in density mode
   
   // Accordion state - Primary expanded, others collapsed
   let accordionState = {
@@ -47,10 +48,13 @@
 </script>
 
 <!-- Section Toggles -->
-<div class="card bg-base-100 shadow-sm border border-base-300">
+<div class="card bg-base-100 shadow-sm border border-base-300" class:opacity-50={disabled} class:pointer-events-none={disabled}>
   <div class="card-body p-4">
     <div class="flex justify-between items-center mb-3">
       <h3 class="card-title text-sm">👁️ Visible Sections</h3>
+      {#if disabled}
+        <div class="badge badge-sm badge-outline">Density Mode</div>
+      {/if}
       <div class="flex space-x-1">
         <button 
           class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 

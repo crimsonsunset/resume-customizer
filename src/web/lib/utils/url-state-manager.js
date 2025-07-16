@@ -143,4 +143,54 @@ export const preserveSectionState = (currentSections, newAvailableSections) => {
     newVisibleSections[section] = currentSections[section] ?? true
   }
   return newVisibleSections
+}
+
+/**
+ * Initialize density and mode from URL parameters
+ * @param {URLSearchParams} searchParams - URL search parameters
+ * @returns {object} { density: number, contentMode: string }
+ */
+export const initializeDensityMode = (searchParams) => {
+  const density = parseInt(searchParams.get('density') || '100')
+  const contentMode = searchParams.get('mode') || 'manual'
+  return { density, contentMode }
+}
+
+/**
+ * Update URL with density and mode parameters
+ * @param {URL} currentURL - Current page URL
+ * @param {number} density - Density percentage (10-100)
+ * @param {string} contentMode - Content mode ('manual' or 'density')
+ * @returns {URL} Updated URL object
+ */
+export const updateURLWithDensity = (currentURL, density, contentMode) => {
+  const newURL = new URL(currentURL)
+  
+  if (contentMode === 'density') {
+    newURL.searchParams.set('density', density.toString())
+    newURL.searchParams.set('mode', 'density')
+  } else {
+    newURL.searchParams.delete('density')
+    newURL.searchParams.delete('mode')
+  }
+  
+  return newURL
+}
+
+/**
+ * Extract density value from URL
+ * @param {URLSearchParams} searchParams - URL search parameters
+ * @returns {number} Density value (10-100)
+ */
+export const getDensityFromURL = (searchParams) => {
+  return parseInt(searchParams.get('density') || '100')
+}
+
+/**
+ * Extract content mode from URL  
+ * @param {URLSearchParams} searchParams - URL search parameters
+ * @returns {string} Content mode ('manual' or 'density')
+ */
+export const getModeFromURL = (searchParams) => {
+  return searchParams.get('mode') || 'manual'
 } 

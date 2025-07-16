@@ -14,7 +14,7 @@
     "lint:fix": "eslint --fix src/",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "dev": "npm run dev:cli",
+    "dev": "npm run dev:web",
     "dev:cli": "BUILD_CLI=true vite build --watch",
     "dev:web": "pkill -f vite 2>/dev/null || true && vite --open",
     "preview:web": "vite preview",

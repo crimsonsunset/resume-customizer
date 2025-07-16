@@ -78,6 +78,11 @@ export async function load({ url }) {
     const presetParam = url.searchParams.get('preset')
     console.log('🎯 Preset parameter:', presetParam)
     
+    // Get density and mode parameters
+    const densityParam = parseInt(url.searchParams.get('density') || '100')
+    const modeParam = url.searchParams.get('mode') || 'manual'
+    console.log('📏 Density parameter:', densityParam, 'Mode:', modeParam)
+    
     // Apply preset if specified
     const finalData = presetParam ? applyPreset(rawData, presetParam) : rawData
     console.log('✅ Final data prepared')
@@ -186,7 +191,7 @@ export async function load({ url }) {
       experience: () => render(ExperienceSection, { 
         props: { 
           experiences: finalData.sections?.experience || [],
-          bulletDensity: 100
+          bulletDensity: modeParam === 'density' ? densityParam : 100
         } 
       }),
       skills: () => render(SkillsSection, { 
@@ -275,7 +280,7 @@ export async function load({ url }) {
     return {
       resumeContent,
       preset: presetParam || 'full',
-      bulletDensity: 100,
+      bulletDensity: densityParam,
       availablePresets,
       availableSections: sectionOrder, // Add the sections that are actually rendered
       sections: finalData.sections // Add the actual section data for stats calculation

@@ -13,26 +13,37 @@
   import ComingSoonFeatures from '@web/lib/components/ComingSoonFeatures.svelte'
   import { 
     sectionVisibilityStore, 
+    densityStore,
+    contentModeStore,
+    densityInitializedStore,
     mountedStore, 
     initializeSections, 
     updateSectionVisibility,
-    handlePresetChange 
+    handlePresetChange,
+    initializeDensity,
+    updateDensityMode
   } from '@web/lib/stores/url-state.js'
   
   export let data
   
   // Resume state management  
   let selectedVersion = data.preset || 'full'
-  let density = 100 // Content density: 0-100% (0 = minimal, 100 = full content)
   
-  // URL state management using stores
+  // Use stores for URL state management
   let visibleSections = {}
   $: mounted = $mountedStore
+  $: density = $densityStore
+  $: contentMode = $contentModeStore
   
-  // Initialize section visibility from URL parameters and handle preset changes
+  // Initialize density from URL on first load only
+  $: if ($page?.url?.searchParams && !$densityInitializedStore) {
+    initializeDensity($page.url.searchParams)
+  }
+  
+  // Initialize from URL parameters on first load
   $: if (data.availableSections) {
     if (!Object.keys($sectionVisibilityStore).length) {
-      // First load: initialize from URL
+      // First load: initialize sections from URL
       initializeSections($page.url.searchParams, data.availableSections)
     } else {
       // Preset change: preserve existing state for sections that exist
@@ -52,6 +63,8 @@
       updateSectionVisibility(visibleSections, $page.url, true)
     }
   }
+  
+
   
 
   
@@ -287,9 +300,14 @@
         
         <PresetSelector bind:selectedVersion={selectedVersion} availablePresets={data.availablePresets} />
 
-        <SectionControls bind:visibleSections={visibleSections} {availableSectionsByCategory} />
+        <SectionControls bind:visibleSections={visibleSections} {availableSectionsByCategory} disabled={contentMode === 'density'} />
 
-        <DensityControls bind:density={density} />
+        <DensityControls 
+          {density} 
+          {contentMode}
+          on:densityChange={(e) => updateDensityMode(e.detail.density, contentMode, $page.url)}
+          on:modeChange={(e) => updateDensityMode(density, e.detail.contentMode, $page.url)}
+        />
 
         <ResumeStats {data} {visibleSections} {density} />
 
