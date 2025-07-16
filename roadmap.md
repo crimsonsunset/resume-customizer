@@ -24,7 +24,7 @@
 **Last Updated:** July 16, 2025  
 **Current Phase:** Phase 5 - Enhanced UX and Controls  
 **Status:** ✅ **COMPONENT ARCHITECTURE & DYNAMIC STATS COMPLETE**  
-**Next Session Goal:** Phase 5 - Connect density slider to backend filtering system
+**Next Session Goal:** Phase 5 - Implement intelligent filtering system with section priorities and density-based content reduction
 
 ### Progress Overview
 - ✅ **COMPLETED:** WeasyPrint → Playwright migration (MAJOR UPGRADE)
@@ -54,6 +54,7 @@
 - ✅ **COMPLETED:** Real-time dynamic statistics showing content metrics
 - ✅ **COMPLETED:** URL state management fixes with proper reactive updates
 - ✅ **COMPLETED:** 18 out of 19 lint issues resolved for production-ready codebase
+- 🎯 **IN PROGRESS:** Intelligent filtering system with section priorities and two-tier density-based content reduction
 
 ### Core Use Cases Achieved
 1. ✅ **Modern CSS Support** - CSS Grid, Flexbox, all modern features working
@@ -173,13 +174,15 @@
   - WeasyPrint: Print-focused, inconsistent
   - Playwright: Pixel-perfect Chrome rendering
 
-### Next Session Goals (Phase 5)
-- 🎯 **Phase 4 Complete** - Universal SectionRenderer architecture achieved
-  - ✅ CoursesRenderer (10 CS courses) - **IMPLEMENTED**
-  - ✅ VolunteeringRenderer (AllClear founding volunteer) - **IMPLEMENTED**  
-  - ✅ HonorsAwardsRenderer (Stevie Awards, Webby Awards) - **IMPLEMENTED**
-  - ✅ CertificationsRenderer (Microsoft Office Specialist) - **IMPLEMENTED**
-  - ✅ RecommendationsRenderer (LinkedIn recommendations) - **IMPLEMENTED**
+### Next Session Goals (Phase 5 - Intelligent Filtering)
+- 🎯 **Two-Tier Filtering System** - Section-level + bullet-level filtering with single density slider
+- 🎯 **Section Priority Architecture** - Default priorities in profile.json with preset overrides
+- 🎯 **Density Mode Toggle** - Manual vs density-controlled section visibility
+- 🎯 **Bullet Priority Data** - Add priority scores (1-10) to experience and projects sections
+- 🎯 **Enhanced Skills Filtering** - Use skills-inventory.json proficiency data for density-based filtering
+- 🎯 **UI Integration** - Connect density slider to backend filtering pipeline
+- 🎯 **URL State Evolution** - Support both manual and density modes in URL parameters
+- 🎯 **Dynamic Stats Integration** - Real-time content metrics based on filtered output
 - 🔧 **Performance optimization** - Review rendering efficiency across all 11 sections
 - 📝 **Content enhancements** - Fine-tune data accuracy and formatting
 - 🎨 **Additional presets** - Create more resume layout variations (technical, leadership, etc.)
@@ -389,6 +392,50 @@ node convert.js html-to-pdf input/examples/base-resume.html --css experimental.c
 3. ✅ Web application fully functional
 4. ✅ Interactive resume customizer operational
 
+### Phase 5: Intelligent Content Filtering 🎯 **IN PROGRESS**
+**Goal:** Two-tier filtering system with section priorities and density-based content reduction
+
+#### Section Priority Architecture (IN PROGRESS)
+- [ ] **Default Section Priorities** - Base priority scores in profile.json resume_config
+  - Experience: 100 (always visible)
+  - Education: 95 (always visible)  
+  - Skills: 90 (always visible)
+  - Certifications: 80 (high priority)
+  - Honors/Awards: 70 (medium-high priority)
+  - Volunteering: 60 (medium priority)
+  - Recommendations: 50 (medium-low priority)
+  - Activities: 40 (low priority)
+  - Projects: 10 (density-dependent, important but cuttable)
+- [ ] **Preset Priority Overrides** - Section priority adjustments in preset files
+- [ ] **Merge Logic Enhancement** - Update preset-merger.js to handle section priorities
+
+#### Two-Tier Filtering System (IN PROGRESS)
+- [ ] **Section-Level Filtering** - Hide entire sections when density < section priority
+- [ ] **Bullet-Level Filtering** - Filter bullet points within visible sections based on priority scores
+- [ ] **Priority Data Addition** - Add bullet_priorities arrays to experience.json and projects.json
+- [ ] **Skills Enhancement** - Use skills-inventory.json proficiency data for density-based skill filtering
+- [ ] **Renderer Integration** - Connect density parameter to all section renderers
+
+#### Density Mode Toggle (PLANNED)
+- [ ] **Manual Mode** (default) - Checkboxes control section visibility, density affects only bullets
+- [ ] **Density Mode** - Single slider controls both section visibility and bullet filtering
+- [ ] **UI Mode Toggle** - Switch between manual and density control modes
+- [ ] **Visual Distinction** - Different checkbox styling for manual vs density-controlled state
+- [ ] **Section Hiding** - Density-hidden sections disappear entirely from UI
+
+#### URL State Evolution (PLANNED)
+- [ ] **Mode Parameter** - Support `?mode=manual` and `?mode=density` in URL
+- [ ] **Density Parameter** - Add `?density=50` to URL state management
+- [ ] **Dynamic Section Updates** - Auto-update sections parameter based on density calculations
+- [ ] **Preset Integration** - Preset selection resets to manual mode with preset's default sections
+- [ ] **Conflict Resolution** - Ensure URL state always reflects current visible sections
+
+#### Advanced Features (PLANNED)
+- [ ] **Priority Score UI** - Visual indicators showing section priority levels
+- [ ] **Preset-Specific Priorities** - Different section priorities for technical vs leadership presets
+- [ ] **Content Metrics** - Enhanced stats showing filtered vs total content
+- [ ] **Smart Defaults** - Intelligent density suggestions based on target resume length
+
 #### Content Optimization Tools (PLANNED)
 - [ ] Resume content analyzer for keyword density
 - [ ] Job description matcher for tailored content
@@ -499,6 +546,39 @@ node convert.js html-to-pdf input/examples/base-resume.html --css experimental.c
 - Helper functions for filtering, formatting, and categorization
 - Props-based data passing for flexibility
 - Server-side rendering for initial page load
+
+#### Section Priority Architecture (July 2025)
+**Decision:** Default priorities in profile.json with preset override capability  
+**Reasoning:**
+- Follows existing default + override pattern used for other configurations
+- Enables future "target audience" feature to modify priorities
+- Allows presets to fine-tune section importance for specific scenarios
+- Provides sensible defaults that work out of the box
+- Maintains backward compatibility with existing preset system
+
+**Implementation Details:**
+- Section priorities (1-100 scale) stored in profile.json resume_config
+- Must-have sections (Experience, Education, Skills) = 90-100 priority
+- Enhancement sections (Volunteering, Activities, Recommendations) = 40-70 priority
+- Projects = 10 priority (important content but cuttable for space)
+- Preset files can override specific section priorities via section_priorities object
+- Merge logic in preset-merger.js handles priority inheritance
+
+#### Two-Tier Filtering Strategy (July 2025)
+**Decision:** Section-level + bullet-level filtering with single density control  
+**Reasoning:**
+- Provides maximum content reduction with single user control
+- Maintains content quality by filtering at appropriate granularity levels
+- Section priorities prevent accidental removal of critical information
+- Bullet priorities ensure most impactful content survives filtering
+- Scales from full resume (100%) to essential-only resume (10-20%)
+
+**Architecture:**
+- filterBullets() function already exists for bullet-level filtering
+- New section filtering logic compares density vs section priority
+- URL state management supports both manual and density modes
+- Stats component recalculates based on filtered output
+- Visual feedback shows which content is hidden vs visible
 
 ### Future Technology Considerations
 - **Print CSS Standards:** Leveraging @media print for optimal PDF output
