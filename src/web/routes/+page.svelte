@@ -60,9 +60,107 @@
     })
   }
   
-  const exportToPDF = () => {
-    // TODO: Implement PDF export
-    alert('PDF export coming soon!')
+  // Toast notification system
+  let toastMessage = ''
+  let toastVisible = false
+  
+  const showToast = (message) => {
+    toastMessage = message
+    toastVisible = true
+    setTimeout(() => {
+      toastVisible = false
+    }, 3000)
+  }
+  
+  const exportToPDF = async () => {
+    try {
+      console.log('🔄 Generating PDF...')
+      
+      // Get the current resume HTML content
+      const resumeElement = document.querySelector('.resume-viewer')
+      if (!resumeElement) {
+        throw new Error('Resume content not found')
+      }
+      
+      const resumeHTML = resumeElement.innerHTML
+      
+      // Extract CSS styles from the page
+      const allStyles = []
+      
+      // Get inline styles from style tags
+      const styleTags = document.querySelectorAll('style')
+      styleTags.forEach(style => {
+        if (style.textContent) {
+          allStyles.push(style.textContent)
+        }
+      })
+      
+      // Get relevant CSS from linked stylesheets (that we can access)
+      try {
+        Array.from(document.styleSheets).forEach(sheet => {
+          try {
+            if (sheet.cssRules) {
+              const rules = Array.from(sheet.cssRules)
+                .map(rule => rule.cssText)
+                .join('\n')
+              if (rules) {
+                allStyles.push(rules)
+              }
+            }
+          } catch (e) {
+            // Skip stylesheets we can't access (CORS issues)
+            console.warn('Could not access stylesheet:', e)
+          }
+        })
+      } catch (e) {
+        console.warn('Could not access stylesheets:', e)
+      }
+      
+      const combinedCSS = allStyles.join('\n\n')
+      
+      // Generate filename: joseph-sangiorgio-resume-2025.pdf
+      const currentYear = new Date().getFullYear()
+      const filename = `joseph-sangiorgio-resume-${currentYear}.pdf`
+      
+      // Call the PDF generation API
+      const response = await fetch('/api/generate-pdf', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          html: resumeHTML,
+          css: combinedCSS,
+          filename: filename
+        })
+      })
+      
+      if (!response.ok) {
+        throw new Error(`PDF generation failed: ${response.status} ${response.statusText}`)
+      }
+      
+      // Show toast notification
+      showToast('📥 Resume PDF download started!')
+      
+      // Download the PDF
+      const blob = await response.blob()
+      const url = URL.createObjectURL(blob)
+      
+      const a = document.createElement('a')
+      a.href = url
+      a.download = filename
+      a.style.display = 'none'
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+      
+      console.log('✅ PDF download started:', filename)
+      
+    } catch (error) {
+      console.error('❌ PDF export failed:', error)
+      showToast(`❌ PDF export failed: ${error.message}`)
+    }
   }
   
   const changePreset = (presetValue) => {
@@ -429,3 +527,12 @@
     </div>
   </div>
 </div>
+
+<!-- Toast Notification -->
+{#if toastVisible}
+  <div class="toast toast-bottom toast-center z-50">
+    <div class="alert bg-base-100 text-base-content border border-base-300 shadow-lg">
+      <span>{toastMessage}</span>
+    </div>
+  </div>
+{/if}
