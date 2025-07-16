@@ -11,7 +11,6 @@
   }
   
   const handleModeChange = (newMode) => {
-    console.log('🔄 Mode changing from', contentMode, 'to', newMode)
     dispatch('modeChange', { contentMode: newMode })
   }
 </script>

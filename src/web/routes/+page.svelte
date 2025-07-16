@@ -35,11 +35,6 @@
   $: density = $densityStore
   $: contentMode = $contentModeStore
   
-  // Initialize density from URL on first load only
-  $: if ($page?.url?.searchParams && !$densityInitializedStore) {
-    initializeDensity($page.url.searchParams)
-  }
-  
   // Initialize from URL parameters on first load
   $: if (data.availableSections) {
     if (!Object.keys($sectionVisibilityStore).length) {
@@ -72,6 +67,12 @@
   
   onMount(() => {
     mountedStore.set(true)
+    
+    // Initialize density from URL parameters on mount only
+    if (!$densityInitializedStore) {
+      initializeDensity($page.url.searchParams)
+    }
+    
     console.log('🚀 Resume Customizer Loaded!')
   })
   

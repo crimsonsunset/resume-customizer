@@ -10,7 +10,8 @@ A modern resume optimization tool with CLI, web application, and AI-powered matc
 - **34 DaisyUI Themes** with seamless switching
 - **Resume Version Controls** (full/short/leadership/technical)
 - **Section Toggles** with category-specific all/none controls
-- **Content Density Slider** (10-100%) for granular content control
+- **Intelligent Filtering System** with two-tier priority-based content reduction
+- **Content Density Controls** with Manual vs Density mode toggle for granular content management
 - **URL State Management** for bookmarkable resume configurations with compact encoding
 - **Responsive Design** optimized for all devices
 - **PDF-Ready Styling** with scoped CSS architecture

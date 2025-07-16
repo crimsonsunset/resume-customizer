@@ -126,18 +126,27 @@ export class SectionRenderer {
   }
 
   /**
-   * Utility: Filters bullet points based on priority and density
+   * Utility: Filters bullet points based on priority and density using cutoff tiers
    */
   static filterBullets(bulletPoints, bulletPriorities, density = 100) {
     if (!bulletPriorities || density === 100) {
       return bulletPoints
     }
     
-    const maxPriority = Math.max(...bulletPriorities)
-    const minThreshold = maxPriority * (density / 100)
+    // Use discrete cutoff tiers - lower density = higher cutoff = fewer bullets
+    let priorityCutoff
+    if (density >= 90) priorityCutoff = 6      // 90-100%: Show priority 6+ (most content)
+    else if (density >= 80) priorityCutoff = 7 // 80-89%: Show priority 7+ 
+    else if (density >= 70) priorityCutoff = 8 // 70-79%: Show priority 8+
+    else if (density >= 60) priorityCutoff = 8 // 60-69%: Show priority 8+
+    else if (density >= 50) priorityCutoff = 9 // 50-59%: Show priority 9+ (high impact only)
+    else if (density >= 40) priorityCutoff = 9 // 40-49%: Show priority 9+ (high impact only)
+    else if (density >= 30) priorityCutoff = 9 // 30-39%: Show priority 9+ (revolutionary only)
+    else if (density >= 20) priorityCutoff = 9 // 20-29%: Show priority 9+ (revolutionary only)
+    else priorityCutoff = 9                     // 10-19%: Show priority 9+ (revolutionary only)
     
     return bulletPoints.filter((bullet, index) => 
-      (bulletPriorities[index] || 1) >= minThreshold
+      (bulletPriorities[index] || 1) >= priorityCutoff
     )
   }
 

@@ -16,7 +16,8 @@ The web application provides a comprehensive resume customization experience wit
 - **Component-Based Architecture** - Modular design with extracted control panel components
 
 ### 🎛️ Advanced Controls
-- **Content Density Slider** - 10-100% granular control over resume content
+- **Intelligent Filtering System** - Two-tier priority-based content reduction with cutoff filtering
+- **Content Density Controls** - 10-100% slider with Manual vs Density mode toggle
 - **Dynamic Statistics Panel** - Real-time metrics showing:
   - Visible sections count (X of Y total)
   - Content items (experience, projects, skills counts)
@@ -39,8 +40,14 @@ The web application provides a comprehensive resume customization experience wit
 
 **Data Flow:**
 ```
-JSON Profile Data → Preset Merger → Section Renderers → Svelte Components → HTML
+JSON Profile Data → Preset Merger → Priority-Based Filtering → Section Renderers → Svelte Components → HTML
 ```
+
+**Intelligent Filtering System:**
+- **Cutoff-Based Logic**: Lower density = higher priority cutoff = fewer bullets
+- **Two-Tier Filtering**: Section-level + bullet-level filtering with single control
+- **Manual vs Density Modes**: Toggle between checkbox control and automatic filtering
+- **URL State Persistence**: Filter settings persist in browser URL for bookmarking
 
 ## Directory Structure
 
@@ -108,10 +115,10 @@ All 11 resume sections use the universal SectionRenderer pattern:
 
 ## Next Development Phase
 
-The web application foundation is complete. Next priorities:
+The core intelligent filtering system is now working! Next priorities:
 
-1. **Backend Integration** - Connect density slider to existing `filterBullets()` system
-2. **Real-time Filtering** - Priority-based content filtering with live preview
+1. **Content Priority Expansion** - Add bullet_priorities to remaining 17 experience entries
+2. **Other Section Priorities** - Implement priority systems for projects, skills, and other sections  
 3. **Enhanced PDF Export** - Direct integration with Playwright CLI for server-side generation
 4. **Advanced Presets** - Multiple resume variations (technical, leadership, etc.)
 

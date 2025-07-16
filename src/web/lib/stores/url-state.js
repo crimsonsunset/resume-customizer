@@ -103,13 +103,11 @@ export const shouldUpdateURL = (newSections, previousSections, isMounted) => {
  * @param {boolean} updateURL - Whether to update the URL
  */
 export const updateDensityMode = (density, contentMode, currentURL, updateURL = true) => {
-  console.log('📏 updateDensityMode:', { density, contentMode, updateURL })
   densityStore.set(density)
   contentModeStore.set(contentMode)
   
   if (updateURL && browser) {
     const newURL = updateURLWithDensity(currentURL, density, contentMode)
-    console.log('🔗 URL updating to:', newURL.toString())
     goto(newURL.toString(), { 
       replaceState: true, 
       noScroll: true,
@@ -124,7 +122,6 @@ export const updateDensityMode = (density, contentMode, currentURL, updateURL = 
  */
 export const initializeDensity = (searchParams) => {
   const { density, contentMode } = initializeDensityMode(searchParams)
-  console.log('🎯 initializeDensity:', { density, contentMode })
   densityStore.set(density)
   contentModeStore.set(contentMode)
   densityInitializedStore.set(true)
