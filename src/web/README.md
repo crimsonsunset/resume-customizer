@@ -1,6 +1,6 @@
 # Resume Optimizer Web App
 
-🚀 **Production Ready** - Interactive resume customizer with advanced UX controls
+🚀 **Production Ready** - Interactive resume customizer with component-based architecture and real-time statistics
 
 ## Current Features
 
@@ -10,11 +10,17 @@ The web application provides a comprehensive resume customization experience wit
 - **Interactive Resume Preview** - Real-time resume display with professional styling
 - **34 DaisyUI Themes** - Complete theme system with seamless switching
 - **Universal Section Rendering** - All 11 resume sections with consistent architecture
-- **URL State Management** - Bookmarkable resume configurations with compact encoding
+- **URL State Management** - Bookmarkable resume configurations with compact encoding (`?preset=one-page&sections=exp,proj,edu,skills`)
+- **Real-time Statistics** - Dynamic content metrics that update as you customize
 - **PDF Export Ready** - One-click PDF generation with auto-generated filenames
+- **Component-Based Architecture** - Modular design with extracted control panel components
 
 ### 🎛️ Advanced Controls
 - **Content Density Slider** - 10-100% granular control over resume content
+- **Dynamic Statistics Panel** - Real-time metrics showing:
+  - Visible sections count (X of Y total)
+  - Content items (experience, projects, skills counts)
+  - Estimated page length with density-adjusted word count
 - **Category-Specific Section Controls** - "All" and "None" buttons for each section group:
   - 📋 Primary Sections (experience, projects, education, skills)
   - 🏆 Credentials (certifications, courses, honors-awards)
@@ -49,6 +55,11 @@ src/web/
 │   ├── components/
 │   │   ├── ThemeSelector.svelte     # 34 theme selector
 │   │   ├── ResumeViewer.svelte      # Scoped resume display
+│   │   ├── PresetSelector.svelte    # Version dropdown with URL navigation
+│   │   ├── SectionControls.svelte   # Accordion section toggles with category controls
+│   │   ├── DensityControls.svelte   # Content density slider with quick-select
+│   │   ├── ResumeStats.svelte       # **Dynamic stats with real-time updates**
+│   │   ├── ComingSoonFeatures.svelte # Future features placeholder
 │   │   └── resume/                  # Individual section components
 │   │       ├── ExperienceSection.svelte
 │   │       ├── ProjectsSection.svelte
@@ -58,13 +69,23 @@ src/web/
 │   │   ├── section-renderer.js      # Universal base class
 │   │   ├── experience-renderer.js   # Company-based grouping
 │   │   ├── projects-renderer.js     # Dual-section architecture
+│   │   ├── url-state-manager.js     # **URL encoding/decoding utilities**
 │   │   └── [8 more renderers...]
 │   └── stores/              # Svelte stores
-│       └── theme.js         # Theme management
+│       ├── theme.js         # Theme management
+│       └── url-state.js     # **Reactive URL state management**
 └── static/                  # Static assets
 ```
 
 ## Core Components
+
+### Component-Based Architecture (NEW)
+Extracted 5 control panel components for better maintainability:
+- **PresetSelector** - Version dropdown with URL navigation
+- **SectionControls** - All section toggles with category-specific controls
+- **DensityControls** - Content density slider with quick-select buttons
+- **ResumeStats** - **Real-time statistics with dynamic content calculation**
+- **ComingSoonFeatures** - Future features placeholder
 
 ### Section Rendering System
 All 11 resume sections use the universal SectionRenderer pattern:
@@ -73,15 +94,17 @@ All 11 resume sections use the universal SectionRenderer pattern:
 - **Rendering** - Consistent HTML structure with `.section-wrapper` pattern
 
 ### State Management
-- **URL Parameters** - Section visibility and preset selection persist in URLs
+- **URL State Management** - Compact encoding with proper reactive updates (`?preset=one-page&sections=exp,proj,edu,skills`)
 - **Theme Store** - Global theme state with localStorage persistence
 - **Reactive Updates** - Real-time preview updates as controls change
+- **Statistics Store** - Dynamic content metrics that update with user interactions
 
 ### Advanced UX Features
+- **Real-time Statistics** - Dynamic content metrics showing actual resume data
 - **Content Density Control** - Slider with 10% increments and quick-select buttons
 - **Category-Specific Controls** - Safe section management within logical groups
-- **Zero Build Warnings** - Production-ready with clean builds
-- **Stable State Management** - No cyclical dependencies or crashes
+- **45% Code Reduction** - Main file reduced from 724 → 393 lines through component extraction
+- **Zero Build Warnings** - Production-ready with clean builds and resolved lint issues
 
 ## Next Development Phase
 

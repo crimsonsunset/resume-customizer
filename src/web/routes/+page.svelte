@@ -291,7 +291,7 @@
 
         <DensityControls bind:density={density} />
 
-        <ResumeStats />
+        <ResumeStats {data} {visibleSections} {density} />
 
         <ComingSoonFeatures />
 

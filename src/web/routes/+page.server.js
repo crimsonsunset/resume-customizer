@@ -277,7 +277,8 @@ export async function load({ url }) {
       preset: presetParam || 'full',
       bulletDensity: 100,
       availablePresets,
-      availableSections: sectionOrder // Add the sections that are actually rendered
+      availableSections: sectionOrder, // Add the sections that are actually rendered
+      sections: finalData.sections // Add the actual section data for stats calculation
     }
   } catch (error) {
     console.error('❌ Error in server load:', error.message)
