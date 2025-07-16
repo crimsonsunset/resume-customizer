@@ -145,6 +145,63 @@
     accordionState.socialProof = true
     accordionState.personality = true
   }
+
+  // Category-specific selection functions
+  const selectAllPrimary = () => {
+    availableSectionsByCategory.primary?.forEach(section => {
+      visibleSections[section] = true
+    })
+    visibleSections = { ...visibleSections }
+  }
+
+  const selectNonePrimary = () => {
+    availableSectionsByCategory.primary?.forEach(section => {
+      visibleSections[section] = false
+    })
+    visibleSections = { ...visibleSections }
+  }
+
+  const selectAllCredentials = () => {
+    availableSectionsByCategory.credentials?.forEach(section => {
+      visibleSections[section] = true
+    })
+    visibleSections = { ...visibleSections }
+  }
+
+  const selectNoneCredentials = () => {
+    availableSectionsByCategory.credentials?.forEach(section => {
+      visibleSections[section] = false
+    })
+    visibleSections = { ...visibleSections }
+  }
+
+  const selectAllSocialProof = () => {
+    availableSectionsByCategory.socialProof?.forEach(section => {
+      visibleSections[section] = true
+    })
+    visibleSections = { ...visibleSections }
+  }
+
+  const selectNoneSocialProof = () => {
+    availableSectionsByCategory.socialProof?.forEach(section => {
+      visibleSections[section] = false
+    })
+    visibleSections = { ...visibleSections }
+  }
+
+  const selectAllPersonality = () => {
+    availableSectionsByCategory.personality?.forEach(section => {
+      visibleSections[section] = true
+    })
+    visibleSections = { ...visibleSections }
+  }
+
+  const selectNonePersonality = () => {
+    availableSectionsByCategory.personality?.forEach(section => {
+      visibleSections[section] = false
+    })
+    visibleSections = { ...visibleSections }
+  }
   
   // Toast notification system
   let toastMessage = ''
@@ -442,6 +499,24 @@
                   📋 Primary Sections
                 </div>
                 <div class="collapse-content space-y-2">
+                  {#if availableSectionsByCategory.primary.length > 0}
+                    <div class="flex gap-2 mb-3">
+                      <button 
+                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
+                        on:click={selectAllPrimary}
+                        title="Select All Primary"
+                      >
+                        All
+                      </button>
+                      <button 
+                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
+                        on:click={selectNonePrimary}
+                        title="Select None Primary"
+                      >
+                        None
+                      </button>
+                    </div>
+                  {/if}
                   {#each availableSectionsByCategory.primary as section}
                     <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
                       <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
@@ -461,6 +536,24 @@
                   🏆 Credentials
                 </div>
                 <div class="collapse-content space-y-2">
+                  {#if availableSectionsByCategory.credentials.length > 0}
+                    <div class="flex gap-2 mb-3">
+                      <button 
+                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
+                        on:click={selectAllCredentials}
+                        title="Select All Credentials"
+                      >
+                        All
+                      </button>
+                      <button 
+                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
+                        on:click={selectNoneCredentials}
+                        title="Select None Credentials"
+                      >
+                        None
+                      </button>
+                    </div>
+                  {/if}
                   {#each availableSectionsByCategory.credentials as section}
                     <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
                       <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
@@ -484,6 +577,24 @@
                   💬 Social Proof
                 </div>
                 <div class="collapse-content space-y-2">
+                  {#if availableSectionsByCategory.socialProof.length > 0}
+                    <div class="flex gap-2 mb-3">
+                      <button 
+                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
+                        on:click={selectAllSocialProof}
+                        title="Select All Social Proof"
+                      >
+                        All
+                      </button>
+                      <button 
+                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
+                        on:click={selectNoneSocialProof}
+                        title="Select None Social Proof"
+                      >
+                        None
+                      </button>
+                    </div>
+                  {/if}
                   {#each availableSectionsByCategory.socialProof as section}
                     <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
                       <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
@@ -503,6 +614,24 @@
                   🎭 Personality
                 </div>
                 <div class="collapse-content space-y-2">
+                  {#if availableSectionsByCategory.personality.length > 0}
+                    <div class="flex gap-2 mb-3">
+                      <button 
+                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
+                        on:click={selectAllPersonality}
+                        title="Select All Personality"
+                      >
+                        All
+                      </button>
+                      <button 
+                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
+                        on:click={selectNonePersonality}
+                        title="Select None Personality"
+                      >
+                        None
+                      </button>
+                    </div>
+                  {/if}
                   {#each availableSectionsByCategory.personality as section}
                     <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
                       <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
