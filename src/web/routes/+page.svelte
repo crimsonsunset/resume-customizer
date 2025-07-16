@@ -26,7 +26,7 @@
   let density = 100 // Content density: 0-100% (0 = minimal, 100 = full content)
   
   // URL state management using stores
-  $: visibleSections = $sectionVisibilityStore
+  let visibleSections = {}
   $: mounted = $mountedStore
   
   // Initialize section visibility from URL parameters and handle preset changes
@@ -40,7 +40,12 @@
     }
   }
   
-  // Sync visibleSections changes back to store (when modified by components)
+  // Sync store changes to local visibleSections (one-way: store -> local)
+  $: if (Object.keys($sectionVisibilityStore).length > 0) {
+    visibleSections = { ...$sectionVisibilityStore }
+  }
+  
+  // Sync visibleSections changes back to store and URL (when modified by components)
   $: if (mounted && Object.keys(visibleSections).length > 0) {
     // Only update store if visibleSections differs from store (avoid infinite loops)
     if (JSON.stringify(visibleSections) !== JSON.stringify($sectionVisibilityStore)) {

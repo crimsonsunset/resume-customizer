@@ -61,6 +61,7 @@ export async function POST({ request }) {
     await browser.close()
     
     // Return PDF as download
+    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return new Response(pdf, {
       headers: {
         'Content-Type': 'application/pdf',

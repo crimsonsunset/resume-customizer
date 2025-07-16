@@ -10,7 +10,7 @@ export class SkillsRenderer {
   /**
    * Main render method - handles both preset and raw skills
    */
-  render(skillsData, config = {}) {
+  render(skillsData, _config = {}) {
     const skillsToDisplay = this.getSkillsToDisplay(skillsData)
     const hasSkills = Object.keys(skillsToDisplay).length > 0
     

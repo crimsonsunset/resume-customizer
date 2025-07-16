@@ -23,7 +23,8 @@ export const mountedStore = writable(false)
 /**
  * Updates section visibility and optionally syncs to URL
  * @param {object} newVisibility - New section visibility state
- * @param {boolean} [updateURL=true] - Whether to update the URL
+ * @param {URL} currentURL - Current page URL
+ * @param {boolean} updateURL - Whether to update the URL
  */
 export const updateSectionVisibility = (newVisibility, currentURL, updateURL = true) => {
   sectionVisibilityStore.set(newVisibility)
@@ -41,8 +42,7 @@ export const updateSectionVisibility = (newVisibility, currentURL, updateURL = t
 /**
  * Initializes section visibility from URL parameters
  * @param {URLSearchParams} searchParams - URL search parameters
- * @param {object} currentSections - Current available sections 
- * @returns {object} Initialized section visibility state
+ * @param {Array} availableSections - Available sections from server 
  */
 export const initializeSections = (searchParams, availableSections) => {
   const initialVisibility = initializeSectionVisibility(searchParams, availableSections)
@@ -51,8 +51,8 @@ export const initializeSections = (searchParams, availableSections) => {
 
 /**
  * Handles preset changes by preserving existing state for overlapping sections
- * @param {object} newSections - New sections from preset
- * @param {object} previousSections - Previous section visibility state  
+ * @param {Array} newAvailableSections - New available sections from preset
+ * @param {object} currentSections - Current section visibility state  
  */
 export const handlePresetChange = (newAvailableSections, currentSections) => {
   const preservedSections = preserveSectionState(currentSections, newAvailableSections)
