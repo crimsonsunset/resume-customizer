@@ -47,10 +47,11 @@ ${link}`
       )
     }
     
-    // Apply awards limit (check both config paths)
-    const maxEntries = filters.honors_awards_limit || filters.max_entries
-    if (maxEntries) {
-      filtered = filtered.slice(0, maxEntries)
+    // Apply index-based selection (replaces max_entries)
+    if (filters.selected_indices && Array.isArray(filters.selected_indices)) {
+      filtered = filters.selected_indices
+        .filter(index => index >= 0 && index < honorsAwards.length)
+        .map(index => honorsAwards[index])
     }
     
     return filtered

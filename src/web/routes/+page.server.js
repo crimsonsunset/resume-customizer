@@ -202,61 +202,61 @@ export async function load({ url }) {
         props: { 
           experiences: finalData.sections?.experience || [],
           bulletDensity: modeParam === 'density' ? densityParam : 100,
-          config: { preset: presetParam }
+          config: finalData.sections?.experience?.preset_filters || {}
         } 
       }),
       skills: () => render(SkillsSection, { 
         props: { 
           skillsData: finalData.sections?.skills || { skills: [] },
-          config: { preset: presetParam }
+          config: finalData.sections?.skills?.preset_filters || {}
         } 
       }),
       projects: () => render(ProjectsSection, { 
         props: { 
           projects: finalData.sections?.projects || [],
-          config: { preset: presetParam }
+          config: finalData.sections?.projects?.preset_filters || {}
         } 
       }),
       education: () => render(EducationSection, { 
         props: { 
           education: finalData.sections?.education?.education || [],
-          config: { preset: presetParam }
+          config: finalData.sections?.education?.preset_filters || {}
         } 
       }),
       courses: () => render(CoursesSection, { 
         props: { 
           courses: finalData.sections?.education?.courses || [],
-          config: { preset: presetParam }
+          config: finalData.sections?.courses?.preset_filters || {}
         } 
       }),
       certifications: () => render(CertificationsSection, { 
         props: { 
           certifications: finalData.sections?.certifications || [],
-          config: { preset: presetParam }
+          config: finalData.sections?.certifications?.preset_filters || {}
         } 
       }),
       volunteering: () => render(VolunteeringSection, { 
         props: { 
           volunteering: finalData.sections?.volunteering || [],
-          config: { preset: presetParam }
+          config: finalData.sections?.volunteering?.preset_filters || {}
         } 
       }),
       'honors-awards': () => render(HonorsAwardsSection, { 
         props: { 
           honorsAwards: finalData.sections?.['honors-awards'] || [],
-          config: { preset: presetParam }
+          config: finalData.sections?.['honors-awards']?.preset_filters || {}
         } 
       }),
       recommendations: () => render(RecommendationsSection, { 
         props: { 
           recommendations: finalData.sections?.recommendations || { received: [] },
-          config: { preset: presetParam }
+          config: finalData.sections?.recommendations?.preset_filters || {}
         } 
       }),
       activities: () => render(ActivitiesSection, { 
         props: { 
           activities: finalData.sections?.activities || {},
-          config: { preset: presetParam }
+          config: finalData.sections?.activities?.preset_filters || {}
         } 
       }),
       headline: () => render(HeadlineSection, {

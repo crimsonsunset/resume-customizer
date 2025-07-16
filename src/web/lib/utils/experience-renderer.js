@@ -6,26 +6,27 @@ import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
 export class ExperienceRenderer extends SectionRenderer {
   constructor(options = {}) {
     const bulletDensity = options.bulletDensity || 100
+    const config = options.config || {}
     
     super({
       sectionLabel: 'Experience',
       sectionType: 'experience',
       groupBy: 'company',
       filterStrategy: ExperienceRenderer.experienceFilterStrategy,
-      itemRenderer: (experience) => ExperienceRenderer.experienceItemRenderer(experience, bulletDensity),
+      itemRenderer: (experience) => ExperienceRenderer.experienceItemRenderer(experience, bulletDensity, config),
       ...options
     })
   }
 
   /**
-   * Experience-specific item renderer (static method with bulletDensity parameter)
+   * Experience-specific item renderer (static method with bulletDensity and config parameters)
    */
-  static experienceItemRenderer(experience, bulletDensity = 100) {
-    const bullets = SectionRenderer.filterBullets(
-      experience.bulletPoints,
-      experience.bullet_priorities,
-      bulletDensity
-    )
+  static experienceItemRenderer(experience, bulletDensity = 100, config = {}) {
+    // Use bullet_priority_threshold from config if available, otherwise fall back to density-based filtering
+    const priorityThreshold = config.bullet_priority_threshold
+    const bullets = priorityThreshold 
+      ? SectionRenderer.filterBulletsByPriority(experience.bulletPoints, experience.bullet_priorities, priorityThreshold)
+      : SectionRenderer.filterBullets(experience.bulletPoints, experience.bullet_priorities, bulletDensity)
     
     return `<div class="job-title-header">
   <h4>${experience.title}</h4>
@@ -54,10 +55,11 @@ ${SectionRenderer.renderBullets(bullets)}`
       })
     }
     
-    // Apply experience limit (check both config paths)
-    const maxEntries = filters.experience_limit || filters.max_entries
-    if (maxEntries) {
-      filtered = filtered.slice(0, maxEntries)
+    // Apply index-based selection (replaces max_entries)
+    if (filters.selected_indices && Array.isArray(filters.selected_indices)) {
+      filtered = filters.selected_indices
+        .filter(index => index >= 0 && index < experiences.length)
+        .map(index => experiences[index])
     }
     
     return filtered

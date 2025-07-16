@@ -75,10 +75,11 @@ export class EducationRenderer extends SectionRenderer {
     // Get filters from config or from preset_filters attached to the array
     const filters = config || education.preset_filters || {}
     
-    // Apply limit if specified
-    const maxEntries = filters.max_entries || filters.education_limit
-    if (maxEntries) {
-      filtered = filtered.slice(0, maxEntries)
+    // Apply index-based selection (replaces max_entries)
+    if (filters.selected_indices && Array.isArray(filters.selected_indices)) {
+      filtered = filters.selected_indices
+        .filter(index => index >= 0 && index < education.length)
+        .map(index => education[index])
     }
     
     return filtered

@@ -78,10 +78,11 @@ ${bullets}`
     // Get filters from config or from preset_filters attached to the array
     const filters = config || projects.preset_filters || {}
     
-    // Apply project limit
-    const maxEntries = filters.projects_limit || filters.max_entries
-    if (maxEntries) {
-      filtered = filtered.slice(0, maxEntries)
+    // Apply index-based selection (replaces max_entries)
+    if (filters.selected_indices && Array.isArray(filters.selected_indices)) {
+      filtered = filters.selected_indices
+        .filter(index => index >= 0 && index < projects.length)
+        .map(index => projects[index])
     }
     
     // Apply priority threshold if needed

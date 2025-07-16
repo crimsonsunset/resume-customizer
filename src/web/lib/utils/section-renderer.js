@@ -90,10 +90,11 @@ export class SectionRenderer {
     // Get filters from config or from preset_filters attached to the array
     const filters = config || data.preset_filters || {}
     
-    // Apply limit
-    const maxEntries = filters.max_entries || filters.limit
-    if (maxEntries) {
-      filtered = filtered.slice(0, maxEntries)
+    // Apply index-based selection (replaces max_entries/limit)
+    if (filters.selected_indices && Array.isArray(filters.selected_indices)) {
+      filtered = filters.selected_indices
+        .filter(index => index >= 0 && index < data.length)
+        .map(index => data[index])
     }
     
     // Apply priority threshold
@@ -147,6 +148,19 @@ export class SectionRenderer {
     
     return bulletPoints.filter((bullet, index) => 
       (bulletPriorities[index] || 1) >= priorityCutoff
+    )
+  }
+
+  /**
+   * Utility: Filters bullet points based on direct priority threshold
+   */
+  static filterBulletsByPriority(bulletPoints, bulletPriorities, priorityThreshold) {
+    if (!bulletPriorities || !priorityThreshold) {
+      return bulletPoints
+    }
+    
+    return bulletPoints.filter((bullet, index) => 
+      (bulletPriorities[index] || 1) >= priorityThreshold
     )
   }
 

@@ -6,7 +6,7 @@
   export let bulletDensity = 100
 
   // Create renderer instance
-  $: renderer = new ExperienceRenderer({ bulletDensity })
+  $: renderer = new ExperienceRenderer({ bulletDensity, config })
 
   // Render the section
   $: renderedHTML = renderer.render(experiences, config)

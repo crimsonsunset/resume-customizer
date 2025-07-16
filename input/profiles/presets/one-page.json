@@ -120,14 +120,14 @@
       ]
     },
     "experience": {
-      "max_entries": 3,
+      "selected_indices": [0, 1, 2],
       "bullet_priority_threshold": 7
     },
     "projects": {
-      "max_entries": 2
+      "selected_indices": [0, 2]
     },
     "recommendations": {
-      "max_entries": 3
+      "selected_indices": [0, 1, 2]
     },
     "sections_order": ["headline", "education", "skills", "experience", "projects"]
   }
