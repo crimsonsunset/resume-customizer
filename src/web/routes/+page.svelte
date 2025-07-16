@@ -135,28 +135,15 @@
 
   
   const selectAllSections = () => {
-    const newVisibleSections = {}
-    if (data.availableSections) {
-      data.availableSections.forEach(section => {
-        newVisibleSections[section] = true
-      })
-    }
-    visibleSections = newVisibleSections
+    Object.keys(visibleSections).forEach(section => {
+      visibleSections[section] = true
+    })
+    visibleSections = { ...visibleSections } // Trigger reactivity
     // Also expand all accordions to show what was selected
     accordionState.primary = true
     accordionState.credentials = true
     accordionState.socialProof = true
     accordionState.personality = true
-  }
-  
-  const selectNoneSections = () => {
-    const newVisibleSections = {}
-    if (data.availableSections) {
-      data.availableSections.forEach(section => {
-        newVisibleSections[section] = false
-      })
-    }
-    visibleSections = newVisibleSections
   }
   
   // Toast notification system
@@ -442,14 +429,7 @@
                   on:click={selectAllSections}
                   title="Select All"
                 >
-                  All
-                </button>
-                <button 
-                  class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                  on:click={selectNoneSections}
-                  title="Select None"
-                >
-                  None
+                                    All
                 </button>
               </div>
             </div>
