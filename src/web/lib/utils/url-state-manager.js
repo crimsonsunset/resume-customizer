@@ -158,8 +158,8 @@ export const initializeDensityMode = (searchParams) => {
 
 /**
  * Update URL with density and mode parameters
- * @param {URL} currentURL - Current page URL
- * @param {number} density - Density percentage (10-100)
+ * @param {URL} currentURL - Current URL object
+ * @param {number} density - Density value (10-100)
  * @param {string} contentMode - Content mode ('manual' or 'density')
  * @returns {URL} Updated URL object
  */
@@ -169,9 +169,12 @@ export const updateURLWithDensity = (currentURL, density, contentMode) => {
   if (contentMode === 'density') {
     newURL.searchParams.set('density', density.toString())
     newURL.searchParams.set('mode', 'density')
+    // Remove sections parameter - density mode shows all sections by default
+    newURL.searchParams.delete('sections')
   } else {
     newURL.searchParams.delete('density')
     newURL.searchParams.delete('mode')
+    // Keep sections parameter for manual mode (if it exists)
   }
   
   return newURL

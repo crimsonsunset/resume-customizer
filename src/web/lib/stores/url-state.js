@@ -96,15 +96,33 @@ export const shouldUpdateURL = (newSections, previousSections, isMounted) => {
 }
 
 /**
- * Updates density and content mode and syncs to URL
- * @param {number} density - Density percentage (10-100)
- * @param {string} contentMode - Content mode ('manual' or 'density')
+ * Updates density and content mode, syncing with URL
+ * @param {number} density - Density value (10-100)
+ * @param {string} contentMode - 'manual' or 'density'
  * @param {URL} currentURL - Current page URL
- * @param {boolean} updateURL - Whether to update the URL
+ * @param {boolean} updateURL - Whether to update browser URL
  */
 export const updateDensityMode = (density, contentMode, currentURL, updateURL = true) => {
   densityStore.set(density)
   contentModeStore.set(contentMode)
+  
+  // When switching TO density mode, reset all sections to visible
+  // Density mode should show all sections and filter content within them
+  if (contentMode === 'density') {
+    const allSectionsVisible = {
+      objective: true,
+      experience: true,
+      projects: true,
+      education: true,
+      skills: true,
+      certifications: true,
+      volunteering: true,
+      'honors-awards': true,
+      recommendations: true,
+      activities: true
+    }
+    sectionVisibilityStore.set(allSectionsVisible)
+  }
   
   if (updateURL && browser) {
     const newURL = updateURLWithDensity(currentURL, density, contentMode)
