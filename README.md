@@ -11,6 +11,7 @@ A modern resume optimization tool with CLI, web application, and AI-powered matc
 - **Section Toggles** with select all/none functionality
 - **Responsive Design** optimized for all devices
 - **PDF-Ready Styling** with scoped CSS architecture
+- **One-Click PDF Export** with auto-generated filenames (`joseph-sangiorgio-resume-2025-07-15.pdf`)
 
 ### CLI Tool (Production Ready)
 - **Modern HTML → PDF** conversion with Playwright (CSS Grid, modern layouts)
