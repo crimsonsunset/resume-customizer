@@ -19,7 +19,7 @@ export class CertificationsRenderer extends SectionRenderer {
   /**
    * Certifications-specific filtering (minimal - just ensure valid entries)
    */
-  static certificationsFilterStrategy(certifications, config = {}) {
+  static certificationsFilterStrategy(certifications, _config = {}) {
     return certifications.filter(cert => cert.name && cert.name.trim())
   }
 

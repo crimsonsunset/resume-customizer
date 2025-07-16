@@ -19,7 +19,7 @@ export class CoursesRenderer extends SectionRenderer {
   /**
    * Courses-specific filtering (minimal - just ensure valid entries)
    */
-  static coursesFilterStrategy(courses, config = {}) {
+  static coursesFilterStrategy(courses, _config = {}) {
     return courses.filter(course => course.name && course.name.trim())
   }
 

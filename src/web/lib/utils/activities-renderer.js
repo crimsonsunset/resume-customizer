@@ -10,7 +10,7 @@ export class ActivitiesRenderer {
   /**
    * Main render method - handles activities and personal interests
    */
-  render(activitiesData, config = {}) {
+  render(activitiesData, _config = {}) {
     const activities = activitiesData?.activities || []
     const personalInterests = activitiesData?.personal_interests || []
     

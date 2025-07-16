@@ -6,165 +6,60 @@
   import { goto } from '$app/navigation'
   import ThemeSelector from '@web/lib/components/ThemeSelector.svelte'
   import ResumeViewer from '@web/lib/components/ResumeViewer.svelte'
+  import PresetSelector from '@web/lib/components/PresetSelector.svelte'
+  import SectionControls from '@web/lib/components/SectionControls.svelte'
+  import DensityControls from '@web/lib/components/DensityControls.svelte'
+  import ResumeStats from '@web/lib/components/ResumeStats.svelte'
+  import ComingSoonFeatures from '@web/lib/components/ComingSoonFeatures.svelte'
+  import { 
+    sectionVisibilityStore, 
+    mountedStore, 
+    initializeSections, 
+    updateSectionVisibility,
+    handlePresetChange 
+  } from '@web/lib/stores/url-state.js'
   
   export let data
   
-  let mounted = false
-  
   // Resume state management  
   let selectedVersion = data.preset || 'full'
-  let showPresetDropdown = false
   let density = 100 // Content density: 0-100% (0 = minimal, 100 = full content)
   
-  // Section visibility - only include sections that are actually rendered in current preset
-  let visibleSections = {}
+  // URL state management using stores
+  $: visibleSections = $sectionVisibilityStore
+  $: mounted = $mountedStore
   
-  // Section name mapping for compact URL encoding
-  const sectionCodes = {
-    'objective': 'obj',
-    'experience': 'exp', 
-    'projects': 'proj',
-    'education': 'edu',
-    'skills': 'skills',
-    'certifications': 'cert',
-    'courses': 'course',
-    'volunteering': 'vol',
-    'honors-awards': 'award',
-    'recommendations': 'rec',
-    'activities': 'act'
-  }
-  
-  // Reverse mapping for decoding
-  const codeToSection = Object.fromEntries(
-    Object.entries(sectionCodes).map(([section, code]) => [code, section])
-  )
-  
-  /**
-   * Encode visible sections to URL-friendly string
-   * @param {Object} sections - Object with section names as keys, boolean visibility as values
-   * @returns {string} Comma-separated compact codes for visible sections
-   */
-  const encodeSectionsForURL = (sections) => {
-    return Object.entries(sections)
-      .filter(([_, visible]) => visible)
-      .map(([section, _]) => sectionCodes[section] || section)
-      .sort()
-      .join(',')
-  }
-  
-  /**
-   * Decode URL string to sections visibility object
-   * @param {string} urlString - Comma-separated compact codes
-   * @param {Array} availableSections - Available sections from server
-   * @returns {Object} Section visibility object
-   */
-  const decodeSectionsFromURL = (urlString, availableSections) => {
-    if (!urlString || !availableSections) return {}
-    
-    const visibleCodes = urlString.split(',').filter(Boolean)
-    const visibleSectionNames = visibleCodes.map(code => codeToSection[code] || code)
-    
-    const result = {}
-    availableSections.forEach(section => {
-      result[section] = visibleSectionNames.includes(section)
-    })
-    return result
-  }
-  
-  // Initialize visibility state from URL first, then from available sections
+  // Initialize section visibility from URL parameters and handle preset changes
   $: if (data.availableSections) {
-    const urlSections = $page.url.searchParams.get('sections')
-    
-    if (urlSections && !Object.keys(visibleSections).length) {
-      // First load: initialize from URL if present
-      visibleSections = decodeSectionsFromURL(urlSections, data.availableSections)
-    } else if (!Object.keys(visibleSections).length) {
-      // First load: no URL params, default all to visible
-      const newVisibleSections = {}
-      data.availableSections.forEach(section => {
-        newVisibleSections[section] = true
-      })
-      visibleSections = newVisibleSections
+    if (!Object.keys($sectionVisibilityStore).length) {
+      // First load: initialize from URL
+      initializeSections($page.url.searchParams, data.availableSections)
     } else {
-      // Subsequent preset changes: preserve existing state for sections that exist
-      const newVisibleSections = {}
-      data.availableSections.forEach(section => {
-        newVisibleSections[section] = visibleSections[section] ?? true
-      })
-      visibleSections = newVisibleSections
+      // Preset change: preserve existing state for sections that exist
+      handlePresetChange(data.availableSections, $sectionVisibilityStore)
     }
   }
   
-  // Update URL when section visibility changes
+  // Sync visibleSections changes back to store (when modified by components)
   $: if (mounted && Object.keys(visibleSections).length > 0) {
-    const encodedSections = encodeSectionsForURL(visibleSections)
-    const currentSections = $page.url.searchParams.get('sections')
-    
-    if (encodedSections !== currentSections) {
-      const newURL = new URL($page.url)
-      if (encodedSections) {
-        newURL.searchParams.set('sections', encodedSections)
-      } else {
-        newURL.searchParams.delete('sections')
-      }
-      
-      // Update URL without causing navigation/reload
-      goto(newURL.toString(), { 
-        replaceState: true, 
-        noScroll: true,
-        keepFocus: true
-      })
+    // Only update store if visibleSections differs from store (avoid infinite loops)
+    if (JSON.stringify(visibleSections) !== JSON.stringify($sectionVisibilityStore)) {
+      updateSectionVisibility(visibleSections, $page.url, true)
     }
   }
   
-  // Accordion state - Primary expanded, others collapsed
-  let accordionState = {
-    primary: true,
-    credentials: false,
-    socialProof: false,
-    personality: false
-  }
+
   
   // Resume data is now loaded from the server via data.resumeContent
   
   onMount(() => {
-    mounted = true
+    mountedStore.set(true)
     console.log('🚀 Resume Customizer Loaded!')
   })
   
 
   
-  const selectAllSections = () => {
-    Object.keys(visibleSections).forEach(section => {
-      visibleSections[section] = true
-    })
-    visibleSections = { ...visibleSections } // Trigger reactivity
-    // Also expand all accordions to show what was selected
-    accordionState.primary = true
-    accordionState.credentials = true
-    accordionState.socialProof = true
-    accordionState.personality = true
-  }
 
-  // Category configuration for section controls
-  const categoryConfig = {
-    primary: { sections: ['experience', 'education', 'skills', 'projects'] },
-    credentials: { sections: ['certifications', 'honors-awards', 'courses'] },
-    socialProof: { sections: ['recommendations', 'volunteering'] },
-    personality: { sections: ['activities', 'objective'] }
-  }
-
-  /**
-   * Generic function to set visibility for all sections in a category
-   * @param {string} categoryName - The category name (primary, credentials, etc.)
-   * @param {boolean} isVisible - Whether to show (true) or hide (false) all sections
-   */
-  const setCategoryVisibility = (categoryName, isVisible) => {
-    availableSectionsByCategory[categoryName]?.forEach(section => {
-      visibleSections[section] = isVisible
-    })
-    visibleSections = { ...visibleSections }
-  }
   
   // Toast notification system
   let toastMessage = ''
@@ -270,27 +165,9 @@
     }
   }
   
-  const changePreset = (presetValue) => {
-    selectedVersion = presetValue
-    showPresetDropdown = false
-    
-    // Navigate to new preset URL while preserving section visibility
-    const newURL = new URL($page.url)
-    if (presetValue === 'full') {
-      newURL.searchParams.delete('preset')
-    } else {
-      newURL.searchParams.set('preset', presetValue)
-    }
-    
-    // Use SvelteKit navigation for smoother experience
-    goto(newURL.toString(), { 
-      noScroll: true,
-      keepFocus: true
-    })
-  }
+
   
-  // Get current preset info for display
-  $: currentPreset = data.availablePresets.find(p => p.value === selectedVersion) || data.availablePresets[0]
+
   
   // Helper function to check if a section is available in current preset
   const isSectionAvailable = (section) => {
@@ -403,295 +280,15 @@
     <div class="w-96 bg-base-100 border-r border-base-300 h-screen overflow-y-auto">
       <div class="p-6 space-y-6">
         
-        <!-- Version Selector -->
-        <div class="card bg-base-100 shadow-sm border border-base-300">
-          <div class="card-body p-4">
-            <h3 class="card-title text-sm">📋 Resume Version</h3>
-            
-            <!-- DaisyUI Dropdown -->
-            <div class="dropdown w-full" class:dropdown-open={showPresetDropdown}>
-              <div tabindex="0" role="button" class="btn btn-sm w-full justify-between transition-all hover:shadow-md" 
-                   on:click={() => showPresetDropdown = !showPresetDropdown}
-                   on:keydown={(e) => e.key === 'Enter' && (showPresetDropdown = !showPresetDropdown)}
-                   on:blur={() => delay(() => showPresetDropdown = false, 150)}>
-                <span class="text-left truncate">{currentPreset.name}</span>
-                <svg class="w-4 h-4 transition-transform" class:rotate-180={showPresetDropdown} 
-                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-              </div>
-              
-              <ul class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-full mt-1 border border-base-300">
-                {#each data.availablePresets as preset}
-                  <li>
-                    <button class="text-left" on:click={() => changePreset(preset.value)}
-                            class:active={preset.value === selectedVersion}>
-                      <div>
-                        <div class="font-medium">{preset.name}</div>
-                        <div class="text-xs text-base-content/70">{preset.description}</div>
-                      </div>
-                    </button>
-                  </li>
-                {/each}
-              </ul>
-            </div>
-          </div>
-        </div>
+        <PresetSelector bind:selectedVersion={selectedVersion} availablePresets={data.availablePresets} />
 
-        <!-- Section Toggles -->
-        <div class="card bg-base-100 shadow-sm border border-base-300">
-          <div class="card-body p-4">
-            <div class="flex justify-between items-center mb-3">
-              <h3 class="card-title text-sm">👁️ Visible Sections</h3>
-              <div class="flex space-x-1">
-                <button 
-                  class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                  on:click={selectAllSections}
-                  title="Select All"
-                >
-                                    All
-                </button>
-              </div>
-            </div>
-            <div class="space-y-2">
-              
-              <!-- Primary Sections (Main Content) -->
-              <div class="collapse collapse-arrow bg-base-200 transition-all hover:bg-base-300" class:collapse-open={accordionState.primary}>
-                <input type="checkbox" bind:checked={accordionState.primary} />
-                <div class="collapse-title text-sm font-medium">
-                  📋 Primary Sections
-                </div>
-                <div class="collapse-content space-y-2">
-                  {#if availableSectionsByCategory.primary.length > 0}
-                    <div class="flex gap-2 mb-3">
-                      <button 
-                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={() => setCategoryVisibility('primary', true)}
-                        title="Select All Primary"
-                      >
-                        All
-                      </button>
-                      <button 
-                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={() => setCategoryVisibility('primary', false)}
-                        title="Select None Primary"
-                      >
-                        None
-                      </button>
-                    </div>
-                  {/if}
-                  {#each availableSectionsByCategory.primary as section}
-                    <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
-                      <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
-                      <span class="text-sm capitalize">{section.replace('-', ' & ')}</span>
-                    </label>
-                  {/each}
-                  {#if availableSectionsByCategory.primary.length === 0}
-                    <p class="text-xs text-base-content/60">No primary sections in this preset</p>
-                  {/if}
-                </div>
-              </div>
+        <SectionControls bind:visibleSections={visibleSections} {availableSectionsByCategory} />
 
-              <!-- Credentials (Proof Points) -->
-              <div class="collapse collapse-arrow bg-base-200 transition-all hover:bg-base-300" class:collapse-open={accordionState.credentials}>
-                <input type="checkbox" bind:checked={accordionState.credentials} />
-                <div class="collapse-title text-sm font-medium">
-                  🏆 Credentials
-                </div>
-                <div class="collapse-content space-y-2">
-                  {#if availableSectionsByCategory.credentials.length > 0}
-                    <div class="flex gap-2 mb-3">
-                      <button 
-                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={() => setCategoryVisibility('credentials', true)}
-                        title="Select All Credentials"
-                      >
-                        All
-                      </button>
-                      <button 
-                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={() => setCategoryVisibility('credentials', false)}
-                        title="Select None Credentials"
-                      >
-                        None
-                      </button>
-                    </div>
-                  {/if}
-                  {#each availableSectionsByCategory.credentials as section}
-                    <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
-                      <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
-                      <span class="text-sm">
-                        {#if section === 'honors-awards'}Honors & Awards
-                        {:else if section === 'courses'}Relevant Coursework  
-                        {:else}{section.charAt(0).toUpperCase() + section.slice(1)}{/if}
-                      </span>
-                    </label>
-                  {/each}
-                  {#if availableSectionsByCategory.credentials.length === 0}
-                    <p class="text-xs text-base-content/60">No credential sections in this preset</p>
-                  {/if}
-                </div>
-              </div>
+        <DensityControls bind:density={density} />
 
-              <!-- Social Proof -->
-              <div class="collapse collapse-arrow bg-base-200 transition-all hover:bg-base-300" class:collapse-open={accordionState.socialProof}>
-                <input type="checkbox" bind:checked={accordionState.socialProof} />
-                <div class="collapse-title text-sm font-medium">
-                  💬 Social Proof
-                </div>
-                <div class="collapse-content space-y-2">
-                  {#if availableSectionsByCategory.socialProof.length > 0}
-                    <div class="flex gap-2 mb-3">
-                      <button 
-                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={() => setCategoryVisibility('socialProof', true)}
-                        title="Select All Social Proof"
-                      >
-                        All
-                      </button>
-                      <button 
-                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={() => setCategoryVisibility('socialProof', false)}
-                        title="Select None Social Proof"
-                      >
-                        None
-                      </button>
-                    </div>
-                  {/if}
-                  {#each availableSectionsByCategory.socialProof as section}
-                    <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
-                      <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
-                      <span class="text-sm capitalize">{section}</span>
-                    </label>
-                  {/each}
-                  {#if availableSectionsByCategory.socialProof.length === 0}
-                    <p class="text-xs text-base-content/60">No social proof sections in this preset</p>
-                  {/if}
-                </div>
-              </div>
+        <ResumeStats />
 
-              <!-- Personality -->
-              <div class="collapse collapse-arrow bg-base-200 transition-all hover:bg-base-300" class:collapse-open={accordionState.personality}>
-                <input type="checkbox" bind:checked={accordionState.personality} />
-                <div class="collapse-title text-sm font-medium">
-                  🎭 Personality
-                </div>
-                <div class="collapse-content space-y-2">
-                  {#if availableSectionsByCategory.personality.length > 0}
-                    <div class="flex gap-2 mb-3">
-                      <button 
-                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={() => setCategoryVisibility('personality', true)}
-                        title="Select All Personality"
-                      >
-                        All
-                      </button>
-                      <button 
-                        class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                        on:click={() => setCategoryVisibility('personality', false)}
-                        title="Select None Personality"
-                      >
-                        None
-                      </button>
-                    </div>
-                  {/if}
-                  {#each availableSectionsByCategory.personality as section}
-                    <label class="flex items-center space-x-2 cursor-pointer transition-all hover:bg-base-100 p-1 rounded">
-                      <input type="checkbox" class="checkbox checkbox-sm transition-transform hover:scale-110" bind:checked={visibleSections[section]} />
-                      <span class="text-sm">
-                        {#if section === 'activities'}Activities & Interests
-                        {:else}Objective{/if}
-                      </span>
-                    </label>
-                  {/each}
-                  {#if availableSectionsByCategory.personality.length === 0}
-                    <p class="text-xs text-base-content/60">No personality sections in this preset</p>
-                  {/if}
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Density Controls -->
-        <div class="card bg-base-100 shadow-sm border border-base-300">
-          <div class="card-body p-4">
-            <h3 class="card-title text-sm">📏 Content Density</h3>
-            <div class="space-y-3">
-              <div class="flex justify-between items-center text-xs">
-                <button 
-                  class="btn btn-xs btn-ghost text-base-content/70 hover:text-base-content"
-                  on:click={() => density = 10}
-                >
-                  Minimal
-                </button>
-                <span class="font-medium">{density}%</span>
-                <button 
-                  class="btn btn-xs btn-ghost text-base-content/70 hover:text-base-content"
-                  on:click={() => density = 100}
-                >
-                  Full
-                </button>
-              </div>
-              <input 
-                type="range" 
-                min="10" 
-                max="100" 
-                step="10"
-                bind:value={density}
-                class="range range-primary range-sm" 
-              />
-              <div class="flex justify-between text-xs text-base-content/50">
-                <span>10%</span>
-                <span>50%</span>
-                <span>100%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Quick Stats -->
-        <div class="card bg-base-100 shadow-sm border border-base-300">
-          <div class="card-body p-4">
-            <h3 class="card-title text-sm">📊 Resume Stats</h3>
-            <div class="stats stats-vertical shadow-none text-xs">
-              <div class="stat py-2">
-                <div class="stat-title text-xs">Experience Items</div>
-                <div class="stat-value text-lg">8</div>
-              </div>
-              <div class="stat py-2">
-                <div class="stat-title text-xs">Projects</div>
-                <div class="stat-value text-lg">5</div>
-              </div>
-              <div class="stat py-2">
-                <div class="stat-title text-xs">Skills</div>
-                <div class="stat-value text-lg">30+</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Coming Soon Features -->
-        <div class="card bg-base-100 shadow-sm border border-base-300 opacity-60">
-          <div class="card-body p-4">
-            <h3 class="card-title text-sm">🔮 Coming Soon</h3>
-            <div class="space-y-2 text-xs">
-              <div class="flex items-center space-x-2">
-                <span>🎯</span>
-                <span>Job Description Matcher</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span>📝</span>
-                <span>Content Optimizer</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span>📊</span>
-                <span>ATS Score Checker</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ComingSoonFeatures />
 
       </div>
     </div>
