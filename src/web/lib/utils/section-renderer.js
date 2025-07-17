@@ -185,4 +185,6 @@ export class SectionRenderer {
     const items = bulletPoints.map(bullet => `  <li>${bullet}</li>`).join('\n')
     return `<ul>\n${items}\n</ul>`
   }
+
+
 } 

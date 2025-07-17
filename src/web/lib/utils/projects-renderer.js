@@ -28,17 +28,43 @@ export class ProjectsRenderer extends SectionRenderer {
     const filteredData = this.filterStrategy(data, config)
     const { workProjects, personalProjects } = this.groupProjectsByCategory(filteredData)
     
+    // Filter projects that have meaningful content after bullet filtering
+    const workProjectsWithContent = workProjects.filter(project => {
+      const filteredBullets = SectionRenderer.filterBulletsWithConfig(
+        project.bulletPoints,
+        project.bullet_priorities,
+        this.bulletDensity || 100,
+        config
+      )
+      return filteredBullets.length > 0
+    })
+
+    const personalProjectsWithContent = personalProjects.filter(project => {
+      const filteredBullets = SectionRenderer.filterBulletsWithConfig(
+        project.bulletPoints,
+        project.bullet_priorities,
+        this.bulletDensity || 100,
+        config
+      )
+      return filteredBullets.length > 0
+    })
+
+    // If no projects have content, return empty
+    if (workProjectsWithContent.length === 0 && personalProjectsWithContent.length === 0) {
+      return ''
+    }
+    
     const sections = []
     
     // Work Projects section
-    if (workProjects.length > 0) {
-      const workContent = workProjects.map(project => this.itemRenderer(project, this.bulletDensity, config)).join('\n')
+    if (workProjectsWithContent.length > 0) {
+      const workContent = workProjectsWithContent.map(project => this.itemRenderer(project, this.bulletDensity, config)).join('\n')
       sections.push(this.renderSectionWrapper('Work Projects', workContent, 'projects'))
     }
     
     // Supplemental Projects section  
-    if (personalProjects.length > 0) {
-      const personalContent = personalProjects.map(project => this.itemRenderer(project, this.bulletDensity, config)).join('\n')
+    if (personalProjectsWithContent.length > 0) {
+      const personalContent = personalProjectsWithContent.map(project => this.itemRenderer(project, this.bulletDensity, config)).join('\n')
       sections.push(this.renderSectionWrapper('Supplemental Projects', personalContent, 'projects'))
     }
     

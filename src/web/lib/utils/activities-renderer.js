@@ -18,18 +18,48 @@ export class ActivitiesRenderer {
     const activities = activitiesData?.activities || []
     const personalInterests = activitiesData?.personal_interests || []
     
-    const hasActivities = activities.length > 0
-    const hasPersonalInterests = personalInterests.length > 0
+    console.log(`🎭 ActivitiesRenderer Debug:`)
+    console.log(`  📊 Input: ${activities.length} activities, ${personalInterests.length} personal interests`)
+    console.log(`  🎯 Density: ${this.bulletDensity}%`)
     
-    if (!hasActivities && !hasPersonalInterests) {
+    // Check if activities have meaningful content after bullet filtering
+    const activitiesWithContent = activities.filter(activity => {
+      if (!activity.bulletPoints || !Array.isArray(activity.bulletPoints)) {
+        console.log(`  ✅ Activity "${activity.role || activity.organization}" - no bullets, counts as content`)
+        return true // Activities without bullets still count as content
+      }
+      
+      const filteredBullets = SectionRenderer.filterBulletsWithConfig(
+        activity.bulletPoints,
+        activity.bullet_priorities,
+        this.bulletDensity || 100,
+        this.config || {}
+      )
+      
+      const hasContent = filteredBullets.length > 0
+      console.log(`  ${hasContent ? '✅' : '❌'} Activity "${activity.role || activity.organization}" - ${activity.bulletPoints.length} bullets → ${filteredBullets.length} after filtering`)
+      
+      return hasContent
+    })
+
+    // Check personal interests (considering density filtering)
+    const hasPersonalInterests = personalInterests.length > 0 && this.bulletDensity >= 90
+    console.log(`  🎨 Personal interests: ${personalInterests.length} items, density >= 90? ${this.bulletDensity >= 90}, included: ${hasPersonalInterests}`)
+    
+    console.log(`  📝 Result: ${activitiesWithContent.length} activities with content, personal interests: ${hasPersonalInterests}`)
+    
+    if (activitiesWithContent.length === 0 && !hasPersonalInterests) {
+      console.log(`  🚫 Section is EMPTY - returning blank`)
       return ''
     }
 
+    console.log(`  ✅ Section has content - rendering...`)
+    
     let content = ''
     
     // Render activities section
-    if (hasActivities) {
-      content += this.renderActivities(activities)
+    if (activitiesWithContent.length > 0) {
+      content += this.renderActivities(activitiesWithContent)
     }
     
     // Render personal interests section

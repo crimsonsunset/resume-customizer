@@ -16,6 +16,37 @@ export class ExperienceRenderer extends SectionRenderer {
       itemRenderer: (experience) => ExperienceRenderer.experienceItemRenderer(experience, bulletDensity, config),
       ...options
     })
+    
+    this.bulletDensity = bulletDensity
+    this.config = config
+  }
+
+  /**
+   * Main render method with empty detection
+   */
+  render(experiences, config = {}) {
+    const filteredExperiences = this.filterStrategy(experiences, config)
+    
+    // Check if any experience has bullets after filtering
+    const experiencesWithContent = filteredExperiences.filter(experience => {
+      const filteredBullets = SectionRenderer.filterBulletsWithConfig(
+        experience.bulletPoints,
+        experience.bullet_priorities,
+        this.bulletDensity,
+        config
+      )
+      return filteredBullets.length > 0
+    })
+
+    // If no experiences have content, return empty
+    if (experiencesWithContent.length === 0) {
+      return ''
+    }
+    
+    const groupedExperiences = this.groupData(experiencesWithContent)
+    const content = groupedExperiences.map(group => this.renderGroup(group)).join('\n')
+    
+    return this.renderSectionWrapper(this.sectionLabel, content, this.sectionType)
   }
 
   /**
