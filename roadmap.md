@@ -641,3 +641,45 @@ node convert.js html-to-pdf input/examples/base-resume.html --css experimental.c
 ---
 
 **Last Updated:** July 16, 2025 - Universal SectionRenderer architecture 100% complete - Web application fully functional!
+
+---
+
+## 🔧 Future Technical Improvements
+
+### Code Quality & Consistency Improvements
+
+#### Lodash-es Migration (Audit Complete - December 2025)
+**Goal:** Replace native JavaScript methods with lodash-es for improved consistency, readability, and reliability
+
+**Audit Results:** ~100+ native method calls identified for potential lodash replacement
+
+**Implementation Phases:**
+
+**Phase 1: High-Impact Replacements (Priority)**
+- Object utilities (15+ occurrences): `Object.keys()` → `keys()`, `Object.values()` → `values()`, `Object.entries()` → `entries()`
+- Array filtering & transformation (50+ occurrences): Complex `.filter().map()` chains → `compact()` + functional patterns
+- Deep cloning (3 occurrences): `structuredClone()` → `cloneDeep()`, `JSON.parse(JSON.stringify())` → `cloneDeep()`
+- **Files**: `SectionControls.svelte`, `skills-renderer.js`, `url-state-manager.js`, `date-utils.js`, `update-dates.js`
+
+**Phase 2: Medium-Impact Replacements**
+- String utilities (10+ occurrences): `.toLowerCase()` → `toLower()`, `.charAt(0).toUpperCase() + .slice(1)` → `capitalize()`
+- Array utilities (20+ occurrences): `.includes()` → `includes()`, `.find()` → `find()`, `.sort()` → `sortBy()`
+- Type checking (10+ occurrences): `Array.isArray()` → `isArray()`, `typeof` checks → `isString()`, `isObject()`
+- **Files**: `resume-generator.js`, various renderers, `PresetSelector.svelte`
+
+**Phase 3: Code Style Improvements**
+- Collection iteration (15+ occurrences): `for...of` loops → `forEach()`, `map()`, `reduce()`
+- Manual loops: `Object.entries().forEach()` → `forOwn()`, `mapValues()`
+- Array building patterns: `.push()` operations → `concat()`, `union()`
+- **Files**: Multiple renderers, `preset-merger.js`, utility files
+
+**Benefits:**
+- **Consistency**: Uniform API across all data manipulation
+- **Readability**: More expressive functional programming patterns  
+- **Reliability**: Battle-tested utility functions with edge case handling
+- **Performance**: Optimized implementations for common operations
+- **Maintainability**: Reduced cognitive load with familiar lodash patterns
+
+**Current Status:** Currently using `delay()` from lodash-es (3 files), ready for systematic expansion
+
+**Estimated Impact:** Improve code quality across ~20 files, reduce native method complexity by 60%+

@@ -83,6 +83,11 @@ export function mergePresetWithRawData(rawData, preset) {
     merged.sections = merged.sections || {}
     // Preserve the original experience array structure
     if (Array.isArray(merged.sections.experience)) {
+      // Apply bullet priority overrides first
+      merged.sections.experience = applyBulletPriorityOverrides(
+        merged.sections.experience, 
+        overrides.experience
+      )
       // Keep the array and add metadata
       merged.sections.experience.preset_filters = overrides.experience
     } else {
@@ -99,6 +104,11 @@ export function mergePresetWithRawData(rawData, preset) {
     merged.sections = merged.sections || {}
     // Preserve the original projects array structure
     if (Array.isArray(merged.sections.projects)) {
+      // Apply bullet priority overrides first
+      merged.sections.projects = applyBulletPriorityOverrides(
+        merged.sections.projects, 
+        overrides.projects
+      )
       // Keep the array and add metadata
       merged.sections.projects.preset_filters = overrides.projects
     } else {
@@ -107,6 +117,23 @@ export function mergePresetWithRawData(rawData, preset) {
         ...merged.sections.projects,
         preset_filters: overrides.projects
       }
+    }
+  }
+
+  // Apply activities filtering (if it exists)
+  if (overrides.activities) {
+    merged.sections = merged.sections || {}
+    if (Array.isArray(merged.sections.activities?.activities)) {
+      // Apply bullet priority overrides to activities
+      merged.sections.activities.activities = applyBulletPriorityOverrides(
+        merged.sections.activities.activities, 
+        overrides.activities
+      )
+    }
+    // Add preset filters
+    merged.sections.activities = {
+      ...merged.sections.activities,
+      preset_filters: overrides.activities
     }
   }
   
@@ -121,6 +148,35 @@ export function mergePresetWithRawData(rawData, preset) {
   }
   
   return merged
+}
+
+/**
+ * Applies bullet priority overrides to section entries
+ * @param {Array} sectionData - Array of section entries (experiences, projects, etc.)
+ * @param {object} overrides - Section overrides containing bullet_priorities_overrides
+ * @returns {Array} Section data with preset bullet priorities applied
+ */
+function applyBulletPriorityOverrides(sectionData, overrides) {
+  if (!overrides.bullet_priorities_overrides || !Array.isArray(sectionData)) {
+    return sectionData
+  }
+
+  // Create a copy to avoid mutating original data
+  const updatedData = [...sectionData]
+  
+  // Apply bullet priority overrides to specific indices
+  for (const [indexStr, priorities] of Object.entries(overrides.bullet_priorities_overrides)) {
+    const index = Number.parseInt(indexStr, 10)
+    if (index >= 0 && index < updatedData.length && Array.isArray(priorities)) {
+      // Create a copy of the entry and apply priority override
+      updatedData[index] = {
+        ...updatedData[index],
+        bullet_priorities: priorities
+      }
+    }
+  }
+  
+  return updatedData
 }
 
 /**

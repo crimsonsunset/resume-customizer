@@ -118,11 +118,20 @@
     },
     "experience": {
       "selected_indices": [0, 1, 2],
-      "bullet_priority_threshold": 7
+      "bullet_priority_threshold": 7,
+      "bullet_priorities_overrides": {
+        "0": [10, 9, 10, 8, 6, 5, 6, 6],
+        "1": [10, 6, 6, 9, 8],
+        "2": [9, 10, 6, 6, 6, 8]
+      }
     },
     "projects": {
       "selected_indices": [0, 6],
-      "bullet_priority_threshold": 7
+      "bullet_priority_threshold": 7,
+      "bullet_priorities_overrides": {
+        "0": [10, 7, 9, 6],
+        "6": [10, 7, 6, 9, 6, 6, 6, 8]
+      }
     },
     "recommendations": {
       "selected_indices": [0, 1, 2]
