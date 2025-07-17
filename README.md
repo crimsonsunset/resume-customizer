@@ -11,7 +11,9 @@ A modern resume optimization tool with CLI, web application, and AI-powered matc
 - **Resume Version Controls** (full/short/leadership/technical)
 - **Section Toggles** with category-specific all/none controls
 - **Strategic Content Curation System** with index-based selection for intelligent content optimization
-- **Intelligent Filtering System** with two-tier priority-based content reduction
+- **Intelligent Bullet Priority Filtering** with baseline priorities across all sections
+- **Two-Tier Content Density System** with section-level and bullet-level filtering
+- **Preset Priority Override System** for role-specific content emphasis
 - **Content Density Controls** with Manual vs Density mode toggle for granular content management
 - **URL State Management** for bookmarkable resume configurations with compact encoding
 - **Responsive Design** optimized for all devices
@@ -36,6 +38,7 @@ npm run dev:web
 
 # Open browser to localhost:3000
 # Customize your resume with interactive controls
+# Use density slider to filter content intelligently
 ```
 
 ### CLI Tool
@@ -65,21 +68,32 @@ resume-optimizer/
 │   │   │   ├── +page.svelte # Main resume customizer interface
 │   │   │   └── +page.server.js # Server-side data loading
 │   │   └── lib/
-│   │       └── components/  # Svelte components
-│   │           ├── ThemeSelector.svelte # 34 theme selector
-│   │           └── ResumeViewer.svelte  # Scoped resume display
+│   │       ├── components/  # Svelte components
+│   │       │   ├── ThemeSelector.svelte # 34 theme selector
+│   │       │   ├── DensityControls.svelte # Priority-based filtering
+│   │       │   └── ResumeViewer.svelte  # Scoped resume display
+│   │       └── utils/       # Section renderers with priority filtering
+│   │           ├── experience-renderer.js # Priority-based bullet filtering
+│   │           ├── projects-renderer.js   # Strategic project curation
+│   │           └── activities-renderer.js # Activity importance ranking
 │   └── functions/           # Netlify Functions (future)
 ├── input/                   # Input data (organized by type)
-│   ├── profiles/            # Profile data with rich metadata
+│   ├── profiles/            # Profile data with bullet priorities
 │   │   ├── profile.json     # Full profile with resume_config
-│   │   ├── profile-working.json # Working copy for edits
+│   │   ├── sections/        # Section data with baseline priorities
+│   │   │   ├── experience.json # All 18 entries with bullet_priorities
+│   │   │   ├── projects.json   # All 20 entries with bullet_priorities  
+│   │   │   └── activities.json # Activity entry with bullet_priorities
+│   │   ├── presets/         # Preset configurations
+│   │   │   └── one-page.json # Strategic overrides for space optimization
 │   │   ├── skills-inventory.json # Skills with proficiency data
-│   │   ├── skills-categories.json # Skill categorization
 │   │   └── profile-resume-schema.json # Data structure schema
 │   ├── templates/           # CSS templates
 │   │   └── resume-styles.css # CSS Grid layout (scoped in components)
 │   ├── working/             # Auto-saved working files
 │   └── examples/            # Sample resumes (HTML/cleaned)
+├── docs/                    # Documentation
+│   └── bullet-priority-system.md # Priority framework and implementation
 ├── output/                  # Generated files (HTML/PDF)
 ├── public/                  # Static assets for web app
 ├── package.json             # Unified CLI + web app scripts
@@ -163,9 +177,10 @@ npm run clean            # Clean build artifacts
 - ✅ **Phase 2B**: Enhanced CLI workflow features  
 - ✅ **Phase 3**: Universal renderer architecture and component system
 - ✅ **Phase 4**: Advanced UX controls and content management
-- 🎯 **Phase 5**: Strategic content curation and intelligent filtering (current)
-- 🔮 **Phase 6**: Complete priority data system and content optimization
-- 🔮 **Phase 7**: ResumeWorded integration and AI optimization
+- ✅ **Phase 5**: Strategic content curation and intelligent filtering
+- ✅ **Phase 6**: Complete bullet priority system implementation
+- 🎯 **Phase 7**: Advanced preset variations and content optimization (current)
+- 🔮 **Phase 8**: ResumeWorded integration and AI optimization
 
 ## 🔧 Technical Details
 
