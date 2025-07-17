@@ -1,6 +1,28 @@
+import { has, sortBy } from 'lodash-es'
+
+// Context-to-Category mappings organized by priority (higher priority = lower number)
+const CATEGORY_CONTEXTS = {
+  'Leadership': ['leadership', 'management', 'business', 'product'], // Priority 1
+  'Programming Languages': ['programming', 'javascript', 'css'], // Priority 2  
+  'Tools & Platforms': ['devops', 'cms', 'analytics', 'logging', 'monitoring', 'configuration', 'productivity', 'system'], // Priority 3
+  'Frameworks & Libraries': ['frontend', 'backend', 'mobile', 'nodejs'], // Priority 4
+  'Concepts & Methodologies': ['development', 'api', 'data', 'design', 'ai', 'crypto', 'performance', 'security', 'testing', 'technical', 'marketing', 'education'] // Priority 5
+}
+
+// Priority order for categories (lower number = higher priority)
+const CATEGORY_PRIORITY = {
+  'Leadership': 1,
+  'Programming Languages': 2,
+  'Tools & Platforms': 3,
+  'Frameworks & Libraries': 4,
+  'Concepts & Methodologies': 5
+}
+
+// Programming language name patterns for fallback categorization
+const PROGRAMMING_LANGUAGES = new Set(['CSS/Sass', 'HTML', 'Java', 'JavaScript', 'JSON', 'PHP', 'Python', 'SQL', 'TypeScript', 'XML', 'YAML'])
+
 /**
- * Skills-specific renderer
- * Handles both preset skills and raw skills data with categorization
+ * SkillsRenderer handles the rendering of skills sections
  */
 export class SkillsRenderer {
   constructor(options = {}) {
@@ -26,12 +48,17 @@ export class SkillsRenderer {
 
   /**
    * Gets skills to display based on preset or raw data
-   * Priority: preset_skills > raw skills data
+   * Priority: preset_skills > skills inventory > raw skills data
    */
   getSkillsToDisplay(skillsData) {
     // If preset skills exist, use those
     if (skillsData.preset_skills) {
       return skillsData.preset_skills
+    }
+    
+    // Use skills inventory if available
+    if (skillsData.skillsInventory) {
+      return this.generateSkillsFromInventory(skillsData.skillsInventory)
     }
     
     // Fall back to generating from raw skills array
@@ -95,6 +122,72 @@ export class SkillsRenderer {
         delete categories[key]
       }
     }
+    
+    return categories
+  }
+
+  /**
+   * Generates categorized skills from skills-inventory.json
+   */
+  generateSkillsFromInventory(skillsInventory) {
+    console.log('🛠️ Skills Debug: Using skills inventory data')
+    
+    if (!skillsInventory.skills) {
+      console.warn('⚠️ Skills inventory missing skills object')
+      return {}
+    }
+    
+    const categories = {
+      'Leadership': [],
+      'Programming Languages': [], 
+      'Frameworks & Libraries': [],
+      'Tools & Platforms': [],
+      'Concepts & Methodologies': []
+    }
+    
+    // Convert skills inventory to categorized structure
+    const { skills } = skillsInventory
+    
+    for (const [skillKey, skillData] of Object.entries(skills)) {
+      const { name: skillName, contexts = [] } = skillData
+      
+      let category = 'Concepts & Methodologies' // Default fallback
+      
+      if (contexts.length > 0) {
+        // Find the category for each context and pick the highest priority one
+        const categoriesForContexts = contexts
+          .map(context => {
+            // Find which category this context belongs to
+            for (const [categoryName, categoryContexts] of Object.entries(CATEGORY_CONTEXTS)) {
+              if (categoryContexts.includes(context)) {
+                return categoryName
+              }
+            }
+            return null
+          })
+          .filter(cat => cat !== null)
+        
+        if (categoriesForContexts.length > 0) {
+          // Sort by priority and pick the highest priority category
+          category = categoriesForContexts.sort((a, b) => 
+            (CATEGORY_PRIORITY[a] || 999) - (CATEGORY_PRIORITY[b] || 999)
+          )[0]
+        }
+      } else if (PROGRAMMING_LANGUAGES.has(skillName)) {
+        // Fallback: Use name-based categorization for skills without contexts
+        category = 'Programming Languages'
+      }
+      
+      categories[category].push(skillName)
+    }
+    
+    // Sort skills within each category
+    for (const category of Object.keys(categories)) {
+      categories[category].sort()
+    }
+    
+    console.log('🛠️ Skills categories generated:', Object.keys(categories))
+    console.log('🛠️ Total skills:', Object.values(categories).flat().length)
     
     return categories
   }

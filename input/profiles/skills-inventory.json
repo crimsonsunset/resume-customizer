@@ -715,8 +715,8 @@
       "proficiency": "expert",
       "yearsExperience": 13,
       "contexts": [
-        "development",
-        "collaboration"
+        "devops",
+        "system"
       ],
       "marketDemand": "high",
       "trending": "stable"
@@ -825,8 +825,8 @@
       "proficiency": "expert",
       "yearsExperience": 13,
       "contexts": [
-        "development",
-        "ide"
+        "devops",
+        "productivity"
       ],
       "marketDemand": "medium",
       "trending": "stable"
@@ -847,8 +847,8 @@
       "proficiency": "advanced",
       "yearsExperience": 4,
       "contexts": [
-        "development",
-        "ide"
+        "devops",
+        "productivity"
       ],
       "marketDemand": "high",
       "trending": "stable"
@@ -870,7 +870,7 @@
       "yearsExperience": 3,
       "contexts": [
         "testing",
-        "javascript"
+        "devops"
       ],
       "marketDemand": "high",
       "trending": "stable"
@@ -881,7 +881,7 @@
       "yearsExperience": 1,
       "contexts": [
         "testing",
-        "javascript"
+        "devops"
       ],
       "marketDemand": "high",
       "trending": "up"
@@ -892,7 +892,7 @@
       "yearsExperience": 2,
       "contexts": [
         "testing",
-        "javascript"
+        "devops"
       ],
       "marketDemand": "medium",
       "trending": "stable"
@@ -1331,8 +1331,8 @@
       "proficiency": "advanced",
       "yearsExperience": 13,
       "contexts": [
-        "management",
-        "tracking"
+        "productivity",
+        "devops"
       ],
       "marketDemand": "high",
       "trending": "stable"
@@ -1353,8 +1353,8 @@
       "proficiency": "advanced",
       "yearsExperience": 2,
       "contexts": [
-        "management",
-        "tracking"
+        "productivity",
+        "system"
       ],
       "marketDemand": "medium",
       "trending": "stable"
@@ -1364,8 +1364,8 @@
       "proficiency": "advanced",
       "yearsExperience": 2,
       "contexts": [
-        "management",
-        "tracking"
+        "productivity",
+        "system"
       ],
       "marketDemand": "medium",
       "trending": "stable"
@@ -1375,8 +1375,8 @@
       "proficiency": "advanced",
       "yearsExperience": 4,
       "contexts": [
-        "management",
-        "documentation"
+        "productivity",
+        "system"
       ],
       "marketDemand": "high",
       "trending": "stable"
@@ -1661,8 +1661,8 @@
       "proficiency": "expert",
       "yearsExperience": 6,
       "contexts": [
-        "javascript",
-        "utilities"
+        "frontend",
+        "backend"
       ],
       "marketDemand": "high",
       "trending": "stable"
@@ -1672,8 +1672,8 @@
       "proficiency": "advanced",
       "yearsExperience": 4,
       "contexts": [
-        "javascript",
-        "dates"
+        "frontend",
+        "backend"
       ],
       "marketDemand": "medium",
       "trending": "down"
@@ -1683,8 +1683,8 @@
       "proficiency": "advanced",
       "yearsExperience": 4,
       "contexts": [
-        "javascript",
-        "http"
+        "frontend",
+        "backend"
       ],
       "marketDemand": "high",
       "trending": "stable"
@@ -1705,8 +1705,8 @@
       "proficiency": "intermediate",
       "yearsExperience": 2,
       "contexts": [
-        "javascript",
-        "internationalization"
+        "frontend",
+        "backend"
       ],
       "marketDemand": "medium",
       "trending": "stable"
@@ -1793,8 +1793,8 @@
       "proficiency": "advanced",
       "yearsExperience": 6,
       "contexts": [
-        "css",
-        "methodology"
+        "design",
+        "development"
       ],
       "marketDemand": "medium",
       "trending": "stable"
@@ -1963,7 +1963,7 @@
       "yearsExperience": 15,
       "contexts": [
         "productivity",
-        "business"
+        "system"
       ],
       "marketDemand": "high",
       "trending": "stable"
@@ -1973,8 +1973,8 @@
       "proficiency": "intermediate",
       "yearsExperience": 3,
       "contexts": [
-        "design",
-        "graphics"
+        "productivity",
+        "system"
       ],
       "marketDemand": "medium",
       "trending": "stable"
@@ -1985,7 +1985,7 @@
       "yearsExperience": 12,
       "contexts": [
         "analytics",
-        "business"
+        "productivity"
       ],
       "marketDemand": "high",
       "trending": "stable"
@@ -2017,8 +2017,8 @@
       "proficiency": "intermediate",
       "yearsExperience": 4,
       "contexts": [
-        "design",
-        "prototyping"
+        "productivity",
+        "system"
       ],
       "marketDemand": "high",
       "trending": "up"
@@ -2106,7 +2106,7 @@
       "yearsExperience": 2,
       "contexts": [
         "analytics",
-        "product"
+        "monitoring"
       ],
       "marketDemand": "medium",
       "trending": "stable"

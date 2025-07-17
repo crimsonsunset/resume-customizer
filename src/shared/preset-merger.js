@@ -24,10 +24,19 @@ export function loadPreset(presetName) {
 export function loadAllProfileSections() {
   const sectionsPath = path.join(process.cwd(), 'input', 'profiles', 'sections')
   const profilePath = path.join(process.cwd(), 'input', 'profiles', 'profile.json')
+  const skillsInventoryPath = path.join(process.cwd(), 'input', 'profiles', 'skills-inventory.json')
   
   try {
     // Load main profile
     const profile = JSON.parse(readFileSync(profilePath, 'utf8'))
+    
+    // Load skills inventory
+    let skillsInventory = null
+    try {
+      skillsInventory = JSON.parse(readFileSync(skillsInventoryPath, 'utf8'))
+    } catch (error) {
+      console.warn(`⚠️ Could not load skills inventory: ${error.message}`)
+    }
     
     // Load all sections
     const sections = {}
@@ -42,6 +51,11 @@ export function loadAllProfileSections() {
       } catch (error) {
         console.warn(`⚠️ Could not load section ${file}: ${error.message}`)
       }
+    }
+    
+    // Enhance skills section with inventory data if available
+    if (skillsInventory && sections.skills) {
+      sections.skills.skillsInventory = skillsInventory
     }
     
     return {
