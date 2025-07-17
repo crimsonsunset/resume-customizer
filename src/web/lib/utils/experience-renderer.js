@@ -22,11 +22,12 @@ export class ExperienceRenderer extends SectionRenderer {
    * Experience-specific item renderer (static method with bulletDensity and config parameters)
    */
   static experienceItemRenderer(experience, bulletDensity = 100, config = {}) {
-    // Use bullet_priority_threshold from config if available, otherwise fall back to density-based filtering
-    const priorityThreshold = config.bullet_priority_threshold
-    const bullets = priorityThreshold 
-      ? SectionRenderer.filterBulletsByPriority(experience.bulletPoints, experience.bullet_priorities, priorityThreshold)
-      : SectionRenderer.filterBullets(experience.bulletPoints, experience.bullet_priorities, bulletDensity)
+    const bullets = SectionRenderer.filterBulletsWithConfig(
+      experience.bulletPoints, 
+      experience.bullet_priorities, 
+      bulletDensity, 
+      config
+    )
     
     return `<div class="job-title-header">
   <h4>${experience.title}</h4>

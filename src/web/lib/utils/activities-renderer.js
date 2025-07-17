@@ -48,9 +48,16 @@ export class ActivitiesRenderer {
       const roleAndDates = this.formatRoleAndDates(activity.role, activity.dates)
       const roleHeader = roleAndDates ? `<h4>${roleAndDates}</h4>` : ''
       
-      // Render bullet points
+      // Render bullet points with filtering support
       const bullets = activity.bulletPoints && activity.bulletPoints.length > 0 ? 
-        this.renderBullets(activity.bulletPoints) : ''
+        this.renderBullets(
+          SectionRenderer.filterBulletsWithConfig(
+            activity.bulletPoints, 
+            activity.bullet_priorities, 
+            100, 
+            this.config
+          )
+        ) : ''
       
       return [orgHeader, roleHeader, bullets].filter(Boolean).join('\n')
     }).join('\n')

@@ -165,6 +165,18 @@ export class SectionRenderer {
   }
 
   /**
+   * Utility: Filters bullets with priority threshold or density fallback
+   * Generalizes the pattern used across all renderers
+   */
+  static filterBulletsWithConfig(bulletPoints, bulletPriorities, bulletDensity = 100, config = {}) {
+    const priorityThreshold = config.bullet_priority_threshold
+    
+    return priorityThreshold 
+      ? this.filterBulletsByPriority(bulletPoints, bulletPriorities, priorityThreshold)
+      : this.filterBullets(bulletPoints, bulletPriorities, bulletDensity)
+  }
+
+  /**
    * Utility: Renders bullet points as HTML list
    */
   static renderBullets(bulletPoints) {
