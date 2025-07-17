@@ -168,10 +168,10 @@ export async function load({ url }) {
 
     // Log courses data
     console.log('📚 Courses data:', {
-      coursesExists: Boolean(finalData.sections?.education?.courses),
-      coursesCount: finalData.sections?.education?.courses?.length || 0,
-      firstCourseName: finalData.sections?.education?.courses?.[0]?.name || 'none',
-      firstCourseInstitution: finalData.sections?.education?.courses?.[0]?.institution || 'none'
+      coursesExists: Boolean(finalData.sections?.courses),
+      coursesCount: finalData.sections?.courses?.length || 0,
+      firstCourseName: finalData.sections?.courses?.[0]?.name || 'none',
+      firstCourseInstitution: finalData.sections?.courses?.[0]?.institution || 'none'
     })
 
     // Log certifications data
@@ -226,14 +226,18 @@ export async function load({ url }) {
       }),
       courses: () => render(CoursesSection, { 
         props: { 
-          courses: finalData.sections?.education?.courses || [],
-          config: finalData.sections?.courses?.preset_filters || {}
+          courses: finalData.sections?.courses || [],
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          config: finalData.sections?.courses?.preset_filters || {},
+          profile: finalData
         } 
       }),
       certifications: () => render(CertificationsSection, { 
         props: { 
           certifications: finalData.sections?.certifications || [],
-          config: finalData.sections?.certifications?.preset_filters || {}
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          config: finalData.sections?.certifications?.preset_filters || {},
+          profile: finalData
         } 
       }),
       volunteering: () => render(VolunteeringSection, { 

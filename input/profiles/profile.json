@@ -21,6 +21,14 @@
   },
   
   "resume_config": {
+    "section_priorities": {
+      "certifications": 9,
+      "courses": 9,
+      "activities": 5,
+      "recommendations": 3,
+      "volunteering": 7,
+      "honors-awards": 8
+    },
     "versions": {
       "full": {
         "name": "Complete Resume",
