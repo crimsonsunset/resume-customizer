@@ -3,7 +3,8 @@ import { has, sortBy } from 'lodash-es'
 // Context-to-Category mappings organized by priority (higher priority = lower number)
 const CATEGORY_CONTEXTS = {
   'Leadership': ['leadership', 'management', 'business', 'product'], // Priority 1
-  'Programming Languages': ['programming', 'javascript', 'css'], // Priority 2  
+  'Programming Languages': ['programming', 'javascript', 'css'], // Priority 2
+  'Operating Systems': [], // Priority 2.5 - Hardcoded category, managed separately
   'Tools & Platforms': ['devops', 'cms', 'analytics', 'logging', 'monitoring', 'configuration', 'productivity', 'system'], // Priority 3
   'Frameworks & Libraries': ['frontend', 'backend', 'mobile', 'nodejs'], // Priority 4
   'Concepts & Methodologies': ['development', 'api', 'data', 'design', 'ai', 'crypto', 'performance', 'security', 'testing', 'technical', 'marketing', 'education'] // Priority 5
@@ -13,10 +14,14 @@ const CATEGORY_CONTEXTS = {
 const CATEGORY_PRIORITY = {
   'Leadership': 1,
   'Programming Languages': 2,
+  'Operating Systems': 2.5,
   'Tools & Platforms': 3,
   'Frameworks & Libraries': 4,
   'Concepts & Methodologies': 5
 }
+
+// Operating System keywords to filter out from other categories
+const OS_KEYWORDS = ['Windows', 'Mac', 'macOS', 'iOS', 'Android', 'Linux', 'Unix', 'Ubuntu', 'OS', 'Operating System']
 
 // Programming language name patterns for fallback categorization
 const PROGRAMMING_LANGUAGES = new Set(['CSS/Sass', 'HTML', 'Java', 'JavaScript', 'JSON', 'PHP', 'Python', 'SQL', 'TypeScript', 'XML', 'YAML'])
@@ -32,8 +37,8 @@ export class SkillsRenderer {
   /**
    * Main render method - handles both preset and raw skills
    */
-  render(skillsData, _config = {}) {
-    const skillsToDisplay = this.getSkillsToDisplay(skillsData)
+  render(skillsData, _config = {}, bulletDensity = 100) {
+    const skillsToDisplay = this.getSkillsToDisplay(skillsData, bulletDensity)
     const hasSkills = Object.keys(skillsToDisplay).length > 0
     
     if (!hasSkills) {
@@ -50,20 +55,20 @@ export class SkillsRenderer {
    * Gets skills to display based on preset or raw data
    * Priority: preset_skills > skills inventory > raw skills data
    */
-  getSkillsToDisplay(skillsData) {
+  getSkillsToDisplay(skillsData, bulletDensity = 100) {
     // If preset skills exist, use those
     if (skillsData.preset_skills) {
-      return skillsData.preset_skills
+      return this.applyDensityFiltering(skillsData.preset_skills, bulletDensity)
     }
     
     // Use skills inventory if available
     if (skillsData.skillsInventory) {
-      return this.generateSkillsFromInventory(skillsData.skillsInventory)
+      return this.generateSkillsFromInventory(skillsData.skillsInventory, bulletDensity)
     }
     
     // Fall back to generating from raw skills array
     if (skillsData.skills && Array.isArray(skillsData.skills)) {
-      return this.generateSkillsFromRawData(skillsData.skills)
+      return this.applyDensityFiltering(this.generateSkillsFromRawData(skillsData.skills), bulletDensity)
     }
     
     return {}
@@ -129,7 +134,7 @@ export class SkillsRenderer {
   /**
    * Generates categorized skills from skills-inventory.json
    */
-  generateSkillsFromInventory(skillsInventory) {
+  generateSkillsFromInventory(skillsInventory, bulletDensity = 100) {
     console.log('🛠️ Skills Debug: Using skills inventory data')
     
     if (!skillsInventory.skills) {
@@ -140,6 +145,7 @@ export class SkillsRenderer {
     const categories = {
       'Leadership': [],
       'Programming Languages': [], 
+      'Operating Systems': [],
       'Frameworks & Libraries': [],
       'Tools & Platforms': [],
       'Concepts & Methodologies': []
@@ -186,10 +192,39 @@ export class SkillsRenderer {
       categories[category].sort()
     }
     
+    // Add hardcoded Operating Systems category and filter OS keywords from other categories
+    categories['Operating Systems'] = ['Proficient in Windows, Mac, or Linux, Android and iOS']
+    
+    // Remove OS-related skills from other categories
+    for (const [categoryName, skillsArray] of Object.entries(categories)) {
+      if (categoryName !== 'Operating Systems') {
+        categories[categoryName] = skillsArray.filter(skill => 
+          !OS_KEYWORDS.some(keyword => skill.toLowerCase().includes(keyword.toLowerCase()))
+        )
+      }
+    }
+    
     console.log('🛠️ Skills categories generated:', Object.keys(categories))
     console.log('🛠️ Total skills:', Object.values(categories).flat().length)
     
-    return categories
+    return this.applyDensityFiltering(categories, bulletDensity)
+  }
+
+  /**
+   * Applies density filtering to skill categories
+   */
+  applyDensityFiltering(categories, bulletDensity = 100) {
+    const filteredCategories = { ...categories }
+    
+    // Show Operating Systems category only when density >= 80% (senior/focused resume)
+    if (bulletDensity < 80 && filteredCategories['Operating Systems']) {
+      delete filteredCategories['Operating Systems']
+      console.log('🛠️ Skills Debug: Operating Systems filtered out (density < 80%)')
+    } else if (bulletDensity >= 80 && filteredCategories['Operating Systems']) {
+      console.log('🛠️ Skills Debug: Operating Systems included (density >= 80%)')
+    }
+    
+    return filteredCategories
   }
 
   /**
@@ -198,8 +233,28 @@ export class SkillsRenderer {
   renderCategories(skillsToDisplay) {
     const categoryHTML = []
     
-    for (const [categoryName, skillsArray] of Object.entries(skillsToDisplay)) {
+    // Define rendering order with Operating Systems last
+    const renderOrder = [
+      'Leadership',
+      'Programming Languages', 
+      'Frameworks & Libraries',
+      'Tools & Platforms',
+      'Concepts & Methodologies',
+      'Operating Systems' // Always last
+    ]
+    
+    // Render categories in specified order
+    for (const categoryName of renderOrder) {
+      const skillsArray = skillsToDisplay[categoryName]
       if (skillsArray && skillsArray.length > 0) {
+        const skillsList = this.formatSkillsCategory(categoryName, skillsArray)
+        categoryHTML.push(`<p><strong>${categoryName}:</strong> ${skillsList}</p>`)
+      }
+    }
+    
+    // Render any remaining categories not in the order list (fallback)
+    for (const [categoryName, skillsArray] of Object.entries(skillsToDisplay)) {
+      if (!renderOrder.includes(categoryName) && skillsArray && skillsArray.length > 0) {
         const skillsList = this.formatSkillsCategory(categoryName, skillsArray)
         categoryHTML.push(`<p><strong>${categoryName}:</strong> ${skillsList}</p>`)
       }

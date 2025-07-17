@@ -210,6 +210,7 @@ export async function load({ url }) {
       skills: () => render(SkillsSection, { 
         props: { 
           skillsData: finalData.sections?.skills || { skills: [] },
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
           config: finalData.sections?.skills?.preset_filters || {}
         } 
       }),
