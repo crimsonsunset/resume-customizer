@@ -43,6 +43,14 @@
       "Raspberry Pi",
       "Home Assistant"
     ],
+    "bullet_priorities": [
+      6,
+      7,
+      6,
+      6,
+      7,
+      6
+    ],
     "url": "https://www.home-assistant.io/"
   },
   {
@@ -61,6 +69,12 @@
       "Swagger API",
       "API Development",
       "Vue.js"
+    ],
+    "bullet_priorities": [
+      6,
+      5,
+      7,
+      6
     ],
     "url": "http://www.joesangiorgio.com/"
   },
@@ -83,6 +97,12 @@
       "Home Assistant",
       "WebSocket",
       "Docker"
+    ],
+    "bullet_priorities": [
+      8,
+      8,
+      9,
+      8
     ]
   },
   {
@@ -100,6 +120,12 @@
       "Cross-team Collaboration",
       "Content Management Systems (CMS)",
       "Product Management"
+    ],
+    "bullet_priorities": [
+      9,
+      8,
+      8,
+      8
     ]
   },
   {
@@ -161,6 +187,13 @@
     "skills": [
       "Material-UI",
       "Offshore Application Development"
+    ],
+    "bullet_priorities": [
+      7,
+      8,
+      7,
+      7,
+      8
     ]
   },
   {
@@ -183,6 +216,15 @@
       "Bulma (CSS Framework)",
       "Non-Fungible Tokens (NFTs)"
     ],
+    "bullet_priorities": [
+      9,
+      7,
+      9,
+      6,
+      7,
+      7,
+      8
+    ],
     "url": "https://gumbitnft.netlify.app/"
   },
   {
@@ -202,6 +244,14 @@
       "React.js",
       "Search Engine Optimization (SEO)",
       "Google Maps API"
+    ],
+    "bullet_priorities": [
+      10,
+      10,
+      7,
+      8,
+      6,
+      9
     ],
     "url": "https://github.com/allcleardev/allclear-app"
   },
@@ -223,6 +273,14 @@
       "TypeScript",
       "GraphQL",
       "Progressive Web Applications (PWAs)"
+    ],
+    "bullet_priorities": [
+      5,
+      6,
+      6,
+      6,
+      7,
+      6
     ],
     "url": "https://github.com/crimsonsunset/wedding-site"
   },
@@ -249,6 +307,17 @@
       "Next.js",
       "Drupal"
     ],
+    "bullet_priorities": [
+      7,
+      8,
+      6,
+      7,
+      7,
+      7,
+      7,
+      6,
+      5
+    ],
     "url": "https://marvel.com"
   },
   {
@@ -264,6 +333,10 @@
       "WordPress",
       "JavaScript",
       "PHP"
+    ],
+    "bullet_priorities": [
+      6,
+      5
     ],
     "url": "http://www.ratethattruck.com"
   },
@@ -284,6 +357,14 @@
       "React.js",
       "Redux Thunk",
       "Graph Databases"
+    ],
+    "bullet_priorities": [
+      8,
+      9,
+      8,
+      7,
+      6,
+      6
     ]
   },
   {
@@ -304,6 +385,14 @@
       "Block Element Modifier (BEM)",
       "SASS",
       "React Router"
+    ],
+    "bullet_priorities": [
+      8,
+      8,
+      8,
+      6,
+      6,
+      6
     ]
   },
   {
@@ -323,6 +412,12 @@
       "User Interface Design",
       "3rd Party Integrations"
     ],
+    "bullet_priorities": [
+      7,
+      6,
+      6,
+      7
+    ],
     "url": "https://marvel.com/insider"
   },
   {
@@ -339,6 +434,11 @@
       "Offline Development",
       "JSON",
       "Django"
+    ],
+    "bullet_priorities": [
+      6,
+      6,
+      7
     ]
   },
   {
@@ -355,6 +455,11 @@
       "Data Visualization",
       "API Development",
       "JavaScript"
+    ],
+    "bullet_priorities": [
+      7,
+      8,
+      7
     ]
   },
   {
@@ -371,6 +476,11 @@
       "Data Visualization",
       "User Interface Design",
       "JavaScript"
+    ],
+    "bullet_priorities": [
+      6,
+      5,
+      6
     ]
   },
   {
@@ -385,6 +495,10 @@
     "skills": [
       "Offline Development",
       "JavaScript"
+    ],
+    "bullet_priorities": [
+      6,
+      6
     ]
   }
 ]
