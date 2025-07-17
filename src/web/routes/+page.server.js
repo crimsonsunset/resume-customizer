@@ -251,6 +251,7 @@ export async function load({ url }) {
       recommendations: () => render(RecommendationsSection, { 
         props: { 
           recommendations: finalData.sections?.recommendations || { received: [] },
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
           config: finalData.sections?.recommendations?.preset_filters || {}
         } 
       }),
