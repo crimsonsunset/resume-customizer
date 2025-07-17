@@ -28,9 +28,9 @@
     --spacing-md: 0.15em;
     --spacing-lg: 0.2em;
     --spacing-xl: 0.3em;
-    --spacing-xxl: 0.4em;
-    --spacing-section: 0.5em;
-    --spacing-header: 0.8em;
+    --spacing-xxl: 0.3em;
+    --spacing-section: 0.25em;
+    --spacing-header: 0.6em;
     
     /* Line heights */
     --line-height-tight: 1.2;

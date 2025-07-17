@@ -16,7 +16,7 @@
       "Vite Plugins",
       "React Query"
     ],
-    "bullet_priorities": [10, 6, 9, 6],
+    "bullet_priorities": [10, 7, 9, 6],
     "url": "https://fora.day"
   },
   {
@@ -130,7 +130,7 @@
       "Node.js",
       "Internationalization"
     ],
-    "bullet_priorities": [10, 6, 6, 9, 6, 6, 6, 8]
+    "bullet_priorities": [10, 7, 6, 9, 6, 6, 6, 8]
   },
   {
     "name": "iCIMS Admin Application",
