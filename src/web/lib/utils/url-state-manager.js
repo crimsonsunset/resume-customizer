@@ -105,7 +105,7 @@ export const updateURLWithSections = (currentURL, visibleSections) => {
 }
 
 /**
- * Update URL preset parameter
+ * Update URL preset parameter and clear sections to reset to preset defaults
  * @param {URL} currentURL - Current page URL  
  * @param {string} presetValue - Preset value ('full' removes parameter)
  * @returns {URL} Updated URL object
@@ -118,6 +118,9 @@ export const updateURLWithPreset = (currentURL, presetValue) => {
   } else {
     newURL.searchParams.set('preset', presetValue)
   }
+  
+  // Clear sections parameter so preset starts with its default configuration
+  newURL.searchParams.delete('sections')
   
   return newURL
 }
