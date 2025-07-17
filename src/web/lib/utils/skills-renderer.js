@@ -3,11 +3,11 @@ import { has, sortBy } from 'lodash-es'
 // Context-to-Category mappings organized by priority (higher priority = lower number)
 const CATEGORY_CONTEXTS = {
   'Leadership': ['leadership', 'management', 'business', 'product'], // Priority 1
-  'Programming Languages': ['programming', 'javascript', 'css'], // Priority 2
+  'Programming Languages': ['javascript', 'css'], // Priority 2 - Specific language contexts only
   'Operating Systems': [], // Priority 2.5 - Hardcoded category, managed separately
   'Tools & Platforms': ['devops', 'cms', 'analytics', 'logging', 'monitoring', 'configuration', 'productivity', 'system'], // Priority 3
-  'Frameworks & Libraries': ['frontend', 'backend', 'mobile', 'nodejs'], // Priority 4
-  'Concepts & Methodologies': ['development', 'api', 'data', 'design', 'ai', 'crypto', 'performance', 'security', 'testing', 'technical', 'marketing', 'education'] // Priority 5
+  'Frameworks & Libraries': ['frontend', 'backend', 'mobile', 'nodejs', 'testing'], // Priority 4 - Added testing
+  'Concepts & Methodologies': ['development', 'api', 'data', 'design', 'ai', 'crypto', 'performance', 'security', 'technical', 'marketing', 'education'] // Priority 5
 }
 
 // Priority order for categories (lower number = higher priority)
@@ -24,7 +24,7 @@ const CATEGORY_PRIORITY = {
 const OS_KEYWORDS = ['Windows', 'Mac', 'macOS', 'iOS', 'Android', 'Linux', 'Unix', 'Ubuntu', 'OS', 'Operating System']
 
 // Programming language name patterns for fallback categorization
-const PROGRAMMING_LANGUAGES = new Set(['CSS/Sass', 'HTML', 'Java', 'JavaScript', 'JSON', 'PHP', 'Python', 'SQL', 'TypeScript', 'XML', 'YAML'])
+const PROGRAMMING_LANGUAGES = new Set(['C++', 'CSS/Sass', 'HTML', 'Java', 'JavaScript', 'JSON', 'JSX', 'PHP', 'Python', 'SQL', 'TypeScript', 'XML', 'YAML'])
 
 /**
  * SkillsRenderer handles the rendering of skills sections
@@ -132,6 +132,42 @@ export class SkillsRenderer {
   }
 
   /**
+   * Gets the appropriate category for a skill based on its name and contexts
+   */
+  getSkillCategory(contexts, skillName = '') {
+    // First check if it's a programming language by name
+    if (PROGRAMMING_LANGUAGES.has(skillName)) {
+      return 'Programming Languages'
+    }
+    
+    if (contexts.length === 0) {
+      return 'Concepts & Methodologies'
+    }
+    
+    // Find which categories these contexts belong to
+    const categoriesForContexts = contexts
+      .map(context => {
+        // Find which category this context belongs to
+        for (const [categoryName, categoryContexts] of Object.entries(CATEGORY_CONTEXTS)) {
+          if (categoryContexts.includes(context)) {
+            return categoryName
+          }
+        }
+        return null
+      })
+      .filter(cat => cat !== null)
+    
+    if (categoriesForContexts.length === 0) {
+      return 'Concepts & Methodologies'
+    }
+    
+    // Sort by priority and pick the highest priority category
+    return categoriesForContexts.sort((a, b) => 
+      (CATEGORY_PRIORITY[a] || 999) - (CATEGORY_PRIORITY[b] || 999)
+    )[0]
+  }
+
+  /**
    * Generates categorized skills from skills-inventory.json
    */
   generateSkillsFromInventory(skillsInventory, bulletDensity = 100) {
@@ -145,56 +181,44 @@ export class SkillsRenderer {
     const categories = {
       'Leadership': [],
       'Programming Languages': [], 
-      'Operating Systems': [],
       'Frameworks & Libraries': [],
       'Tools & Platforms': [],
       'Concepts & Methodologies': []
     }
-    
-    // Convert skills inventory to categorized structure
-    const { skills } = skillsInventory
-    
-    for (const [skillKey, skillData] of Object.entries(skills)) {
-      const { name: skillName, contexts = [] } = skillData
-      
-      let category = 'Concepts & Methodologies' // Default fallback
-      
-      if (contexts.length > 0) {
-        // Find the category for each context and pick the highest priority one
-        const categoriesForContexts = contexts
-          .map(context => {
-            // Find which category this context belongs to
-            for (const [categoryName, categoryContexts] of Object.entries(CATEGORY_CONTEXTS)) {
-              if (categoryContexts.includes(context)) {
-                return categoryName
-              }
-            }
-            return null
-          })
-          .filter(cat => cat !== null)
-        
-        if (categoriesForContexts.length > 0) {
-          // Sort by priority and pick the highest priority category
-          category = categoriesForContexts.sort((a, b) => 
-            (CATEGORY_PRIORITY[a] || 999) - (CATEGORY_PRIORITY[b] || 999)
-          )[0]
-        }
-      } else if (PROGRAMMING_LANGUAGES.has(skillName)) {
-        // Fallback: Use name-based categorization for skills without contexts
-        category = 'Programming Languages'
+
+    // Calculate priority threshold - inverted so higher density shows more skills
+    // 100% density → threshold 1 (show all), 10% density → threshold 10 (show only highest)
+    const priorityThreshold = Math.ceil((110 - bulletDensity) / 10)
+    console.log(`🛠️ Skills Debug: Density ${bulletDensity}%, Priority threshold: ${priorityThreshold}`)
+
+         // Track filtering stats
+     const totalSkills = Object.keys(skillsInventory.skills).length
+     let filteredSkills = 0
+
+    // Process each skill from inventory
+    for (const [skillKey, skillData] of Object.entries(skillsInventory.skills)) {
+      // Skip skills below priority threshold
+      if (skillData.priority && skillData.priority < priorityThreshold) {
+        continue
       }
       
-      categories[category].push(skillName)
+      filteredSkills++
+      const skillName = skillData.name
+      const contexts = skillData.contexts || []
+      
+      // Find the category for this skill based on name and context priority
+      const category = this.getSkillCategory(contexts, skillName)
+      
+      if (category && categories[category]) {
+        categories[category].push(skillName)
+      } else {
+        // Default fallback
+        categories['Concepts & Methodologies'].push(skillName)
+      }
     }
-    
-    // Sort skills within each category
-    for (const category of Object.keys(categories)) {
-      categories[category].sort()
-    }
-    
-    // Add hardcoded Operating Systems category and filter OS keywords from other categories
-    categories['Operating Systems'] = ['Proficient in Windows, Mac, or Linux, Android and iOS']
-    
+
+    console.log(`🛠️ Skills Debug: After priority filtering: ${filteredSkills} skills (was ${totalSkills})`)
+
     // Remove OS-related skills from other categories
     for (const [categoryName, skillsArray] of Object.entries(categories)) {
       if (categoryName !== 'Operating Systems') {
@@ -203,9 +227,17 @@ export class SkillsRenderer {
         )
       }
     }
+
+    // Sort skills within each category
+    for (const category of Object.keys(categories)) {
+      categories[category].sort()
+    }
+    
+    // Add hardcoded Operating Systems category and filter OS keywords from other categories
+    categories['Operating Systems'] = ['Proficient in Windows, Mac, or Linux, Android and iOS']
     
     console.log('🛠️ Skills categories generated:', Object.keys(categories))
-    console.log('🛠️ Total skills:', Object.values(categories).flat().length)
+    console.log('🛠️ Total skills after categorization:', Object.values(categories).flat().length)
     
     return this.applyDensityFiltering(categories, bulletDensity)
   }

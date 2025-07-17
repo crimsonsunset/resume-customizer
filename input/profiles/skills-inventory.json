@@ -26,7 +26,8 @@
         "react"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 10
     },
     "typescript": {
       "name": "TypeScript",
@@ -44,7 +45,8 @@
         "angular"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 8
     },
     "html": {
       "name": "HTML",
@@ -59,7 +61,8 @@
         "javascript"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 10
     },
     "css": {
       "name": "CSS/Sass",
@@ -79,7 +82,8 @@
         "javascript"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 10
     },
     "python": {
       "name": "Python",
@@ -90,7 +94,8 @@
         "scripting"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 7
     },
     "php": {
       "name": "PHP",
@@ -100,7 +105,8 @@
         "backend"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "sql": {
       "name": "SQL",
@@ -111,7 +117,8 @@
         "database"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 10
     },
     "java": {
       "name": "Java",
@@ -121,7 +128,8 @@
         "backend"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "xml": {
       "name": "XML",
@@ -133,7 +141,8 @@
         "configuration"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "json": {
       "name": "JSON",
@@ -144,7 +153,8 @@
         "apis"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 7
     },
     "yaml": {
       "name": "YAML",
@@ -155,7 +165,8 @@
         "devops"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "react": {
       "name": "React",
@@ -173,7 +184,8 @@
         "jsx"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 9
     },
     "angular": {
       "name": "Angular",
@@ -184,7 +196,8 @@
         "enterprise"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "vue": {
       "name": "Vue.js",
@@ -194,7 +207,8 @@
         "frontend"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "svelte": {
       "name": "Svelte",
@@ -204,7 +218,8 @@
         "frontend"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 4
     },
     "sveltekit": {
       "name": "SvelteKit",
@@ -218,7 +233,8 @@
         "svelte"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 4
     },
     "jquery": {
       "name": "jQuery",
@@ -228,7 +244,8 @@
         "frontend"
       ],
       "marketDemand": "low",
-      "trending": "down"
+      "trending": "down",
+      "priority": 1
     },
     "redux": {
       "name": "Redux",
@@ -242,7 +259,8 @@
         "react"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 7
     },
     "zustand": {
       "name": "Zustand",
@@ -256,7 +274,8 @@
         "react"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 3
     },
     "rxjs": {
       "name": "RxJS",
@@ -267,7 +286,8 @@
         "reactive"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "nextjs": {
       "name": "Next.js",
@@ -282,7 +302,8 @@
         "typescript"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 7
     },
     "gatsby": {
       "name": "Gatsby",
@@ -293,7 +314,8 @@
         "static-site"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "tailwindcss": {
       "name": "Tailwind CSS",
@@ -304,7 +326,8 @@
         "styling"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 6
     },
     "bootstrap": {
       "name": "Bootstrap",
@@ -315,7 +338,8 @@
         "styling"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "materialui": {
       "name": "Material-UI/MUI",
@@ -326,7 +350,8 @@
         "react"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "styledcomponents": {
       "name": "Styled Components",
@@ -337,7 +362,8 @@
         "react"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "chakraui": {
       "name": "Chakra UI",
@@ -348,7 +374,8 @@
         "react"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 1
     },
     "bulma": {
       "name": "Bulma",
@@ -359,7 +386,8 @@
         "styling"
       ],
       "marketDemand": "low",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "framermotion": {
       "name": "Framer Motion",
@@ -373,7 +401,8 @@
         "react"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 3
     },
     "reactrouter": {
       "name": "React Router",
@@ -387,7 +416,8 @@
         "react"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 7
     },
     "reacthookform": {
       "name": "React Hook Form",
@@ -401,7 +431,8 @@
         "react"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 6
     },
     "nodejs": {
       "name": "Node.js",
@@ -416,7 +447,8 @@
         "express"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 9
     },
     "express": {
       "name": "Express",
@@ -430,7 +462,8 @@
         "nodejs"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 8
     },
     "nestjs": {
       "name": "Nest.js",
@@ -441,7 +474,8 @@
         "enterprise"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 4
     },
     "restapis": {
       "name": "REST APIs",
@@ -452,7 +486,8 @@
         "api"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 9
     },
     "graphql": {
       "name": "GraphQL",
@@ -463,7 +498,8 @@
         "api"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "webapis": {
       "name": "Web APIs",
@@ -474,7 +510,8 @@
         "backend"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 7
     },
     "websockets": {
       "name": "WebSockets",
@@ -485,7 +522,8 @@
         "realtime"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "webrtc": {
       "name": "WebRTC",
@@ -496,7 +534,8 @@
         "realtime"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "serviceworkers": {
       "name": "Service Workers",
@@ -507,40 +546,44 @@
         "pwa"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "helmet": {
       "name": "Helmet",
       "proficiency": "intermediate",
-      "yearsExperience": 2,
-      "contexts": [
-        "backend",
-        "security"
-      ],
-      "marketDemand": "medium",
-      "trending": "stable"
-    },
-    "cors": {
-      "name": "CORS",
-      "proficiency": "advanced",
-      "yearsExperience": 6,
-      "contexts": [
-        "backend",
-        "security"
-      ],
-      "marketDemand": "high",
-      "trending": "stable"
-    },
-    "bcrypt": {
-      "name": "Bcrypt",
-      "proficiency": "advanced",
       "yearsExperience": 3,
       "contexts": [
         "backend",
         "security"
       ],
+      "marketDemand": "medium",
+      "trending": "stable",
+      "priority": 2
+    },
+    "cors": {
+      "name": "CORS",
+      "proficiency": "advanced",
+      "yearsExperience": 5,
+      "contexts": [
+        "backend",
+        "security"
+      ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 7
+    },
+    "bcrypt": {
+      "name": "Bcrypt",
+      "proficiency": "advanced",
+      "yearsExperience": 5,
+      "contexts": [
+        "backend",
+        "security"
+      ],
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 5
     },
     "multer": {
       "name": "Multer",
@@ -551,18 +594,20 @@
         "file-upload"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "socketio": {
       "name": "Socket.io",
       "proficiency": "intermediate",
-      "yearsExperience": 3,
+      "yearsExperience": 4,
       "contexts": [
         "backend",
         "realtime"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "nodemailer": {
       "name": "Nodemailer",
@@ -573,7 +618,8 @@
         "email"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "cron": {
       "name": "Cron/node-cron",
@@ -584,7 +630,8 @@
         "scheduling"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "auth0": {
       "name": "auth0",
@@ -595,29 +642,32 @@
         "authentication"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "jwt": {
       "name": "JWT",
       "proficiency": "advanced",
-      "yearsExperience": 2,
+      "yearsExperience": 5,
       "contexts": [
         "backend",
         "authentication"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "oauth": {
       "name": "OAuth",
-      "proficiency": "intermediate",
-      "yearsExperience": 4,
+      "proficiency": "advanced",
+      "yearsExperience": 5,
       "contexts": [
         "backend",
         "authentication"
       ],
-      "marketDemand": "medium",
-      "trending": "stable"
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 5
     },
     "firebaseauth": {
       "name": "Firebase Auth",
@@ -628,7 +678,8 @@
         "authentication"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "mongodb": {
       "name": "MongoDB",
@@ -639,7 +690,8 @@
         "database"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 8
     },
     "mongoose": {
       "name": "Mongoose",
@@ -652,30 +704,33 @@
       "relatedSkills": [
         "mongodb"
       ],
-      "marketDemand": "high",
-      "trending": "stable"
+      "marketDemand": "medium",
+      "trending": "stable",
+      "priority": 6
     },
     "postgresql": {
       "name": "PostgreSQL",
-      "proficiency": "intermediate",
-      "yearsExperience": 2,
+      "proficiency": "advanced",
+      "yearsExperience": 4,
       "contexts": [
         "backend",
         "database"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 8
     },
     "mysql": {
       "name": "MySQL",
-      "proficiency": "intermediate",
-      "yearsExperience": 3,
+      "proficiency": "advanced",
+      "yearsExperience": 6,
       "contexts": [
         "backend",
         "database"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "redis": {
       "name": "Redis",
@@ -685,8 +740,9 @@
         "backend",
         "caching"
       ],
-      "marketDemand": "medium",
-      "trending": "stable"
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 7
     },
     "supabase": {
       "name": "Supabase",
@@ -697,238 +753,260 @@
         "database"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 3
     },
     "git": {
       "name": "Git",
       "proficiency": "expert",
-      "yearsExperience": 13,
+      "yearsExperience": 10,
       "contexts": [
-        "development",
+        "devops",
         "version-control"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 10
     },
     "github": {
       "name": "GitHub",
       "proficiency": "expert",
-      "yearsExperience": 13,
+      "yearsExperience": 10,
       "contexts": [
         "devops",
-        "system"
+        "version-control"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 7
     },
     "gitlab": {
       "name": "GitLab",
-      "proficiency": "advanced",
-      "yearsExperience": 13,
-      "contexts": [
-        "development",
-        "devops"
-      ],
-      "marketDemand": "medium",
-      "trending": "stable"
-    },
-    "bitbucket": {
-      "name": "Bitbucket",
-      "proficiency": "advanced",
-      "yearsExperience": 13,
-      "contexts": [
-        "development",
-        "collaboration"
-      ],
-      "marketDemand": "medium",
-      "trending": "stable"
-    },
-    "githubactions": {
-      "name": "GitHub Actions",
       "proficiency": "intermediate",
       "yearsExperience": 3,
       "contexts": [
         "devops",
-        "cicd"
+        "version-control"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable",
+      "priority": 4
+    },
+    "bitbucket": {
+      "name": "Bitbucket",
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
+      "contexts": [
+        "devops",
+        "version-control"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable",
+      "priority": 3
+    },
+    "githubactions": {
+      "name": "GitHub Actions",
+      "proficiency": "intermediate",
+      "yearsExperience": 2,
+      "contexts": [
+        "devops",
+        "ci-cd"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 6
     },
     "npm": {
       "name": "npm",
       "proficiency": "expert",
-      "yearsExperience": 10,
+      "yearsExperience": 8,
       "contexts": [
-        "development",
+        "devops",
         "package-management"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 8
     },
     "webpack": {
       "name": "Webpack",
       "proficiency": "advanced",
-      "yearsExperience": 4,
+      "yearsExperience": 6,
       "contexts": [
-        "development",
+        "devops",
         "build-tools"
       ],
-      "marketDemand": "high",
-      "trending": "stable"
+      "marketDemand": "medium",
+      "trending": "stable",
+      "priority": 5
     },
     "vite": {
       "name": "Vite",
       "proficiency": "intermediate",
       "yearsExperience": 2,
       "contexts": [
-        "development",
+        "devops",
         "build-tools"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 5
     },
     "nx": {
       "name": "Nx",
-      "proficiency": "intermediate",
-      "yearsExperience": 2,
+      "proficiency": "beginner",
+      "yearsExperience": 1,
       "contexts": [
-        "development",
-        "monorepo"
+        "devops",
+        "build-tools"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 3
     },
     "eslint": {
       "name": "ESLint",
       "proficiency": "advanced",
-      "yearsExperience": 4,
+      "yearsExperience": 6,
       "contexts": [
-        "development",
-        "quality"
+        "devops",
+        "code-quality"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "prettier": {
       "name": "Prettier",
       "proficiency": "advanced",
-      "yearsExperience": 3,
-      "contexts": [
-        "development",
-        "formatting"
-      ],
-      "marketDemand": "high",
-      "trending": "stable"
-    },
-    "webstorm": {
-      "name": "WebStorm",
-      "proficiency": "expert",
-      "yearsExperience": 13,
-      "contexts": [
-        "devops",
-        "productivity"
-      ],
-      "marketDemand": "medium",
-      "trending": "stable"
-    },
-    "cursor": {
-      "name": "Cursor",
-      "proficiency": "advanced",
-      "yearsExperience": 1,
-      "contexts": [
-        "development",
-        "ai-coding"
-      ],
-      "marketDemand": "high",
-      "trending": "up"
-    },
-    "vscode": {
-      "name": "VS Code",
-      "proficiency": "advanced",
       "yearsExperience": 4,
       "contexts": [
         "devops",
-        "productivity"
+        "code-quality"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
+    },
+    "webstorm": {
+      "name": "WebStorm",
+      "proficiency": "intermediate",
+      "yearsExperience": 3,
+      "contexts": [
+        "devops",
+        "ide"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable",
+      "priority": 3
+    },
+    "cursor": {
+      "name": "Cursor",
+      "proficiency": "expert",
+      "yearsExperience": 1,
+      "contexts": [
+        "devops",
+        "ide"
+      ],
+      "marketDemand": "medium",
+      "trending": "up",
+      "priority": 4
+    },
+    "vscode": {
+      "name": "VS Code",
+      "proficiency": "expert",
+      "yearsExperience": 6,
+      "contexts": [
+        "devops",
+        "ide"
+      ],
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 8
     },
     "commandline": {
       "name": "Command Line",
-      "proficiency": "expert",
-      "yearsExperience": 8,
+      "proficiency": "advanced",
+      "yearsExperience": 10,
       "contexts": [
-        "development",
+        "devops",
         "system"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 9
     },
     "jest": {
       "name": "Jest",
       "proficiency": "advanced",
-      "yearsExperience": 3,
+      "yearsExperience": 5,
       "contexts": [
         "testing",
-        "devops"
+        "javascript"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 7
     },
     "vitest": {
       "name": "Vitest",
-      "proficiency": "beginner",
+      "proficiency": "intermediate",
       "yearsExperience": 1,
       "contexts": [
         "testing",
-        "devops"
+        "javascript"
       ],
-      "marketDemand": "high",
-      "trending": "up"
+      "marketDemand": "medium",
+      "trending": "up",
+      "priority": 4
     },
     "karma": {
       "name": "Karma",
       "proficiency": "intermediate",
-      "yearsExperience": 2,
+      "yearsExperience": 3,
       "contexts": [
         "testing",
-        "devops"
+        "javascript"
       ],
-      "marketDemand": "medium",
-      "trending": "stable"
+      "marketDemand": "low",
+      "trending": "down",
+      "priority": 2
     },
     "cypress": {
       "name": "Cypress",
       "proficiency": "intermediate",
-      "yearsExperience": 2,
+      "yearsExperience": 3,
       "contexts": [
         "testing",
         "e2e"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "puppeteer": {
       "name": "Puppeteer",
       "proficiency": "intermediate",
-      "yearsExperience": 2,
+      "yearsExperience": 3,
       "contexts": [
         "testing",
         "automation"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "playwright": {
       "name": "Playwright",
       "proficiency": "beginner",
-      "yearsExperience": 2,
+      "yearsExperience": 1,
       "contexts": [
         "testing",
-        "e2e"
+        "automation"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 2
     },
     "sinon": {
       "name": "Sinon",
@@ -939,7 +1017,8 @@
         "mocking"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "chai": {
       "name": "Chai",
@@ -947,10 +1026,11 @@
       "yearsExperience": 3,
       "contexts": [
         "testing",
-        "assertion"
+        "assertions"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "mocha": {
       "name": "Mocha",
@@ -958,10 +1038,11 @@
       "yearsExperience": 3,
       "contexts": [
         "testing",
-        "framework"
+        "javascript"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "docker": {
       "name": "Docker",
@@ -972,7 +1053,8 @@
         "containerization"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 8
     },
     "kubernetes": {
       "name": "Kubernetes",
@@ -983,29 +1065,32 @@
         "orchestration"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "stable",
+      "priority": 5
     },
     "aws": {
       "name": "AWS",
       "proficiency": "intermediate",
-      "yearsExperience": 5,
+      "yearsExperience": 4,
       "contexts": [
         "devops",
         "cloud"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 8
     },
     "gcp": {
       "name": "Google Cloud Platform",
       "proficiency": "beginner",
-      "yearsExperience": 2,
+      "yearsExperience": 1,
       "contexts": [
         "devops",
         "cloud"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "stable",
+      "priority": 6
     },
     "azure": {
       "name": "Azure",
@@ -1016,40 +1101,44 @@
         "cloud"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "stable",
+      "priority": 6
     },
     "cicd": {
       "name": "CI/CD",
       "proficiency": "intermediate",
-      "yearsExperience": 5,
+      "yearsExperience": 4,
       "contexts": [
         "devops",
         "automation"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 7
     },
     "nginx": {
       "name": "Nginx",
       "proficiency": "intermediate",
-      "yearsExperience": 1,
+      "yearsExperience": 3,
       "contexts": [
         "devops",
         "web-server"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "pm2": {
       "name": "PM2",
       "proficiency": "intermediate",
-      "yearsExperience": 2,
+      "yearsExperience": 3,
       "contexts": [
         "devops",
         "process-management"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "letsencrypt": {
       "name": "Let's Encrypt",
@@ -1060,51 +1149,56 @@
         "security"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "cloudflare": {
       "name": "CloudFlare",
       "proficiency": "intermediate",
-      "yearsExperience": 4,
+      "yearsExperience": 3,
       "contexts": [
         "devops",
         "cdn"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "heroku": {
       "name": "Heroku",
-      "proficiency": "advanced",
-      "yearsExperience": 2,
+      "proficiency": "intermediate",
+      "yearsExperience": 4,
       "contexts": [
         "devops",
-        "deployment"
+        "hosting"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "vercel": {
       "name": "Vercel",
       "proficiency": "intermediate",
-      "yearsExperience": 3,
+      "yearsExperience": 2,
       "contexts": [
         "devops",
-        "deployment"
+        "hosting"
       ],
-      "marketDemand": "high",
-      "trending": "up"
+      "marketDemand": "medium",
+      "trending": "up",
+      "priority": 4
     },
     "netlify": {
       "name": "Netlify",
       "proficiency": "intermediate",
-      "yearsExperience": 6,
+      "yearsExperience": 3,
       "contexts": [
         "devops",
-        "deployment"
+        "hosting"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "cdn": {
       "name": "CDN",
@@ -1115,7 +1209,8 @@
         "performance"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "reactnative": {
       "name": "React Native",
@@ -1123,54 +1218,63 @@
       "yearsExperience": 2,
       "contexts": [
         "mobile",
-        "react"
+        "cross-platform"
+      ],
+      "relatedSkills": [
+        "react",
+        "javascript"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "pwa": {
       "name": "Progressive Web Apps",
       "proficiency": "intermediate",
-      "yearsExperience": 4,
+      "yearsExperience": 3,
       "contexts": [
         "mobile",
         "web"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "googleanalytics": {
       "name": "Google Analytics",
-      "proficiency": "advanced",
-      "yearsExperience": 4,
+      "proficiency": "intermediate",
+      "yearsExperience": 8,
       "contexts": [
         "analytics",
         "marketing"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "googlemaps": {
       "name": "Google Maps API",
-      "proficiency": "advanced",
-      "yearsExperience": 2,
+      "proficiency": "intermediate",
+      "yearsExperience": 5,
       "contexts": [
-        "frontend",
-        "maps"
+        "api",
+        "mapping"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "lighthouse": {
       "name": "Lighthouse",
       "proficiency": "intermediate",
-      "yearsExperience": 5,
+      "yearsExperience": 3,
       "contexts": [
         "performance",
-        "quality"
+        "audit"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "corewebvitals": {
       "name": "Core Web Vitals",
@@ -1181,7 +1285,8 @@
         "seo"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 4
     },
     "seo": {
       "name": "SEO",
@@ -1192,7 +1297,8 @@
         "web"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "ssl": {
       "name": "HTTPS/SSL",
@@ -1203,7 +1309,8 @@
         "web"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "datadog": {
       "name": "Datadog",
@@ -1214,7 +1321,8 @@
         "devops"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "sentry": {
       "name": "Sentry",
@@ -1225,7 +1333,8 @@
         "error-tracking"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "newrelic": {
       "name": "New Relic",
@@ -1236,7 +1345,8 @@
         "performance"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "rollbar": {
       "name": "Rollbar",
@@ -1247,7 +1357,8 @@
         "error-tracking"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "logrocket": {
       "name": "LogRocket",
@@ -1258,7 +1369,8 @@
         "session-replay"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 2
     },
     "twilio": {
       "name": "Twilio",
@@ -1269,7 +1381,8 @@
         "communication"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "sendgrid": {
       "name": "SendGrid",
@@ -1280,7 +1393,8 @@
         "email"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "pusher": {
       "name": "Pusher",
@@ -1291,7 +1405,8 @@
         "realtime"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "agile": {
       "name": "Agile",
@@ -1302,7 +1417,8 @@
         "process"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 8
     },
     "scrum": {
       "name": "Scrum",
@@ -1313,7 +1429,8 @@
         "process"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 8
     },
     "kanban": {
       "name": "Kanban",
@@ -1324,7 +1441,8 @@
         "process"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "jira": {
       "name": "Jira",
@@ -1335,7 +1453,8 @@
         "devops"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "confluence": {
       "name": "Confluence",
@@ -1346,7 +1465,8 @@
         "documentation"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "asana": {
       "name": "Asana",
@@ -1357,7 +1477,8 @@
         "system"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "trello": {
       "name": "Trello",
@@ -1368,7 +1489,8 @@
         "system"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "notion": {
       "name": "Notion",
@@ -1379,7 +1501,8 @@
         "system"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "teammanagement": {
       "name": "Team Management",
@@ -1390,7 +1513,8 @@
         "management"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 10
     },
     "technicalleadership": {
       "name": "Technical Leadership",
@@ -1401,7 +1525,8 @@
         "technical"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 9
     },
     "stakeholdermanagement": {
       "name": "Stakeholder Management",
@@ -1412,7 +1537,8 @@
         "communication"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 7
     },
     "crossteamcollaboration": {
       "name": "Cross-team Collaboration",
@@ -1423,7 +1549,8 @@
         "collaboration"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 10
     },
     "strategicplanning": {
       "name": "Strategic Planning",
@@ -1434,7 +1561,8 @@
         "strategy"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "technicalvision": {
       "name": "Technical Vision & Roadmapping",
@@ -1445,7 +1573,8 @@
         "strategy"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "mentoring": {
       "name": "Mentoring",
@@ -1456,7 +1585,8 @@
         "development"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "processimprovement": {
       "name": "Process Improvement",
@@ -1467,7 +1597,8 @@
         "optimization"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "requirementsanalysis": {
       "name": "Requirements Analysis",
@@ -1478,7 +1609,8 @@
         "analysis"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 7
     },
     "productstrategy": {
       "name": "Product Strategy",
@@ -1489,7 +1621,8 @@
         "strategy"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "technicalarchitecture": {
       "name": "Technical Architecture",
@@ -1500,7 +1633,8 @@
         "architecture"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "systemdesign": {
       "name": "System Design",
@@ -1511,7 +1645,8 @@
         "architecture"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "codereview": {
       "name": "Code Review",
@@ -1522,7 +1657,8 @@
         "quality"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "openaiapi": {
       "name": "OpenAI API",
@@ -1533,7 +1669,8 @@
         "api"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 6
     },
     "claudeapi": {
       "name": "Claude API",
@@ -1544,7 +1681,8 @@
         "api"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 6
     },
     "llms": {
       "name": "LLMs",
@@ -1555,7 +1693,8 @@
         "ml"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 6
     },
     "promptengineering": {
       "name": "Prompt Engineering",
@@ -1566,7 +1705,8 @@
         "optimization"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 6
     },
     "aiintegration": {
       "name": "AI Integration",
@@ -1577,7 +1717,8 @@
         "development"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 5
     },
     "n8n": {
       "name": "n8n",
@@ -1588,7 +1729,8 @@
         "automation"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 2
     },
     "langchain": {
       "name": "LangChain",
@@ -1599,7 +1741,8 @@
         "framework"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 4
     },
     "huggingface": {
       "name": "Hugging Face",
@@ -1610,7 +1753,8 @@
         "ml"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 4
     },
     "tensorflowjs": {
       "name": "TensorFlow.js",
@@ -1621,7 +1765,8 @@
         "ml"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 3
     },
     "wordpress": {
       "name": "WordPress",
@@ -1632,7 +1777,8 @@
         "web"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "drupal": {
       "name": "Drupal",
@@ -1643,7 +1789,8 @@
         "web"
       ],
       "marketDemand": "low",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "headlesscms": {
       "name": "Headless CMS",
@@ -1654,7 +1801,8 @@
         "api"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "lodash": {
       "name": "Lodash",
@@ -1665,7 +1813,8 @@
         "backend"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "momentjs": {
       "name": "Moment.js",
@@ -1676,7 +1825,8 @@
         "backend"
       ],
       "marketDemand": "medium",
-      "trending": "down"
+      "trending": "down",
+      "priority": 2
     },
     "axios": {
       "name": "Axios",
@@ -1687,7 +1837,8 @@
         "backend"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "cheerio": {
       "name": "Cheerio",
@@ -1698,7 +1849,8 @@
         "parsing"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "i18next": {
       "name": "i18next",
@@ -1709,7 +1861,8 @@
         "backend"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "testautomation": {
       "name": "Test Automation",
@@ -1720,7 +1873,8 @@
         "quality"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 2
     },
     "aisoftwaredevelopment": {
       "name": "AI Software Development",
@@ -1731,7 +1885,8 @@
         "development"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 5
     },
     "datavisualization": {
       "name": "Data Visualization",
@@ -1742,7 +1897,8 @@
         "analytics"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "offlinedevelopment": {
       "name": "Offline Development",
@@ -1753,7 +1909,8 @@
         "pwa"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "thirdpartyintegrations": {
       "name": "3rd Party Integrations",
@@ -1764,7 +1921,8 @@
         "integration"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "userinterfacedesign": {
       "name": "User Interface Design",
@@ -1775,7 +1933,8 @@
         "frontend"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "iframes": {
       "name": "Iframes",
@@ -1786,7 +1945,8 @@
         "integration"
       ],
       "marketDemand": "low",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "bem": {
       "name": "Block Element Modifier (BEM)",
@@ -1797,7 +1957,8 @@
         "development"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "reduxthunk": {
       "name": "Redux Thunk",
@@ -1812,7 +1973,8 @@
         "react"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "backendwebdevelopment": {
       "name": "Back-End Web Development",
@@ -1823,7 +1985,8 @@
         "api"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "datasynchronization": {
       "name": "Data Synchronization",
@@ -1834,7 +1997,8 @@
         "integration"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "webdevelopment": {
       "name": "Web Development",
@@ -1845,7 +2009,8 @@
         "backend"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 9
     },
     "webservices": {
       "name": "Web Services",
@@ -1856,7 +2021,8 @@
         "integration"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "contentmanagement": {
       "name": "Content Management",
@@ -1867,7 +2033,8 @@
         "content"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "databases": {
       "name": "Databases",
@@ -1878,7 +2045,8 @@
         "data"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 6
     },
     "mobileapplications": {
       "name": "Mobile Applications",
@@ -1889,7 +2057,8 @@
         "development"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "blockchain": {
       "name": "Blockchain",
@@ -1900,7 +2069,8 @@
         "web3"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "nft": {
       "name": "Non-Fungible Tokens (NFTs)",
@@ -1911,7 +2081,8 @@
         "web3"
       ],
       "marketDemand": "low",
-      "trending": "down"
+      "trending": "down",
+      "priority": 1
     },
     "linux": {
       "name": "Linux",
@@ -1922,7 +2093,8 @@
         "development"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "windows": {
       "name": "Windows",
@@ -1933,7 +2105,8 @@
         "development"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "android": {
       "name": "Android",
@@ -1944,7 +2117,8 @@
         "testing"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "macos": {
       "name": "Mac OS",
@@ -1955,7 +2129,8 @@
         "development"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 4
     },
     "microsoftoffice": {
       "name": "Microsoft Office",
@@ -1966,7 +2141,8 @@
         "system"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "photoshop": {
       "name": "Photoshop",
@@ -1977,7 +2153,8 @@
         "system"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "excel": {
       "name": "Excel",
@@ -1988,7 +2165,8 @@
         "productivity"
       ],
       "marketDemand": "high",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 5
     },
     "cplusplus": {
       "name": "C++",
@@ -1999,7 +2177,8 @@
         "systems"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "teaching": {
       "name": "Teaching",
@@ -2010,7 +2189,8 @@
         "mentoring"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 3
     },
     "figma": {
       "name": "Figma",
@@ -2021,7 +2201,8 @@
         "system"
       ],
       "marketDemand": "high",
-      "trending": "up"
+      "trending": "up",
+      "priority": 4
     },
     "sketch": {
       "name": "Sketch",
@@ -2032,7 +2213,8 @@
         "prototyping"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "xcode": {
       "name": "XCode",
@@ -2043,7 +2225,8 @@
         "ios"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "web3sdks": {
       "name": "web3 SDKs",
@@ -2054,7 +2237,8 @@
         "web3"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "nock": {
       "name": "Nock",
@@ -2065,7 +2249,8 @@
         "mocking"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "winston": {
       "name": "Winston",
@@ -2076,7 +2261,8 @@
         "logging"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 2
     },
     "storybook": {
       "name": "Storybook",
@@ -2087,7 +2273,8 @@
         "documentation"
       ],
       "marketDemand": "medium",
-      "trending": "up"
+      "trending": "up",
+      "priority": 2
     },
     "aha": {
       "name": "aha",
@@ -2098,7 +2285,8 @@
         "roadmapping"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "pendo": {
       "name": "Pendo",
@@ -2109,7 +2297,8 @@
         "monitoring"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "allstacks": {
       "name": "Allstacks",
@@ -2120,7 +2309,8 @@
         "development"
       ],
       "marketDemand": "low",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     },
     "sumologic": {
       "name": "Sumologic",
@@ -2131,7 +2321,8 @@
         "monitoring"
       ],
       "marketDemand": "medium",
-      "trending": "stable"
+      "trending": "stable",
+      "priority": 1
     }
   }
 }
