@@ -298,16 +298,27 @@ export async function load({ url }) {
     const sectionOrder = finalData.sections_order || ['headline', 'objective', 'summary', 'education', 'skills', 'experience', 'projects', 'honors-awards', 'volunteering', 'recommendations', 'activities', 'certifications', 'courses', 'location']
     console.log('📋 Sections order:', sectionOrder)
     
-    // Render sections in specified order
+    // Render sections in specified order and track visibility
     const sectionResults = []
+    const actuallyVisibleSections = []
+    const EMPTY_SECTION_THRESHOLD = 100 // Sections with content below this are considered empty/filtered
+    
     for (const sectionName of sectionOrder) {
       if (componentRenderers[sectionName]) {
         console.log(`🎨 Rendering ${sectionName}Section...`)
         const result = componentRenderers[sectionName]()
-        console.log(`✅ ${sectionName}Section rendered, length:`, result.body.length)
+        const isVisible = result.body.length > EMPTY_SECTION_THRESHOLD
+        console.log(`✅ ${sectionName}Section rendered, length: ${result.body.length}${isVisible ? ' (visible)' : ' (filtered out)'}`)
+        
+        if (isVisible) {
+          actuallyVisibleSections.push(sectionName)
+        }
+        
         sectionResults.push(result.body)
       }
     }
+    
+    console.log('🔍 Actually visible sections:', actuallyVisibleSections)
     
     // Combine header + sections in order with proper CSS Grid structure
     const resumeContent = `
@@ -327,6 +338,8 @@ export async function load({ url }) {
       bulletDensity: densityParam,
       availablePresets,
       availableSections: sectionOrder, // Add the sections that are actually rendered
+      actuallyVisibleSections, // Sections that are visible after density filtering
+      contentMode: modeParam, // Pass the content mode to the client
       sections: finalData.sections // Add the actual section data for stats calculation
     }
   } catch (error) {

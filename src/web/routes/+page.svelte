@@ -51,8 +51,18 @@
         visibleSections = {...$sectionVisibilityStore}
     }
 
-    // Sync visibleSections changes back to store and URL (when modified by components)
-    $: if (mounted && Object.keys(visibleSections).length > 0) {
+    // In density mode, sync section checkboxes with server-detected visible sections
+    $: if (mounted && data.contentMode === 'density' && data.actuallyVisibleSections) {
+        // Directly update local state in density mode (no URL sync to avoid conflicts)
+        const densityFilteredVisibility = {}
+        for (const section of data.availableSections || []) {
+            densityFilteredVisibility[section] = data.actuallyVisibleSections.includes(section)
+        }
+        visibleSections = densityFilteredVisibility
+    }
+
+    // Sync visibleSections changes back to store and URL (when modified by components in manual mode)
+    $: if (mounted && data.contentMode !== 'density' && Object.keys(visibleSections).length > 0) {
         // Only update store if visibleSections differs from store (avoid infinite loops)
         if (JSON.stringify(visibleSections) !== JSON.stringify($sectionVisibilityStore)) {
             updateSectionVisibility(visibleSections, $page.url, true)
