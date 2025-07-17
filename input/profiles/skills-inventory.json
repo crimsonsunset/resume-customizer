@@ -16,9 +16,7 @@
       "lastUsed": "2025-07-09",
       "linkedinEndorsements": 45,
       "contexts": [
-        "frontend",
-        "backend",
-        "mobile"
+        "javascript"
       ],
       "relatedSkills": [
         "typescript",
@@ -36,8 +34,7 @@
       "lastUsed": "2025-07-09",
       "linkedinEndorsements": 23,
       "contexts": [
-        "frontend",
-        "backend"
+        "javascript"
       ],
       "relatedSkills": [
         "javascript",
@@ -54,7 +51,7 @@
       "yearsExperience": 8,
       "lastUsed": "2025-07-09",
       "contexts": [
-        "frontend"
+        "css"
       ],
       "relatedSkills": [
         "css",
@@ -75,7 +72,7 @@
       "yearsExperience": 8,
       "lastUsed": "2025-07-09",
       "contexts": [
-        "frontend"
+        "css"
       ],
       "relatedSkills": [
         "html",
@@ -90,8 +87,7 @@
       "proficiency": "intermediate",
       "yearsExperience": 3,
       "contexts": [
-        "backend",
-        "scripting"
+        "javascript"
       ],
       "marketDemand": "high",
       "trending": "up",
@@ -113,8 +109,7 @@
       "proficiency": "advanced",
       "yearsExperience": 6,
       "contexts": [
-        "backend",
-        "database"
+        "javascript"
       ],
       "marketDemand": "high",
       "trending": "stable",
@@ -125,7 +120,7 @@
       "proficiency": "intermediate",
       "yearsExperience": 2,
       "contexts": [
-        "backend"
+        "javascript"
       ],
       "marketDemand": "medium",
       "trending": "stable",
@@ -941,8 +936,7 @@
       "proficiency": "advanced",
       "yearsExperience": 5,
       "contexts": [
-        "testing",
-        "javascript"
+        "testing"
       ],
       "marketDemand": "high",
       "trending": "stable",
@@ -953,8 +947,7 @@
       "proficiency": "intermediate",
       "yearsExperience": 1,
       "contexts": [
-        "testing",
-        "javascript"
+        "testing"
       ],
       "marketDemand": "medium",
       "trending": "up",
@@ -965,8 +958,7 @@
       "proficiency": "intermediate",
       "yearsExperience": 3,
       "contexts": [
-        "testing",
-        "javascript"
+        "testing"
       ],
       "marketDemand": "low",
       "trending": "down",
@@ -1037,8 +1029,7 @@
       "proficiency": "intermediate",
       "yearsExperience": 3,
       "contexts": [
-        "testing",
-        "javascript"
+        "testing"
       ],
       "marketDemand": "medium",
       "trending": "stable",
