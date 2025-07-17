@@ -132,6 +132,24 @@ export class SkillsRenderer {
   }
 
   /**
+   * Gets skill data from inventory by skill name
+   */
+  getSkillData(skillsInventory, skillName) {
+    // Find skill by matching name
+    for (const [skillKey, skillData] of Object.entries(skillsInventory.skills)) {
+      if (skillData.name === skillName) {
+        return {
+          priority: skillData.priority || 5, // Default priority if missing
+          marketDemand: skillData.marketDemand || 5 // Default market demand if missing
+        }
+      }
+    }
+    
+    // Fallback for skills not found (like hardcoded Operating Systems)
+    return { priority: 5, marketDemand: 5 }
+  }
+
+  /**
    * Gets the appropriate category for a skill based on its name and contexts
    */
   getSkillCategory(contexts, skillName = '') {
@@ -228,9 +246,27 @@ export class SkillsRenderer {
       }
     }
 
-    // Sort skills within each category
+    // Sort skills within each category by priority + market demand
     for (const category of Object.keys(categories)) {
-      categories[category].sort()
+      categories[category].sort((skillA, skillB) => {
+        const skillDataA = this.getSkillData(skillsInventory, skillA)
+        const skillDataB = this.getSkillData(skillsInventory, skillB)
+        
+        // Calculate weighted sort scores (priority 60%, market demand 40%)
+        const scoreA = (skillDataA.priority * 0.6) + (skillDataA.marketDemand * 0.4)
+        const scoreB = (skillDataB.priority * 0.6) + (skillDataB.marketDemand * 0.4)
+        
+        // Sort descending (highest score first)
+        return scoreB - scoreA
+      })
+      
+      // Debug: Show top 3 skills in each category with their scores
+      const topSkills = categories[category].slice(0, 3).map(skill => {
+        const data = this.getSkillData(skillsInventory, skill)
+        const score = (data.priority * 0.6) + (data.marketDemand * 0.4)
+        return `${skill}(${score.toFixed(1)})`
+      })
+      console.log(`🔢 ${category} top skills:`, topSkills.join(', '))
     }
     
     // Add hardcoded Operating Systems category and filter OS keywords from other categories
