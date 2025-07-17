@@ -214,6 +214,7 @@ export async function load({ url }) {
       projects: () => render(ProjectsSection, { 
         props: { 
           projects: finalData.sections?.projects || [],
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
           config: finalData.sections?.projects?.preset_filters || {}
         } 
       }),
@@ -256,6 +257,7 @@ export async function load({ url }) {
       activities: () => render(ActivitiesSection, { 
         props: { 
           activities: finalData.sections?.activities || {},
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
           config: finalData.sections?.activities?.preset_filters || {}
         } 
       }),

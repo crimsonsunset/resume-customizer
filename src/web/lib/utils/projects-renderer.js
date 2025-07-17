@@ -5,6 +5,9 @@ import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
  */
 export class ProjectsRenderer extends SectionRenderer {
   constructor(options = {}) {
+    const bulletDensity = options.bulletDensity || 100
+    const config = options.config || {}
+    
     super({
       sectionLabel: 'Projects',
       sectionType: 'projects', // Not used due to custom render override
@@ -13,6 +16,9 @@ export class ProjectsRenderer extends SectionRenderer {
       itemRenderer: ProjectsRenderer.projectItemRenderer,
       ...options
     })
+    
+    this.bulletDensity = bulletDensity
+    this.config = config
   }
 
   /**
@@ -26,13 +32,13 @@ export class ProjectsRenderer extends SectionRenderer {
     
     // Work Projects section
     if (workProjects.length > 0) {
-      const workContent = workProjects.map(project => this.itemRenderer(project, 100, config)).join('\n')
+      const workContent = workProjects.map(project => this.itemRenderer(project, this.bulletDensity, config)).join('\n')
       sections.push(this.renderSectionWrapper('Work Projects', workContent, 'projects'))
     }
     
     // Supplemental Projects section  
     if (personalProjects.length > 0) {
-      const personalContent = personalProjects.map(project => this.itemRenderer(project, 100, config)).join('\n')
+      const personalContent = personalProjects.map(project => this.itemRenderer(project, this.bulletDensity, config)).join('\n')
       sections.push(this.renderSectionWrapper('Supplemental Projects', personalContent, 'projects'))
     }
     

@@ -7,6 +7,8 @@ import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
 export class ActivitiesRenderer {
   constructor(options = {}) {
     this.sectionLabel = options.sectionLabel || 'Activities & Misc.'
+    this.bulletDensity = options.bulletDensity || 100
+    this.config = options.config || {}
   }
 
   /**
@@ -56,7 +58,7 @@ export class ActivitiesRenderer {
           SectionRenderer.filterBulletsWithConfig(
             activity.bulletPoints, 
             activity.bullet_priorities, 
-            100, 
+            this.bulletDensity, 
             this.config
           )
         ) : ''
