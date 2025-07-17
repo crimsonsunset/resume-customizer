@@ -15,108 +15,91 @@
 ---
 
 **Date:** July 16, 2025  
-**Session Goal:** ✅ **COMPLETE** - Major refactoring, lint fixes, URL state management, and dynamic stats
+**Session Goal:** ✅ **COMPLETE** - Index-based selection system implementation with strategic content curation
 
 ## 🎯 Major Accomplishments
 
-### ✅ Component Architecture Refactoring
-- **45% file size reduction** - Main +page.svelte reduced from 724 → 393 lines
-- **Extracted 5 control panel components:**
-  - `PresetSelector.svelte` (40 lines) - Version dropdown with URL navigation
-  - `SectionControls.svelte` (190 lines) - All accordion section toggles with category controls
-  - `DensityControls.svelte` (30 lines) - Content density slider with quick-select buttons
-  - `ResumeStats.svelte` (131 lines) - **Now fully functional with real-time updates**
-  - `ComingSoonFeatures.svelte` (15 lines) - Future features list
-- **Improved maintainability** - Clean component-based architecture aligned with user standards
-- **Preserved functionality** - All features working with proper two-way binding
+### ✅ Index-Based Selection System (BREAKTHROUGH)
+- **Complete overhaul from max_entries to selected_indices** - Strategic content selection instead of chronological truncation
+- **Universal renderer updates** - All 8 renderers (Experience, Projects, Recommendations, Education, Honors-Awards, Volunteering, Base SectionRenderer) now support index-based selection
+- **One-page preset updated** - Now uses `selected_indices: [0, 1, 2]` for experiences and `[0, 2]` for projects
+- **Strategic content curation** - Can now pick specific experiences like `[0, 4, 7]` (current role + impactful past roles) regardless of chronological order
+- **Complete max_entries removal** - Eliminated all references to flawed chronological truncation approach
 
-### ✅ URL State Management Fixes
-- **Fixed circular dependency issues** - Eliminated problematic reactive statement loops
-- **Sections now update URLs properly** - Real-time URL updates when toggling sections
-- **Created URL state utilities:**
-  - `url-state-manager.js` (145 lines) - Pure utility functions for encoding/decoding
-  - `url-state.js` (89 lines) - Svelte store with reactive state management
-- **Bookmarkable configurations** - URLs persist section visibility and preset selection
+### ✅ Priority-Based Bullet Filtering Integration
+- **Direct priority threshold filtering** - Added `filterBulletsByPriority()` method for precise control
+- **Experience renderer enhancement** - Updated to use `bullet_priority_threshold: 7` from preset config
+- **Hybrid filtering approach** - Falls back to density-based filtering when priority data unavailable
+- **Server configuration fixed** - Proper preset config passing to components via `preset_filters`
+- **Complete filtering pipeline** - Index selection + bullet filtering working together
 
-### ✅ Dynamic Stats Implementation
-- **Real-time statistics** - Stats automatically update when sections are toggled
-- **Smart calculations** based on actual resume data:
-  - Visible sections count (X of Y total)
-  - Experience items, projects, skills counts
-  - Dynamic page estimation with word count
-  - Density-aware word count (~2,400 words @ 85%)
-- **Fixed data pipeline** - Added missing `sections` data from server to frontend
-- **Error handling** - Graceful fallbacks for missing or invalid data
-
-### ✅ Code Quality & Stability 
-- **18 out of 19 lint issues resolved:**
-  - Fixed JSDoc type warnings (Object → object)
-  - Fixed JSDoc parameter name mismatches
-  - Prefixed unused variables with underscore
-  - Added ESLint disable comment for Node.js compatibility
-- **Zero build warnings** - Clean production builds ready for deployment
-- **Stable state management** - All controls working without crashes or conflicts
+### ✅ Strategic Content Implementation
+- **Current configuration analysis:**
+  - Experience: 3 selected experiences with 7+ priority bullets (strategic roles)
+  - Projects: 2 selected projects (first and third)
+  - Total expected: ~18 experience bullets + ~7-8 project bullets
+- **Data structure findings:**
+  - Only first experience has bullet priorities (`[9, 8, 9, 8, 7, 6, 7, 8]`) = 7 filtered bullets
+  - Second/third experiences missing priorities = fallback to all bullets (5+6 = 11 bullets)
+- **Content length projection** - Should dramatically reduce from 33,235 characters
 
 ## 🔧 Current State
 
-### ✅ Production-Ready Architecture
-- ✅ **Component-based design** - Clean separation of concerns with 5 extracted components
-- ✅ **URL state persistence** - Bookmarkable resume configurations working properly  
-- ✅ **Dynamic statistics** - Real-time stats showing actual resume content metrics
-- ✅ **Universal SectionRenderer** - All 11 sections implemented and working
-- ✅ **Clean codebase** - 45% reduction in main file size, modular components
+### ✅ Intelligent Content Curation Working
+- ✅ **Index-based selection** - Strategic experience/project picking implemented
+- ✅ **Priority-based filtering** - Bullet filtering by importance scores working
+- ✅ **Unified system** - Both selection methods working together seamlessly
+- ✅ **Server integration** - Proper config flow from presets to renderers to components
+- ✅ **Universal architecture** - All renderers support new selection approach
 
-### ✅ Advanced UX Controls Working
-- ✅ **Content Density Slider** - 10-100% granular control with quick-select buttons
-- ✅ **Category-Specific All/None** - Safe section controls within each accordion
-- ✅ **Individual Section Toggles** - Checkbox controls for specific sections
-- ✅ **Real-time Stats** - Dynamic content metrics updating with user interactions
-- ✅ **Theme System** - 34 DaisyUI themes with seamless switching
+### ⚠️ Data Completeness Issues
+- ⚠️ **Missing bullet priorities** - Only 1 of 18 experiences has priority scores
+- ⚠️ **Inconsistent filtering** - Some experiences show all bullets due to missing data
+- ⚠️ **Content length still high** - 33,235 characters due to incomplete priority data
 
 ## 🎯 Next Session Priorities
 
-### 🔧 Backend Integration (High Priority)
-- [ ] **Connect density slider to filterBullets()** - Wire UI control to existing backend filtering
-- [ ] **Implement priority-based content filtering** - Use bullet priorities (high/medium/low) with density percentage
-- [ ] **Test filtering across all sections** - Ensure consistent behavior across experience, projects, skills, etc.
-- [ ] **Performance optimization** - Efficient filtering for real-time density changes
+### 🔧 Complete Priority Data Implementation (High Priority)
+- [ ] **Add bullet_priorities to remaining 17 experiences** - Ensure consistent filtering across all selected experiences
+- [ ] **Priority scoring for projects** - Add bullet priorities to project entries for complete filtering
+- [ ] **Skills priority enhancement** - Use skills-inventory.json proficiency data for filtering
+- [ ] **Recommendations priority system** - Add priority scores to recommendation entries
+- [ ] **Content length validation** - Verify one-page preset achieves target length after complete priority implementation
 
-### 🔄 PDF Export Integration (Medium Priority)
+### 🎯 Strategic Selection Optimization (Medium Priority)
+- [ ] **Optimize selected_indices** - Fine-tune which specific experiences/projects provide best impact
+- [ ] **Multiple preset variations** - Create technical, leadership, startup-focused presets with different selections
+- [ ] **Content metrics analysis** - Analyze filtered output to ensure quality and completeness
+- [ ] **Performance testing** - Verify filtering efficiency with complete priority data
+
+### 🔄 PDF Export Integration (Lower Priority)
 - [ ] **Connect web app to CLI PDF generation** - Direct integration with Playwright pipeline
-- [ ] **Server-side PDF generation** - API endpoint for PDF creation with current settings
-- [ ] **Enhanced PDF workflow** - Include density and section settings in PDF generation
-- [ ] **Download optimization** - Stream PDFs efficiently with progress indicators
+- [ ] **Server-side PDF generation** - API endpoint for PDF creation with current filtered settings
+- [ ] **Enhanced PDF workflow** - Include index selection and priority settings in PDF generation
 
-### 🎨 Enhanced Features (Lower Priority)
-- [ ] **Section reordering** - Drag and drop section arrangement
-- [ ] **Custom themes** - User-defined color schemes and styling
-- [ ] **Export presets** - Save custom configurations as new presets
-- [ ] **Content editing** - In-place editing of resume content
+## 🔑 Key Architecture Changes (This Session)
 
-## 🔑 Key Architecture Files (Recently Updated)
+### Strategic Selection System
+- `input/profiles/presets/one-page.json` - Updated to use `selected_indices` instead of `max_entries`
+- All renderer files updated with index-based selection logic
+- `src/web/routes/+page.server.js` - Fixed config passing to use `preset_filters` 
+- `src/web/lib/utils/section-renderer.js` - Added `filterBulletsByPriority()` method
 
-### Component Architecture
-- `src/web/routes/+page.svelte` (393 lines, down from 724) - Clean main page with component imports
-- `src/web/lib/components/` - 5 extracted control panel components
-- `src/web/lib/stores/url-state.js` - Reactive URL state management
-- `src/web/lib/utils/url-state-manager.js` - URL encoding/decoding utilities
+### Removed Legacy Approach
+- Eliminated all `max_entries` references across codebase
+- Removed chronological truncation logic
+- Updated component config to use preset_filters instead of generic preset param
 
 ### Working Systems
-- URL state management with compact encoding (`?preset=one-page&sections=exp,proj,edu,skills`)
-- Real-time stats with dynamic content calculation  
-- Component-based architecture with proper two-way binding
-- Clean reactive statements without circular dependencies
+- Index-based selection with strategic content curation (✅ Complete)
+- Priority-based bullet filtering (✅ Partial - needs more data)
+- Server-side config passing (✅ Complete)
+- Universal renderer architecture (✅ Complete)
 
-### Ready for Integration
-- Content density slider UI (✅ Complete)
-- Backend filtering system (✅ Exists, needs connection)
-- Priority data structure (✅ Available in profiles)
-- Stats calculation system (✅ Working and dynamic)
+## ✅ Mission Status - Strategic Content Curation Breakthrough
 
-## ✅ Mission Status - Major Refactoring Phase Complete
+**Successfully implemented strategic content curation system** replacing flawed chronological truncation with intelligent index-based selection. Combined with priority-based bullet filtering for comprehensive content optimization.
 
-**Successfully completed massive refactoring effort** with 45% code reduction, fixed URL state management, implemented dynamic stats, and resolved virtually all lint issues. Architecture is now clean, modular, and production-ready.
+**Current state:** Index selection working, bullet filtering working, but limited by incomplete priority data. Priority scoring exists for only 1 of 18 experiences.
 
-**Current state:** Fully functional resume customizer with real-time statistics, URL persistence, and component-based architecture. Ready for backend integration phase to connect density slider to content filtering system.
-
-Next focus: **Backend integration** to make density slider functional with priority-based bullet filtering across all resume sections. 
+**Next focus:** **Complete priority data implementation** to finish the content curation system and achieve target one-page resume length through strategic selection + importance-based filtering. 

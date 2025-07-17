@@ -8,6 +8,7 @@ The web application provides a comprehensive resume customization experience wit
 
 ### ✨ Core Functionality
 - **Interactive Resume Preview** - Real-time resume display with professional styling
+- **Strategic Content Curation** - Index-based selection system for intelligent content optimization
 - **34 DaisyUI Themes** - Complete theme system with seamless switching
 - **Universal Section Rendering** - All 11 resume sections with consistent architecture
 - **URL State Management** - Bookmarkable resume configurations with compact encoding (`?preset=one-page&sections=exp,proj,edu,skills`)
@@ -42,6 +43,12 @@ The web application provides a comprehensive resume customization experience wit
 ```
 JSON Profile Data → Preset Merger → Priority-Based Filtering → Section Renderers → Svelte Components → HTML
 ```
+
+**Strategic Content Curation:**
+- **Index-Based Selection**: Strategic experience/project picking (e.g., selected_indices: [0, 2, 4])
+- **Priority-Based Bullet Filtering**: Direct threshold control (bullet_priority_threshold: 7)
+- **Intelligent Content Optimization**: Replaces chronological truncation with strategic curation
+- **Unified Filtering System**: Index selection + bullet filtering working together seamlessly
 
 **Intelligent Filtering System:**
 - **Cutoff-Based Logic**: Lower density = higher priority cutoff = fewer bullets
@@ -115,12 +122,13 @@ All 11 resume sections use the universal SectionRenderer pattern:
 
 ## Next Development Phase
 
-The core intelligent filtering system is now working! Next priorities:
+The strategic content curation system is now implemented! Next priorities:
 
-1. **Content Priority Expansion** - Add bullet_priorities to remaining 17 experience entries
-2. **Other Section Priorities** - Implement priority systems for projects, skills, and other sections  
-3. **Enhanced PDF Export** - Direct integration with Playwright CLI for server-side generation
-4. **Advanced Presets** - Multiple resume variations (technical, leadership, etc.)
+1. **Complete Priority Data Implementation** - Add bullet_priorities to remaining 17 experience entries and other sections
+2. **Content Length Optimization** - Verify one-page preset achieves target length with complete priority data
+3. **Strategic Selection Enhancement** - Fine-tune selected_indices for optimal impact across different presets
+4. **Enhanced PDF Export** - Direct integration with Playwright CLI for server-side generation with filtering
+5. **Advanced Presets** - Multiple resume variations (technical, leadership, startup-focused) with different strategic selections
 
 ## Usage
 
