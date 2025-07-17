@@ -23,7 +23,8 @@
     "test": "echo 'No tests specified'",
     "html-to-pdf": "npm run cli -- html-to-pdf",
     "json-to-html": "npm run cli -- json-to-html",
-    "json-to-pdf": "npm run cli -- json-to-pdf"
+    "json-to-pdf": "npm run cli -- json-to-pdf",
+    "update-dates": "node src/shared/update-dates.js"
   },
   "dependencies": {
     "@netlify/functions": "^2.8.2",
@@ -34,6 +35,7 @@
     "chalk": "^4.1.2",
     "commander": "^9.4.1",
     "daisyui": "^5.0.46",
+    "date-fns": "^4.1.0",
     "lodash-es": "^4.17.21",
     "playwright": "^1.54.0",
     "svelte": "^5.35.6",

@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import { sveltekit } from '@sveltejs/kit/vite'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import dateUpdaterPlugin from './src/shared/vite-plugin-date-updater.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -44,7 +45,7 @@ export default defineConfig(({ command, mode }) => {
   
   // SvelteKit web app configuration
   return {
-    plugins: [sveltekit()],
+    plugins: [sveltekit(), dateUpdaterPlugin()],
     
     // Path aliases (matches tsconfig.json)
     resolve: {

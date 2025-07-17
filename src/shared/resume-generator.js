@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { formatISO } from 'date-fns';
 
 /**
  * Resume generator that creates different versions from profile.json
@@ -23,7 +24,7 @@ class ResumeGenerator {
     const resume = {
       meta: {
         version,
-        generated_at: new Date().toISOString(),
+        generated_at: formatISO(new Date()),
         config
       },
       basic_info: this.generateBasicInfo(config),
