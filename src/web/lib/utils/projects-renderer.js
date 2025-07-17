@@ -26,13 +26,13 @@ export class ProjectsRenderer extends SectionRenderer {
     
     // Work Projects section
     if (workProjects.length > 0) {
-      const workContent = workProjects.map(project => this.itemRenderer(project)).join('\n')
+      const workContent = workProjects.map(project => this.itemRenderer(project, 100, config)).join('\n')
       sections.push(this.renderSectionWrapper('Work Projects', workContent, 'projects'))
     }
     
     // Supplemental Projects section  
     if (personalProjects.length > 0) {
-      const personalContent = personalProjects.map(project => this.itemRenderer(project)).join('\n')
+      const personalContent = personalProjects.map(project => this.itemRenderer(project, 100, config)).join('\n')
       sections.push(this.renderSectionWrapper('Supplemental Projects', personalContent, 'projects'))
     }
     
@@ -60,13 +60,18 @@ export class ProjectsRenderer extends SectionRenderer {
   /**
    * Projects-specific item renderer
    */
-  static projectItemRenderer(project) {
-    const bullets = SectionRenderer.renderBullets(project.bulletPoints || [])
+  static projectItemRenderer(project, bulletDensity = 100, config = {}) {
+    const bullets = SectionRenderer.filterBulletsWithConfig(
+      project.bulletPoints, 
+      project.bullet_priorities, 
+      bulletDensity, 
+      config
+    )
     
     return `<div class="company-header">
   <h3>${project.name}</h3>
 </div>
-${bullets}`
+${SectionRenderer.renderBullets(bullets)}`
   }
 
   /**

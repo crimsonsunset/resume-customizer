@@ -121,7 +121,8 @@
       "bullet_priority_threshold": 7
     },
     "projects": {
-      "selected_indices": [0, 6]
+      "selected_indices": [0, 6],
+      "bullet_priority_threshold": 7
     },
     "recommendations": {
       "selected_indices": [0, 1, 2]
