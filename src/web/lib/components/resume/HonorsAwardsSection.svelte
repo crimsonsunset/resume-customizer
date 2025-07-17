@@ -3,9 +3,11 @@
 
   export let honorsAwards = []
   export let config = {}
+  export let bulletDensity = 100
+  export let profile = null
 
-  // Create renderer instance
-  $: renderer = new HonorsAwardsRenderer()
+  // Create renderer instance with profile support
+  $: renderer = new HonorsAwardsRenderer({ bulletDensity, profile })
 
   // Render the section
   $: renderedHTML = renderer.render(honorsAwards, config)

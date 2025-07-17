@@ -22,12 +22,17 @@
   
   "resume_config": {
     "section_priorities": {
+      "headline": 10,
+      "summary": 10,
+      "education": 9,
+      "skills": 8,
+      "objective": 7,
       "certifications": 9,
       "courses": 9,
       "activities": 5,
       "recommendations": 3,
       "volunteering": 7,
-      "honors-awards": 8
+      "honors-awards": 7
     },
     "versions": {
       "full": {

@@ -243,13 +243,17 @@ export async function load({ url }) {
       volunteering: () => render(VolunteeringSection, { 
         props: { 
           volunteering: finalData.sections?.volunteering || [],
-          config: finalData.sections?.volunteering?.preset_filters || {}
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          config: finalData.sections?.volunteering?.preset_filters || {},
+          profile: finalData
         } 
       }),
       'honors-awards': () => render(HonorsAwardsSection, { 
         props: { 
           honorsAwards: finalData.sections?.['honors-awards'] || [],
-          config: finalData.sections?.['honors-awards']?.preset_filters || {}
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          config: finalData.sections?.['honors-awards']?.preset_filters || {},
+          profile: finalData
         } 
       }),
       recommendations: () => render(RecommendationsSection, { 
