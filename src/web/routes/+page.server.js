@@ -195,7 +195,9 @@ export async function load({ url }) {
     const componentRenderers = {
       objective: () => render(ObjectiveSection, { 
         props: { 
-          objective: finalData.objective || null
+          objective: finalData.objective || null,
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          profile: finalData
         } 
       }),
       experience: () => render(ExperienceSection, { 
@@ -272,7 +274,9 @@ export async function load({ url }) {
       }),
       headline: () => render(HeadlineSection, {
         props: {
-          headline: finalData.basic_info?.headline || ''
+          headline: finalData.basic_info?.headline || '',
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          profile: finalData
         }
       }),
       location: () => render(LocationSection, {
@@ -283,7 +287,9 @@ export async function load({ url }) {
       }),
       summary: () => render(SummarySection, {
         props: {
-          summary: finalData.basic_info?.summary || ''
+          summary: finalData.basic_info?.summary || '',
+          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          profile: finalData
         }
       })
     }

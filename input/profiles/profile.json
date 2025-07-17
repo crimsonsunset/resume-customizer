@@ -22,11 +22,9 @@
   
   "resume_config": {
     "section_priorities": {
-      "headline": 10,
-      "summary": 10,
-      "education": 9,
-      "skills": 8,
-      "objective": 7,
+      "headline": 4,
+      "summary": 8,
+      "objective": 9,
       "certifications": 9,
       "courses": 9,
       "activities": 5,
