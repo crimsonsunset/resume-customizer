@@ -114,9 +114,6 @@
         "SEO",
         "Test Automation",
         "AI Integration"
-      ],
-      "Operating Systems": [
-        "Proficient in Windows, Mac, or Linux, Android and iOS"
       ]
     },
     "experience": {
@@ -124,7 +121,7 @@
       "bullet_priority_threshold": 7
     },
     "projects": {
-      "selected_indices": [0, 2]
+      "selected_indices": [0, 6]
     },
     "recommendations": {
       "selected_indices": [0, 1, 2]
