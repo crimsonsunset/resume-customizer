@@ -1,3 +1,5 @@
+import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
+
 /**
  * Activities-specific renderer
  * Handles both activities and personal interests in a single section
