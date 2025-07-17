@@ -235,4 +235,52 @@ Base JSON bullet_priorities → Preset overrides → Density filtering → Rende
 - **User Experience**: Intuitive density control with intelligent content curation
 - **Documentation**: Complete implementation guide and priority rationale
 
-The bullet priority system has evolved from concept to fully operational intelligent content curation engine, providing the foundation for advanced resume optimization features. 
+The bullet priority system has evolved from concept to fully operational intelligent content curation engine, providing the foundation for advanced resume optimization features.
+
+---
+
+## Section-Level Density Filtering
+
+In addition to bullet-level priorities, the system implements section-level density filtering to create progressive resume condensation. This operates independently from bullet priorities and controls entire section visibility based on density thresholds.
+
+### Section Priority Configuration
+
+Sections are configured in `profile.json` under `resume_config.section_priorities` with priority values that determine visibility thresholds:
+
+```json
+{
+  "section_priorities": {
+    "headline": 4,           // Hide after 40% density
+    "summary": 8,            // Hide after 80% density  
+    "objective": 9,          // Hide after 90% density
+    "certifications": 9,     // Hide after 90% density
+    "courses": 9,            // Hide after 90% density
+    "activities": 5,         // Hide after 50% density
+    "recommendations": 3,    // Hide after 30% density
+    "volunteering": 7,       // Hide after 70% density
+    "honors-awards": 7       // Hide after 70% density
+  }
+}
+```
+
+**Formula:** `priority × 10 = density threshold percentage`
+
+### Section Filtering Strategy
+
+- **Always Visible:** Education, Skills, Experience, Projects (core resume content)
+- **High Threshold (90%):** Objective, Certifications, Courses (credential-focused)
+- **Medium Threshold (70-80%):** Summary, Volunteering, Honors-Awards (supporting content)
+- **Lower Threshold (30-50%):** Activities, Recommendations (nice-to-have content)
+- **Minimal Threshold (40%):** Headline (space optimization only)
+
+### Progressive Condensation
+
+As density decreases, sections disappear in strategic order:
+1. **100% → 90%:** Objective, Certifications, Courses disappear
+2. **90% → 80%:** Summary disappears  
+3. **80% → 70%:** Volunteering, Honors-Awards disappear
+4. **70% → 50%:** Activities disappear
+5. **50% → 40%:** Headline disappears
+6. **40% → 30%:** Recommendations disappear
+
+This creates a natural content hierarchy that preserves the most essential information while allowing aggressive space optimization for specific use cases. 
