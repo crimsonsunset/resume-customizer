@@ -41,7 +41,7 @@
         "react",
         "angular"
       ],
-      "marketDemand": 9,
+      "marketDemand": 10,
       "trending": "up",
       "priority": 8
     },
@@ -57,7 +57,7 @@
         "css",
         "javascript"
       ],
-      "marketDemand": "high",
+      "marketDemand": 10,
       "trending": "stable",
       "priority": 10
     },
@@ -78,7 +78,7 @@
         "html",
         "javascript"
       ],
-      "marketDemand": "high",
+      "marketDemand": 10,
       "trending": "stable",
       "priority": 10
     },
@@ -253,7 +253,7 @@
       "relatedSkills": [
         "react"
       ],
-      "marketDemand": "high",
+      "marketDemand": 9,
       "trending": "stable",
       "priority": 7
     },
@@ -441,7 +441,7 @@
         "javascript",
         "express"
       ],
-      "marketDemand": "high",
+      "marketDemand": 10,
       "trending": "stable",
       "priority": 9
     },
@@ -456,7 +456,7 @@
       "relatedSkills": [
         "nodejs"
       ],
-      "marketDemand": "high",
+      "marketDemand": 9,
       "trending": "stable",
       "priority": 8
     },
@@ -771,7 +771,7 @@
         "devops",
         "version-control"
       ],
-      "marketDemand": "high",
+      "marketDemand": 10,
       "trending": "stable",
       "priority": 7
     },
@@ -819,7 +819,7 @@
         "devops",
         "package-management"
       ],
-      "marketDemand": "high",
+      "marketDemand": 9,
       "trending": "stable",
       "priority": 8
     },
@@ -915,7 +915,7 @@
         "devops",
         "ide"
       ],
-      "marketDemand": "high",
+      "marketDemand": 9,
       "trending": "stable",
       "priority": 8
     },
@@ -927,7 +927,7 @@
         "devops",
         "system"
       ],
-      "marketDemand": "high",
+      "marketDemand": 9,
       "trending": "stable",
       "priority": 9
     },
@@ -938,7 +938,7 @@
       "contexts": [
         "testing"
       ],
-      "marketDemand": "high",
+      "marketDemand": 8,
       "trending": "stable",
       "priority": 7
     },

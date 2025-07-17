@@ -140,13 +140,32 @@ export class SkillsRenderer {
       if (skillData.name === skillName) {
         return {
           priority: skillData.priority || 5, // Default priority if missing
-          marketDemand: skillData.marketDemand || 5 // Default market demand if missing
+          marketDemand: this.convertMarketDemand(skillData.marketDemand) || 5 // Convert text to number
         }
       }
     }
     
     // Fallback for skills not found (like hardcoded Operating Systems)
     return { priority: 5, marketDemand: 5 }
+  }
+
+  /**
+   * Converts marketDemand from text to numeric value
+   */
+  convertMarketDemand(marketDemand) {
+    // If already a number, return as-is
+    if (typeof marketDemand === 'number') {
+      return marketDemand
+    }
+    
+    // Convert text values to numbers
+    const textToNumber = {
+      'high': 10,
+      'medium': 6,
+      'low': 2
+    }
+    
+    return textToNumber[marketDemand] || 5 // Default if unrecognized
   }
 
   /**
