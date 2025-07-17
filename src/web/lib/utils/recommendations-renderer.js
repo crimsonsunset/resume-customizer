@@ -5,6 +5,7 @@
 export class RecommendationsRenderer {
   constructor(options = {}) {
     this.sectionLabel = options.sectionLabel || 'Recommendations'
+    this.bulletDensity = options.bulletDensity || 100
   }
 
   /**
@@ -28,10 +29,14 @@ export class RecommendationsRenderer {
   }
 
   /**
-   * Filters recommendations based on config
+   * Filters recommendations based on config and density
    */
   filterRecommendations(recommendations, config) {
     let filtered = [...recommendations]
+    
+    console.log('💬 RecommendationsRenderer Debug:')
+    console.log(`  📊 Input: ${recommendations.length} recommendations`)
+    console.log(`  🎯 Density: ${this.bulletDensity}%`)
     
     // Get filters from config or from preset_filters attached to the array
     const filters = config || recommendations.preset_filters || {}
@@ -41,9 +46,39 @@ export class RecommendationsRenderer {
       filtered = filters.selected_indices
         .filter(index => index >= 0 && index < recommendations.length)
         .map(index => recommendations[index])
+      console.log(`  📝 After index selection: ${filtered.length} recommendations`)
+    }
+    
+    // Apply priority-based density filtering
+    if (this.bulletDensity < 100) {
+      // Below 30% density: hide entire section
+      if (this.bulletDensity < 30) {
+        console.log('  🚫 Density < 30% - hiding entire section')
+        return []
+      }
+      
+      const priorityThreshold = this.getPriorityThreshold(this.bulletDensity)
+      console.log(`  🎯 Priority threshold: ${priorityThreshold}`)
+      const beforeCount = filtered.length
+      filtered = filtered.filter(rec => (rec.priority || 5) >= priorityThreshold)
+      console.log(`  📝 After priority filtering: ${filtered.length} recommendations (was ${beforeCount})`)
+    }
+    
+    if (filtered.length === 0) {
+      console.log('  🚫 Section is EMPTY - returning blank')
     }
     
     return filtered
+  }
+
+  /**
+   * Get priority threshold based on density
+   */
+  getPriorityThreshold(density) {
+    if (density >= 90) return 6
+    if (density >= 70) return 8  
+    if (density >= 50) return 9
+    return 9 // <50%: exceptional only
   }
 
   /**

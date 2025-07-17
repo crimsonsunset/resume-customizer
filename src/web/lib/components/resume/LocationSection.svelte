@@ -1,7 +1,8 @@
 <script>
   export let location = ''
 
-  $: hasLocation = location && location.trim().length > 0
+  // Location is already displayed in the header, so don't render this section
+  $: hasLocation = false
 </script>
 
 {#if hasLocation}
