@@ -12,6 +12,8 @@
     import DensityControls from '@web/lib/components/DensityControls.svelte'
     import ResumeStats from '@web/lib/components/ResumeStats.svelte'
     import ComingSoonFeatures from '@web/lib/components/ComingSoonFeatures.svelte'
+    import MobileHeader from '@web/lib/components/MobileHeader.svelte'
+    import SlideOutPanel from '@web/lib/components/SlideOutPanel.svelte'
     import {
         contentModeStore,
         densityInitializedStore,
@@ -30,6 +32,9 @@
     // Resume state management
     let selectedVersion = data.preset || 'full'
     
+    // Mobile panel state
+    let mobilePanelOpen = false
+    
     // Calculate total years of experience dynamically from data
     $: totalExperienceYears = data.sections?.experience && data.sections?.projects 
         ? calculateTotalExperienceYears(data.sections.experience, data.sections.projects)
@@ -40,6 +45,20 @@
     // Set experienceYears to show all experience by default (when totalExperienceYears is calculated)
     $: if (totalExperienceYears && experienceYears === 0) {
         experienceYears = totalExperienceYears
+    }
+    
+    /**
+     * Handles mobile panel toggle
+     */
+    const handlePanelToggle = (event) => {
+        mobilePanelOpen = event.detail.open
+    }
+    
+    /**
+     * Closes mobile panel
+     */
+    const closeMobilePanel = () => {
+        mobilePanelOpen = false
     }
 
     // Use stores for URL state management
@@ -297,25 +316,59 @@
 
 <div class="min-h-screen bg-base-200" in:fade={{ delay: 100, duration: 400 }}>
     <!-- Header -->
-    <header class="bg-base-100 border-b border-base-300 px-6 py-4">
+    <!-- Mobile Header (visible on mobile only) -->
+    <MobileHeader 
+        bind:panelOpen={mobilePanelOpen}
+        {selectedVersion}
+        on:panelToggle={handlePanelToggle}
+        on:exportPDF={exportToPDF}
+    />
+    
+    <!-- Desktop Header (hidden on mobile) -->
+    <header class="hidden md:block bg-base-100 border-b border-base-300 px-6 py-4">
         <div class="flex justify-between items-center max-w-7xl mx-auto">
             <div class="flex items-center space-x-4">
-                <h1 class="text-2xl font-bold text-primary">🚀 Resume Optimizer</h1>
+                <h1 class="text-2xl font-bold text-primary">Resume Optimizer</h1>
             </div>
             <div class="flex items-center space-x-4">
                 <ThemeSelector/>
-                <button class="btn btn-primary transition-transform hover:scale-105 active:scale-95"
+                <button class="btn btn-primary btn-lg font-medium transition-transform hover:scale-105 active:scale-95"
                         on:click={exportToPDF}>
-                    📥 Export PDF
+                    ⬇️ Download PDF
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Split-Screen Layout -->
+    <!-- Mobile Slide-Out Panel -->
+    <SlideOutPanel bind:open={mobilePanelOpen} on:close={closeMobilePanel}>
+        <PresetSelector bind:selectedVersion={selectedVersion} availablePresets={data.availablePresets}/>
+
+        <SectionControls bind:visibleSections={visibleSections} {availableSectionsByCategory}
+                         disabled={contentMode === 'density'}/>
+
+        <DensityControls
+                {density}
+                {contentMode}
+                {experienceYears}
+                {totalExperienceYears}
+                on:densityChange={(e) => updateDensityMode(e.detail.density, contentMode, $page.url)}
+                on:modeChange={(e) => updateDensityMode(density, e.detail.contentMode, $page.url)}
+                on:yearsChange={(e) => {
+                    experienceYears = e.detail.experienceYears
+                    console.log('🕐 Years changed:', experienceYears, 'of', totalExperienceYears, 'total')
+                }}
+        />
+
+        <ResumeStats {data} {visibleSections} {density}/>
+
+        <ComingSoonFeatures/>
+    </SlideOutPanel>
+
+    <!-- Main Layout -->
     <div class="flex max-w-7xl mx-auto">
-        <!-- Left Control Panel -->
-        <div class="w-96 bg-base-100 border-r border-base-300 h-screen overflow-y-auto">
+        <!-- Desktop Left Control Panel (hidden on mobile) -->
+        <div class="hidden md:block w-96 bg-base-100 border-r border-base-300 h-screen overflow-y-auto">
             <div class="p-6 space-y-6">
 
                 <PresetSelector bind:selectedVersion={selectedVersion} availablePresets={data.availablePresets}/>
@@ -343,11 +396,11 @@
             </div>
         </div>
 
-        <!-- Right Resume Preview -->
+        <!-- Resume Preview (full width on mobile, right panel on desktop) -->
         <div class="flex-1 h-screen overflow-y-auto">
             <div class="p-4">
                 <div class="card bg-base-100 shadow-sm border border-base-300">
-                    <div class="card-body p-8">
+                    <div class="card-body p-4 md:p-8">
                         <ResumeViewer>
                             <div class="resume-with-visibility-controls">
                                 {@html data.resumeContent}
