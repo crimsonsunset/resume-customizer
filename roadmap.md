@@ -21,10 +21,10 @@
 
 ## 🎯 Current Status
 
-**Last Updated:** July 17, 2025  
-**Current Phase:** Phase 7 - Advanced Content Optimization  
+**Last Updated:** July 18, 2025  
+**Current Phase:** Phase 7.5 - Temporal Experience Filtering  
 **Status:** ✅ **UNIVERSAL DENSITY FILTERING COMPLETE** - All 14 sections respond to density slider with intelligent filtering  
-**Next Session Goal:** Individual skills filtering and advanced preset variations
+**Next Session Goal:** Hierarchical state resolution - eliminate mode toggle while adding timeframe filtering
 
 ### Progress Overview
 - ✅ **COMPLETED:** WeasyPrint → Playwright migration (MAJOR UPGRADE)
@@ -95,6 +95,18 @@
 - ✅ **Phase 6 Completion** - Bullet priority system fully operational with baseline + override architecture
 - 🎯 **Ready for Phase 7** - Advanced preset variations and content optimization features
 
+
+### Recent Progress (July 18, 2025 Session #1)
+- 🚀 **TIMEFRAME FILTERING UI IMPLEMENTATION:** Dynamic years slider with data-driven calculation
+- ✅ **Date Parsing System** - Added `calculateTotalExperienceYears()` function in `src/shared/date-utils.js` for parsing experience/project date ranges
+- ✅ **Dynamic Slider Range** - Timeframe slider automatically adapts to actual career span (calculated 20 years from Sep 2004 to present)
+- ✅ **UI Component Enhancement** - Extended `DensityControls.svelte` with timeframe controls (👶 Recent → 👴 All experience)
+- ✅ **Component Integration** - Wired timeframe slider to main page component with event handling and state management
+- ✅ **Smart Defaults** - Timeframe defaults to total career span, shows actual years in UI labels
+- ✅ **Skills Priority + Market Demand Sorting** - Completed dual-weighting system with text-to-number marketDemand conversion
+- ✅ **State Architecture Analysis** - Comprehensive technical analysis of circular dependency issues and solution approaches
+- ✅ **Hierarchical State Resolution** - Documented complete solution eliminating mode toggle complexity in `state-resolution.md`
+- 🎯 **Ready for Implementation** - Clear technical path for removing mode toggle while adding timeframe filtering
 
 ### Recent Progress (July 17, 2025 Session #3)
 - 🚀 **UNIVERSAL DENSITY FILTERING BREAKTHROUGH:** Complete implementation across all 14 resume sections
@@ -241,15 +253,15 @@
   - WeasyPrint: Print-focused, inconsistent
   - Playwright: Pixel-perfect Chrome rendering
 
-### Next Session Goals (Phase 6.5 - Universal Density Filtering)
-- 🎯 **Extend Density Filtering to ALL Sections** - Make Skills, Recommendations, Courses, Certifications, Honors & Awards, Volunteering, Education respond to density slider
-- 🎯 **Section-Specific Filtering Logic** - Implement smart filtering for each section type based on their data structure
-- 🎯 **Empty Section Detection** - Sections should hide completely when all content gets filtered out
-- 🎯 **Consistent Filtering Experience** - All sections should respond to the density slider uniformly
-- 🔧 **Performance optimization** - Review rendering efficiency across all 11 sections
-- 📝 **Content enhancements** - Fine-tune data accuracy and formatting
-- 🎨 **Additional presets** - Create more resume layout variations (technical, leadership, etc.)
-- 🔗 **PDF Export Integration** - Connect web app to CLI Playwright PDF generation
+### Next Session Goals (Phase 7.5 - Hierarchical State Implementation)
+- 🎯 **Remove Mode Toggle** - Implement hierarchical state resolution (checkboxes > timeframe > density)
+- 🎯 **Unified Control System** - All filtering controls work together without circular dependencies
+- 🎯 **Timeframe Backend Integration** - Wire timeframe slider to actual filtering in experience/projects renderers
+- 🎯 **URL State Simplification** - Remove mode parameter, use simple `?sections=exp,proj&timeframe=5&density=70`
+- 🎯 **One-Way Data Flow** - Ensure filters never modify user checkbox selections
+- 🎯 **Visual Feedback Enhancement** - Show filter effects without changing user selections
+- 🔧 **Component Architecture Update** - Modify DensityControls and SectionControls for unified system
+- 📝 **Edge Case Testing** - Validate behavior when filters remove all content from checked sections
 
 ---
 
@@ -674,7 +686,7 @@ node convert.js html-to-pdf input/examples/base-resume.html --css experimental.c
 
 ---
 
-**Last Updated:** January 16, 2025 - Universal SectionRenderer architecture 100% complete - Web application fully functional!
+**Last Updated:** July 18, 2025 - Phase 7.5 Temporal Filtering UI added - Hierarchical state resolution documented!
 
 ---
 
@@ -717,3 +729,50 @@ node convert.js html-to-pdf input/examples/base-resume.html --css experimental.c
 **Current Status:** Currently using `delay()` from lodash-es (3 files), ready for systematic expansion
 
 **Estimated Impact:** Improve code quality across ~20 files, reduce native method complexity by 60%+
+
+### Phase 7: Advanced Content Optimization ✅ **COMPLETE**
+**Goal:** Universal density filtering system making ALL sections respond to content density slider
+
+### Phase 7.5: Temporal Experience Filtering 🎯 **PLANNED**
+**Goal:** Years-based filtering to control experience recency across experience and projects sections
+
+#### Core Feature Requirements
+- **Experience Filtering** - Filter experience entries based on end date recency
+- **Projects Filtering** - Apply same temporal logic to projects section
+- **Intuitive UI** - Years slider with 👶 → 👴 visual metaphor
+- **Smart Defaults** - Sensible default (likely 7 years) balancing relevance vs completeness
+- **URL State Integration** - Add `years=N` parameter alongside existing density controls
+
+#### Technical Implementation
+- **Date Normalization** - Unified date parsing helper for inconsistent date formats across data
+- **Filtering Logic** - Parse `startDate`/`endDate` from entries, filter based on `endDate` recency
+- **Current Role Handling** - Treat ongoing roles (no `endDate`) as current date
+- **Renderer Integration** - Add `filterByYears()` method to ExperienceRenderer and ProjectsRenderer
+- **Safeguard Logic** - Ensure temporal filter doesn't remove ALL content (profile validation)
+
+#### UI/UX Design
+- **Slider Range**: Last 1 year → Last 3 years → Last 5 years → Last 7 years → Last 10 years → All experience
+- **Default Setting**: 7 years (optimal balance of career progression vs recency)
+- **Visual Metaphor**: 👶 (recent) to 👴 (all experience) icons
+- **Placement**: Adjacent to density slider for complementary filtering controls
+- **Real-time Updates**: Live preview of filtered content as slider moves
+
+#### Integration Considerations
+- **Density + Years Filtering**: Two-layer filtering system (temporal first, then density within remaining content)
+- **Preset Interaction**: Future phase - how presets interact with temporal filtering
+- **URL State Management**: Extend existing URL state to include years parameter
+- **Statistics Updates**: ResumeStats component reflects temporally filtered content
+
+#### Future Stretch Goals
+- **Skills Temporal Filtering** - Filter skills by `lastUsed` date (lower priority)
+- **Education Filtering** - Filter education by graduation date (consideration for older degrees)
+- **Advanced Temporal Logic** - Weight by years of experience in addition to recency
+
+#### Use Cases Addressed
+- **Recent Graduates** - Hide outdated internships and part-time work
+- **Career Changers** - Focus on relevant recent experience in new field
+- **Senior Professionals** - Avoid age discrimination by limiting historical experience
+- **Industry Transitions** - Emphasize recent relevant experience over older unrelated roles
+- **Startup Applications** - Highlight recent innovative/fast-paced experience
+
+### Phase 8: Content Optimization Tools 🎯 **PLANNED**

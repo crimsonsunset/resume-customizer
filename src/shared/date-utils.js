@@ -2,7 +2,7 @@
  * Date utilities for resume data
  * Handles dynamic calculation of "Present" entries
  */
-import { parse, differenceInMonths, format, startOfMonth } from 'date-fns';
+import { parse, differenceInMonths, differenceInYears, format, startOfMonth } from 'date-fns';
 
 /**
  * Parses date strings in various formats and returns a Date object
@@ -117,4 +117,100 @@ export function updateAllPresentEntries(resumeData) {
   }
   
   return updated
+} 
+
+/**
+ * Parses experience/project date ranges and finds the earliest start date
+ * Handles formats like "Jan 2024 - Present · 1 yr 6 mos" and "Oct 2017 - Dec 2020 · 3 yrs 2 mos"
+ */
+export function parseExperienceDateRange(dateString) {
+  if (!dateString) return null
+
+  // Extract the date range part (before the "·" if present)
+  const datePart = dateString.split('·')[0].trim()
+  
+  // Split on " - " to get start and end dates
+  const [startDateStr, endDateStr] = datePart.split(' - ').map(s => s.trim())
+  
+  if (!startDateStr) return null
+
+  // Parse start date (e.g., "Jan 2024", "Oct 2017")
+  const startDate = parseMonthYearDate(startDateStr)
+  
+  // Parse end date if not "Present"
+  const endDate = (endDateStr && endDateStr !== 'Present') 
+    ? parseMonthYearDate(endDateStr) 
+    : new Date() // Use current date for "Present"
+
+  return {
+    startDate,
+    endDate,
+    isOngoing: endDateStr === 'Present'
+  }
+}
+
+/**
+ * Parses month-year format like "Jan 2024", "Oct 2017" using date-fns
+ */
+function parseMonthYearDate(monthYearStr) {
+  if (!monthYearStr) return null
+  
+  try {
+    // Use date-fns parse with MMM yyyy format (e.g., "Jan 2024")
+    const parsedDate = parse(monthYearStr.trim(), 'MMM yyyy', new Date())
+    
+    if (Number.isNaN(parsedDate.getTime())) {
+      console.warn(`Unable to parse date: ${monthYearStr}`)
+      return null
+    }
+    
+    return parsedDate
+  } catch (error) {
+    console.warn(`Date parsing error for "${monthYearStr}":`, error.message)
+    return null
+  }
+}
+
+/**
+ * Calculates total years of experience from experience and projects data
+ * Returns the number of years from earliest start date to now
+ */
+export function calculateTotalExperienceYears(experienceData, projectsData) {
+  const allDates = []
+  
+  // Parse experience dates (uses "duration" field)
+  if (Array.isArray(experienceData)) {
+    for (const exp of experienceData) {
+      const parsed = parseExperienceDateRange(exp.duration)
+      if (parsed?.startDate) {
+        allDates.push(parsed.startDate)
+      }
+    }
+  }
+  
+  // Parse projects dates (uses "date" field)
+  if (Array.isArray(projectsData)) {
+    for (const project of projectsData) {
+      const parsed = parseExperienceDateRange(project.date)
+      if (parsed?.startDate) {
+        allDates.push(parsed.startDate)
+      }
+    }
+  }
+  
+  if (allDates.length === 0) {
+    console.warn('No valid dates found in experience or projects data')
+    return 10 // Fallback to 10 years
+  }
+  
+  // Find earliest date using date-fns
+  const earliestDate = new Date(Math.min(...allDates))
+  const now = new Date()
+  
+  // Calculate years difference using date-fns
+  const totalYears = differenceInYears(now, earliestDate)
+  
+  console.log(`📅 Total experience span: ${totalYears} years (from ${format(earliestDate, 'MMM yyyy')} to now)`)
+  
+  return Math.max(totalYears, 1) // Minimum 1 year
 } 

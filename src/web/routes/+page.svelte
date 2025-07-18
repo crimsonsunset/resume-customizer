@@ -4,6 +4,7 @@
     import {delay} from 'lodash-es'
     import {getYear} from 'date-fns'
     import {page} from '$app/stores'
+    import {calculateTotalExperienceYears} from '@shared/date-utils.js'
     import ThemeSelector from '@web/lib/components/ThemeSelector.svelte'
     import ResumeViewer from '@web/lib/components/ResumeViewer.svelte'
     import PresetSelector from '@web/lib/components/PresetSelector.svelte'
@@ -28,6 +29,18 @@
 
     // Resume state management
     let selectedVersion = data.preset || 'full'
+    
+    // Calculate total years of experience dynamically from data
+    $: totalExperienceYears = data.sections?.experience && data.sections?.projects 
+        ? calculateTotalExperienceYears(data.sections.experience, data.sections.projects)
+        : 10 // fallback
+    
+    let experienceYears = 0 // Years of experience filter (0 = all, 1-N = filter by years) - will be set to totalExperienceYears
+
+    // Set experienceYears to show all experience by default (when totalExperienceYears is calculated)
+    $: if (totalExperienceYears && experienceYears === 0) {
+        experienceYears = totalExperienceYears
+    }
 
     // Use stores for URL state management
     let visibleSections = {}
@@ -313,8 +326,14 @@
                 <DensityControls
                         {density}
                         {contentMode}
+                        {experienceYears}
+                        {totalExperienceYears}
                         on:densityChange={(e) => updateDensityMode(e.detail.density, contentMode, $page.url)}
                         on:modeChange={(e) => updateDensityMode(density, e.detail.contentMode, $page.url)}
+                        on:yearsChange={(e) => {
+                            experienceYears = e.detail.experienceYears
+                            console.log('🕐 Years changed:', experienceYears, 'of', totalExperienceYears, 'total')
+                        }}
                 />
 
                 <ResumeStats {data} {visibleSections} {density}/>
