@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte'
+  import { uiConfig } from '@shared/ui-config.js'
   
   export let density = 100 // Content density: 10-100% (10 = minimal, 100 = full content)
   export let contentMode = 'manual' // 'manual' or 'density' mode
@@ -86,6 +87,7 @@
   </div>
 </div>
 
+{#if uiConfig.showTimeframeSlider}
 <!-- Experience Years Controls -->
 <div class="card bg-base-100 shadow-sm border border-base-300 mt-4">
   <div class="card-body p-4">
@@ -136,4 +138,5 @@
       </div>
     </div>
   </div>
-</div> 
+</div>
+{/if} 
