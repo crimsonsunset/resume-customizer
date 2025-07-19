@@ -1,4 +1,5 @@
 import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
+import { FilterUtils } from '@web/lib/utils/filter-utils.js'
 
 /**
  * Volunteering-specific renderer
@@ -58,38 +59,38 @@ ${link}`
   }
 
   /**
-   * Custom filter strategy for volunteering - checks section-level priority
+   * Custom filter strategy for volunteering - uses centralized FilterUtils
    */
   static volunteeringFilterStrategy(data, config, bulletDensity = 100, profile = null) {
     // Get section priority from profile metadata
     const sectionPriority = profile?.resume_config?.section_priorities?.volunteering || 5
-    const requiredDensity = sectionPriority * 10
     
-    console.log(`🤝 Volunteering Debug: Density ${bulletDensity}% < required ${requiredDensity}% - ${bulletDensity < requiredDensity ? 'hiding section' : 'showing section'}`)
-    
-    // If density is below section priority threshold, hide entire section
-    if (bulletDensity < requiredDensity) {
-      return []
+    // Apply density threshold filtering (may return empty array)
+    let filtered = FilterUtils.filterByDensityThreshold(data, bulletDensity, sectionPriority, 'Volunteering')
+    if (filtered.length === 0) {
+      return filtered // Section hidden due to density
     }
-    
-    // Otherwise apply normal filtering
-    let filtered = [...data]
     
     // Get filters from config or from preset_filters attached to the array
     const filters = config || data.preset_filters || {}
     
+    // Apply timeframe filtering if specified
+    if (filters.timeframeYears) {
+      const dateFieldConfig = {
+        field: 'duration',
+        format: 'duration' // Uses parseExperienceDateRange
+      }
+      filtered = FilterUtils.filterByTimeframe(filtered, filters, dateFieldConfig, 'Volunteering')
+    }
+    
     // Apply category filtering if specified
     if (filters.category_filter) {
-      filtered = filtered.filter(vol => 
-        vol.category && vol.category.toLowerCase().includes(filters.category_filter.toLowerCase())
-      )
+      filtered = FilterUtils.filterByTextMatch(filtered, 'category', filters.category_filter)
     }
     
     // Apply index-based selection (replaces max_entries)
-    if (filters.selected_indices && Array.isArray(filters.selected_indices)) {
-      filtered = filters.selected_indices
-        .filter(index => index >= 0 && index < data.length)
-        .map(index => data[index])
+    if (filters.selected_indices) {
+      filtered = FilterUtils.filterByIndices(data, filters.selected_indices)
     }
     
     return filtered

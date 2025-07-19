@@ -1,4 +1,38 @@
 import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
+import { FilterUtils } from '@web/lib/utils/filter-utils.js'
+
+/**
+ * Custom date parser for activities date format "5/10 – 12/10" (month/year range)
+ * @param {string} dateString - Date string in format "M/YY – M/YY" 
+ * @returns {Date|null} End date of the range
+ */
+function parseActivitiesDateRange(dateString) {
+  if (!dateString || typeof dateString !== 'string') return null
+  
+  try {
+    // Handle format like "5/10 – 12/10" or "5/10 - 12/10"
+    const parts = dateString.split(/[–-]/).map(s => s.trim())
+    if (parts.length !== 2) return null
+    
+    // Parse end date (e.g., "12/10")
+    const endDateStr = parts[1]
+    const [month, year] = endDateStr.split('/')
+    
+    if (!month || !year) return null
+    
+    // Convert 2-digit year to 4-digit (assuming 2000s for now)
+    const fullYear = year.length === 2 ? Number.parseInt(`20${year}`, 10) : Number.parseInt(year, 10)
+    const monthNum = Number.parseInt(month, 10)
+    
+    if (Number.isNaN(fullYear) || Number.isNaN(monthNum) || monthNum < 1 || monthNum > 12) return null
+    
+    // Create date at end of month for more accurate filtering
+    return new Date(fullYear, monthNum - 1, 1) // JavaScript months are 0-indexed
+  } catch (error) {
+    console.warn('Failed to parse activities date:', dateString, error)
+    return null
+  }
+}
 
 /**
  * Activities-specific renderer
@@ -15,12 +49,23 @@ export class ActivitiesRenderer {
    * Main render method - handles activities and personal interests
    */
   render(activitiesData, _config = {}) {
-    const activities = activitiesData?.activities || []
+    let activities = activitiesData?.activities || []
     const personalInterests = activitiesData?.personal_interests || []
     
     console.log(`🎭 ActivitiesRenderer Debug:`)
     console.log(`  📊 Input: ${activities.length} activities, ${personalInterests.length} personal interests`)
     console.log(`  🎯 Density: ${this.bulletDensity}%`)
+    
+    // Apply timeframe filtering if specified
+    const filters = this.config || {}
+    if (filters.timeframeYears) {
+      const dateFieldConfig = {
+        field: 'dates',
+        format: 'custom',
+        parser: parseActivitiesDateRange
+      }
+      activities = FilterUtils.filterByTimeframe(activities, filters, dateFieldConfig, 'Activities')
+    }
     
     // Check if activities have meaningful content after bullet filtering
     const activitiesWithContent = activities.filter(activity => {

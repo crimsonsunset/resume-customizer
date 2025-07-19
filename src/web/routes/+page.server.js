@@ -235,58 +235,107 @@ export async function load({ url }) {
           } 
         })
       },
-      education: () => render(EducationSection, { 
-        props: { 
-          education: finalData.sections?.education?.education || [],
-          config: finalData.sections?.education?.preset_filters || {}
-        } 
-      }),
-      courses: () => render(CoursesSection, { 
-        props: { 
-          courses: finalData.sections?.courses || [],
-          bulletDensity: densityParam,
-          config: finalData.sections?.courses?.preset_filters || {},
-          profile: finalData
-        } 
-      }),
-      certifications: () => render(CertificationsSection, { 
-        props: { 
-          certifications: finalData.sections?.certifications || [],
-          bulletDensity: densityParam,
-          config: finalData.sections?.certifications?.preset_filters || {},
-          profile: finalData
-        } 
-      }),
-      volunteering: () => render(VolunteeringSection, { 
-        props: { 
-          volunteering: finalData.sections?.volunteering || [],
-          bulletDensity: densityParam,
-          config: finalData.sections?.volunteering?.preset_filters || {},
-          profile: finalData
-        } 
-      }),
-      'honors-awards': () => render(HonorsAwardsSection, { 
-        props: { 
-          honorsAwards: finalData.sections?.['honors-awards'] || [],
-          bulletDensity: densityParam,
-          config: finalData.sections?.['honors-awards']?.preset_filters || {},
-          profile: finalData
-        } 
-      }),
-      recommendations: () => render(RecommendationsSection, { 
-        props: { 
-          recommendations: finalData.sections?.recommendations || { received: [] },
-          bulletDensity: densityParam,
-          config: finalData.sections?.recommendations?.preset_filters || {}
-        } 
-      }),
-      activities: () => render(ActivitiesSection, { 
-        props: { 
-          activities: finalData.sections?.activities || {},
-          bulletDensity: densityParam,
-          config: finalData.sections?.activities?.preset_filters || {}
-        } 
-      }),
+      education() {
+        const baseConfig = finalData.sections?.education?.preset_filters || {}
+        const config = {
+          ...baseConfig,
+          timeframeYears: timeframeParam > 0 ? timeframeParam : null
+        }
+        return render(EducationSection, { 
+          props: { 
+            education: finalData.sections?.education?.education || [],
+            config
+          } 
+        })
+      },
+      courses() {
+        const baseConfig = finalData.sections?.courses?.preset_filters || {}
+        const config = {
+          ...baseConfig,
+          timeframeYears: timeframeParam > 0 ? timeframeParam : null
+        }
+        return render(CoursesSection, { 
+          props: { 
+            courses: finalData.sections?.education?.courses || [],
+            bulletDensity: densityParam,
+            config,
+            profile: finalData
+          } 
+        })
+      },
+      certifications() {
+        const baseConfig = finalData.sections?.certifications?.preset_filters || {}
+        const config = {
+          ...baseConfig,
+          timeframeYears: timeframeParam > 0 ? timeframeParam : null
+        }
+        return render(CertificationsSection, { 
+          props: { 
+            certifications: finalData.sections?.certifications || [],
+            bulletDensity: densityParam,
+            config,
+            profile: finalData
+          } 
+        })
+      },
+      volunteering() {
+        const baseConfig = finalData.sections?.volunteering?.preset_filters || {}
+        const config = {
+          ...baseConfig,
+          timeframeYears: timeframeParam > 0 ? timeframeParam : null
+        }
+        return render(VolunteeringSection, { 
+          props: { 
+            volunteering: finalData.sections?.volunteering || [],
+            bulletDensity: densityParam,
+            config,
+            profile: finalData
+          } 
+        })
+      },
+      'honors-awards'() {
+        const baseConfig = finalData.sections?.['honors-awards']?.preset_filters || {}
+        const config = {
+          ...baseConfig,
+          timeframeYears: timeframeParam > 0 ? timeframeParam : null
+        }
+        return render(HonorsAwardsSection, { 
+          props: { 
+            honorsAwards: finalData.sections?.['honors-awards'] || [],
+            bulletDensity: densityParam,
+            config,
+            profile: finalData
+          } 
+        })
+      },
+      recommendations() {
+        const baseConfig = finalData.sections?.recommendations?.preset_filters || {}
+        const config = {
+          ...baseConfig,
+          timeframeYears: timeframeParam > 0 ? timeframeParam : null
+        }
+        return render(RecommendationsSection, { 
+          props: { 
+            recommendations: finalData.sections?.recommendations || { received: [] },
+            bulletDensity: densityParam,
+            config
+          } 
+        })
+      },
+      activities() {
+        const baseConfig = finalData.sections?.activities?.preset_filters || {}
+        const config = {
+          ...baseConfig,
+          timeframeYears: timeframeParam > 0 ? timeframeParam : null
+        }
+        return render(ActivitiesSection, { 
+          props: { 
+            activities: finalData.sections?.activities || {},
+            bulletDensity: densityParam,
+            config
+          } 
+        })
+      },
       headline: () => render(HeadlineSection, {
         props: {
           headline: finalData.basic_info?.headline || '',

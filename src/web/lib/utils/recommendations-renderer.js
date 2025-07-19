@@ -1,3 +1,5 @@
+import { FilterUtils } from '@web/lib/utils/filter-utils.js'
+
 /**
  * Recommendations-specific renderer
  * Handles received recommendations with quote block formatting
@@ -40,6 +42,15 @@ export class RecommendationsRenderer {
     
     // Get filters from config or from preset_filters attached to the array
     const filters = config || recommendations.preset_filters || {}
+    
+    // Apply timeframe filtering if specified
+    if (filters.timeframeYears) {
+      const dateFieldConfig = {
+        field: 'date',
+        format: 'single' // Uses parseResumeDate for "October 18, 2023, ..." format
+      }
+      filtered = FilterUtils.filterByTimeframe(filtered, filters, dateFieldConfig, 'Recommendations')
+    }
     
     // Apply index-based selection (replaces max_entries)
     if (filters.selected_indices && Array.isArray(filters.selected_indices)) {

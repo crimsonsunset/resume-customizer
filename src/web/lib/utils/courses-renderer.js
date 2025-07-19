@@ -1,4 +1,5 @@
 import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
+import { FilterUtils } from '@web/lib/utils/filter-utils.js'
 
 /**
  * Courses-specific renderer
@@ -43,7 +44,7 @@ export class CoursesRenderer extends SectionRenderer {
   }
 
   /**
-   * Custom filter strategy for courses - checks section-level priority
+   * Custom filter strategy for courses - checks section-level priority and timeframe
    */
   static coursesFilterStrategy(data, config, bulletDensity = 100, profile = null) {
     // Get section priority from profile metadata
@@ -57,8 +58,21 @@ export class CoursesRenderer extends SectionRenderer {
       return []
     }
     
-    // Otherwise show all courses
-    return data
+    let filtered = [...data]
+    
+    // Get filters from config or from preset_filters attached to the array
+    const filters = config || data.preset_filters || {}
+    
+    // Apply timeframe filtering if specified
+    if (filters.timeframeYears) {
+      const dateFieldConfig = {
+        field: 'date',
+        format: 'single' // Uses parseResumeDate for "May 2011" format
+      }
+      filtered = FilterUtils.filterByTimeframe(filtered, filters, dateFieldConfig, 'Courses')
+    }
+    
+    return filtered
   }
 
   /**

@@ -1,4 +1,5 @@
 import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
+import { FilterUtils } from '@web/lib/utils/filter-utils.js'
 
 /**
  * Education-specific renderer
@@ -62,7 +63,7 @@ export class EducationRenderer extends SectionRenderer {
   }
 
   /**
-   * Education-specific filtering (basic for now)
+   * Education-specific filtering with timeframe support
    */
   static educationFilterStrategy(education, config) {
     // Handle case where education is not an array or is empty
@@ -74,6 +75,15 @@ export class EducationRenderer extends SectionRenderer {
     
     // Get filters from config or from preset_filters attached to the array
     const filters = config || education.preset_filters || {}
+    
+    // Apply timeframe filtering if specified
+    if (filters.timeframeYears) {
+      const dateFieldConfig = {
+        field: 'dates',
+        format: 'single' // Uses parseResumeDate for "May 2011" format
+      }
+      filtered = FilterUtils.filterByTimeframe(filtered, filters, dateFieldConfig, 'Education')
+    }
     
     // Apply index-based selection (replaces max_entries)
     if (filters.selected_indices && Array.isArray(filters.selected_indices)) {

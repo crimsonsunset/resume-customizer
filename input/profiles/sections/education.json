@@ -2,61 +2,61 @@
   "courses": [
     {
       "credential_id": "Algorithms",
-      "date": "",
+      "date": "May 2011",
       "institution": "CS333",
       "name": "Algorithms"
     },
     {
       "credential_id": "",
-      "date": "",
+      "date": "May 2011",
       "institution": "CS240",
       "name": "Data Structures"
     },
     {
       "credential_id": "",
-      "date": "",
+      "date": "May 2011",
       "institution": "CS342",
       "name": "Design Patterns"
     },
     {
       "credential_id": "",
-      "date": "",
+      "date": "May 2011",
       "institution": "CS328",
       "name": "Internet Programming"
     },
     {
       "credential_id": "",
-      "date": "",
+      "date": "May 2011",
       "institution": "CS210/220/325",
       "name": "Machine Organization"
     },
     {
       "credential_id": "",
-      "date": "",
+      "date": "May 2011",
       "institution": "CS350",
       "name": "Operating Systems"
     },
     {
       "credential_id": "",
-      "date": "",
+      "date": "May 2011",
       "institution": "CS110",
       "name": "Programming Concepts and Applications"
     },
     {
       "credential_id": "",
-      "date": "",
+      "date": "May 2011",
       "institution": "CS471",
       "name": "Programming Languages"
     },
     {
       "credential_id": "",
-      "date": "",
+      "date": "May 2011",
       "institution": "CS140",
       "name": "Programming With Objects"
     },
     {
       "credential_id": "",
-      "date": "",
+      "date": "May 2011",
       "institution": "CS345",
       "name": "Software Engineering"
     }
@@ -66,7 +66,7 @@
       "institution": "Binghamton University, State University of New York",
       "degree": "Bachelor of Science, Computer Science",
       "field": "",
-      "dates": "",
+      "dates": "May 2011",
       "description": "Minor in General Engineering",
       "activities": ""
     }
