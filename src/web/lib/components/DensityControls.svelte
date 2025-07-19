@@ -35,48 +35,48 @@
     <Toggle 
       label="Density Mode" 
       size="xs"
-      checked={contentMode === 'density'}
-      on:change={() => handleModeChange(contentMode === 'density' ? 'manual' : 'density')}
-    />
-  </div>
+            checked={contentMode === 'density'}
+            on:change={() => handleModeChange(contentMode === 'density' ? 'manual' : 'density')}
+          />
+      </div>
   
-  <div class="space-y-3" class:opacity-50={contentMode === 'manual'} class:pointer-events-none={contentMode === 'manual'}>
-    <div class="flex justify-between items-center text-xs">
+    <div class="space-y-3" class:opacity-50={contentMode === 'manual'} class:pointer-events-none={contentMode === 'manual'}>
+      <div class="flex justify-between items-center text-xs">
       <ButtonGroup 
         items={[
           { text: 'Minimal', action: () => handleDensityChange(10), disabled: contentMode === 'manual' }
         ]}
         variant="ghost"
       />
-      <span class="font-medium">{density}%</span>
+        <span class="font-medium">{density}%</span>
       <ButtonGroup 
         items={[
           { text: 'Full', action: () => handleDensityChange(100), disabled: contentMode === 'manual' }
         ]}
         variant="ghost"
       />
-    </div>
-    <input 
-      type="range" 
-      min="10" 
-      max="100" 
-      step="10"
-      value={density}
-      on:input={(e) => handleDensityChange(parseInt(e.target.value))}
-      class="range range-primary range-sm" 
-      disabled={contentMode === 'manual'}
-    />
-    <div class="flex justify-between text-xs text-base-content/50">
-      <span>10%</span>
-      <span>50%</span>
-      <span>100%</span>
-    </div>
-    {#if contentMode === 'manual'}
-      <div class="text-xs text-center text-base-content/60 italic">
-        Enable Density Mode to use slider
       </div>
-    {/if}
-  </div>
+      <input 
+        type="range" 
+        min="10" 
+        max="100" 
+        step="10"
+        value={density}
+        on:input={(e) => handleDensityChange(parseInt(e.target.value))}
+        class="range range-primary range-sm" 
+        disabled={contentMode === 'manual'}
+      />
+      <div class="flex justify-between text-xs text-base-content/50">
+        <span>10%</span>
+        <span>50%</span>
+        <span>100%</span>
+      </div>
+      {#if contentMode === 'manual'}
+        <div class="text-xs text-center text-base-content/60 italic">
+          Enable Density Mode to use slider
+        </div>
+      {/if}
+    </div>
 </Card>
 
 {#if uiConfig.showTimeframeSlider}

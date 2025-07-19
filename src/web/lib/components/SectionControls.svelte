@@ -61,11 +61,11 @@
       variant="outline" 
       size="xs" 
       ariaLabel="Select All"
-      on:click={selectAllSections}
-    >
-      All
+          on:click={selectAllSections}
+        >
+          All
     </Button>
-  </div>
+    </div>
     <div class="space-y-2">
       
       <!-- Primary Sections (Main Content) -->

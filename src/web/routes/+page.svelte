@@ -337,30 +337,32 @@
         
         <!-- Desktop Header (hidden on mobile) -->
         <header class="hidden md:block bg-base-100 border-b border-base-300 px-6 py-4">
-            <div class="flex justify-between items-center max-w-7xl mx-auto">
-                <div class="flex items-center space-x-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-4">
                     <h1 class="text-2xl font-bold text-primary">Resume Optimizer</h1>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <ThemeSelector/>
-                    <button class="btn btn-primary btn-lg font-medium transition-transform hover:scale-105 active:scale-95"
-                            on:click={exportToPDF}>
-                        ⬇️ Download PDF
-                    </button>
-                </div>
             </div>
-        </header>
+            <div class="flex items-center space-x-4">
+                <ThemeSelector/>
+                    <button class="btn btn-primary btn-lg font-medium transition-transform hover:scale-105 active:scale-95"
+                        on:click={exportToPDF}>
+                        ⬇️ Download PDF
+                </button>
+            </div>
+        </div>
+    </header>
 
         <!-- Resume Content (full width on mobile, beside sidebar on desktop) -->
         <div class="flex-1 h-screen overflow-y-auto">
-            <div class="p-4">
-                <div class="card bg-base-100 shadow-sm border border-base-300">
-                    <div class="card-body p-4 md:p-8">
-                        <ResumeViewer>
-                            <div class="resume-with-visibility-controls">
-                                {@html data.resumeContent}
-                            </div>
-                        </ResumeViewer>
+            <div class="p-4 flex justify-center">
+                <div class="w-full max-w-4xl">
+                    <div class="card bg-base-100 shadow-sm border border-base-300">
+                        <div class="card-body p-4 md:p-8">
+                            <ResumeViewer>
+                                <div class="resume-with-visibility-controls">
+                                    {@html data.resumeContent}
+                                </div>
+                            </ResumeViewer>
+                        </div>
                     </div>
                 </div>
             </div>
