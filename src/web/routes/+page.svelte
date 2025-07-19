@@ -48,6 +48,9 @@
     // Use stores for URL state management
     let visibleSections = {}
     $: mounted = $mountedStore
+    
+    // Mobile drawer state
+    let mobileDrawerOpen = false
     $: density = $densityStore
     $: contentMode = $contentModeStore
 
@@ -306,7 +309,7 @@
         </div>
         <div class="flex items-center space-x-4">
             <ThemeSelector/>
-            <button class="btn btn-outline btn-primary m-1"
+            <button class="btn btn-primary m-1"
                 on:click={exportToPDF}>
                 ⬇️ Download PDF
             </button>
@@ -315,21 +318,28 @@
 </header>
 
 <!-- DaisyUI Drawer Layout -->
-<div class="drawer lg:drawer-open bg-base-200" style="min-height: calc(100vh - 80px);" in:fade={{ delay: 100, duration: 400 }}>
+<div class="drawer lg:drawer-open min-h-screen bg-base-200" in:fade={{ delay: 100, duration: 400 }}>
     <!-- Hidden checkbox to control drawer state -->
-    <input id="mobile-drawer" type="checkbox" class="drawer-toggle" />
+    <input id="mobile-drawer" type="checkbox" class="drawer-toggle" bind:checked={mobileDrawerOpen} />
     
     <!-- Main content area -->
     <div class="drawer-content flex flex-col">
         <!-- Mobile Header (visible on mobile only) -->
         <header class="block md:hidden bg-base-100 border-b border-base-300 px-4 py-3 relative z-50">
             <div class="flex justify-between items-center">
-                <!-- Hamburger Menu Button -->
-                <label for="mobile-drawer" class="btn btn-ghost btn-sm p-2 hover:bg-base-200 active:scale-95" aria-label="Open menu">
-                    <!-- Hamburger Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-6 w-6 stroke-current">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
+                <!-- Hamburger/Close Menu Button -->
+                <label for="mobile-drawer" class="btn btn-ghost btn-sm p-2 hover:bg-base-200 active:scale-95" aria-label={mobileDrawerOpen ? "Close menu" : "Open menu"}>
+                    {#if mobileDrawerOpen}
+                        <!-- X/Close Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-6 w-6 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    {:else}
+                        <!-- Hamburger Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-6 w-6 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    {/if}
                 </label>
                 
                 <!-- App Title + Current Preset -->
@@ -354,7 +364,7 @@
 
 
         <!-- Resume Content (full width on mobile, beside sidebar on desktop) -->
-        <div class="flex-1 overflow-y-auto" style="height: calc(100vh - 80px);">
+        <div class="flex-1 h-screen overflow-y-auto">
             <div class="p-4 flex justify-center">
                 <div class="w-full max-w-4xl">
                     <div class="card bg-base-100 shadow-sm border border-base-300">
@@ -378,7 +388,7 @@
         
         <!-- Sidebar content -->
         <div class="bg-base-100 text-base-content min-h-full w-96 border-r border-base-300 overflow-y-auto">
-            <div class="p-6 space-y-6">
+            <div class="p-6 pt-24 lg:pt-6 space-y-6">
                 <PresetSelector bind:selectedVersion={selectedVersion} availablePresets={data.availablePresets}/>
 
                 <SectionControls bind:visibleSections={visibleSections} {availableSectionsByCategory}
