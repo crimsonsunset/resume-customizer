@@ -79,13 +79,39 @@
         return false
     })()
 
-    // Reset function - navigate to clean URL
+    // Reset function - direct store updates for immediate UI response
     const resetFilters = () => {
-        // Navigate to clean URL - this will reset everything
+        console.log('🔄 Resetting filters directly...')
+        
+        // 1. Directly update all stores to default values
+        densityStore.set(100)
+        timeframeStore.set(totalExperienceYears) // Reset to all years
+        console.log('✅ Updated density to 100%, timeframe to', totalExperienceYears, 'years')
+        
+        // 2. Reset all sections to visible
+        const allSectionsVisible = {}
+        for (const section of data.availableSections) {
+            allSectionsVisible[section] = true
+        }
+        sectionVisibilityStore.set(allSectionsVisible)
+        console.log('✅ Reset all sections to visible:', Object.keys(allSectionsVisible))
+        
+        // 3. Reset preset to 'full'
+        selectedVersion = 'full'
+        console.log('✅ Reset preset to full')
+        
+        // 4. Update local variables to match stores (ensure sync)
+        experienceYears = totalExperienceYears
+        visibleSections = {...allSectionsVisible}
+        console.log('✅ Synced local variables')
+        
+        // 5. Navigate to clean URL for bookmarking
         goto('/', { 
             noScroll: true,
             keepFocus: true
         })
+        
+        console.log('🎯 Reset complete - stores updated directly!')
     }
 
     // Initialize from URL parameters on first load
