@@ -805,4 +805,117 @@ node convert.js html-to-pdf input/examples/base-resume.html --css experimental.c
 - ✅ **Accessibility** - Built-in ARIA labels and keyboard navigation from DaisyUI drawer
 - ✅ **Maintainability** - Cleaner codebase with wrapper components and direct imports
 
+### Phase 7.8: Centralized Filter Utilities 🎯 **PLANNED**
+**Goal:** Create centralized filter utility system to eliminate code duplication across all resume section renderers
+
+#### Current Problem Analysis
+**Code Duplication Issues:**
+- **Timeframe Filtering** - Duplicated in `experience-renderer.js` and `projects-renderer.js` with identical logic
+- **Section Priority Filtering** - Repeated across `volunteering`, `honors-awards`, `certifications` renderers (identical density threshold calculations)
+- **Index Selection Filtering** - Copy-pasted in multiple renderers with same `selected_indices` pattern
+- **Text-based Filtering** - Similar category/company filtering logic across different renderers
+- **Role/Title Filtering** - Management role filtering could be generalized for other sections
+
+**Maintenance Issues:**
+- Changes to filtering logic require updates across 8+ files
+- Inconsistent logging and debugging patterns
+- No centralized testing for filtering behavior
+- Bug fixes must be applied in multiple locations
+
+#### Proposed Solution: FilterUtils Class
+**Create Universal Filter Library:**
+```javascript
+// src/web/lib/utils/filter-utils.js
+export class FilterUtils {
+  // Universal timeframe filtering
+  static filterByTimeframe(items, config, dateFieldConfig)
+  
+  // Section priority/density filtering
+  static filterByDensityThreshold(items, bulletDensity, sectionPriority)
+  
+  // Index-based selection
+  static filterByIndices(items, selectedIndices)
+  
+  // Text matching (category, company, etc.)
+  static filterByTextMatch(items, field, searchTerm)
+  
+  // Role/title pattern matching
+  static filterByRole(items, roleFilter, titleField)
+}
+```
+
+#### Implementation Plan
+**Phase 1: Create FilterUtils Foundation**
+- ✅ **Bullet filtering precedent** - `SectionRenderer.filterBulletsWithConfig()` already shows this pattern works
+- [ ] **Extract timeframe logic** - Move from experience/projects renderers to FilterUtils
+- [ ] **Extract section priority logic** - Centralize density threshold calculations
+- [ ] **Create logging utilities** - Consistent debug output across all filters
+
+**Phase 2: Migrate Existing Renderers**
+- [ ] **Volunteering & Honors-Awards** - Replace inline filtering with FilterUtils calls
+- [ ] **Experience & Projects** - Replace timeframe filtering with centralized version
+- [ ] **All renderers** - Replace index selection and text filtering patterns
+- [ ] **Testing** - Ensure no behavior changes during migration
+
+**Phase 3: Enhanced Base SectionRenderer**
+- [ ] **Universal timeframe support** - Add `timeframeConfig` to base renderer constructor
+- [ ] **Automatic timeframe filtering** - Base renderer applies timeframe filter when configured
+- [ ] **Declarative configuration** - Renderers just declare date field mappings
+
+#### Configuration-Based Approach
+**Example Renderer Declarations:**
+```javascript
+// volunteering-renderer.js
+super({
+  sectionLabel: 'Volunteering',
+  timeframeConfig: {
+    field: 'duration',
+    format: 'duration' // Uses parseExperienceDateRange
+  }
+})
+
+// honors-awards-renderer.js  
+super({
+  sectionLabel: 'Honors & Awards',
+  timeframeConfig: {
+    field: 'date', 
+    format: 'single' // Uses parseResumeDate for "May 2024"
+  }
+})
+```
+
+#### Benefits Expected
+**Code Reduction:**
+- **90% reduction** in duplicated filtering code across renderers
+- **Single source of truth** for all filtering logic
+- **Consistent behavior** across all sections
+
+**Maintainability:**
+- **One place to fix bugs** in filtering logic
+- **Centralized testing** for all filter types
+- **Unified logging and debugging** across sections
+
+**Extensibility:**
+- **Easy to add new filter types** (e.g., skills by lastUsed date)
+- **Declarative configuration** makes new sections simple
+- **Automatic timeframe support** for any section with dates
+
+#### Future Filter Extensions
+**Skills Temporal Filtering:**
+- Filter skills by `lastUsed` date from skills-inventory.json
+- Configuration: `{ field: 'lastUsed', format: 'iso' }`
+
+**Education/Certifications Filtering:**
+- Filter by graduation/issue dates when data is available
+- Easy to add once date fields are populated
+
+**Advanced Role Filtering:**
+- Generalize management role filtering for other contexts
+- Support multiple role types (technical, management, individual contributor)
+
+#### Current Status
+**Research Complete:** ✅ Analyzed all existing filtering patterns across 8+ renderers
+**Architecture Decided:** ✅ FilterUtils class with declarative renderer configuration
+**Ready to Implement:** 🎯 Can start with timeframe filter extraction from experience/projects
+
 ### Phase 8: Content Optimization Tools 🎯 **PLANNED**
