@@ -2,11 +2,9 @@
   import { createEventDispatcher } from 'svelte'
   import { uiConfig } from '@shared/ui-config.js'
   import Card from '@web/lib/components/ui/Card.svelte'
-  import Toggle from '@web/lib/components/ui/Toggle.svelte'
   import ButtonGroup from '@web/lib/components/ui/ButtonGroup.svelte'
   
   export let density = 100 // Content density: 10-100% (10 = minimal, 100 = full content)
-  export let contentMode = 'manual' // 'manual' or 'density' mode
   export let experienceYears = 7 // Years of experience: 0 = all, 1-N = filter by years
   export let totalExperienceYears = 10 // Total years calculated from data
   
@@ -14,10 +12,6 @@
   
   const handleDensityChange = (newDensity) => {
     dispatch('densityChange', { density: newDensity })
-  }
-  
-  const handleModeChange = (newMode) => {
-    dispatch('modeChange', { contentMode: newMode })
   }
   
   const handleYearsChange = (newYears) => {
@@ -33,52 +27,37 @@
 
 <!-- Resume Length Controls -->
 <Card title="📏 Resume Length">
-  <div slot="actions">
-    <Toggle 
-      label="Density Mode" 
-      size="xs"
-            checked={contentMode === 'density'}
-            on:change={() => handleModeChange(contentMode === 'density' ? 'manual' : 'density')}
-          />
-      </div>
-  
-    <div class="space-y-3" class:opacity-50={contentMode === 'manual'} class:pointer-events-none={contentMode === 'manual'}>
-      <div class="flex justify-between items-center text-xs">
+  <div class="space-y-3">
+    <div class="flex justify-between items-center text-xs">
       <ButtonGroup 
         items={[
-          { text: 'Minimal', action: () => handleDensityChange(10), disabled: contentMode === 'manual' }
+          { text: 'Minimal', action: () => handleDensityChange(10) }
         ]}
         variant="ghost"
       />
-        <span class="font-medium">{density}%</span>
+      <span class="font-medium">{density}%</span>
       <ButtonGroup 
         items={[
-          { text: 'Full', action: () => handleDensityChange(100), disabled: contentMode === 'manual' }
+          { text: 'Full', action: () => handleDensityChange(100) }
         ]}
         variant="ghost"
       />
-      </div>
-      <input 
-        type="range" 
-        min="10" 
-        max="100" 
-        step="10"
-        value={density}
-        on:input={(e) => handleDensityChange(parseInt(e.target.value))}
-        class="range range-primary range-sm" 
-        disabled={contentMode === 'manual'}
-      />
-      <div class="flex justify-between text-xs text-base-content/50">
-        <span>10%</span>
-        <span>50%</span>
-        <span>100%</span>
-      </div>
-      {#if contentMode === 'manual'}
-        <div class="text-xs text-center text-base-content/60 italic">
-          Enable Density Mode to use slider
-        </div>
-      {/if}
     </div>
+    <input 
+      type="range" 
+      min="10" 
+      max="100" 
+      step="10"
+      value={density}
+      on:input={(e) => handleDensityChange(Number.parseInt(e.target.value, 10))}
+      class="range range-primary range-sm"
+    />
+    <div class="flex justify-between text-xs text-base-content/50">
+      <span>10%</span>
+      <span>50%</span>
+      <span>100%</span>
+    </div>
+  </div>
 </Card>
 
 {#if uiConfig.showTimeframeSlider}

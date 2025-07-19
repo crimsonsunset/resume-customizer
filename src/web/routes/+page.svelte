@@ -15,7 +15,6 @@
     import ComingSoonFeatures from '@web/lib/components/ComingSoonFeatures.svelte'
     import { startCase } from 'lodash-es'
     import {
-        contentModeStore,
         densityInitializedStore,
         densityStore,
         handlePresetChange,
@@ -58,7 +57,6 @@
     // Mobile drawer state
     let mobileDrawerOpen = false
     $: density = $densityStore
-    $: contentMode = $contentModeStore
     $: timeframe = $timeframeStore
 
     // Reset button logic - detect if any filters are active
@@ -69,14 +67,11 @@
         // Check if density is not default (100%)
         if (density !== 100) return true
         
-        // Check if mode is not default (manual)
-        if (contentMode !== 'manual') return true
-        
         // Check if timeframe is not default (all years)
         if (totalExperienceYears && experienceYears < totalExperienceYears) return true
         
-        // Check if any sections are unchecked in manual mode (only applies in manual mode)
-        if (contentMode === 'manual' && Object.keys(visibleSections).length > 0) {
+        // Check if any sections are unchecked (always applies now)
+        if (Object.keys(visibleSections).length > 0) {
             const hasUncheckedSections = Object.values(visibleSections).some(visible => !visible)
             if (hasUncheckedSections) return true
         }
@@ -86,9 +81,6 @@
 
     // Reset function - navigate to clean URL
     const resetFilters = () => {
-        // Show dramatic animation feedback
-        showToast('🔄 Resetting to default view...', 'reset')
-        
         // Navigate to clean URL - this will reset everything
         goto('/', { 
             noScroll: true,
@@ -112,18 +104,8 @@
         visibleSections = {...$sectionVisibilityStore}
     }
 
-    // In density mode, sync section checkboxes with server-detected visible sections
-    $: if (mounted && data.contentMode === 'density' && data.actuallyVisibleSections) {
-        // Directly update local state in density mode (no URL sync to avoid conflicts)
-        const densityFilteredVisibility = {}
-        for (const section of data.availableSections || []) {
-            densityFilteredVisibility[section] = data.actuallyVisibleSections.includes(section)
-        }
-        visibleSections = densityFilteredVisibility
-    }
-
-    // Sync visibleSections changes back to store and URL (when modified by components in manual mode)
-    $: if (mounted && data.contentMode !== 'density' && Object.keys(visibleSections).length > 0) {
+    // Sync visibleSections changes back to store and URL (always applies now)
+    $: if (mounted && Object.keys(visibleSections).length > 0) {
         // Only update store if visibleSections differs from store (avoid infinite loops)
         if (JSON.stringify(visibleSections) !== JSON.stringify($sectionVisibilityStore)) {
             updateSectionVisibility(visibleSections, $page.url, true)
@@ -456,19 +438,16 @@
             <div class="p-6 pt-24 lg:pt-6 space-y-6">
                 <PresetSelector bind:selectedVersion={selectedVersion} availablePresets={data.availablePresets}/>
 
-                <SectionControls bind:visibleSections={visibleSections} {availableSectionsByCategory}
-                                 disabled={contentMode === 'density'}/>
+                <SectionControls bind:visibleSections={visibleSections} {availableSectionsByCategory}/>
 
                 <DensityControls
                         {density}
-                        {contentMode}
                         {experienceYears}
                         {totalExperienceYears}
-                        on:densityChange={(e) => updateDensityMode(e.detail.density, contentMode, experienceYears, $page.url)}
-                        on:modeChange={(e) => updateDensityMode(density, e.detail.contentMode, experienceYears, $page.url)}
+                        on:densityChange={(e) => updateDensityMode(e.detail.density, experienceYears, $page.url)}
                         on:yearsChange={(e) => {
                             experienceYears = e.detail.experienceYears
-                            updateDensityMode(density, contentMode, experienceYears, $page.url)
+                            updateDensityMode(density, experienceYears, $page.url)
                             console.log('🕐 Years changed:', experienceYears, 'of', totalExperienceYears, 'total')
                         }}
                 />

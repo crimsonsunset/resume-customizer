@@ -81,11 +81,10 @@ export async function load({ url }) {
     const presetParam = url.searchParams.get('preset')
     console.log('🎯 Preset parameter:', presetParam)
     
-    // Get density, mode, and timeframe parameters
+    // Get density and timeframe parameters 
     const densityParam = Number.parseInt(url.searchParams.get('density') || '100', 10)
-    const modeParam = url.searchParams.get('mode') || 'manual'
     const timeframeParam = Number.parseInt(url.searchParams.get('timeframe') || '0', 10) // 0 = all years
-    console.log('📏 Density parameter:', densityParam, 'Mode:', modeParam, 'Timeframe:', timeframeParam === 0 ? 'all years' : `${timeframeParam} years`)
+    console.log('📏 Density parameter:', densityParam, 'Timeframe:', timeframeParam === 0 ? 'all years' : `${timeframeParam} years`)
     
     // Apply preset if specified
     const finalData = presetParam ? applyPreset(rawData, presetParam) : rawData
@@ -197,7 +196,7 @@ export async function load({ url }) {
       objective: () => render(ObjectiveSection, { 
         props: { 
           objective: finalData.objective || null,
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          bulletDensity: densityParam,
           profile: finalData
         } 
       }),
@@ -210,7 +209,7 @@ export async function load({ url }) {
         return render(ExperienceSection, { 
           props: { 
             experiences: finalData.sections?.experience || [],
-            bulletDensity: modeParam === 'density' ? densityParam : 100,
+            bulletDensity: densityParam,
             config
           } 
         })
@@ -218,7 +217,7 @@ export async function load({ url }) {
       skills: () => render(SkillsSection, { 
         props: { 
           skillsData: finalData.sections?.skills || { skills: [] },
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          bulletDensity: densityParam,
           config: finalData.sections?.skills?.preset_filters || {}
         } 
       }),
@@ -231,7 +230,7 @@ export async function load({ url }) {
         return render(ProjectsSection, { 
           props: { 
             projects: finalData.sections?.projects || [],
-            bulletDensity: modeParam === 'density' ? densityParam : 100,
+            bulletDensity: densityParam,
             config
           } 
         })
@@ -245,7 +244,7 @@ export async function load({ url }) {
       courses: () => render(CoursesSection, { 
         props: { 
           courses: finalData.sections?.courses || [],
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          bulletDensity: densityParam,
           config: finalData.sections?.courses?.preset_filters || {},
           profile: finalData
         } 
@@ -253,7 +252,7 @@ export async function load({ url }) {
       certifications: () => render(CertificationsSection, { 
         props: { 
           certifications: finalData.sections?.certifications || [],
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          bulletDensity: densityParam,
           config: finalData.sections?.certifications?.preset_filters || {},
           profile: finalData
         } 
@@ -261,7 +260,7 @@ export async function load({ url }) {
       volunteering: () => render(VolunteeringSection, { 
         props: { 
           volunteering: finalData.sections?.volunteering || [],
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          bulletDensity: densityParam,
           config: finalData.sections?.volunteering?.preset_filters || {},
           profile: finalData
         } 
@@ -269,7 +268,7 @@ export async function load({ url }) {
       'honors-awards': () => render(HonorsAwardsSection, { 
         props: { 
           honorsAwards: finalData.sections?.['honors-awards'] || [],
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          bulletDensity: densityParam,
           config: finalData.sections?.['honors-awards']?.preset_filters || {},
           profile: finalData
         } 
@@ -277,21 +276,21 @@ export async function load({ url }) {
       recommendations: () => render(RecommendationsSection, { 
         props: { 
           recommendations: finalData.sections?.recommendations || { received: [] },
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          bulletDensity: densityParam,
           config: finalData.sections?.recommendations?.preset_filters || {}
         } 
       }),
       activities: () => render(ActivitiesSection, { 
         props: { 
           activities: finalData.sections?.activities || {},
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          bulletDensity: densityParam,
           config: finalData.sections?.activities?.preset_filters || {}
         } 
       }),
       headline: () => render(HeadlineSection, {
         props: {
           headline: finalData.basic_info?.headline || '',
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          bulletDensity: densityParam,
           profile: finalData
         }
       }),
@@ -304,14 +303,14 @@ export async function load({ url }) {
       summary: () => render(SummarySection, {
         props: {
           summary: finalData.basic_info?.summary || '',
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
+          bulletDensity: densityParam,
           profile: finalData
         }
       })
     }
     
     // Get section order from data or use default
-    const sectionOrder = finalData.sections_order || ['headline', 'objective', 'summary', 'education', 'skills', 'experience', 'projects', 'honors-awards', 'volunteering', 'recommendations', 'activities', 'certifications', 'courses', 'location']
+    const sectionOrder = finalData.sections_order || ['headline', 'objective', 'summary', 'education', 'skills', 'experience', 'projects', 'honors-awards', 'volunteering', 'activities', 'certifications', 'courses', 'location', 'recommendations']
     console.log('📋 Sections order:', sectionOrder)
     
     // Render sections in specified order and track visibility
@@ -355,7 +354,6 @@ export async function load({ url }) {
       availablePresets,
       availableSections: sectionOrder, // Add the sections that are actually rendered
       actuallyVisibleSections, // Sections that are visible after density filtering
-      contentMode: modeParam, // Pass the content mode to the client
       sections: finalData.sections // Add the actual section data for stats calculation
     }
   } catch (error) {
