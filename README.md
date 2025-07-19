@@ -5,9 +5,11 @@ A modern resume optimization tool with CLI, web application, and AI-powered matc
 ## ✨ Features
 
 ### Web Application (Ready to Use)
-- **Interactive Resume Customizer** with split-screen design and component-based architecture
+- **Interactive Resume Customizer** with responsive design and component-based architecture
+- **Mobile-First Responsive Design** with DaisyUI drawer hamburger menu for phones/tablets
 - **Real-time Statistics** showing dynamic content metrics that update as you customize
-- **34 DaisyUI Themes** with seamless switching
+- **34 DaisyUI Themes** with seamless switching and consistent component library
+- **DaisyUI Wrapper Components** for buttons, toggles, cards, badges, and form elements
 - **Resume Version Controls** (full/short/leadership/technical)
 - **Section Toggles** with category-specific all/none controls
 - **Strategic Content Curation System** with index-based selection for intelligent content optimization
@@ -16,8 +18,8 @@ A modern resume optimization tool with CLI, web application, and AI-powered matc
 - **Preset Priority Override System** for role-specific content emphasis
 - **Content Density Controls** with Manual vs Density mode toggle for granular content management
 - **URL State Management** for bookmarkable resume configurations with compact encoding
-- **Responsive Design** optimized for all devices
-- **PDF-Ready Styling** with scoped CSS architecture
+- **Responsive Design** optimized for all devices with mobile hamburger navigation
+- **PDF-Ready Styling** with scoped CSS architecture and max-width content containers
 - **One-Click PDF Export** with auto-generated filenames (`joseph-sangiorgio-resume-2025.pdf`)
 
 ### CLI Tool (Production Ready)
