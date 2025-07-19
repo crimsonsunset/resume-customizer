@@ -1,7 +1,9 @@
 <script>
   import { createEventDispatcher } from 'svelte'
   import { uiConfig } from '@shared/ui-config.js'
-  import { Card, Toggle, ButtonGroup } from '@web/lib/components/ui'
+  import Card from '@web/lib/components/ui/Card.svelte'
+  import Toggle from '@web/lib/components/ui/Toggle.svelte'
+  import ButtonGroup from '@web/lib/components/ui/ButtonGroup.svelte'
   
   export let density = 100 // Content density: 10-100% (10 = minimal, 100 = full content)
   export let contentMode = 'manual' // 'manual' or 'density' mode
