@@ -12,8 +12,7 @@
     import DensityControls from '@web/lib/components/DensityControls.svelte'
     import ResumeStats from '@web/lib/components/ResumeStats.svelte'
     import ComingSoonFeatures from '@web/lib/components/ComingSoonFeatures.svelte'
-    import MobileHeader from '@web/lib/components/MobileHeader.svelte'
-    import SlideOutPanel from '@web/lib/components/SlideOutPanel.svelte'
+    import { startCase } from 'lodash-es'
     import {
         contentModeStore,
         densityInitializedStore,
@@ -32,9 +31,6 @@
     // Resume state management
     let selectedVersion = data.preset || 'full'
     
-    // Mobile panel state
-    let mobilePanelOpen = false
-    
     // Calculate total years of experience dynamically from data
     $: totalExperienceYears = data.sections?.experience && data.sections?.projects 
         ? calculateTotalExperienceYears(data.sections.experience, data.sections.projects)
@@ -47,19 +43,7 @@
         experienceYears = totalExperienceYears
     }
     
-    /**
-     * Handles mobile panel toggle
-     */
-    const handlePanelToggle = (event) => {
-        mobilePanelOpen = event.detail.open
-    }
-    
-    /**
-     * Closes mobile panel
-     */
-    const closeMobilePanel = () => {
-        mobilePanelOpen = false
-    }
+
 
     // Use stores for URL state management
     let visibleSections = {}
@@ -314,63 +298,83 @@
     }
 </style>
 
-<div class="min-h-screen bg-base-200" in:fade={{ delay: 100, duration: 400 }}>
-    <!-- Header -->
-    <!-- Mobile Header (visible on mobile only) -->
-    <MobileHeader 
-        bind:panelOpen={mobilePanelOpen}
-        {selectedVersion}
-        on:panelToggle={handlePanelToggle}
-        on:exportPDF={exportToPDF}
-    />
+<!-- DaisyUI Drawer Layout -->
+<div class="drawer lg:drawer-open min-h-screen bg-base-200" in:fade={{ delay: 100, duration: 400 }}>
+    <!-- Hidden checkbox to control drawer state -->
+    <input id="mobile-drawer" type="checkbox" class="drawer-toggle" />
     
-    <!-- Desktop Header (hidden on mobile) -->
-    <header class="hidden md:block bg-base-100 border-b border-base-300 px-6 py-4">
-        <div class="flex justify-between items-center max-w-7xl mx-auto">
-            <div class="flex items-center space-x-4">
-                <h1 class="text-2xl font-bold text-primary">Resume Optimizer</h1>
-            </div>
-            <div class="flex items-center space-x-4">
-                <ThemeSelector/>
-                <button class="btn btn-primary btn-lg font-medium transition-transform hover:scale-105 active:scale-95"
-                        on:click={exportToPDF}>
-                    ⬇️ Download PDF
+    <!-- Main content area -->
+    <div class="drawer-content flex flex-col">
+        <!-- Mobile Header (visible on mobile only) -->
+        <header class="block md:hidden bg-base-100 border-b border-base-300 px-4 py-3 relative z-50">
+            <div class="flex justify-between items-center">
+                <!-- Hamburger Menu Button -->
+                <label for="mobile-drawer" class="btn btn-ghost btn-sm p-2 hover:bg-base-200 active:scale-95" aria-label="Open menu">
+                    <!-- Hamburger Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-6 w-6 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </label>
+                
+                <!-- App Title + Current Preset -->
+                <div class="flex-1 text-center">
+                    <h1 class="text-lg font-bold text-primary">Resume Optimizer</h1>
+                    {#if selectedVersion !== 'full'}
+                        <p class="text-xs text-base-content/60">{startCase(selectedVersion)} Preset</p>
+                    {/if}
+                </div>
+                
+                <!-- Export Button (Mobile) -->
+                <button 
+                    class="btn btn-primary btn-sm font-medium"
+                    on:click={exportToPDF}
+                    aria-label="Download PDF"
+                >
+                    ⬇️ PDF
                 </button>
             </div>
+        </header>
+        
+        <!-- Desktop Header (hidden on mobile) -->
+        <header class="hidden md:block bg-base-100 border-b border-base-300 px-6 py-4">
+            <div class="flex justify-between items-center max-w-7xl mx-auto">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-primary">Resume Optimizer</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <ThemeSelector/>
+                    <button class="btn btn-primary btn-lg font-medium transition-transform hover:scale-105 active:scale-95"
+                            on:click={exportToPDF}>
+                        ⬇️ Download PDF
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Resume Content (full width on mobile, beside sidebar on desktop) -->
+        <div class="flex-1 h-screen overflow-y-auto">
+            <div class="p-4">
+                <div class="card bg-base-100 shadow-sm border border-base-300">
+                    <div class="card-body p-4 md:p-8">
+                        <ResumeViewer>
+                            <div class="resume-with-visibility-controls">
+                                {@html data.resumeContent}
+                            </div>
+                        </ResumeViewer>
+                    </div>
+                </div>
+            </div>
         </div>
-    </header>
-
-    <!-- Mobile Slide-Out Panel -->
-    <SlideOutPanel bind:open={mobilePanelOpen} on:close={closeMobilePanel}>
-        <PresetSelector bind:selectedVersion={selectedVersion} availablePresets={data.availablePresets}/>
-
-        <SectionControls bind:visibleSections={visibleSections} {availableSectionsByCategory}
-                         disabled={contentMode === 'density'}/>
-
-        <DensityControls
-                {density}
-                {contentMode}
-                {experienceYears}
-                {totalExperienceYears}
-                on:densityChange={(e) => updateDensityMode(e.detail.density, contentMode, $page.url)}
-                on:modeChange={(e) => updateDensityMode(density, e.detail.contentMode, $page.url)}
-                on:yearsChange={(e) => {
-                    experienceYears = e.detail.experienceYears
-                    console.log('🕐 Years changed:', experienceYears, 'of', totalExperienceYears, 'total')
-                }}
-        />
-
-        <ResumeStats {data} {visibleSections} {density}/>
-
-        <ComingSoonFeatures/>
-    </SlideOutPanel>
-
-    <!-- Main Layout -->
-    <div class="flex max-w-7xl mx-auto">
-        <!-- Desktop Left Control Panel (hidden on mobile) -->
-        <div class="hidden md:block w-96 bg-base-100 border-r border-base-300 h-screen overflow-y-auto">
+    </div>
+    
+    <!-- Sidebar/Drawer -->
+    <div class="drawer-side">
+        <!-- Overlay that closes drawer when clicked -->
+        <label for="mobile-drawer" aria-label="Close menu" class="drawer-overlay"></label>
+        
+        <!-- Sidebar content -->
+        <div class="bg-base-100 text-base-content min-h-full w-96 border-r border-base-300 overflow-y-auto">
             <div class="p-6 space-y-6">
-
                 <PresetSelector bind:selectedVersion={selectedVersion} availablePresets={data.availablePresets}/>
 
                 <SectionControls bind:visibleSections={visibleSections} {availableSectionsByCategory}
@@ -392,22 +396,6 @@
                 <ResumeStats {data} {visibleSections} {density}/>
 
                 <ComingSoonFeatures/>
-
-            </div>
-        </div>
-
-        <!-- Resume Preview (full width on mobile, right panel on desktop) -->
-        <div class="flex-1 h-screen overflow-y-auto">
-            <div class="p-4">
-                <div class="card bg-base-100 shadow-sm border border-base-300">
-                    <div class="card-body p-4 md:p-8">
-                        <ResumeViewer>
-                            <div class="resume-with-visibility-controls">
-                                {@html data.resumeContent}
-                            </div>
-                        </ResumeViewer>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

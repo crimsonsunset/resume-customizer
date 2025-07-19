@@ -1,4 +1,6 @@
 <script>
+  import { ButtonGroup, Card, Badge, Button } from '@web/lib/components/ui'
+  
   export let visibleSections
   export let availableSectionsByCategory
   export let disabled = false // Gray out controls in density mode
@@ -49,23 +51,21 @@
 </script>
 
 <!-- Section Toggles -->
-<div class="card bg-base-100 shadow-sm border border-base-300" class:opacity-50={disabled} class:pointer-events-none={disabled}>
-  <div class="card-body p-4">
-    <div class="flex justify-between items-center mb-3">
-      <h3 class="card-title text-sm">👁️ Visible Sections</h3>
-      {#if disabled}
-        <div class="badge badge-sm badge-outline">Density Mode</div>
-      {/if}
-      <div class="flex space-x-1">
-        <button 
-          class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-          on:click={selectAllSections}
-          title="Select All"
-        >
-          All
-        </button>
-      </div>
-    </div>
+<Card 
+  title="👁️ Visible Sections" 
+  disabled={disabled}
+  badge={disabled ? { text: 'Density Mode', variant: 'info' } : null}
+>
+  <div slot="actions">
+    <Button 
+      variant="outline" 
+      size="xs" 
+      ariaLabel="Select All"
+      on:click={selectAllSections}
+    >
+      All
+    </Button>
+  </div>
     <div class="space-y-2">
       
       <!-- Primary Sections (Main Content) -->
@@ -76,21 +76,13 @@
         </div>
         <div class="collapse-content space-y-2">
           {#if availableSectionsByCategory.primary.length > 0}
-            <div class="flex gap-2 mb-3">
-              <button 
-                class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                on:click={() => setCategoryVisibility('primary', true)}
-                title="Select All Primary"
-              >
-                All
-              </button>
-              <button 
-                class="btn btn-xs btn-outline transition-transform hover:scale-110 active:scale-95" 
-                on:click={() => setCategoryVisibility('primary', false)}
-                title="Select None Primary"
-              >
-                None
-              </button>
+            <div class="mb-3">
+              <ButtonGroup 
+                items={[
+                  { text: 'All', action: () => setCategoryVisibility('primary', true), ariaLabel: 'Select All Primary' },
+                  { text: 'None', action: () => setCategoryVisibility('primary', false), ariaLabel: 'Select None Primary' }
+                ]}
+              />
             </div>
           {/if}
           {#each availableSectionsByCategory.primary as section}
@@ -224,5 +216,4 @@
       </div>
 
     </div>
-  </div>
-</div> 
+</Card> 
