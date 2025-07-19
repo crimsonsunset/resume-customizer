@@ -154,32 +154,46 @@ export const preserveSectionState = (currentSections, newAvailableSections) => {
 /**
  * Initialize density and mode from URL parameters
  * @param {URLSearchParams} searchParams - URL search parameters
- * @returns {object} { density: number, contentMode: string }
+ * @returns {object} { density: number, contentMode: string, timeframe: number }
  */
 export const initializeDensityMode = (searchParams) => {
-  const density = parseInt(searchParams.get('density') || '100')
+  const density = Number.parseInt(searchParams.get('density') || '100', 10)
   const contentMode = searchParams.get('mode') || 'manual'
-  return { density, contentMode }
+  const timeframe = Number.parseInt(searchParams.get('timeframe') || '0', 10) // 0 = all years
+  return { density, contentMode, timeframe }
 }
 
 /**
- * Update URL with density and mode parameters
+ * Update URL with density, mode, and timeframe parameters
  * @param {URL} currentURL - Current URL object
  * @param {number} density - Density value (10-100)
  * @param {string} contentMode - Content mode ('manual' or 'density')
+ * @param {number} timeframe - Timeframe in years (0 = all years)
  * @returns {URL} Updated URL object
  */
-export const updateURLWithDensity = (currentURL, density, contentMode) => {
+export const updateURLWithDensity = (currentURL, density, contentMode, timeframe = 0) => {
   const newURL = new URL(currentURL)
   
   if (contentMode === 'density') {
     newURL.searchParams.set('density', density.toString())
     newURL.searchParams.set('mode', 'density')
+    // Add timeframe parameter if not showing all years
+    if (timeframe > 0) {
+      newURL.searchParams.set('timeframe', timeframe.toString())
+    } else {
+      newURL.searchParams.delete('timeframe')
+    }
     // Remove sections parameter - density mode shows all sections by default
     newURL.searchParams.delete('sections')
   } else {
     newURL.searchParams.delete('density')
     newURL.searchParams.delete('mode')
+    // Add timeframe parameter for manual mode too if not showing all years
+    if (timeframe > 0) {
+      newURL.searchParams.set('timeframe', timeframe.toString())
+    } else {
+      newURL.searchParams.delete('timeframe')
+    }
     // Keep sections parameter for manual mode (if it exists)
   }
   
@@ -192,7 +206,7 @@ export const updateURLWithDensity = (currentURL, density, contentMode) => {
  * @returns {number} Density value (10-100)
  */
 export const getDensityFromURL = (searchParams) => {
-  return parseInt(searchParams.get('density') || '100')
+  return Number.parseInt(searchParams.get('density') || '100', 10)
 }
 
 /**
@@ -202,4 +216,13 @@ export const getDensityFromURL = (searchParams) => {
  */
 export const getModeFromURL = (searchParams) => {
   return searchParams.get('mode') || 'manual'
+} 
+
+/**
+ * Extract timeframe value from URL
+ * @param {URLSearchParams} searchParams - URL search parameters
+ * @returns {number} Timeframe value in years (0 = all years)
+ */
+export const getTimeframeFromURL = (searchParams) => {
+  return Number.parseInt(searchParams.get('timeframe') || '0', 10)
 } 

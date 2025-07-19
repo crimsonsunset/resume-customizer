@@ -1,4 +1,5 @@
 import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
+import { parseExperienceDateRange } from '@shared/date-utils.js'
 
 /**
  * Projects-specific renderer with dual sections (Work vs Supplemental)
@@ -114,6 +115,24 @@ ${SectionRenderer.renderBullets(bullets)}`
     
     // Get filters from config or from preset_filters attached to the array
     const filters = config || projects.preset_filters || {}
+    
+    // Apply timeframe filtering first (if specified)
+    if (filters.timeframeYears && filters.timeframeYears > 0) {
+      const cutoffDate = new Date()
+      cutoffDate.setFullYear(cutoffDate.getFullYear() - filters.timeframeYears)
+      
+      filtered = filtered.filter(project => {
+        const dateRange = parseExperienceDateRange(project.date)
+        if (!dateRange?.endDate) {
+          return true // Keep entries we can't parse
+        }
+        
+        // Keep if end date is after cutoff (recent enough)
+        return dateRange.endDate >= cutoffDate
+      })
+      
+      console.log(`🚀 Projects timeframe filter: showing last ${filters.timeframeYears} years (${filtered.length}/${projects.length} entries)`)
+    }
     
     // Apply index-based selection (replaces max_entries)
     if (filters.selected_indices && Array.isArray(filters.selected_indices)) {

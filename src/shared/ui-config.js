@@ -4,7 +4,7 @@
  */
 
 export const uiConfig = {
-  showTimeframeSlider: false, // Age filtering - currently disabled
+  showTimeframeSlider: true, // Age filtering - now enabled for testing
 };
 
 export default uiConfig; 

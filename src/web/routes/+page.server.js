@@ -81,10 +81,11 @@ export async function load({ url }) {
     const presetParam = url.searchParams.get('preset')
     console.log('🎯 Preset parameter:', presetParam)
     
-    // Get density and mode parameters
+    // Get density, mode, and timeframe parameters
     const densityParam = Number.parseInt(url.searchParams.get('density') || '100', 10)
     const modeParam = url.searchParams.get('mode') || 'manual'
-    console.log('📏 Density parameter:', densityParam, 'Mode:', modeParam)
+    const timeframeParam = Number.parseInt(url.searchParams.get('timeframe') || '0', 10) // 0 = all years
+    console.log('📏 Density parameter:', densityParam, 'Mode:', modeParam, 'Timeframe:', timeframeParam === 0 ? 'all years' : `${timeframeParam} years`)
     
     // Apply preset if specified
     const finalData = presetParam ? applyPreset(rawData, presetParam) : rawData
@@ -200,13 +201,20 @@ export async function load({ url }) {
           profile: finalData
         } 
       }),
-      experience: () => render(ExperienceSection, { 
-        props: { 
-          experiences: finalData.sections?.experience || [],
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
-          config: finalData.sections?.experience?.preset_filters || {}
-        } 
-      }),
+      experience() {
+        const baseConfig = finalData.sections?.experience?.preset_filters || {}
+        const config = {
+          ...baseConfig,
+          timeframeYears: timeframeParam > 0 ? timeframeParam : null
+        }
+        return render(ExperienceSection, { 
+          props: { 
+            experiences: finalData.sections?.experience || [],
+            bulletDensity: modeParam === 'density' ? densityParam : 100,
+            config
+          } 
+        })
+      },
       skills: () => render(SkillsSection, { 
         props: { 
           skillsData: finalData.sections?.skills || { skills: [] },
@@ -214,13 +222,20 @@ export async function load({ url }) {
           config: finalData.sections?.skills?.preset_filters || {}
         } 
       }),
-      projects: () => render(ProjectsSection, { 
-        props: { 
-          projects: finalData.sections?.projects || [],
-          bulletDensity: modeParam === 'density' ? densityParam : 100,
-          config: finalData.sections?.projects?.preset_filters || {}
-        } 
-      }),
+      projects() {
+        const baseConfig = finalData.sections?.projects?.preset_filters || {}
+        const config = {
+          ...baseConfig,
+          timeframeYears: timeframeParam > 0 ? timeframeParam : null
+        }
+        return render(ProjectsSection, { 
+          props: { 
+            projects: finalData.sections?.projects || [],
+            bulletDensity: modeParam === 'density' ? densityParam : 100,
+            config
+          } 
+        })
+      },
       education: () => render(EducationSection, { 
         props: { 
           education: finalData.sections?.education?.education || [],

@@ -22,6 +22,7 @@ export const sectionVisibilityStore = writable({})
 // Density and mode stores
 export const densityStore = writable(100)
 export const contentModeStore = writable('manual')
+export const timeframeStore = writable(0) // 0 = all years
 export const densityInitializedStore = writable(false)
 
 // Mounted state to avoid SSR issues
@@ -96,15 +97,17 @@ export const shouldUpdateURL = (newSections, previousSections, isMounted) => {
 }
 
 /**
- * Updates density and content mode, syncing with URL
+ * Updates density, content mode, and timeframe, syncing with URL
  * @param {number} density - Density value (10-100)
  * @param {string} contentMode - 'manual' or 'density'
+ * @param {number} timeframe - Timeframe in years (0 = all years)
  * @param {URL} currentURL - Current page URL
  * @param {boolean} updateURL - Whether to update browser URL
  */
-export const updateDensityMode = (density, contentMode, currentURL, updateURL = true) => {
+export const updateDensityMode = (density, contentMode, timeframe, currentURL, updateURL = true) => {
   densityStore.set(density)
   contentModeStore.set(contentMode)
+  timeframeStore.set(timeframe)
   
   // When switching TO density mode, reset all sections to visible
   // Density mode should show all sections and filter content within them
@@ -125,7 +128,7 @@ export const updateDensityMode = (density, contentMode, currentURL, updateURL = 
   }
   
   if (updateURL && browser) {
-    const newURL = updateURLWithDensity(currentURL, density, contentMode)
+    const newURL = updateURLWithDensity(currentURL, density, contentMode, timeframe)
     goto(newURL.toString(), { 
       replaceState: true, 
       noScroll: true,
@@ -135,12 +138,13 @@ export const updateDensityMode = (density, contentMode, currentURL, updateURL = 
 }
 
 /**
- * Initializes density and mode from URL parameters
+ * Initializes density, mode, and timeframe from URL parameters
  * @param {URLSearchParams} searchParams - URL search parameters
  */
 export const initializeDensity = (searchParams) => {
-  const { density, contentMode } = initializeDensityMode(searchParams)
+  const { density, contentMode, timeframe } = initializeDensityMode(searchParams)
   densityStore.set(density)
   contentModeStore.set(contentMode)
+  timeframeStore.set(timeframe)
   densityInitializedStore.set(true)
 } 

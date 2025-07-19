@@ -4,6 +4,7 @@
     import {delay} from 'lodash-es'
     import {getYear} from 'date-fns'
     import {page} from '$app/stores'
+    import {goto} from '$app/navigation'
     import {calculateTotalExperienceYears} from '@shared/date-utils.js'
     import ThemeSelector from '@web/lib/components/ThemeSelector.svelte'
     import ResumeViewer from '@web/lib/components/ResumeViewer.svelte'
@@ -22,6 +23,7 @@
         initializeSections,
         mountedStore,
         sectionVisibilityStore,
+        timeframeStore,
         updateDensityMode,
         updateSectionVisibility
     } from '@web/lib/stores/url-state.js'
@@ -38,9 +40,13 @@
     
     let experienceYears = 0 // Years of experience filter (0 = all, 1-N = filter by years) - will be set to totalExperienceYears
 
-    // Set experienceYears to show all experience by default (when totalExperienceYears is calculated)
-    $: if (totalExperienceYears && experienceYears === 0) {
-        experienceYears = totalExperienceYears
+    // Set experienceYears from timeframe store (URL) or default to all experience
+    $: if (totalExperienceYears) {
+        if ($timeframeStore > 0) {
+            experienceYears = Math.min($timeframeStore, totalExperienceYears)
+        } else if (experienceYears === 0) {
+            experienceYears = totalExperienceYears
+        }
     }
     
 
@@ -53,6 +59,42 @@
     let mobileDrawerOpen = false
     $: density = $densityStore
     $: contentMode = $contentModeStore
+    $: timeframe = $timeframeStore
+
+    // Reset button logic - detect if any filters are active
+    $: hasActiveFilters = (() => {
+        // Check if preset is not default (full)
+        if (selectedVersion !== 'full') return true
+        
+        // Check if density is not default (100%)
+        if (density !== 100) return true
+        
+        // Check if mode is not default (manual)
+        if (contentMode !== 'manual') return true
+        
+        // Check if timeframe is not default (all years)
+        if (totalExperienceYears && experienceYears < totalExperienceYears) return true
+        
+        // Check if any sections are unchecked in manual mode (only applies in manual mode)
+        if (contentMode === 'manual' && Object.keys(visibleSections).length > 0) {
+            const hasUncheckedSections = Object.values(visibleSections).some(visible => !visible)
+            if (hasUncheckedSections) return true
+        }
+        
+        return false
+    })()
+
+    // Reset function - navigate to clean URL
+    const resetFilters = () => {
+        // Show dramatic animation feedback
+        showToast('🔄 Resetting to default view...', 'reset')
+        
+        // Navigate to clean URL - this will reset everything
+        goto('/', { 
+            noScroll: true,
+            keepFocus: true
+        })
+    }
 
     // Initialize from URL parameters on first load
     $: if (data.availableSections) {
@@ -106,13 +148,15 @@
     // Toast notification system
     let toastMessage = ''
     let toastVisible = false
+    let toastType = 'info' // 'info', 'success', 'warning', 'error', 'reset'
 
-    const showToast = (message) => {
+    const showToast = (message, type = 'info') => {
         toastMessage = message
+        toastType = type
         toastVisible = true
         delay(() => {
             toastVisible = false
-        }, 3000)
+        }, type === 'reset' ? 2000 : 3000) // Shorter for reset feedback
     }
 
     const exportToPDF = async () => {
@@ -187,7 +231,7 @@
             }
 
             // Show toast notification
-            showToast('📥 Resume PDF download started!')
+            showToast('📥 Resume PDF download started!', 'success')
 
             // Download the PDF
             const blob = await response.blob()
@@ -206,7 +250,7 @@
 
         } catch (error) {
             console.error('❌ PDF export failed:', error)
-            showToast(`❌ PDF export failed: ${error.message}`)
+            showToast(`❌ PDF export failed: ${error.message}`, 'error')
         }
     }
 
@@ -306,6 +350,15 @@
     <div class="flex justify-between items-center">
         <div class="flex items-center space-x-4">
             <h1 class="text-2xl font-bold text-primary">Resume Optimizer</h1>
+            {#if hasActiveFilters}
+                <button 
+                    class="btn btn-outline btn-secondary btn-sm transition-all hover:scale-105 active:scale-95"
+                    on:click={resetFilters}
+                    title="Reset all filters to default"
+                >
+                    ↻ Reset
+                </button>
+            {/if}
         </div>
         <div class="flex items-center space-x-4">
             <ThemeSelector/>
@@ -342,9 +395,21 @@
                     {/if}
                 </label>
                 
-                <!-- App Title + Current Preset -->
+                <!-- App Title + Current Preset + Reset -->
                 <div class="flex-1 text-center">
-                    <h1 class="text-lg font-bold text-primary">Resume Optimizer</h1>
+                    <div class="flex items-center justify-center space-x-2">
+                        <h1 class="text-lg font-bold text-primary">Resume Optimizer</h1>
+                        {#if hasActiveFilters}
+                            <button 
+                                class="btn btn-outline btn-secondary btn-xs transition-all hover:scale-105 active:scale-95"
+                                on:click={resetFilters}
+                                title="Reset all filters to default"
+                                aria-label="Reset filters"
+                            >
+                                ↻
+                            </button>
+                        {/if}
+                    </div>
                     {#if selectedVersion !== 'full'}
                         <p class="text-xs text-base-content/60">{startCase(selectedVersion)} Preset</p>
                     {/if}
@@ -399,10 +464,11 @@
                         {contentMode}
                         {experienceYears}
                         {totalExperienceYears}
-                        on:densityChange={(e) => updateDensityMode(e.detail.density, contentMode, $page.url)}
-                        on:modeChange={(e) => updateDensityMode(density, e.detail.contentMode, $page.url)}
+                        on:densityChange={(e) => updateDensityMode(e.detail.density, contentMode, experienceYears, $page.url)}
+                        on:modeChange={(e) => updateDensityMode(density, e.detail.contentMode, experienceYears, $page.url)}
                         on:yearsChange={(e) => {
                             experienceYears = e.detail.experienceYears
+                            updateDensityMode(density, contentMode, experienceYears, $page.url)
                             console.log('🕐 Years changed:', experienceYears, 'of', totalExperienceYears, 'total')
                         }}
                 />
@@ -418,8 +484,13 @@
 <!-- Toast Notification -->
 {#if toastVisible}
     <div class="toast toast-bottom toast-center z-50">
-        <div class="alert bg-base-100 text-base-content border border-base-300 shadow-lg">
-            <span>{toastMessage}</span>
+        <div class="alert shadow-lg transition-all duration-300 {
+            toastType === 'reset' ? 'alert-warning border-2 border-warning animate-pulse scale-110' : 
+            toastType === 'success' ? 'alert-success' :
+            toastType === 'error' ? 'alert-error' :
+            'bg-base-100 text-base-content border border-base-300'
+        }">
+            <span class="{toastType === 'reset' ? 'font-bold text-lg' : ''}">{toastMessage}</span>
         </div>
     </div>
 {/if}

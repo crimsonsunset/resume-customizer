@@ -1,4 +1,5 @@
 import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
+import { parseExperienceDateRange } from '@shared/date-utils.js'
 
 /**
  * Experience-specific renderer
@@ -75,6 +76,24 @@ ${SectionRenderer.renderBullets(bullets)}`
     
     // Get filters from config or from preset_filters attached to the array
     const filters = config || experiences.preset_filters || {}
+    
+    // Apply timeframe filtering first (if specified)
+    if (filters.timeframeYears && filters.timeframeYears > 0) {
+      const cutoffDate = new Date()
+      cutoffDate.setFullYear(cutoffDate.getFullYear() - filters.timeframeYears)
+      
+      filtered = filtered.filter(exp => {
+        const dateRange = parseExperienceDateRange(exp.duration)
+        if (!dateRange?.endDate) {
+          return true // Keep entries we can't parse
+        }
+        
+        // Keep if end date is after cutoff (recent enough)
+        return dateRange.endDate >= cutoffDate
+      })
+      
+      console.log(`💼 Experience timeframe filter: showing last ${filters.timeframeYears} years (${filtered.length}/${experiences.length} entries)`)
+    }
     
     // Apply management role filtering
     if (filters.experience_filter === 'management_roles_only') {
