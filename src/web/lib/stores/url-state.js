@@ -7,7 +7,7 @@ import {
   updateURLWithPreset,
   areSectionsDifferent,
   preserveSectionState,
-  initializeDensityMode,
+  initializeFilters,
   updateURLWithDensity
 } from '@web/lib/utils/url-state-manager.js'
 
@@ -102,7 +102,7 @@ export const shouldUpdateURL = (newSections, previousSections, isMounted) => {
  * @param {URL} currentURL - Current page URL
  * @param {boolean} updateURL - Whether to update browser URL
  */
-export const updateDensityMode = (density, timeframe, currentURL, updateURL = true) => {
+export const updateFilters = (density, timeframe, currentURL, updateURL = true) => {
   densityStore.set(density)
   timeframeStore.set(timeframe)
   
@@ -121,7 +121,7 @@ export const updateDensityMode = (density, timeframe, currentURL, updateURL = tr
  * @param {URLSearchParams} searchParams - URL search parameters
  */
 export const initializeDensity = (searchParams) => {
-  const { density, timeframe } = initializeDensityMode(searchParams)
+  const { density, timeframe } = initializeFilters(searchParams)
   densityStore.set(density)
   timeframeStore.set(timeframe)
   densityInitializedStore.set(true)

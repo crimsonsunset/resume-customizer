@@ -156,7 +156,7 @@ export const preserveSectionState = (currentSections, newAvailableSections) => {
  * @param {URLSearchParams} searchParams - URL search parameters
  * @returns {object} { density: number, timeframe: number }
  */
-export const initializeDensityMode = (searchParams) => {
+export const initializeFilters = (searchParams) => {
   const density = Number.parseInt(searchParams.get('density') || '100', 10)
   const timeframe = Number.parseInt(searchParams.get('timeframe') || '0', 10) // 0 = all years
   return { density, timeframe }

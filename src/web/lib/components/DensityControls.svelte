@@ -33,14 +33,14 @@
         items={[
           { text: 'Minimal', action: () => handleDensityChange(10) }
         ]}
-        variant="ghost"
+        variant="outline"
       />
       <span class="font-medium">{density}%</span>
       <ButtonGroup 
         items={[
           { text: 'Full', action: () => handleDensityChange(100) }
         ]}
-        variant="ghost"
+        variant="outline"
       />
     </div>
     <input 
@@ -66,24 +66,23 @@
   <div class="card-body p-4">
     <div class="flex justify-between items-center mb-3">
       <h3 class="card-title text-sm">📅 Timeframe</h3>
-      <span class="text-xs text-base-content/60 italic">Experience & Projects</span>
     </div>
     <div class="space-y-3">
       <div class="flex justify-between items-center text-xs">
         <button 
-          class="btn btn-xs btn-ghost text-base-content/70 hover:text-base-content"
+          class="btn btn-xs btn-outline text-base-content/70 hover:text-base-content"
           on:click={() => handleYearsChange(1)}
           title="Recent experience only"
         >
-          👶 Recent
+          Recent
         </button>
         <span class="font-medium">{getYearsDisplay(experienceYears)}</span>
         <button 
-          class="btn btn-xs btn-ghost text-base-content/70 hover:text-base-content"
+          class="btn btn-xs btn-outline text-base-content/70 hover:text-base-content"
           on:click={() => handleYearsChange(totalExperienceYears)}
           title="All experience"
         >
-          👴 All
+          All
         </button>
       </div>
       <input 
@@ -96,13 +95,13 @@
         class="range range-secondary range-sm"
       />
       <div class="flex justify-between text-xs text-base-content/50">
-        <span>👶 1yr</span>
+        <span>1yr</span>
         <span>{Math.floor(totalExperienceYears / 2)}yr</span>
-        <span>👴 All ({totalExperienceYears}yr)</span>
+        <span>All ({totalExperienceYears}yr)</span>
       </div>
       <div class="text-xs text-center text-base-content/60">
         {#if experienceYears >= totalExperienceYears}
-          Showing all experience & projects ({totalExperienceYears} years)
+          Showing all content ({totalExperienceYears} years)
         {:else if experienceYears === 1}
           Showing last 1 year only
         {:else}

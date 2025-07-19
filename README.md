@@ -16,8 +16,10 @@ A modern resume optimization tool with CLI, web application, and AI-powered matc
 - **Intelligent Bullet Priority Filtering** with baseline priorities across all sections
 - **Two-Tier Content Density System** with section-level and bullet-level filtering
 - **Preset Priority Override System** for role-specific content emphasis
-- **Content Density Controls** with Manual vs Density mode toggle for granular content management
-- **URL State Management** for bookmarkable resume configurations with compact encoding
+- **Hierarchical State Resolution** with unified filtering controls (checkboxes > timeframe > density) eliminating mode toggles
+- **URL State Management** for bookmarkable resume configurations with compact encoding supporting sections, density, and timeframe parameters
+- **Universal Timeframe Filtering** across all 9 sections (experience, projects, education, volunteering, honors-awards, activities, recommendations, certifications, courses) with intelligent date parsing
+- **Centralized Filter Utilities** with reusable FilterUtils eliminating code duplication across section renderers
 - **Responsive Design** optimized for all devices with mobile hamburger navigation
 - **PDF-Ready Styling** with scoped CSS architecture and max-width content containers
 - **One-Click PDF Export** with auto-generated filenames (`joseph-sangiorgio-resume-2025.pdf`)
@@ -181,8 +183,11 @@ npm run clean            # Clean build artifacts
 - ✅ **Phase 4**: Advanced UX controls and content management
 - ✅ **Phase 5**: Strategic content curation and intelligent filtering
 - ✅ **Phase 6**: Complete bullet priority system implementation
-- 🎯 **Phase 7**: Advanced preset variations and content optimization (current)
-- 🔮 **Phase 8**: ResumeWorded integration and AI optimization
+- ✅ **Phase 7**: Advanced content optimization and filtering architecture
+- ✅ **Phase 7.5**: Universal timeframe filtering system across all sections
+- ✅ **Phase 7.8**: Centralized filter utilities and hierarchical state resolution
+- 🎯 **Phase 8**: Advanced preset variations and content optimization (current)
+- 🔮 **Phase 9**: ResumeWorded integration and AI optimization
 
 ## 🔧 Technical Details
 

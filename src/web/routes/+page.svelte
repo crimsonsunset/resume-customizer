@@ -23,7 +23,7 @@
         mountedStore,
         sectionVisibilityStore,
         timeframeStore,
-        updateDensityMode,
+        updateFilters,
         updateSectionVisibility
     } from '@web/lib/stores/url-state.js'
 
@@ -444,10 +444,10 @@
                         {density}
                         {experienceYears}
                         {totalExperienceYears}
-                        on:densityChange={(e) => updateDensityMode(e.detail.density, experienceYears, $page.url)}
+                        on:densityChange={(e) => updateFilters(e.detail.density, experienceYears, $page.url)}
                         on:yearsChange={(e) => {
                             experienceYears = e.detail.experienceYears
-                            updateDensityMode(density, experienceYears, $page.url)
+                            updateFilters(density, experienceYears, $page.url)
                             console.log('🕐 Years changed:', experienceYears, 'of', totalExperienceYears, 'total')
                         }}
                 />
