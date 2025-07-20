@@ -58,6 +58,9 @@
     let mobileDrawerOpen = false
     $: density = $densityStore
     $: timeframe = $timeframeStore
+    
+    // Preset transition flag to prevent reactive loops
+    let isPresetTransitioning = false
 
     // Reset button logic - detect if any filters are active
     $: hasActiveFilters = (() => {
@@ -114,15 +117,27 @@
         console.log('🎯 Reset complete - stores updated directly!')
     }
 
-    // Initialize from URL parameters on first load
+    // Initialize from URL parameters on first load (with transition guard)
     $: if (data.availableSections) {
+        // Block section sync during preset transitions to prevent loops
+        isPresetTransitioning = true
+        console.log('🎯 Preset transition started, blocking section sync')
+        
         if (!Object.keys($sectionVisibilityStore).length) {
             // First load: initialize sections from URL
             initializeSections($page.url.searchParams, data.availableSections)
+            console.log('✅ Initialized sections from URL')
         } else {
             // Preset change: preserve existing state for sections that exist
             handlePresetChange(data.availableSections, $sectionVisibilityStore)
+            console.log('🔄 Preset change handled')
         }
+        
+        // Clear transition flag after brief delay to allow section sync to resume
+        delay(() => {
+            isPresetTransitioning = false
+            console.log('✅ Preset transition complete, section sync re-enabled')
+        }, 150)
     }
 
     // Sync store changes to local visibleSections (one-way: store -> local)
@@ -130,11 +145,12 @@
         visibleSections = {...$sectionVisibilityStore}
     }
 
-    // Sync visibleSections changes back to store and URL (always applies now)
-    $: if (mounted && Object.keys(visibleSections).length > 0) {
+    // Sync visibleSections changes back to store and URL (but skip during preset transitions)
+    $: if (mounted && Object.keys(visibleSections).length > 0 && !isPresetTransitioning) {
         // Only update store if visibleSections differs from store (avoid infinite loops)
         if (JSON.stringify(visibleSections) !== JSON.stringify($sectionVisibilityStore)) {
             updateSectionVisibility(visibleSections, $page.url, true)
+            console.log('🔗 Updated URL from section changes')
         }
     }
 
