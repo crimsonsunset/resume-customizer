@@ -130,6 +130,15 @@
         } else {
             // Preset change: preserve existing state for sections that exist
             handlePresetChange(data.availableSections, $sectionVisibilityStore)
+            
+            // Show toast notification for preset changes
+            const currentPreset = data.availablePresets?.find(p => p.value === (data.preset || 'full'))
+            if (currentPreset && mounted && currentPreset.value !== 'full') {
+                delay(() => {
+                    showToast(`✅ ${currentPreset.name} applied`, 'preset')
+                }, 200) // Small delay to ensure transition is visible
+            }
+            
             console.log('🔄 Preset change handled')
         }
         
@@ -172,7 +181,7 @@
     // Toast notification system
     let toastMessage = ''
     let toastVisible = false
-    let toastType = 'info' // 'info', 'success', 'warning', 'error', 'reset'
+    let toastType = 'info' // 'info', 'success', 'warning', 'error', 'reset', 'preset'
 
     const showToast = (message, type = 'info') => {
         toastMessage = message
@@ -180,7 +189,7 @@
         toastVisible = true
         delay(() => {
             toastVisible = false
-        }, type === 'reset' ? 2000 : 3000) // Shorter for reset feedback
+        }, type === 'reset' ? 2000 : type === 'preset' ? 2500 : 3000) // Custom timing for different types
     }
 
     const exportToPDF = async () => {
@@ -292,6 +301,9 @@
         personality: data.availableSections ? data.availableSections.filter(s => ['activities', 'objective'].includes(s)) : []
         // Note: 'location' excluded from filtering since it's already displayed in the resume header
     }
+    
+    // Get current preset info for display
+    $: currentPreset = data.availablePresets?.find(p => p.value === selectedVersion) || data.availablePresets?.[0]
 
     // Store original section content for restoration
     let sectionStorage = {}
@@ -373,7 +385,15 @@
 <header class="hidden md:block bg-base-100 border-b border-base-300 px-6 py-4 relative z-50">
     <div class="flex justify-between items-center">
         <div class="flex items-center space-x-4">
-            <h1 class="text-2xl font-bold text-primary">Resume Optimizer</h1>
+            <div>
+                <h1 class="text-2xl font-bold text-primary">Resume Optimizer</h1>
+                {#if currentPreset && selectedVersion !== 'full'}
+                    <p class="text-sm text-base-content/60 flex items-center space-x-1 mt-1">
+                        <span class="badge badge-primary badge-xs opacity-80">Active</span>
+                        <span>{currentPreset.name}</span>
+                    </p>
+                {/if}
+            </div>
             {#if hasActiveFilters}
                 <button 
                     class="btn btn-outline btn-secondary btn-sm transition-all hover:scale-105 active:scale-95"
@@ -434,8 +454,13 @@
                             </button>
                         {/if}
                     </div>
-                    {#if selectedVersion !== 'full'}
-                        <p class="text-xs text-base-content/60">{startCase(selectedVersion)} Preset</p>
+                    {#if currentPreset && selectedVersion !== 'full'}
+                        <div class="text-center">
+                            <p class="text-xs text-base-content/60 flex items-center justify-center space-x-1">
+                                <span class="badge badge-primary badge-xs opacity-80">Active</span>
+                                <span>{currentPreset.name}</span>
+                            </p>
+                        </div>
                     {/if}
                 </div>
                 
@@ -507,6 +532,7 @@
     <div class="toast toast-bottom toast-center z-50">
         <div class="alert shadow-lg transition-all duration-300 {
             toastType === 'reset' ? 'alert-warning border-2 border-warning animate-pulse scale-110' : 
+            toastType === 'preset' ? 'alert-info border-2 border-primary' :
             toastType === 'success' ? 'alert-success' :
             toastType === 'error' ? 'alert-error' :
             'bg-base-100 text-base-content border border-base-300'

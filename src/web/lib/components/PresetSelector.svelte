@@ -27,7 +27,7 @@
 <!-- Version Selector -->
 <div class="card bg-base-100 shadow-sm border border-base-300">
   <div class="card-body p-4">
-    <h3 class="card-title text-sm">📋 Resume Version</h3>
+    <h3 class="card-title text-sm">📋 Presets</h3>
     
     <!-- DaisyUI Dropdown -->
     <div class="dropdown w-full" class:dropdown-open={showPresetDropdown}>
