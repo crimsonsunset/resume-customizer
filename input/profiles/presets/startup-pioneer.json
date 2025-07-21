@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "name": "Startup Pioneer",
+    "description": "Innovation-focused resume highlighting AI-first development, modern tech stack mastery, and founding team experience for early-stage companies"
+  },
+  "overrides": {
+    "objective": "Founding team engineer and AI development pioneer with proven ability to build enterprise-grade products from scratch. Expert in modern tech stacks, rapid iteration, and transforming experimental technologies into production-ready solutions.",
+    "skills": {
+      "Leadership": [
+        "Technical Leadership",
+        "Product Strategy",
+        "Cross-team Collaboration",
+        "Stakeholder Management",
+        "Innovation Management",
+        "Rapid Prototyping",
+        "Strategic Planning"
+      ],
+      "Programming Languages": [
+        "JavaScript/TypeScript",
+        "Python",
+        "HTML",
+        "CSS/Sass",
+        "SQL",
+        "YAML"
+      ],
+      "Frameworks & Libraries": [
+        "React",
+        "SvelteKit",
+        "React Query",
+        "ChakraUI",
+        "Node.js",
+        "Express",
+        "Socket.io",
+        "Framer Motion",
+        "Auth0",
+        "Enterprise AI APIs",
+        "LLMs",
+        "Prompt Engineering"
+      ],
+      "Tools & Platforms": [
+        "Cursor",
+        "GitHub Actions",
+        "Netlify",
+        "Rollbar",
+        "Statsig",
+        "Vite",
+        "AWS",
+        "Docker",
+        "MongoDB",
+        "PostgreSQL",
+        "OneSignal",
+        "Prismic CMS",
+        "Figma"
+      ],
+      "Concepts & Methodologies": [
+        "Artificial Intelligence (AI)",
+        "AI-Assisted Development",
+        "Progressive Web Apps",
+        "Microservices Architecture",
+        "REST APIs",
+        "Real-time Systems",
+        "DevOps",
+        "CI/CD",
+        "Test Automation",
+        "Agile Development"
+      ]
+    },
+    "experience": {
+      "selected_indices": [0, 8, 9],
+      "bullet_priority_threshold": 8,
+      "bullet_priorities_overrides": {
+        "0": [10, 10, 10, 9, 7, 6, 7, 7]
+      }
+    },
+    "projects": {
+      "selected_indices": [0, 3, 6, 18],
+      "bullet_priority_threshold": 7,
+      "bullet_priorities_overrides": {
+        "0": [10, 8, 9, 7],
+        "3": [10, 9, 9, 9]
+      }
+    },
+    "recommendations": {
+      "selected_indices": []
+    },
+    "sections_order": ["headline", "objective", "skills", "experience", "projects", "education"]
+  }
+} 

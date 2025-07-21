@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "name": "Principal IC+",
+    "description": "Technical depth resume emphasizing architecture, complex system design, and individual contribution excellence for senior IC roles"
+  },
+  "overrides": {
+    "objective": "Principal-level individual contributor with expertise in large-scale system architecture and complex technical problem solving. Proven track record of designing and implementing enterprise-grade solutions while mentoring technical teams.",
+    "skills": {
+      "Leadership": [
+        "Technical Leadership",
+        "Architecture Design",
+        "Mentoring",
+        "Technical Vision & Roadmapping",
+        "Cross-team Collaboration",
+        "Code Review",
+        "Technical Documentation"
+      ],
+      "Programming Languages": [
+        "JavaScript/TypeScript",
+        "Python",
+        "Java",
+        "SQL",
+        "HTML",
+        "CSS/Sass",
+        "PHP",
+        "XML",
+        "JSON",
+        "YAML"
+      ],
+      "Frameworks & Libraries": [
+        "React",
+        "Redux",
+        "React Router",
+        "Angular",
+        "RxJS",
+        "Vue.js",
+        "Node.js",
+        "Express",
+        "NestJS",
+        "GraphQL",
+        "Mongoose",
+        "Socket.io",
+        "Next.js",
+        "SvelteKit"
+      ],
+      "Tools & Platforms": [
+        "Git",
+        "GitHub",
+        "GitHub Actions",
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "Netlify",
+        "MongoDB",
+        "PostgreSQL",
+        "Redis",
+        "Webpack",
+        "Vite",
+        "Jest",
+        "Cypress",
+        "Playwright",
+        "ESLint",
+        "Prettier",
+        "SonarQube"
+      ],
+      "Concepts & Methodologies": [
+        "Software Architectural Design",
+        "System Integration",
+        "Microservices Architecture",
+        "REST APIs",
+        "Web APIs",
+        "Performance Optimization",
+        "Security Implementation",
+        "Test Automation",
+        "CI/CD",
+        "Code Quality",
+        "Technical Debt Management",
+        "Scalability Solutions"
+      ]
+    },
+    "experience": {
+      "selected_indices": [0, 5, 6, 10],
+      "bullet_priority_threshold": 6,
+      "bullet_priorities_overrides": {
+        "0": [10, 10, 8, 9, 8, 7, 8, 9]
+      }
+    },
+    "projects": {
+      "selected_indices": [0, 1, 2, 3, 7, 12],
+      "bullet_priority_threshold": 6,
+      "bullet_priorities_overrides": {
+        "0": [10, 8, 9, 8],
+        "1": [7, 8, 7, 7, 8, 7],
+        "2": [7, 6, 8, 7],
+        "3": [10, 9, 9, 9]
+      }
+    },
+    "recommendations": {
+      "selected_indices": []
+    },
+    "sections_order": ["headline", "summary", "skills", "experience", "projects", "education"]
+  }
+} 

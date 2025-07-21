@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "name": "Consultant/Advisory",
+    "description": "Strategic advisor resume emphasizing cross-industry experience, transformation leadership, and high-level consulting capabilities"
+  },
+  "overrides": {
+    "objective": "Strategic technology consultant with proven expertise in organizational transformation, team scaling, and complex system modernization across multiple industries. Specializes in guiding companies through technical transitions and building world-class engineering organizations.",
+    "skills": {
+      "Leadership": [
+        "Strategic Consulting",
+        "Organizational Transformation",
+        "Executive Advising",
+        "Change Management",
+        "Strategic Planning",
+        "Stakeholder Management",
+        "Cross-functional Leadership",
+        "Team Development",
+        "Process Optimization",
+        "Technical Due Diligence",
+        "Business Strategy",
+        "Technology Roadmapping"
+      ],
+      "Programming Languages": [
+        "JavaScript/TypeScript",
+        "Python",
+        "SQL",
+        "HTML",
+        "CSS/Sass"
+      ],
+      "Frameworks & Libraries": [
+        "React",
+        "Angular",
+        "Node.js",
+        "Express",
+        "NestJS",
+        "Vue.js",
+        "GraphQL"
+      ],
+      "Tools & Platforms": [
+        "AWS",
+        "Docker",
+        "Kubernetes", 
+        "GitHub",
+        "CI/CD",
+        "MongoDB",
+        "PostgreSQL",
+        "Jira",
+        "SonarQube",
+        "New Relic",
+        "Allstacks"
+      ],
+      "Concepts & Methodologies": [
+        "Digital Transformation",
+        "Technology Strategy",
+        "System Architecture",
+        "Agile Transformation",
+        "Quality Assurance",
+        "Performance Optimization",
+        "Security Implementation",
+        "Scalability Planning",
+        "Technical Debt Management",
+        "Merger & Acquisition Integration"
+      ]
+    },
+    "experience": {
+      "selected_indices": [1, 2, 3, 4, 5],
+      "bullet_priority_threshold": 7,
+      "bullet_priorities_overrides": {
+        "1": [10, 7, 8, 10, 9],
+        "2": [9, 10, 7, 8, 8, 9],
+        "3": [9, 8, 9, 8, 7, 8, 7],
+        "4": [8, 9, 9, 7, 8, 7, 10],
+        "5": [9, 9, 9, 7, 8, 7, 10]
+      }
+    },
+    "projects": {
+      "selected_indices": [7, 11, 12, 13],
+      "bullet_priority_threshold": 6
+    },
+    "recommendations": {
+      "selected_indices": [0, 1, 2, 3, 4]
+    },
+    "sections_order": ["headline", "summary", "experience", "skills", "recommendations", "education", "projects"]
+  }
+} 

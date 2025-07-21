@@ -389,7 +389,7 @@
                 <h1 class="text-2xl font-bold text-primary">Resume Optimizer</h1>
                 {#if currentPreset && selectedVersion !== 'full'}
                     <p class="text-sm text-base-content/60 flex items-center space-x-1 mt-1">
-                        <span class="badge badge-primary badge-xs opacity-80">Active</span>
+                        <span class="badge badge-primary badge-xs opacity-80">Preset</span>
                         <span>{currentPreset.name}</span>
                     </p>
                 {/if}
@@ -457,7 +457,7 @@
                     {#if currentPreset && selectedVersion !== 'full'}
                         <div class="text-center">
                             <p class="text-xs text-base-content/60 flex items-center justify-center space-x-1">
-                                <span class="badge badge-primary badge-xs opacity-80">Active</span>
+                                <span class="badge badge-primary badge-xs opacity-80">Preset</span>
                                 <span>{currentPreset.name}</span>
                             </p>
                         </div>

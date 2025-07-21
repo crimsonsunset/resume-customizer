@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "name": "Reference Sheet",
+    "description": "Professional testimonials document featuring peer feedback and endorsements for networking and credibility building"
+  },
+  "overrides": {
+    "objective": null,
+    "skills": null,
+    "experience": {
+      "selected_indices": []
+    },
+    "projects": {
+      "selected_indices": []
+    },
+    "education": null,
+    "recommendations": {
+      "selected_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    },
+    "sections_order": ["headline", "recommendations"]
+  }
+} 

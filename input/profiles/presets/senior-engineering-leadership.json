@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "name": "Senior Engineering Leadership",
+    "description": "Management-focused resume emphasizing team scaling, strategic leadership, and organizational impact for Director+ roles"
+  },
+  "overrides": {
+    "objective": "Proven engineering leader with 6+ years of management experience scaling teams from 5 to 50+ across distributed organizations. Expertise in organizational transformation, strategic planning, and building high-performing engineering cultures that deliver business results.",
+    "skills": {
+      "Leadership": [
+        "Engineering Management",
+        "Team Management", 
+        "Strategic Planning",
+        "Organizational Development",
+        "Stakeholder Management",
+        "Cross-team Collaboration",
+        "Process Improvement",
+        "Technical Leadership",
+        "Product Strategy",
+        "Agile Methodologies",
+        "Performance Management",
+        "Mentoring & Development"
+      ],
+      "Programming Languages": [
+        "JavaScript/TypeScript",
+        "Python",
+        "SQL",
+        "HTML",
+        "CSS/Sass"
+      ],
+      "Frameworks & Libraries": [
+        "React",
+        "Node.js",
+        "Angular",
+        "Express",
+        "NestJS",
+        "GraphQL"
+      ],
+      "Tools & Platforms": [
+        "Jira",
+        "GitHub",
+        "CI/CD",
+        "AWS",
+        "Docker",
+        "MongoDB",
+        "PostgreSQL",
+        "SonarQube",
+        "Veracode",
+        "New Relic",
+        "Allstacks"
+      ],
+      "Concepts & Methodologies": [
+        "Software Architecture",
+        "System Integration",
+        "Quality Assurance",
+        "Performance Optimization",
+        "Security Compliance",
+        "Data Migration",
+        "Technical Debt Management"
+      ]
+    },
+    "experience": {
+      "selected_indices": [1, 2, 3, 4],
+      "bullet_priority_threshold": 7,
+      "bullet_priorities_overrides": {
+        "1": [10, 8, 7, 9, 8],
+        "2": [10, 10, 7, 7, 8, 9],
+        "3": [9, 9, 8, 7, 7, 7, 6],
+        "4": [8, 9, 9, 7, 7, 6, 8]
+      }
+    },
+    "projects": {
+      "selected_indices": [0, 7, 12],
+      "bullet_priority_threshold": 6
+    },
+    "recommendations": {
+      "selected_indices": [0, 1, 2, 3]
+    },
+    "sections_order": ["headline", "summary", "experience", "skills", "education", "recommendations"]
+  }
+} 
