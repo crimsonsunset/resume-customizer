@@ -87,10 +87,22 @@ async function loadCssTemplate(preset) {
 async function getBrowser() {
   console.log('🔄 Launching browser with @sparticuz/chromium...')
   
+  // Determine executable path based on environment
+  let executablePath
+  if (process.env.NETLIFY_DEV) {
+    // Local development - try system Chrome paths
+    executablePath = process.env.CHROME_EXECUTABLE_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+    console.log('🔧 Using local Chrome for development:', executablePath)
+  } else {
+    // Production - use @sparticuz/chromium (with parentheses!)
+    executablePath = await chromium.executablePath()
+    console.log('☁️ Using @sparticuz/chromium for production')
+  }
+  
   return puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath(),
+    executablePath,
     headless: chromium.headless,
   })
 }
@@ -116,6 +128,11 @@ exports.handler = async (event, context) => {
 
   try {
     console.log('🎯 Netlify Function: Starting PDF generation...')
+    console.log('🌍 Environment check:', {
+      NETLIFY_DEV: process.env.NETLIFY_DEV,
+      NODE_ENV: process.env.NODE_ENV,
+      CHROME_EXECUTABLE_PATH: process.env.CHROME_EXECUTABLE_PATH
+    })
     
     // Parse request body
     const { html, preset = 'full', filename = 'resume.pdf' } = JSON.parse(event.body)
