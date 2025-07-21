@@ -1,4 +1,5 @@
-import { chromium } from 'playwright'
+import chromium from '@sparticuz/chromium'
+import puppeteer from 'puppeteer-core'
 import { error } from '@sveltejs/kit'
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
@@ -34,7 +35,35 @@ async function loadCssTemplate(preset) {
 }
 
 /**
- * Generate PDF from HTML content using Playwright
+ * Get browser instance optimized for serverless environment
+ * @returns {Promise<import('puppeteer-core').Browser>}
+ */
+async function getBrowser() {
+  // Use full puppeteer locally, @sparticuz/chromium in production
+  if (process.env.NODE_ENV === 'development') {
+    // Local development - try system Chrome first
+    try {
+      return puppeteer.launch({
+        headless: true,
+        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' // macOS
+      })
+    } catch (error_) {
+      console.log('⚠️ System Chrome not found, falling back to serverless mode:', error_.message)
+      // Fallback to serverless mode even in development
+    }
+  }
+  
+  // Production or fallback - use @sparticuz/chromium for serverless
+  return puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
+  })
+}
+
+/**
+ * Generate PDF from HTML content using serverless-optimized browser
  * @param {Request} request - The request object containing HTML, preset/css, and filename
  * @returns {Response} PDF file as response
  */
@@ -77,12 +106,12 @@ export async function POST({ request }) {
 </html>`
     }
     
-    // Launch Playwright browser (same settings as CLI)
-    const browser = await chromium.launch()
+    // Launch serverless-optimized browser
+    const browser = await getBrowser()
     const page = await browser.newPage()
     
     // Set content and wait for rendering
-    await page.setContent(processedHtml, { waitUntil: 'networkidle' })
+    await page.setContent(processedHtml, { waitUntil: 'networkidle0' })
     
     // Generate PDF with same settings as CLI
     const pdf = await page.pdf({
