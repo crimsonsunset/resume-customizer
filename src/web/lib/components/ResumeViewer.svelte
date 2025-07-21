@@ -1,5 +1,54 @@
 <!-- ResumeViewer.svelte - Resume display component with scoped styling -->
-<div class="resume-viewer">
+<script>
+    import { onMount } from 'svelte'
+    import { browser } from '$app/environment'
+    import { currentTheme } from '@web/lib/stores/theme.js'
+
+    // Extract colors from DaisyUI theme (simplified approach)
+    function extractThemeColors() {
+        if (!browser) return { primary: '#4285f4', secondary: '#666' } // fallback for SSR
+        
+        try {
+            // DaisyUI provides --color-primary and --color-secondary directly in usable format
+            const computedStyle = getComputedStyle(document.documentElement)
+            const primaryColor = computedStyle.getPropertyValue('--color-primary').trim()
+            const secondaryColor = computedStyle.getPropertyValue('--color-secondary').trim()
+            
+            const colors = {
+                primary: primaryColor || '#4285f4',
+                secondary: secondaryColor || '#666'
+            }
+            
+            console.log(`🎨 Theme: ${$currentTheme} → Primary: ${colors.primary}, Secondary: ${colors.secondary}`)
+            return colors
+        } catch (error) {
+            console.warn('🎨 Theme color extraction failed:', error)
+        }
+        
+        // Fallback colors
+        console.log(`🎨 Using fallback colors for theme: ${$currentTheme}`)
+        return { primary: '#4285f4', secondary: '#666' }
+    }
+
+    // Reactive theme colors
+    let themeColors = { primary: '#4285f4', secondary: '#666' }
+    
+    // Update theme colors when theme changes
+    $: if (browser && $currentTheme) {
+        const newColors = extractThemeColors()
+        if (JSON.stringify(newColors) !== JSON.stringify(themeColors)) {
+            themeColors = newColors
+            console.log(`🎨 Resume colors updated:`, themeColors)
+        }
+    }
+
+    onMount(() => {
+        // Initial color extraction on mount
+        themeColors = extractThemeColors()
+    })
+</script>
+
+<div class="resume-viewer" style="--color-primary: {themeColors.primary}; --color-secondary: {themeColors.secondary}">
     <slot/>
 </div>
 
@@ -14,7 +63,7 @@
         --font-size-h3: 10pt;
         --font-size-small: 8pt;
 
-        /* Colors */
+        /* Colors - primary will be overridden dynamically */
         --color-primary: #4285f4;
         --color-text: #333;
         --color-text-light: #666;
@@ -337,7 +386,7 @@
         margin-bottom: var(--spacing-md);
         padding: 8px;
         background-color: #f8f9fa;
-        border-left: 4px solid var(--color-primary);
+        border-left: 4px solid var(--color-secondary);
         border-radius: 4px;
         font-size: var(--font-size-base);
         line-height: var(--line-height-relaxed);
