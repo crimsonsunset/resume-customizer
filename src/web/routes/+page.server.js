@@ -396,6 +396,48 @@ export async function load({ url }) {
     console.log('📏 Total content length:', resumeContent.length)
     console.log('🔍 Content preview:', resumeContent.slice(0, 200))
     
+    // Calculate filtered stats for ResumeStats component
+    const filteredStats = {
+      experience: 0,
+      projects: 0, 
+      skills: 0
+    }
+    
+    // Experience count (check for preset filtering)
+    if (finalData.sections.experience) {
+      const expFilters = finalData.sections.experience.preset_filters || {}
+      if (expFilters.selected_indices && Array.isArray(expFilters.selected_indices)) {
+        filteredStats.experience = expFilters.selected_indices.length
+      } else {
+        filteredStats.experience = Array.isArray(finalData.sections.experience) ? finalData.sections.experience.length : 0
+      }
+    }
+    
+    // Projects count (check for preset filtering)
+    if (finalData.sections.projects) {
+      const projFilters = finalData.sections.projects.preset_filters || {}
+      if (projFilters.selected_indices && Array.isArray(projFilters.selected_indices)) {
+        filteredStats.projects = projFilters.selected_indices.length
+      } else {
+        filteredStats.projects = Array.isArray(finalData.sections.projects) ? finalData.sections.projects.length : 0
+      }
+    }
+    
+    // Skills count (check for preset skills)
+    if (finalData.sections.skills) {
+      if (finalData.sections.skills.preset_skills) {
+        // Count preset skills across all categories
+        const presetSkills = finalData.sections.skills.preset_skills
+        filteredStats.skills = Object.values(presetSkills).reduce((total, categorySkills) => {
+          return total + (Array.isArray(categorySkills) ? categorySkills.length : 0)
+        }, 0)
+      } else if (finalData.sections.skills.skills) {
+        filteredStats.skills = finalData.sections.skills.skills.length
+      }
+    }
+    
+
+    
     return {
       resumeContent,
       preset: presetParam || 'full',
@@ -403,7 +445,8 @@ export async function load({ url }) {
       availablePresets,
       availableSections: sectionOrder, // Add the sections that are actually rendered
       actuallyVisibleSections, // Sections that are visible after density filtering
-      sections: finalData.sections // Add the actual section data for stats calculation
+      sections: finalData.sections, // Add the actual section data for stats calculation
+      filteredStats // Add pre-calculated filtered stats
     }
   } catch (error) {
     console.error('❌ Error in server load:', error.message)

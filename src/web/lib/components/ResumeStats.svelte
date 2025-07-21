@@ -26,25 +26,91 @@
       return stats
     }
     
+
+    
     // Count visible sections
     stats.visibleSections = Object.values(visible).filter(Boolean).length
     
-    // Calculate items per section if visible
-    if (visible.experience && sections.experience) {
-      stats.experience = sections.experience.length || 0
-      stats.totalItems += stats.experience
-      stats.estimatedWords += stats.experience * 150 // ~150 words per experience
-    }
-    
-    if (visible.projects && sections.projects) {
-      stats.projects = sections.projects.length || 0
-      stats.totalItems += stats.projects
-      stats.estimatedWords += stats.projects * 100 // ~100 words per project
-    }
-    
-    if (visible.skills && sections.skills?.skills) {
-      stats.skills = sections.skills.skills.length || 0
-      stats.estimatedWords += Math.ceil(stats.skills / 10) * 20 // Skills are concise
+    // Use pre-calculated filtered stats from server if available
+    if (data.filteredStats) {
+      const isOnePagePreset = data.preset === 'one-page'
+      
+      if (visible.experience) {
+        stats.experience = data.filteredStats.experience
+        stats.totalItems += stats.experience
+        // One-page preset: much more condensed (50 words vs 150)
+        const wordsPerExp = isOnePagePreset ? 50 : 150
+        stats.estimatedWords += stats.experience * wordsPerExp
+      }
+      
+      if (visible.projects) {
+        stats.projects = data.filteredStats.projects
+        stats.totalItems += stats.projects
+        // One-page preset: much more condensed (40 words vs 100)
+        const wordsPerProject = isOnePagePreset ? 40 : 100
+        stats.estimatedWords += stats.projects * wordsPerProject
+      }
+      
+      if (visible.skills) {
+        stats.skills = data.filteredStats.skills
+        // One-page preset: more compact skills formatting
+        const skillsWordsMultiplier = isOnePagePreset ? 1 : 2
+        stats.estimatedWords += Math.ceil(stats.skills / 10) * 10 * skillsWordsMultiplier
+      }
+      
+      // Add fixed overhead for header, education, etc.
+      if (isOnePagePreset) {
+        stats.estimatedWords += 150 // Compact header + education
+      } else {
+        stats.estimatedWords += 300 // Full header + education + other sections
+      }
+    } else {
+      // Fallback to original filtering logic
+      if (visible.experience && sections.experience) {
+        const filters = sections.experience.preset_filters || {}
+        let experienceCount = 0
+        
+        if (filters.selected_indices && Array.isArray(filters.selected_indices)) {
+          experienceCount = filters.selected_indices.length
+        } else {
+          experienceCount = Array.isArray(sections.experience) ? sections.experience.length : 0
+        }
+        
+        stats.experience = experienceCount
+        stats.totalItems += stats.experience
+        stats.estimatedWords += stats.experience * 150
+      }
+      
+      if (visible.projects && sections.projects) {
+        const filters = sections.projects.preset_filters || {}
+        let projectsCount = 0
+        
+        if (filters.selected_indices && Array.isArray(filters.selected_indices)) {
+          projectsCount = filters.selected_indices.length
+        } else {
+          projectsCount = Array.isArray(sections.projects) ? sections.projects.length : 0
+        }
+        
+        stats.projects = projectsCount
+        stats.totalItems += stats.projects
+        stats.estimatedWords += stats.projects * 100
+      }
+      
+      if (visible.skills && sections.skills) {
+        let skillsCount = 0
+        
+        if (sections.skills.preset_skills) {
+          const presetSkills = sections.skills.preset_skills
+          skillsCount = Object.values(presetSkills).reduce((total, categorySkills) => {
+            return total + (Array.isArray(categorySkills) ? categorySkills.length : 0)
+          }, 0)
+        } else if (sections.skills.skills) {
+          skillsCount = sections.skills.skills.length
+        }
+        
+        stats.skills = skillsCount
+        stats.estimatedWords += Math.ceil(stats.skills / 10) * 20
+      }
     }
     
     if (visible.education && sections.education?.education) {
@@ -90,7 +156,23 @@
   
   $: stats = calculateStats(data?.sections, visibleSections)
   $: adjustedWords = Math.round(stats.estimatedWords * (density / 100))
-  $: estimatedPages = Math.max(1, Math.ceil(adjustedWords / 400)) // ~400 words per page
+  // Adjust page calculation based on preset and density
+  $: wordsPerPage = (() => {
+    const isOnePagePreset = data?.preset === 'one-page'
+    if (isOnePagePreset) {
+      // One-page preset: designed to fit on 1 page, very compact
+      return 1400 // Much higher density
+    } else if (density < 50) {
+      return 600
+    } else if (density < 80) {
+      return 500  
+    } else {
+      return 400
+    }
+  })()
+    $: estimatedPages = Math.max(1, Math.ceil(adjustedWords / wordsPerPage))
+  
+
 </script>
 
 <!-- Quick Stats -->
@@ -101,7 +183,7 @@
       <div class="stat py-2">
         <div class="stat-title text-xs">Visible Sections</div>
         <div class="stat-value text-lg">{stats.visibleSections}</div>
-        <div class="stat-desc text-xs">of {Object.keys(visibleSections || {}).length} total</div>
+        <div class="stat-desc text-xs">of {data.availableSections?.length || Object.keys(visibleSections || {}).length} total</div>
       </div>
       
       {#if stats.experience > 0}
