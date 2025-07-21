@@ -1,7 +1,8 @@
 {
   "meta": {
     "name": "AI & Innovation Leader",
-    "description": "Innovation-focused resume highlighting AI expertise, emerging technology leadership, and transformative technology implementation"
+    "description": "Innovation-focused resume highlighting AI expertise, emerging technology leadership, and transformative technology implementation",
+    "order": 4
   },
   "overrides": {
     "objective": "AI development pioneer and innovation leader specializing in enterprise-grade artificial intelligence implementation. Expert in transforming experimental AI technologies into production-ready solutions and establishing AI-first development practices.",
@@ -89,6 +90,6 @@
     "recommendations": {
       "selected_indices": []
     },
-    "sections_order": ["headline", "objective", "skills", "experience", "projects", "education"]
+    "sections_order": ["headline", "objective", "education", "skills", "experience", "projects"]
   }
 } 

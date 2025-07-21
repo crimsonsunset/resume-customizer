@@ -1,7 +1,8 @@
 {
   "meta": {
     "name": "Reference Sheet",
-    "description": "Professional testimonials document featuring peer feedback and endorsements for networking and credibility building"
+    "description": "Professional testimonials document featuring peer feedback and endorsements for networking and credibility building",
+    "order": 7
   },
   "overrides": {
     "objective": null,

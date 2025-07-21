@@ -1,7 +1,8 @@
 {
   "meta": {
     "name": "One-Page Resume",
-    "description": "Compact resume optimized for single-page layout with curated skills and essential content"
+    "description": "Compact resume optimized for single-page layout with curated skills and essential content",
+    "order": 1
   },
   "overrides": {
     "objective": "To obtain a senior leadership position in the web development space in order to provide ongoing value to a company. Comfortable managing medium to large sized engineering teams across multiple disciplines. Proven capabilities within a distributed staffing and management model.",

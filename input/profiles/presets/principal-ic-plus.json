@@ -1,7 +1,8 @@
 {
   "meta": {
     "name": "Principal IC+",
-    "description": "Technical depth resume emphasizing architecture, complex system design, and individual contribution excellence for senior IC roles"
+    "description": "Technical depth resume emphasizing architecture, complex system design, and individual contribution excellence for senior IC roles",
+    "order": 5
   },
   "overrides": {
     "objective": "Principal-level individual contributor with expertise in large-scale system architecture and complex technical problem solving. Proven track record of designing and implementing enterprise-grade solutions while mentoring technical teams.",
@@ -98,6 +99,6 @@
     "recommendations": {
       "selected_indices": []
     },
-    "sections_order": ["headline", "summary", "skills", "experience", "projects", "education"]
+    "sections_order": ["headline", "summary", "education", "skills", "experience", "projects"]
   }
 } 

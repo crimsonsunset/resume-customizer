@@ -1,7 +1,8 @@
 {
   "meta": {
     "name": "Startup Pioneer",
-    "description": "Innovation-focused resume highlighting AI-first development, modern tech stack mastery, and founding team experience for early-stage companies"
+    "description": "Innovation-focused resume highlighting AI-first development, modern tech stack mastery, and founding team experience for early-stage companies",
+    "order": 3
   },
   "overrides": {
     "objective": "Founding team engineer and AI development pioneer with proven ability to build enterprise-grade products from scratch. Expert in modern tech stacks, rapid iteration, and transforming experimental technologies into production-ready solutions.",
@@ -83,6 +84,6 @@
     "recommendations": {
       "selected_indices": []
     },
-    "sections_order": ["headline", "objective", "skills", "experience", "projects", "education"]
+    "sections_order": ["headline", "objective", "education", "skills", "experience", "projects"]
   }
 } 

@@ -1,7 +1,8 @@
 {
   "meta": {
     "name": "Senior Engineering Leadership",
-    "description": "Management-focused resume emphasizing team scaling, strategic leadership, and organizational impact for Director+ roles"
+    "description": "Management-focused resume emphasizing team scaling, strategic leadership, and organizational impact for Director+ roles",
+    "order": 2
   },
   "overrides": {
     "objective": "Proven engineering leader with 6+ years of management experience scaling teams from 5 to 50+ across distributed organizations. Expertise in organizational transformation, strategic planning, and building high-performing engineering cultures that deliver business results.",
@@ -75,6 +76,6 @@
     "recommendations": {
       "selected_indices": [0, 1, 2, 3]
     },
-    "sections_order": ["headline", "summary", "experience", "skills", "education", "recommendations"]
+    "sections_order": ["headline", "summary", "education", "skills", "experience", "recommendations"]
   }
 } 

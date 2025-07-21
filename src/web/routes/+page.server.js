@@ -46,10 +46,22 @@ function loadAvailablePresets() {
         presets.push({
           value: presetName,
           name: preset.meta.name || presetName,
-          description: preset.meta.description || `${presetName} preset`
+          description: preset.meta.description || `${presetName} preset`,
+          order: preset.meta.order || 999 // Default to end if no order specified
         })
       }
     }
+    
+    // Sort presets by order (Comprehensive Resume first, then by order field)
+    presets.sort((a, b) => {
+      // Comprehensive Resume always first
+      if (a.value === 'full' && b.value === 'full') return 0
+      if (a.value === 'full') return -1
+      if (b.value === 'full') return 1
+      
+      // Sort others by order field
+      return (a.order || 999) - (b.order || 999)
+    })
     
     return presets
   } catch (error) {

@@ -108,7 +108,10 @@
         visibleSections = {...allSectionsVisible}
         console.log('✅ Synced local variables')
         
-        // 5. Navigate to clean URL for bookmarking
+        // 5. Show reset toast notification
+        showToast('↻ Reset to full professional history', 'preset')
+        
+        // 6. Navigate to clean URL for bookmarking
         goto('/', { 
             noScroll: true,
             keepFocus: true
@@ -131,9 +134,9 @@
             // Preset change: preserve existing state for sections that exist
             handlePresetChange(data.availableSections, $sectionVisibilityStore)
             
-            // Show toast notification for preset changes
+            // Show toast notification for preset changes (but not during reset)
             const currentPreset = data.availablePresets?.find(p => p.value === (data.preset || 'full'))
-            if (currentPreset && mounted && currentPreset.value !== 'full') {
+            if (currentPreset && mounted && currentPreset.value !== 'full' && selectedVersion !== 'full') {
                 delay(() => {
                     showToast(`✅ ${currentPreset.name} applied`, 'preset')
                 }, 200) // Small delay to ensure transition is visible
@@ -189,7 +192,7 @@
         toastVisible = true
         delay(() => {
             toastVisible = false
-        }, type === 'reset' ? 2000 : type === 'preset' ? 2500 : 3000) // Custom timing for different types
+        }, type === 'reset' ? 2750 : type === 'preset' ? 3250 : 3750) // Custom timing for different types
     }
 
     const exportToPDF = async () => {

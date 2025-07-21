@@ -1,7 +1,8 @@
 {
   "meta": {
     "name": "Consultant/Advisory",
-    "description": "Strategic advisor resume emphasizing cross-industry experience, transformation leadership, and high-level consulting capabilities"
+    "description": "Strategic advisor resume emphasizing cross-industry experience, transformation leadership, and high-level consulting capabilities",
+    "order": 6
   },
   "overrides": {
     "objective": "Strategic technology consultant with proven expertise in organizational transformation, team scaling, and complex system modernization across multiple industries. Specializes in guiding companies through technical transitions and building world-class engineering organizations.",
@@ -80,6 +81,6 @@
     "recommendations": {
       "selected_indices": [0, 1, 2, 3, 4]
     },
-    "sections_order": ["headline", "summary", "experience", "skills", "recommendations", "education", "projects"]
+    "sections_order": ["headline", "summary", "education", "skills", "experience", "projects", "recommendations"]
   }
 } 
