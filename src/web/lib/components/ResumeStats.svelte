@@ -100,7 +100,7 @@
 
 <style>
   .stat-item {
-    @apply p-3 bg-base-100 rounded-lg border border-base-200 hover:bg-base-200/50 transition-colors;
+    @apply p-3 bg-base-100 rounded-lg border border-base-200 hover:bg-base-200/50 transition-colors text-center;
   }
 </style>
 
@@ -109,7 +109,7 @@
   <div class="card-body p-4">
     <h3 class="card-title text-sm">📊 Resume Stats</h3>
     <div class="grid grid-cols-2 gap-4 text-xs">
-      <div class="stat-item">
+      <div class="stat-item text-center">
         <div class="text-xs opacity-70">Visible Sections</div>
         <div class="text-lg font-bold">{totalSections}</div>
         <div class="text-xs opacity-60">of {data.totalAvailableSections?.length || data.availableSections?.length || totalSections} total</div>
@@ -117,7 +117,7 @@
       
       <!-- Dynamic sections based on actual data -->
       {#each sectionsWithContent as {section, name, filtered, total, hasFiltering}}
-        <div class="stat-item">
+        <div class="stat-item text-center">
           <div class="text-xs opacity-70">{name}</div>
           <div class="text-lg font-bold">{filtered}</div>
           {#if hasFiltering}
@@ -126,7 +126,7 @@
         </div>
       {/each}
       
-      <div class="stat-item">
+      <div class="stat-item text-center">
         <div class="text-xs opacity-70">Est. Length</div>
         <div class="text-lg font-bold">
           {#if isLoading}
