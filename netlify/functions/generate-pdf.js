@@ -1,8 +1,8 @@
 /* eslint-disable unicorn/prefer-module */
-const chromium = require('@sparticuz/chromium')
-const puppeteer = require('puppeteer-core')
-const { readFile } = require('node:fs/promises')
-const path = require('node:path')
+import chromium from '@sparticuz/chromium'
+import puppeteer from 'puppeteer-core'
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 
 /**
  * Load CSS template based on preset name with fallback
@@ -113,7 +113,7 @@ async function getBrowser() {
  * @param {Object} context - Netlify Function context
  * @returns {Object} Response with PDF or error
  */
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {

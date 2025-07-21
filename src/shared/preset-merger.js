@@ -1,5 +1,26 @@
 import { readFileSync } from 'node:fs'
+import { existsSync } from 'node:fs'
+import { readdirSync } from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+// Get the directory of this module and calculate input directory
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+// Determine input directory based on environment
+let inputDir
+if (process.env.NETLIFY_DEV || process.env.NETLIFY) {
+  // In Netlify function environment, look for input at the function root
+  inputDir = path.resolve(process.cwd(), 'input')
+  if (!existsSync(inputDir)) {
+    // Fallback for bundled functions - input might be at different location
+    inputDir = path.resolve(__dirname, 'input')
+  }
+} else {
+  // Local development - use relative path
+  inputDir = path.resolve(__dirname, '../../input')
+}
 
 /**
  * Loads a preset file by name with error handling
@@ -8,7 +29,7 @@ import path from 'node:path'
  */
 export function loadPreset(presetName) {
   try {
-    const presetPath = path.join(process.cwd(), 'input', 'profiles', 'presets', `${presetName}.json`)
+    const presetPath = path.join(inputDir, 'profiles', 'presets', `${presetName}.json`)
     const presetData = readFileSync(presetPath, 'utf8')
     return JSON.parse(presetData)
   } catch (error) {
@@ -22,9 +43,9 @@ export function loadPreset(presetName) {
  * @returns {object} Combined profile data from all sections
  */
 export function loadAllProfileSections() {
-  const sectionsPath = path.join(process.cwd(), 'input', 'profiles', 'sections')
-  const profilePath = path.join(process.cwd(), 'input', 'profiles', 'profile.json')
-  const skillsInventoryPath = path.join(process.cwd(), 'input', 'profiles', 'skills-inventory.json')
+  const sectionsPath = path.join(inputDir, 'profiles', 'sections')
+  const profilePath = path.join(inputDir, 'profiles', 'profile.json')
+  const skillsInventoryPath = path.join(inputDir, 'profiles', 'skills-inventory.json')
   
   try {
     // Load main profile

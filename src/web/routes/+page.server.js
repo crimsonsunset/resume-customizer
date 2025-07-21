@@ -1,7 +1,26 @@
 import { render } from 'svelte/server'
 import { loadAllProfileSections, applyPreset, loadPreset } from '@shared/preset-merger.js'
-import { readdirSync } from 'node:fs'
+import { readdirSync, existsSync } from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+// Get the directory relative to this file for input directory
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+// Determine input directory based on environment
+let inputDir
+if (process.env.NETLIFY_DEV || process.env.NETLIFY) {
+  // In Netlify function environment, look for input at the function root
+  inputDir = path.resolve(process.cwd(), 'input')
+  if (existsSync(inputDir) === false) {
+    // Fallback for bundled functions - input might be at different location
+    inputDir = path.resolve(__dirname, 'input')
+  }
+} else {
+  // Local development - use relative path
+  inputDir = path.resolve(__dirname, '../../../input')
+}
 
 // Import resume section components
 import ResumeHeader from '@web/lib/components/resume/ResumeHeader.svelte'
@@ -26,7 +45,7 @@ import SummarySection from '@web/lib/components/resume/SummarySection.svelte'
  */
 function loadAvailablePresets() {
   try {
-    const presetsPath = path.join(process.cwd(), 'input', 'profiles', 'presets')
+    const presetsPath = path.join(inputDir, 'profiles', 'presets')
     const files = readdirSync(presetsPath).filter(file => file.endsWith('.json'))
     
     const presets = []

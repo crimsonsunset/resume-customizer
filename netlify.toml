@@ -11,6 +11,7 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
   external_node_modules = ["@sparticuz/chromium"]
+  included_files = ["input/**"]
 
 # Environment variables for specific functions
 [functions."generate-pdf"]

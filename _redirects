@@ -3,3 +3,5 @@
 
 # SvelteKit catch-all (must be last)
 * /.netlify/functions/sveltekit-render 200
+
+* /.netlify/functions/sveltekit-render 200
