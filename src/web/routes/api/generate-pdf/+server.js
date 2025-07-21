@@ -117,30 +117,25 @@ async function generatePdfDev(html, preset, css, cssMethod, _filename) {
  * Proxy to Netlify Function in production
  */
 async function proxyToNetlifyFunction(request) {
-  console.log('🌐 Production mode: proxying to Netlify Function')
+  const body = await request.text()
   
-  // Get the request body
-  const requestBody = await request.text()
+  console.log('🔄 Proxying to Netlify Function...')
   
-  // Determine the function URL based on environment
-  const functionUrl = `${request.url.split('/api/generate-pdf')[0]}/.netlify/functions/generate-pdf`
-  
-  console.log('📡 Proxying to:', functionUrl)
-  
-  // Forward the request to the Netlify Function
   // eslint-disable-next-line n/no-unsupported-features/node-builtins
-  const response = await fetch(functionUrl, {
+  const response = await fetch('http://localhost:8888/.netlify/functions/generate-pdf', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
-    body: requestBody
+    body
   })
+  
+  console.log(`📡 Netlify Function responded with status: ${response.status}`)
   
   if (!response.ok) {
     const errorText = await response.text()
-    console.error('❌ Netlify Function error:', response.status, errorText)
-    throw new Error(`Netlify Function failed: ${response.status} ${errorText}`)
+    console.error('❌ Netlify Function error:', errorText)
+    throw new Error(`Netlify Function failed: ${response.status} ${response.statusText}`)
   }
   
   return response
@@ -174,8 +169,8 @@ export async function POST({ request }) {
     
     // Production: Proxy to Netlify Function (fail outright if it fails)
     const response = await proxyToNetlifyFunction(request)
-    
-    // Return the response from the Netlify Function as-is
+
+    // The modern Netlify Function returns a Response object directly
     // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return new Response(response.body, {
       status: response.status,
