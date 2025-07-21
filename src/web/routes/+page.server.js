@@ -362,6 +362,15 @@ export async function load({ url }) {
     const sectionOrder = finalData.sections_order || ['headline', 'objective', 'summary', 'education', 'skills', 'experience', 'projects', 'honors-awards', 'volunteering', 'activities', 'certifications', 'courses', 'location', 'recommendations']
     console.log('📋 Sections order:', sectionOrder)
     
+    // Get all possible sections from actual data structure
+    const allPossibleSections = [
+      'headline',
+      'objective', 
+      'summary',
+      ...Object.keys(finalData.sections || {}),
+      'location' // Special section that's derived from basic_info
+    ].filter((section, index, arr) => arr.indexOf(section) === index) // Remove duplicates
+    
     // Render sections in specified order and track visibility
     const sectionResults = []
     const actuallyVisibleSections = []
@@ -396,47 +405,42 @@ export async function load({ url }) {
     console.log('📏 Total content length:', resumeContent.length)
     console.log('🔍 Content preview:', resumeContent.slice(0, 200))
     
-    // Calculate filtered stats for ResumeStats component
+        // Calculate both filtered and total counts from actual raw data
+    const totalCounts = {
+      experience: Array.isArray(rawData.sections?.experience) ? rawData.sections.experience.length : 0,
+      projects: Array.isArray(rawData.sections?.projects) ? rawData.sections.projects.length : 0,
+      skills: rawData.sections?.skills?.skills?.length || 0,
+      // education: Array.isArray(rawData.sections?.education?.education) ? rawData.sections.education.education.length : 0,
+      // certifications: Array.isArray(rawData.sections?.certifications) ? rawData.sections.certifications.length : 0,
+      recommendations: rawData.sections?.recommendations?.received?.length || 0,
+      // activities: Array.isArray(rawData.sections?.activities?.activities) ? rawData.sections.activities.activities.length : 0,
+      // volunteering: Array.isArray(rawData.sections?.volunteering) ? rawData.sections.volunteering.length : 0,
+      // 'honors-awards': Array.isArray(rawData.sections?.['honors-awards']) ? rawData.sections['honors-awards'].length : 0
+    }
+    
     const filteredStats = {
-      experience: 0,
-      projects: 0, 
-      skills: 0
+      experience: finalData.sections?.experience?.preset_filters?.selected_indices !== undefined ?
+                  finalData.sections.experience.preset_filters.selected_indices.length :
+                  (Array.isArray(finalData.sections?.experience) ? finalData.sections.experience.length : 0),
+      projects: finalData.sections?.projects?.preset_filters?.selected_indices !== undefined ?
+                finalData.sections.projects.preset_filters.selected_indices.length :
+                (Array.isArray(finalData.sections?.projects) ? finalData.sections.projects.length : 0),
+      skills: finalData.sections?.skills?.preset_skills ?
+              Object.values(finalData.sections.skills.preset_skills).reduce((total, categorySkills) =>
+                  total + (Array.isArray(categorySkills) ? categorySkills.length : 0), 0) :
+              (finalData.sections?.skills?.skills?.length || 0),
+      // Calculate other filtered counts based on actual rendered sections
+      // education: Array.isArray(finalData.sections?.education?.education) ? finalData.sections.education.education.length : 0,
+      // certifications: Array.isArray(finalData.sections?.certifications) ? finalData.sections.certifications.length : 0,
+      recommendations: finalData.sections?.recommendations?.preset_filters?.selected_indices !== undefined ? 
+                       finalData.sections.recommendations.preset_filters.selected_indices.length :
+                       (finalData.sections?.recommendations?.received?.length || 0),
+      // activities: Array.isArray(finalData.sections?.activities?.activities) ? finalData.sections.activities.activities.length : 0,
+      // volunteering: Array.isArray(finalData.sections?.volunteering) ? finalData.sections.volunteering.length : 0,
+      // 'honors-awards': Array.isArray(finalData.sections?.['honors-awards']) ? finalData.sections['honors-awards'].length : 0
     }
     
-    // Experience count (check for preset filtering)
-    if (finalData.sections.experience) {
-      const expFilters = finalData.sections.experience.preset_filters || {}
-      if (expFilters.selected_indices && Array.isArray(expFilters.selected_indices)) {
-        filteredStats.experience = expFilters.selected_indices.length
-      } else {
-        filteredStats.experience = Array.isArray(finalData.sections.experience) ? finalData.sections.experience.length : 0
-      }
-    }
     
-    // Projects count (check for preset filtering)
-    if (finalData.sections.projects) {
-      const projFilters = finalData.sections.projects.preset_filters || {}
-      if (projFilters.selected_indices && Array.isArray(projFilters.selected_indices)) {
-        filteredStats.projects = projFilters.selected_indices.length
-      } else {
-        filteredStats.projects = Array.isArray(finalData.sections.projects) ? finalData.sections.projects.length : 0
-      }
-    }
-    
-    // Skills count (check for preset skills)
-    if (finalData.sections.skills) {
-      if (finalData.sections.skills.preset_skills) {
-        // Count preset skills across all categories
-        const presetSkills = finalData.sections.skills.preset_skills
-        filteredStats.skills = Object.values(presetSkills).reduce((total, categorySkills) => {
-          return total + (Array.isArray(categorySkills) ? categorySkills.length : 0)
-        }, 0)
-      } else if (finalData.sections.skills.skills) {
-        filteredStats.skills = finalData.sections.skills.skills.length
-      }
-    }
-    
-
     
     return {
       resumeContent,
@@ -444,9 +448,11 @@ export async function load({ url }) {
       bulletDensity: densityParam,
       availablePresets,
       availableSections: sectionOrder, // Add the sections that are actually rendered
+      totalAvailableSections: allPossibleSections, // All possible sections regardless of preset
       actuallyVisibleSections, // Sections that are visible after density filtering
       sections: finalData.sections, // Add the actual section data for stats calculation
-      filteredStats // Add pre-calculated filtered stats
+      filteredStats, // Add pre-calculated filtered stats
+      totalCounts // Add total counts for comparison
     }
   } catch (error) {
     console.error('❌ Error in server load:', error.message)

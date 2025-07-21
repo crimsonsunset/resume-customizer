@@ -150,6 +150,16 @@ export function mergePresetWithRawData(rawData, preset) {
       preset_filters: overrides.activities
     }
   }
+
+  // Apply recommendations filtering (if it exists)
+  if (overrides.recommendations) {
+    merged.sections = merged.sections || {}
+    // Add preset filters to recommendations
+    merged.sections.recommendations = {
+      ...merged.sections.recommendations,
+      preset_filters: overrides.recommendations
+    }
+  }
   
   // Add objective if specified
   if (overrides.objective) {
