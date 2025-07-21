@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "name": "Tech Teacher/Coach",
+    "description": "Educational technology leader emphasizing mentoring, knowledge transfer, and skill development for developer advocacy and training roles",
+    "order": 7
+  },
+  "overrides": {
+    "objective": "Educational technology leader specializing in knowledge transfer, developer mentoring, and scalable learning systems. Expert in translating complex technical concepts into actionable learning experiences and building programs that accelerate team growth.",
+    "skills": {
+      "Leadership": [
+        "Technical Mentoring",
+        "Knowledge Transfer",
+        "Curriculum Development",
+        "Team Development",
+        "Training Program Design",
+        "Developer Advocacy",
+        "Technical Writing"
+      ],
+      "Communication": [
+        "Technical Documentation",
+        "Public Speaking",
+        "Workshop Facilitation",
+        "Content Creation",
+        "Cross-team Collaboration",
+        "Stakeholder Communication",
+        "Educational Content Design"
+      ],
+      "Development": [
+        "Full-Stack Development",
+        "AI-Assisted Development",
+        "Modern Web Technologies",
+        "DevOps Practices",
+        "Code Review & Best Practices",
+        "Technology Evaluation",
+        "System Architecture"
+      ],
+      "Innovation": [
+        "Educational Technology",
+        "Learning Management Systems",
+        "Developer Experience Design",
+        "Process Innovation",
+        "Technology Adoption Strategies",
+        "Best Practice Development"
+      ]
+    },
+    "experience": {
+      "selected_indices": [0, 1, 2, 3, 4, 8, 9]
+    },
+    "projects": {
+      "selected_indices": [0, 1, 2, 3, 5, 6, 7, 10, 11, 12]
+    },
+    "education": {
+      "selected_indices": [0]
+    },
+    "recommendations": {
+      "selected_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    },
+    "sections_order": ["headline", "objective", "education", "skills", "experience", "projects", "recommendations"]
+  }
+} 
