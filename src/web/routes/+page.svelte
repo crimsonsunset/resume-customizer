@@ -484,8 +484,8 @@
         <div class="flex-1 h-screen overflow-y-auto">
             <div class="p-4 flex justify-center">
                 <div class="w-full max-w-4xl">
-                    <div class="card bg-base-100 shadow-sm border border-base-300">
-                        <div class="card-body p-4 md:p-8">
+                    <div class="card shadow-sm border" style="background: white; border-color: #e5e7eb;">
+                        <div class="card-body p-4 md:p-8" style="background: white;">
                             <ResumeViewer>
                                 <div class="resume-with-visibility-controls">
                                     {@html data.resumeContent}

@@ -135,13 +135,7 @@
             {estimatedPages} page{estimatedPages === 1 ? '' : 's'}
           {/if}
         </div>
-        <div class="text-xs opacity-60">
-          {#if !isLoading}
-            Measured from actual content
-          {:else}
-            Calculating...
-          {/if}
-        </div>
+
       </div>
     </div>
   </div>

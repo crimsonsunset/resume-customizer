@@ -126,8 +126,12 @@ export class RecommendationsRenderer {
    * Extracts date from the date field (e.g., "September 9, 2024, Matthew reported directly to Joe")
    */
   extractDate(dateString) {
-    const match = dateString.match(/^([^,]+)/)
-    return match ? match[1].trim() : ''
+    const parts = dateString.split(',')
+    if (parts.length >= 2) {
+      // Extract first two parts: "September 9" + "2024"
+      return `${parts[0].trim()}, ${parts[1].trim()}`
+    }
+    return parts[0]?.trim() || ''
   }
 
   /**
@@ -135,8 +139,9 @@ export class RecommendationsRenderer {
    */
   extractRelationship(dateString) {
     const parts = dateString.split(',')
-    if (parts.length > 1) {
-      return parts.slice(1).join(',').trim()
+    if (parts.length > 2) {
+      // Skip first two parts (date and year), get the rest
+      return parts.slice(2).join(',').trim()
     }
     return ''
   }

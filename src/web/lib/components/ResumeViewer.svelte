@@ -335,7 +335,7 @@
     .resume-viewer :global(.recommendation-quote) {
         margin: 0;
         margin-bottom: var(--spacing-md);
-        padding: var(--spacing-md) var(--spacing-lg);
+        padding: 8px;
         background-color: #f8f9fa;
         border-left: 4px solid var(--color-primary);
         border-radius: 4px;
