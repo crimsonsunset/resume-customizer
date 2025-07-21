@@ -18,6 +18,7 @@
     "dev:cli": "BUILD_CLI=true vite build --watch",
     "dev:web": "pkill -f vite 2>/dev/null || true && vite --open",
     "dev:netlify": "pkill -f node 2>/dev/null || true && sleep 2 && netlify dev --port 9000",
+    "dev:functions": "netlify functions:serve",
     "preview:web": "vite preview",
     "clean": "shx rm -rf dist node_modules/.cache",
     "cli": "npm run build:cli --silent && node dist/cli/convert.js",

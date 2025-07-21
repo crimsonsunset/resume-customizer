@@ -196,6 +196,7 @@
         }, type === 'reset' ? 2750 : type === 'preset' ? 3250 : 3750) // Custom timing for different types
     }
 
+    // Export to PDF function - supports both CSS approaches
     const exportToPDF = async () => {
         try {
             console.log('🔄 Generating PDF...')
@@ -208,7 +209,7 @@
 
             const resumeHTML = resumeElement.innerHTML
 
-            // Extract CSS styles from the page (needed for compatibility with hardcoded HTML approach)
+            // Extract CSS styles from the page (for compatibility)
             const allStyles = []
 
             // Get inline styles from style tags
@@ -247,7 +248,7 @@
             const currentYear = getYear(today)
             const filename = `joseph-sangiorgio-resume-${currentYear}.pdf`
 
-            // Call the PDF generation API - use preset method for web app, CSS method for compatibility
+            // Call the PDF generation API - use CSS method (original) with preset fallback
             console.log(`📄 Generating PDF with preset: ${selectedVersion}`)
             const response = await fetch('/api/generate-pdf', {
                 method: 'POST',
@@ -256,9 +257,9 @@
                 },
                 body: JSON.stringify({
                     html: resumeHTML,
-                    preset: selectedVersion,     // Use preset for server-side CSS template selection
-                    css: combinedCSS,           // Also send extracted CSS as fallback
-                    cssMethod: 'preset',        // Tell backend to prefer preset method
+                    preset: selectedVersion,     // Server can use for CSS template fallback
+                    css: combinedCSS,           // Frontend-extracted CSS (primary)
+                    cssMethod: 'css',           // Use frontend CSS, fallback to preset
                     filename: filename
                 })
             })

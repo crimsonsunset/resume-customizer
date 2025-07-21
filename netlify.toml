@@ -1,12 +1,25 @@
 [build]
   command = "npm run build"
   publish = "public"
-  functions = "netlify/functions"
 
 [dev]
-  command = "npm run dev"
-  functionsPort = 9999
+  command = "npm run dev:web"
+  functionsPort = 8888
   targetPort = 3000
 
 [functions]
-  directory = "netlify/functions" 
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  external_node_modules = ["@sparticuz/chromium"]
+
+# Environment variables for specific functions
+[functions."generate-pdf"]
+  timeout = 26
+  memory = 1024
+
+# Redirect SvelteKit API route to Netlify Function in production
+[[redirects]]
+  from = "/api/generate-pdf"
+  to = "/.netlify/functions/generate-pdf"
+  status = 200
+  force = false  # Only redirect if SvelteKit route doesn't exist 
