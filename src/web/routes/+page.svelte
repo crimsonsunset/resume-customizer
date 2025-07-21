@@ -13,6 +13,7 @@
     import DensityControls from '@web/lib/components/DensityControls.svelte'
     import ResumeStats from '@web/lib/components/ResumeStats.svelte'
     import ComingSoonFeatures from '@web/lib/components/ComingSoonFeatures.svelte'
+    import MobileMenu from '@web/lib/components/ui/MobileMenu.svelte'
     import { startCase } from 'lodash-es'
     import {
         densityInitializedStore,
@@ -467,14 +468,8 @@
                     {/if}
                 </div>
                 
-                <!-- Export Button (Mobile) -->
-                <button 
-                    class="btn btn-primary btn-sm font-medium"
-                    on:click={exportToPDF}
-                    aria-label="Download PDF"
-                >
-                    ⬇️ PDF
-                </button>
+                <!-- Mobile Menu (Ellipsis with Download PDF + Theme) -->
+                <MobileMenu onExportToPDF={exportToPDF} />
             </div>
         </header>
         
