@@ -187,6 +187,9 @@
     let toastVisible = false
     let toastType = 'info' // 'info', 'success', 'warning', 'error', 'reset', 'preset'
 
+    // PDF export loading state
+    let isExportingPDF = false
+
     const showToast = (message, type = 'info') => {
         toastMessage = message
         toastType = type
@@ -197,8 +200,15 @@
     }
 
     const exportToPDF = async () => {
+        if (isExportingPDF) return // Prevent multiple simultaneous exports
+        
+        isExportingPDF = true
+        
         try {
             console.log('🔄 Generating PDF...')
+            
+            // Show preparing toast immediately
+            showToast('📋 Preparing Resume Download...', 'info')
 
             // Get the current resume HTML content
             const resumeElement = document.querySelector('.resume-viewer')
@@ -288,6 +298,9 @@
         } catch (error) {
             console.error('❌ PDF export failed:', error)
             showToast(`❌ PDF export failed: ${error.message}`, 'error')
+        } finally {
+            // Reset loading state regardless of success or failure
+            isExportingPDF = false
         }
     }
 
@@ -412,8 +425,13 @@
         <div class="flex items-center space-x-4">
             <ThemeSelector/>
             <button class="btn btn-primary m-1"
+                disabled={isExportingPDF}
                 on:click={exportToPDF}>
-                ⬇️ Download PDF
+                {#if isExportingPDF}
+                    <span class="loading loading-spinner loading-sm"></span>
+                {:else}
+                    ⬇️ Download PDF
+                {/if}
             </button>
         </div>
     </div>
@@ -470,7 +488,7 @@
                 </div>
                 
                 <!-- Mobile Menu (Ellipsis with Download PDF + Theme) -->
-                <MobileMenu onExportToPDF={exportToPDF} />
+                <MobileMenu onExportToPDF={exportToPDF} {isExportingPDF} />
             </div>
         </header>
         

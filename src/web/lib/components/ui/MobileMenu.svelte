@@ -4,6 +4,7 @@
   import { delay } from 'lodash-es'
   
   export let onExportToPDF = () => {}
+  export let isExportingPDF = false
   
   let isOpen = false
   let storeReady = false
@@ -65,12 +66,17 @@
     <div class="flex justify-center my-3">
       <button 
         class="btn btn-sm w-3/4 justify-center font-medium bg-primary text-primary-content border-primary hover:bg-primary-focus"
+        disabled={isExportingPDF}
         on:click={handleExportToPDF}
       >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-4 w-4 stroke-current mr-2">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-      </svg>
-      Download PDF
+      {#if isExportingPDF}
+        <span class="loading loading-spinner loading-sm"></span>
+      {:else}
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-4 w-4 stroke-current mr-2">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        Download PDF
+      {/if}
       </button>
     </div>
     
