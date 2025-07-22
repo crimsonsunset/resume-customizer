@@ -1,12 +1,19 @@
 [build]
   command = "npm run build"
   publish = "public"
-  functions = "netlify/functions"
 
 [dev]
-  command = "npm run dev"
-  functionsPort = 9999
+  command = "npm run dev:web"
+  functionsPort = 8888
   targetPort = 3000
 
 [functions]
-  directory = "netlify/functions" 
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  external_node_modules = ["@sparticuz/chromium"]
+  included_files = ["input/**"]
+
+# Environment variables for specific functions
+[functions."generate-pdf"]
+  timeout = 26
+  memory = 1024 

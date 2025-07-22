@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import { sveltekit } from '@sveltejs/kit/vite'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { existsSync, unlinkSync } from 'node:fs'
 import dateUpdaterPlugin from './src/shared/vite-plugin-date-updater.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -45,7 +46,35 @@ export default defineConfig(({ command, mode }) => {
   
   // SvelteKit web app configuration
   return {
-    plugins: [sveltekit(), dateUpdaterPlugin()],
+    plugins: [
+      sveltekit(), 
+      dateUpdaterPlugin(),
+      // Custom plugin to exclude Netlify config files from being copied
+      {
+        name: 'exclude-netlify-configs',
+        apply: 'build',
+        writeBundle() {
+          // Remove _redirects and _headers from build output if they exist
+          const buildDir = 'public'
+          const filesToRemove = ['_redirects', '_headers']
+          
+          for (const file of filesToRemove) {
+            const filePath = resolve(buildDir, file)
+            try {
+              if (existsSync(filePath)) {
+                unlinkSync(filePath)
+                console.log(`🧹 Removed ${file} from build output (should be in project root)`)
+              }
+            } catch {
+              // Ignore errors, files might not exist
+            }
+          }
+        }
+      }
+    ],
+    
+    // Conditionally disable publicDir for build to prevent Netlify config files from being copied
+    publicDir: command === 'build' ? false : 'public',
     
     // Path aliases (matches tsconfig.json)
     resolve: {

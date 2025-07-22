@@ -17,7 +17,11 @@
     "dev": "npm run dev:web",
     "dev:cli": "BUILD_CLI=true vite build --watch",
     "dev:web": "pkill -f vite 2>/dev/null || true && vite --open",
+    "dev:netlify": "pkill -f node 2>/dev/null || true && sleep 2 && netlify dev --port 9000",
+    "dev:functions": "netlify functions:serve",
+    "dev:pdf": "echo '🔄 Stopping all related processes...' && pkill -f 'vite|netlify|node.*resume-customizer' 2>/dev/null || true && sleep 3 && echo '🚀 Starting Netlify dev with PDF function support...' && netlify dev --port 8000",
     "preview:web": "vite preview",
+    "test:prod": "echo '🔄 Stopping all processes...' && pkill -f 'netlify|vite|node.*resume-customizer' 2>/dev/null || true && sleep 2 && echo '🧹 Cleaning up...' && rm -rf .svelte-kit public/_headers 2>/dev/null || true && echo '🏗️ Building production version...' && npm run build && echo '🚀 Starting production server with Netlify functions...' && netlify serve --port 8080",
     "clean": "shx rm -rf dist node_modules/.cache",
     "cli": "npm run build:cli --silent && node dist/cli/convert.js",
     "test": "echo 'No tests specified'",
@@ -28,6 +32,7 @@
   },
   "dependencies": {
     "@netlify/functions": "^2.8.2",
+    "@sparticuz/chromium": "^138.0.1",
     "@sveltejs/adapter-netlify": "^5.0.2",
     "@sveltejs/kit": "^2.22.5",
     "@sveltejs/vite-plugin-svelte": "^5.1.1",
@@ -37,7 +42,7 @@
     "daisyui": "^5.0.46",
     "date-fns": "^4.1.0",
     "lodash-es": "^4.17.21",
-    "playwright": "^1.54.0",
+    "puppeteer-core": "^24.14.0",
     "svelte": "^5.35.6",
     "tailwindcss": "^4.1.11"
   },

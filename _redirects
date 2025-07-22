@@ -1,3 +1,7 @@
+# PDF API redirect to Netlify Function
+/api/generate-pdf /.netlify/functions/generate-pdf 200
 
+# SvelteKit catch-all (must be last)
+* /.netlify/functions/sveltekit-render 200
 
 * /.netlify/functions/sveltekit-render 200
