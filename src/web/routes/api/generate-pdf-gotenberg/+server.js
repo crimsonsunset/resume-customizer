@@ -1,32 +1,119 @@
 import { error } from '@sveltejs/kit'
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 
 /**
- * Test Gotenberg PDF generation endpoint
+ * Load CSS template based on preset name with fallback
+ * @param {string} preset - The preset name (e.g., 'one-page', 'technical')
+ * @returns {Promise<string>} CSS content
+ */
+async function loadCssTemplate(preset) {
+  try {
+    // Try preset-specific CSS first: preset-name.css
+    if (preset && preset !== 'full') {
+      try {
+        const presetCssPath = path.join(process.cwd(), 'input', 'templates', `${preset}.css`)
+        const css = await readFile(presetCssPath, 'utf8')
+        console.log(`✅ Loaded preset CSS: ${preset}.css`)
+        return css
+      } catch {
+        console.log(`⚠️ No preset CSS found for ${preset}, using default`)
+      }
+    }
+    
+    // Fallback to default resume-styles.css
+    const defaultCssPath = path.join(process.cwd(), 'input', 'templates', 'resume-styles.css')
+    const css = await readFile(defaultCssPath, 'utf8')
+    console.log('✅ Loaded default CSS: resume-styles.css')
+    return css
+  } catch (error_) {
+    console.error('❌ Failed to load CSS template:', error_.message)
+    throw new Error(`Could not load CSS template: ${error_.message}`)
+  }
+}
+
+/**
+ * Gotenberg PDF generation endpoint - mirrors the Playwright version
  */
 export async function POST({ request }) {
   try {
-    const { html = '<h1>Test</h1>' } = await request.json()
+    const { html, preset = 'full', css, cssMethod = 'css', filename = 'resume-gotenberg.pdf' } = await request.json()
     
-    console.log('🧪 Testing Gotenberg connection...')
-    
-    // Create simple HTML document
-    const fullHtml = `<!DOCTYPE html>
+    if (!html) {
+      // If no HTML provided, run simple test
+      const testHtml = `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <title>Test PDF</title>
 </head>
 <body>
+  <h1>🧪 Gotenberg Test</h1><p>This PDF was generated using Gotenberg!</p>
+</body>
+</html>`
+      
+             // eslint-disable-next-line n/no-unsupported-features/node-builtins
+       const formData = new FormData()
+       formData.append('files', new Blob([testHtml], { type: 'text/html' }), 'index.html')
+       
+       // eslint-disable-next-line n/no-unsupported-features/node-builtins
+       const response = await fetch('http://localhost:5555/forms/chromium/convert/html', {
+        method: 'POST',
+        body: formData
+      })
+      
+      if (!response.ok) {
+        throw new Error(`Gotenberg failed: ${response.status}`)
+      }
+      
+             const pdfBuffer = await response.arrayBuffer()
+       // eslint-disable-next-line n/no-unsupported-features/node-builtins
+       return new Response(pdfBuffer, {
+        headers: {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': 'attachment; filename="gotenberg-test.pdf"'
+        }
+      })
+    }
+    
+    console.log(`🧪 Generating PDF with Gotenberg - method: ${cssMethod}, preset: ${preset}`)
+    
+    // Determine CSS based on method (same logic as Playwright version)
+    const finalCss = cssMethod === 'preset' 
+      ? await loadCssTemplate(preset)  // Use preset-based CSS loading
+      : css || await loadCssTemplate(preset)  // Use direct CSS for compatibility
+    
+    // Process HTML the same way as Playwright version
+    let processedHtml = html
+    if (finalCss) {
+      // Add CSS before closing </head> tag or create head if doesn't exist
+      processedHtml = processedHtml.includes('</head>') 
+        ? processedHtml.replace('</head>', `<style>${finalCss}</style></head>`)
+        : processedHtml.replace('<html>', `<html><head><style>${finalCss}</style></head>`)
+    }
+    
+    // Ensure we have a proper HTML document structure
+    if (!processedHtml.includes('<!DOCTYPE html>')) {
+      processedHtml = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  ${finalCss ? `<style>${finalCss}</style>` : ''}
+</head>
+<body>
   ${html}
 </body>
 </html>`
+    }
     
     // Create form data for Gotenberg
     // eslint-disable-next-line n/no-unsupported-features/node-builtins
     const formData = new FormData()
-    formData.append('files', new Blob([fullHtml], { type: 'text/html' }), 'index.html')
+    formData.append('files', new Blob([processedHtml], { type: 'text/html' }), 'index.html')
     
     // Send to Gotenberg
+    console.log(`📡 Sending resume to Gotenberg...`)
     // eslint-disable-next-line n/no-unsupported-features/node-builtins
     const response = await fetch('http://localhost:5555/forms/chromium/convert/html', {
       method: 'POST',
@@ -38,18 +125,19 @@ export async function POST({ request }) {
     }
     
     const pdfBuffer = await response.arrayBuffer()
-    console.log('✅ Gotenberg test successful')
+    console.log('✅ Gotenberg PDF generation successful')
     
+    // Return PDF as download
     // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return new Response(pdfBuffer, {
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename="test.pdf"'
+        'Content-Disposition': `attachment; filename="${filename}"`
       }
     })
     
   } catch (error_) {
-    console.error('❌ Gotenberg test failed:', error_)
-    throw error(500, `Gotenberg test failed: ${error_.message}`)
+    console.error('❌ Gotenberg PDF generation failed:', error_)
+    throw error(500, `Gotenberg PDF generation failed: ${error_.message}`)
   }
 } 
