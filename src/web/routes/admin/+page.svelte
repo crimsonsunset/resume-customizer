@@ -1,7 +1,16 @@
 <script>
-    import { onMount } from 'svelte'
+    import { onMount, tick } from 'svelte'
     import { browser } from '$app/environment'
     import { delay } from 'lodash-es'
+    import { 
+        convertPdfToMarkdown, 
+        addDocumentHeader, 
+        downloadMarkdownFile,
+        copyMarkdownToClipboard,
+        renderMarkdownToHtml,
+        applySyntaxHighlighting,
+        formatFileSize
+    } from '$lib/utils/pdf-utils.js'
 
     // File upload state
     let selectedFile = null
@@ -9,6 +18,10 @@
     let conversionResult = null
     let errorMessage = null
     let dragOver = false
+
+    // Results display state
+    let viewMode = 'preview' // 'preview' or 'raw'
+    let renderedMarkdown = ''
 
     // Toast notification system
     let toastMessage = ''
@@ -24,14 +37,18 @@
         }, 3000)
     }
 
-    // File handling
-    const handleFileSelect = (event) => {
+    // File handling with auto-conversion
+    const handleFileSelect = async (event) => {
         const file = event.target.files[0]
         if (file) {
             selectedFile = file
             errorMessage = null
             conversionResult = null
+            renderedMarkdown = ''
             console.log('📁 File selected:', file.name, file.type, file.size)
+            
+            // Auto-convert when file is selected
+            await handlePdfConversion()
         }
     }
 
@@ -45,7 +62,7 @@
         dragOver = false
     }
 
-    const handleDrop = (event) => {
+    const handleDrop = async (event) => {
         event.preventDefault()
         dragOver = false
         
@@ -56,7 +73,11 @@
                 selectedFile = file
                 errorMessage = null
                 conversionResult = null
+                renderedMarkdown = ''
                 console.log('📁 File dropped:', file.name, file.type, file.size)
+                
+                // Auto-convert when file is dropped
+                await handlePdfConversion()
             } else {
                 errorMessage = 'Please select a PDF file'
                 showToast('❌ Only PDF files are supported', 'error')
@@ -64,25 +85,11 @@
         }
     }
 
-    // PDF to Markdown conversion using @opendocsg/pdf2md
-    const convertPdfToMarkdown = async () => {
+    // PDF to Markdown conversion using utility
+    const handlePdfConversion = async () => {
         if (!selectedFile) {
             errorMessage = 'Please select a PDF file first'
             showToast('❌ No file selected', 'error')
-            return
-        }
-
-        if (selectedFile.type !== 'application/pdf') {
-            errorMessage = 'Please select a PDF file'
-            showToast('❌ Only PDF files are supported', 'error')
-            return
-        }
-
-        // Validate file size (100MB limit for client-side processing)
-        const maxSize = 100 * 1024 * 1024 // 100MB
-        if (selectedFile.size > maxSize) {
-            errorMessage = 'File size exceeds 100MB limit'
-            showToast('❌ File too large (max 100MB)', 'error')
             return
         }
 
@@ -92,35 +99,21 @@
 
         try {
             console.log('🔄 Converting PDF to Markdown using @opendocsg/pdf2md...')
-            showToast('📋 Processing PDF with pdf2md...', 'info')
-
-            // Import pdf2md dynamically for client-side processing
-            const pdf2md = await import('@opendocsg/pdf2md')
             
-            // Convert file to ArrayBuffer for pdf2md
-            const fileBuffer = await selectedFile.arrayBuffer()
-            console.log('📄 File buffer created, size:', fileBuffer.byteLength)
+            // Use utility for conversion with progress callback
+            const { markdown, metadata } = await convertPdfToMarkdown(selectedFile, {
+                onProgress: (message) => showToast(message, 'info')
+            })
 
-            // Convert PDF to markdown using pdf2md
-            const markdown = await pdf2md.default(fileBuffer)
-            console.log('✅ PDF conversion completed')
-
-            if (!markdown || !markdown.trim()) {
-                throw new Error('No content could be extracted from the PDF. The PDF might be image-based, encrypted, or corrupted.')
-            }
-
-            // Add document metadata header
-            const documentHeader = `# ${selectedFile.name.replace('.pdf', '')}\n\n`
-            + `*Converted from PDF using @opendocsg/pdf2md on ${new Date().toLocaleDateString()}*\n\n`
-            + `**Document Info:**\n`
-            + `- Original file: ${selectedFile.name}\n`
-            + `- File size: ${(selectedFile.size / 1024 / 1024).toFixed(2)} MB\n`
-            + `- Content length: ${markdown.length.toLocaleString()} characters\n\n`
-            + `---\n\n`
-
-            const finalMarkdown = documentHeader + markdown
-
+            // Add document header using utility
+            const finalMarkdown = addDocumentHeader(markdown, metadata)
             conversionResult = finalMarkdown
+            
+            // Render the markdown for preview and ensure we're in preview mode
+            viewMode = 'preview'
+            renderedMarkdown = await renderMarkdownToHtml(finalMarkdown)
+            console.log('📝 Preview rendered, length:', renderedMarkdown.length)
+            
             showToast(`✅ PDF converted successfully! Content extracted and formatted.`, 'success')
             console.log('✅ Conversion successful, markdown length:', finalMarkdown.length)
 
@@ -133,37 +126,56 @@
         }
     }
 
-
-
-    // Download markdown file
-    const downloadMarkdown = () => {
+    // Toggle between preview and raw view
+    const handleViewModeToggle = async () => {
         if (!conversionResult) return
-
-        const filename = selectedFile.name.replace('.pdf', '.md')
-        const blob = new Blob([conversionResult], { type: 'text/markdown' })
-        const url = URL.createObjectURL(blob)
-
-        const a = document.createElement('a')
-        a.href = url
-        a.download = filename
-        a.style.display = 'none'
-        document.body.appendChild(a)
-        a.click()
-        document.body.removeChild(a)
-        URL.revokeObjectURL(url)
-
-        showToast('📥 Markdown file download started!', 'success')
+        
+        try {
+            if (viewMode === 'preview') {
+                // Switch to raw
+                viewMode = 'raw'
+                // Apply syntax highlighting after DOM update
+                await tick()
+                await applySyntaxHighlighting()
+            } else {
+                // Switch to preview
+                viewMode = 'preview'
+                if (!renderedMarkdown && conversionResult) {
+                    renderedMarkdown = await renderMarkdownToHtml(conversionResult)
+                }
+            }
+        } catch (error) {
+            console.error('Toggle view mode failed:', error)
+            showToast('❌ Failed to toggle view mode', 'error')
+        }
     }
 
-    // Copy to clipboard
-    const copyToClipboard = async () => {
+    // Download markdown file using utility
+    const handleDownload = () => {
+        if (!conversionResult || !selectedFile) return
+
+        const metadata = {
+            originalFilename: selectedFile.name,
+            fileSize: selectedFile.size,
+            fileSizeMB: (selectedFile.size / 1024 / 1024).toFixed(2),
+            contentLength: conversionResult.length,
+            convertedAt: new Date().toISOString(),
+            convertedWith: '@opendocsg/pdf2md'
+        }
+
+        downloadMarkdownFile(conversionResult, metadata, {
+            onSuccess: (filename) => showToast(`📥 ${filename} download started!`, 'success')
+        })
+    }
+
+    // Copy to clipboard using utility
+    const handleCopyToClipboard = async () => {
         if (!conversionResult) return
 
-        try {
-            await navigator.clipboard.writeText(conversionResult)
+        const success = await copyMarkdownToClipboard(conversionResult)
+        if (success) {
             showToast('📋 Markdown copied to clipboard!', 'success')
-        } catch (error) {
-            console.error('Failed to copy to clipboard:', error)
+        } else {
             showToast('❌ Failed to copy to clipboard', 'error')
         }
     }
@@ -174,8 +186,109 @@
 </script>
 
 <svelte:head>
-    <title>Admin - Gotenberg Interface</title>
-    <meta name="description" content="Admin interface for Gotenberg PDF processing"/>
+    <title>Admin - PDF to Markdown Converter</title>
+    <meta name="description" content="Admin interface for client-side PDF to Markdown conversion"/>
+    <!-- Highlight.js CSS for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <!-- Custom styles for prose and markdown display -->
+    <style>
+        .prose {
+            color: inherit;
+        }
+        .prose h1 { 
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            margin-top: 1.5rem; 
+            margin-bottom: 1rem; 
+            color: oklch(var(--p)); 
+        }
+        .prose h2 { 
+            font-size: 1.25rem; 
+            font-weight: 700; 
+            margin-top: 1.25rem; 
+            margin-bottom: 0.75rem; 
+            color: oklch(var(--p)); 
+        }
+        .prose h3 { 
+            font-size: 1.125rem; 
+            font-weight: 700; 
+            margin-top: 1rem; 
+            margin-bottom: 0.5rem; 
+            color: oklch(var(--s)); 
+        }
+        .prose h4 { 
+            font-size: 1rem; 
+            font-weight: 700; 
+            margin-top: 0.75rem; 
+            margin-bottom: 0.5rem; 
+        }
+        .prose p { 
+            margin-bottom: 0.75rem; 
+            line-height: 1.625; 
+        }
+        .prose ul { 
+            list-style-type: disc; 
+            padding-left: 1.5rem; 
+            margin-bottom: 0.75rem; 
+        }
+        .prose ol { 
+            list-style-type: decimal; 
+            padding-left: 1.5rem; 
+            margin-bottom: 0.75rem; 
+        }
+        .prose li { 
+            margin-bottom: 0.25rem; 
+        }
+        .prose strong { 
+            font-weight: 700; 
+            color: oklch(var(--a)); 
+        }
+        .prose em { 
+            font-style: italic; 
+        }
+        .prose code { 
+            padding: 0.125rem 0.25rem; 
+            border-radius: 0.25rem; 
+            font-size: 0.875rem; 
+            background-color: oklch(var(--b2)); 
+        }
+        .prose pre { 
+            padding: 0.75rem; 
+            border-radius: 0.5rem; 
+            overflow-x: auto; 
+            background-color: oklch(var(--b2)); 
+        }
+        .prose blockquote { 
+            padding-left: 1rem; 
+            font-style: italic; 
+            border-left: 4px solid oklch(var(--p)); 
+        }
+        .prose hr { 
+            margin-top: 1.5rem; 
+            margin-bottom: 1.5rem; 
+            border-top: 1px solid oklch(var(--b3)); 
+        }
+        .prose a { 
+            text-decoration: underline; 
+            color: oklch(var(--p)); 
+        }
+        .prose a:hover { 
+            text-decoration: none; 
+        }
+        .prose table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            border: 1px solid oklch(var(--b3)); 
+        }
+        .prose th, .prose td { 
+            padding: 0.75rem; 
+            border: 1px solid oklch(var(--b3)); 
+        }
+        .prose th { 
+            font-weight: 700; 
+            background-color: oklch(var(--b2)); 
+        }
+    </style>
 </svelte:head>
 
 <div class="min-h-screen bg-base-200 p-4">
@@ -242,20 +355,13 @@
                     {/if}
 
                     <!-- Convert Button -->
-                    <div class="mt-6">
-                        <button 
-                            class="btn btn-primary w-full"
-                            disabled={!selectedFile || isConverting}
-                            on:click={convertPdfToMarkdown}
-                        >
-                            {#if isConverting}
-                                <span class="loading loading-spinner loading-sm"></span>
-                                Converting...
-                            {:else}
-                                🔄 Convert PDF to Markdown
-                            {/if}
-                        </button>
-                    </div>
+                    <!-- Conversion Status -->
+                    {#if isConverting}
+                        <div class="mt-6 flex items-center justify-center gap-2 text-info">
+                            <span class="loading loading-spinner loading-sm"></span>
+                            <span>Converting PDF to Markdown...</span>
+                        </div>
+                    {/if}
                 </div>
             </div>
 
@@ -266,27 +372,64 @@
                     
                     {#if conversionResult}
                         <div class="space-y-4">
-                            <!-- Action Buttons -->
-                            <div class="flex gap-2">
-                                <button 
-                                    class="btn btn-success btn-sm"
-                                    on:click={downloadMarkdown}
-                                >
-                                    ⬇️ Download .md
-                                </button>
-                                <button 
-                                    class="btn btn-info btn-sm"
-                                    on:click={copyToClipboard}
-                                >
-                                    📋 Copy to Clipboard
-                                </button>
+                            <!-- Action Bar -->
+                            <div class="flex flex-wrap gap-2 items-center justify-between">
+                                <!-- View Toggle Switch -->
+                                <div class="form-control">
+                                    <label class="label cursor-pointer gap-3">
+                                        <span class="label-text text-sm">👁️ Preview</span>
+                                        <input 
+                                            type="checkbox" 
+                                            class="toggle toggle-sm" 
+                                            checked={viewMode === 'raw'}
+                                            on:change={handleViewModeToggle}
+                                        />
+                                        <span class="label-text text-sm">📄 Raw</span>
+                                    </label>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="flex gap-2">
+                                    <button 
+                                        class="btn btn-success btn-sm"
+                                        on:click={handleDownload}
+                                        title="Download with YAML frontmatter"
+                                    >
+                                        ⬇️ Download .md
+                                    </button>
+                                    <button 
+                                        class="btn btn-info btn-sm"
+                                        on:click={handleCopyToClipboard}
+                                        title="Copy raw markdown to clipboard"
+                                    >
+                                        📋 Copy Markdown
+                                    </button>
+                                </div>
                             </div>
 
-                            <!-- Markdown Preview -->
+                            <!-- Content Display -->
                             <div class="space-y-2">
-                                <h3 class="font-medium">Preview:</h3>
-                                <div class="bg-base-200 rounded-lg p-4 max-h-96 overflow-y-auto">
-                                    <pre class="text-sm whitespace-pre-wrap">{conversionResult}</pre>
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-medium">
+                                        {viewMode === 'preview' ? 'Rendered Preview:' : 'Raw Markdown:'}
+                                    </h3>
+                                    <div class="text-xs text-base-content/60">
+                                        {conversionResult.length.toLocaleString()} characters
+                                    </div>
+                                </div>
+                                
+                                <div class="border border-base-300 rounded-lg max-h-96 overflow-y-auto">
+                                    {#if viewMode === 'preview'}
+                                        <!-- Rendered Markdown Preview -->
+                                        <div class="prose prose-sm max-w-none p-4" style="background-color: oklch(var(--b1));">
+                                            {@html renderedMarkdown}
+                                        </div>
+                                    {:else}
+                                        <!-- Raw Markdown with Syntax Highlighting -->
+                                        <div class="relative">
+                                            <pre class="language-markdown p-4 m-0 text-sm rounded-lg overflow-x-auto" style="background-color: oklch(var(--b2));"><code class="language-markdown">{conversionResult}</code></pre>
+                                        </div>
+                                    {/if}
                                 </div>
                             </div>
                         </div>
@@ -294,6 +437,7 @@
                         <div class="text-center py-8 text-base-content/60">
                             <div class="text-4xl mb-4">📝</div>
                             <p>Convert a PDF file to see the markdown result here</p>
+                            <p class="text-sm mt-2">Preview with rendered formatting + download with metadata</p>
                         </div>
                     {/if}
                 </div>
