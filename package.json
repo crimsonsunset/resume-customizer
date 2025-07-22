@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@netlify/functions": "^2.8.2",
+    "@opendocsg/pdf2md": "^0.2.1",
     "@sveltejs/adapter-netlify": "^5.0.2",
     "@sveltejs/kit": "^2.22.5",
     "@sveltejs/vite-plugin-svelte": "^5.1.1",
