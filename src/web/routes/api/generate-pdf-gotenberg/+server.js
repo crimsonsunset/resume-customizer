@@ -43,7 +43,7 @@ export async function POST({ request }) {
       throw new Error('GOTENBERG_URL environment variable is not set')
     }
     
-    const { html, preset = 'full', css, cssMethod = 'css', filename = 'resume-gotenberg.pdf' } = await request.json()
+    const { html, preset = 'full', css, cssMethod = 'css', filename = 'resume-gotenberg.pdf', themeColors } = await request.json()
     
     if (!html) {
       // If no HTML provided, run simple test
@@ -83,11 +83,22 @@ export async function POST({ request }) {
     }
     
     console.log(`🧪 Generating PDF with Gotenberg - method: ${cssMethod}, preset: ${preset}`)
+    if (themeColors) {
+      console.log(`🎨 Applying theme colors: Primary=${themeColors.primary}, Secondary=${themeColors.secondary}`)
+    }
     
     // Determine CSS based on method (same logic as Playwright version)
-    const finalCss = cssMethod === 'preset' 
+    let finalCss = cssMethod === 'preset' 
       ? await loadCssTemplate(preset)  // Use preset-based CSS loading
       : css || await loadCssTemplate(preset)  // Use direct CSS for compatibility
+    
+    // Apply theme colors to CSS if provided
+    if (themeColors && finalCss) {
+      // Replace CSS color variables with theme colors
+      finalCss = finalCss.replace(/--color-primary:\s*[^;]+;/g, `--color-primary: ${themeColors.primary};`)
+      finalCss = finalCss.replace(/--color-secondary:\s*[^;]+;/g, `--color-secondary: ${themeColors.secondary};`)
+      console.log(`🎨 Theme colors applied to CSS`)
+    }
     
     // Process HTML the same way as Playwright version
     let processedHtml = html

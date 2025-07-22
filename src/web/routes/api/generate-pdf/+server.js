@@ -40,18 +40,29 @@ async function loadCssTemplate(preset) {
  */
 export async function POST({ request }) {
   try {
-    const { html, preset = 'full', css, cssMethod = 'css', filename = 'resume.pdf' } = await request.json()
+    const { html, preset = 'full', css, cssMethod = 'css', filename = 'resume.pdf', themeColors } = await request.json()
     
     if (!html) {
       throw error(400, 'HTML content is required')
     }
     
     console.log(`🎯 Generating PDF with method: ${cssMethod}, preset: ${preset}`)
+    if (themeColors) {
+      console.log(`🎨 Applying theme colors: Primary=${themeColors.primary}, Secondary=${themeColors.secondary}`)
+    }
     
     // Determine CSS based on method
-    const finalCss = cssMethod === 'preset' 
+    let finalCss = cssMethod === 'preset' 
       ? await loadCssTemplate(preset)  // Use preset-based CSS loading (new method)
       : css || await loadCssTemplate(preset)  // Use direct CSS (original method for compatibility)
+    
+    // Apply theme colors to CSS if provided
+    if (themeColors && finalCss) {
+      // Replace CSS color variables with theme colors
+      finalCss = finalCss.replace(/--color-primary:\s*[^;]+;/g, `--color-primary: ${themeColors.primary};`)
+      finalCss = finalCss.replace(/--color-secondary:\s*[^;]+;/g, `--color-secondary: ${themeColors.secondary};`)
+      console.log(`🎨 Theme colors applied to CSS`)
+    }
     
     // Inject CSS into HTML like the CLI does
     let processedHtml = html

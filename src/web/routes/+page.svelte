@@ -257,8 +257,20 @@
             const currentYear = getYear(today)
             const filename = `joseph-sangiorgio-resume-${currentYear}.pdf`
 
+            // Get current theme colors from ResumeViewer
+            const resumeViewerElement = document.querySelector('.resume-viewer')
+            const computedStyle = resumeViewerElement ? getComputedStyle(resumeViewerElement) : null
+            const currentThemeColors = computedStyle ? {
+                primary: computedStyle.getPropertyValue('--color-primary').trim() || '#4285f4',
+                secondary: computedStyle.getPropertyValue('--color-secondary').trim() || '#666'
+            } : null
+
             // Call the Gotenberg PDF generation API - use preset method for web app, CSS method for compatibility
             console.log(`📄 Generating PDF with preset: ${selectedVersion}`)
+            if (currentThemeColors) {
+                console.log(`🎨 Theme colors: Primary=${currentThemeColors.primary}, Secondary=${currentThemeColors.secondary}`)
+            }
+            
             const response = await fetch('/api/generate-pdf-gotenberg', {
                 method: 'POST',
                 headers: {
@@ -269,7 +281,8 @@
                     preset: selectedVersion,     // Use preset for server-side CSS template selection
                     css: combinedCSS,           // Also send extracted CSS as fallback
                     cssMethod: 'preset',        // Tell backend to prefer preset method
-                    filename: filename
+                    filename: filename,
+                    themeColors: currentThemeColors  // Pass current theme colors for PDF styling
                 })
             })
 
