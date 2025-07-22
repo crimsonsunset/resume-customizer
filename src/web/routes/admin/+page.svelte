@@ -1,16 +1,18 @@
 <script>
-    import { onMount, tick } from 'svelte'
-    import { browser } from '$app/environment'
-    import { delay } from 'lodash-es'
-    import { 
-        convertPdfToMarkdown, 
-        addDocumentHeader, 
+    import {onMount, tick} from 'svelte'
+    import {browser} from '$app/environment'
+    import {delay} from 'lodash-es'
+    import Markdown from 'svelte-exmarkdown'
+    import {gfmPlugin} from 'svelte-exmarkdown/gfm'
+    import {
+        convertPdfToMarkdown,
+        addDocumentHeader,
         downloadMarkdownFile,
-        copyMarkdownToClipboard,
-        renderMarkdownToHtml,
-        applySyntaxHighlighting,
-        formatFileSize
+        copyMarkdownToClipboard
     } from '$lib/utils/pdf-utils.js'
+
+    // Markdown plugins for better rendering
+    const markdownPlugins = [gfmPlugin()]
 
     // File upload state
     let selectedFile = null
@@ -21,7 +23,6 @@
 
     // Results display state
     let viewMode = 'preview' // 'preview' or 'raw'
-    let renderedMarkdown = ''
 
     // Toast notification system
     let toastMessage = ''
@@ -44,9 +45,8 @@
             selectedFile = file
             errorMessage = null
             conversionResult = null
-            renderedMarkdown = ''
             console.log('📁 File selected:', file.name, file.type, file.size)
-            
+
             // Auto-convert when file is selected
             await handlePdfConversion()
         }
@@ -65,7 +65,7 @@
     const handleDrop = async (event) => {
         event.preventDefault()
         dragOver = false
-        
+
         const files = event.dataTransfer.files
         if (files.length > 0) {
             const file = files[0]
@@ -73,9 +73,8 @@
                 selectedFile = file
                 errorMessage = null
                 conversionResult = null
-                renderedMarkdown = ''
                 console.log('📁 File dropped:', file.name, file.type, file.size)
-                
+
                 // Auto-convert when file is dropped
                 await handlePdfConversion()
             } else {
@@ -99,21 +98,19 @@
 
         try {
             console.log('🔄 Converting PDF to Markdown using @opendocsg/pdf2md...')
-            
+
             // Use utility for conversion with progress callback
-            const { markdown, metadata } = await convertPdfToMarkdown(selectedFile, {
+            const {markdown, metadata} = await convertPdfToMarkdown(selectedFile, {
                 onProgress: (message) => showToast(message, 'info')
             })
 
             // Add document header using utility
             const finalMarkdown = addDocumentHeader(markdown, metadata)
             conversionResult = finalMarkdown
-            
-            // Render the markdown for preview and ensure we're in preview mode
+
+            // Set to preview mode (svelte-exmarkdown will handle rendering)
             viewMode = 'preview'
-            renderedMarkdown = await renderMarkdownToHtml(finalMarkdown)
-            console.log('📝 Preview rendered, length:', renderedMarkdown.length)
-            
+
             showToast(`✅ PDF converted successfully! Content extracted and formatted.`, 'success')
             console.log('✅ Conversion successful, markdown length:', finalMarkdown.length)
 
@@ -129,20 +126,15 @@
     // Toggle between preview and raw view
     const handleViewModeToggle = async () => {
         if (!conversionResult) return
-        
+
         try {
             if (viewMode === 'preview') {
                 // Switch to raw
                 viewMode = 'raw'
-                // Apply syntax highlighting after DOM update
-                await tick()
-                await applySyntaxHighlighting()
             } else {
                 // Switch to preview
                 viewMode = 'preview'
-                if (!renderedMarkdown && conversionResult) {
-                    renderedMarkdown = await renderMarkdownToHtml(conversionResult)
-                }
+                // svelte-exmarkdown will handle rendering automatically
             }
         } catch (error) {
             console.error('Toggle view mode failed:', error)
@@ -193,98 +185,117 @@
         .prose {
             color: inherit;
         }
-        .prose h1 { 
-            font-size: 1.5rem; 
-            font-weight: 700; 
-            margin-top: 1.5rem; 
-            margin-bottom: 1rem; 
-            color: oklch(var(--p)); 
+
+        .prose h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: oklch(var(--p));
         }
-        .prose h2 { 
-            font-size: 1.25rem; 
-            font-weight: 700; 
-            margin-top: 1.25rem; 
-            margin-bottom: 0.75rem; 
-            color: oklch(var(--p)); 
+
+        .prose h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: oklch(var(--p));
         }
-        .prose h3 { 
-            font-size: 1.125rem; 
-            font-weight: 700; 
-            margin-top: 1rem; 
-            margin-bottom: 0.5rem; 
-            color: oklch(var(--s)); 
+
+        .prose h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: oklch(var(--s));
         }
-        .prose h4 { 
-            font-size: 1rem; 
-            font-weight: 700; 
-            margin-top: 0.75rem; 
-            margin-bottom: 0.5rem; 
+
+        .prose h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 0.75rem;
+            margin-bottom: 0.5rem;
         }
-        .prose p { 
-            margin-bottom: 0.75rem; 
-            line-height: 1.625; 
+
+        .prose p {
+            margin-bottom: 0.75rem;
+            line-height: 1.625;
         }
-        .prose ul { 
-            list-style-type: disc; 
-            padding-left: 1.5rem; 
-            margin-bottom: 0.75rem; 
+
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
         }
-        .prose ol { 
-            list-style-type: decimal; 
-            padding-left: 1.5rem; 
-            margin-bottom: 0.75rem; 
+
+        .prose ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
         }
-        .prose li { 
-            margin-bottom: 0.25rem; 
+
+        .prose li {
+            margin-bottom: 0.25rem;
         }
-        .prose strong { 
-            font-weight: 700; 
-            color: oklch(var(--a)); 
+
+        .prose strong {
+            font-weight: 700;
+            color: oklch(var(--a));
         }
-        .prose em { 
-            font-style: italic; 
+
+        .prose em {
+            font-style: italic;
         }
-        .prose code { 
-            padding: 0.125rem 0.25rem; 
-            border-radius: 0.25rem; 
-            font-size: 0.875rem; 
-            background-color: oklch(var(--b2)); 
+
+        .prose code {
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            background-color: oklch(var(--b2));
         }
-        .prose pre { 
-            padding: 0.75rem; 
-            border-radius: 0.5rem; 
-            overflow-x: auto; 
-            background-color: oklch(var(--b2)); 
+
+        .prose pre {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            background-color: oklch(var(--b2));
         }
-        .prose blockquote { 
-            padding-left: 1rem; 
-            font-style: italic; 
-            border-left: 4px solid oklch(var(--p)); 
+
+        .prose blockquote {
+            padding-left: 1rem;
+            font-style: italic;
+            border-left: 4px solid oklch(var(--p));
         }
-        .prose hr { 
-            margin-top: 1.5rem; 
-            margin-bottom: 1.5rem; 
-            border-top: 1px solid oklch(var(--b3)); 
+
+        .prose hr {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-top: 1px solid oklch(var(--b3));
         }
-        .prose a { 
-            text-decoration: underline; 
-            color: oklch(var(--p)); 
+
+        .prose a {
+            text-decoration: underline;
+            color: oklch(var(--p));
         }
-        .prose a:hover { 
-            text-decoration: none; 
+
+        .prose a:hover {
+            text-decoration: none;
         }
-        .prose table { 
-            border-collapse: collapse; 
-            width: 100%; 
-            border: 1px solid oklch(var(--b3)); 
+
+        .prose table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid oklch(var(--b3));
         }
-        .prose th, .prose td { 
-            padding: 0.75rem; 
-            border: 1px solid oklch(var(--b3)); 
+
+        .prose th, .prose td {
+            padding: 0.75rem;
+            border: 1px solid oklch(var(--b3));
         }
-        .prose th { 
-            font-weight: 700; 
-            background-color: oklch(var(--b2)); 
+
+        .prose th {
+            font-weight: 700;
+            background-color: oklch(var(--b2));
         }
     </style>
 </svelte:head>
@@ -306,16 +317,16 @@
             <div class="card bg-base-100 shadow-lg">
                 <div class="card-body">
                     <h2 class="card-title text-xl mb-4">📁 File Upload</h2>
-                    
+
                     <!-- Drag & Drop Zone -->
-                    <div 
-                        role="button"
-                        tabindex="0"
-                        class="border-2 border-dashed border-base-300 rounded-lg p-8 text-center transition-colors {dragOver ? 'border-primary bg-primary/10' : ''}"
-                        on:dragover={handleDragOver}
-                        on:dragleave={handleDragLeave}
-                        on:drop={handleDrop}
-                        on:keydown={(e) => e.key === 'Enter' && document.querySelector('input[type="file"]').click()}
+                    <div
+                            role="button"
+                            tabindex="0"
+                            class="border-2 border-dashed border-base-300 rounded-lg p-8 text-center transition-colors {dragOver ? 'border-primary bg-primary/10' : ''}"
+                            on:dragover={handleDragOver}
+                            on:dragleave={handleDragLeave}
+                            on:drop={handleDrop}
+                            on:keydown={(e) => e.key === 'Enter' && document.querySelector('input[type="file"]').click()}
                     >
                         <div class="space-y-4">
                             <div class="text-6xl">📄</div>
@@ -324,11 +335,11 @@
                                 <p class="text-sm text-base-content/60">or click to browse</p>
                                 <p class="text-xs text-base-content/50">Max size: 100MB • Client-side processing</p>
                             </div>
-                            <input 
-                                type="file" 
-                                accept=".pdf"
-                                on:change={handleFileSelect}
-                                class="file-input file-input-bordered w-full max-w-xs"
+                            <input
+                                    type="file"
+                                    accept=".pdf"
+                                    on:change={handleFileSelect}
+                                    class="file-input file-input-bordered w-full max-w-xs"
                             />
                         </div>
                     </div>
@@ -367,7 +378,7 @@
             <div class="card bg-base-100 shadow-lg">
                 <div class="card-body">
                     <h2 class="card-title text-xl mb-4">📝 Conversion Results</h2>
-                    
+
                     {#if conversionResult}
                         <div class="space-y-4">
                             <!-- Action Bar -->
@@ -376,11 +387,11 @@
                                 <div class="form-control">
                                     <label class="label cursor-pointer gap-3">
                                         <span class="label-text text-sm">👁️ Preview</span>
-                                        <input 
-                                            type="checkbox" 
-                                            class="toggle toggle-sm" 
-                                            checked={viewMode === 'raw'}
-                                            on:change={handleViewModeToggle}
+                                        <input
+                                                type="checkbox"
+                                                class="toggle toggle-sm"
+                                                checked={viewMode === 'raw'}
+                                                on:change={handleViewModeToggle}
                                         />
                                         <span class="label-text text-sm">📄 Raw</span>
                                     </label>
@@ -388,17 +399,17 @@
 
                                 <!-- Action Buttons -->
                                 <div class="flex gap-2">
-                                    <button 
-                                        class="btn btn-success btn-sm"
-                                        on:click={handleDownload}
-                                        title="Download with YAML frontmatter"
+                                    <button
+                                            class="btn btn-success btn-sm"
+                                            on:click={handleDownload}
+                                            title="Download with YAML frontmatter"
                                     >
                                         ⬇️ Download .md
                                     </button>
-                                    <button 
-                                        class="btn btn-info btn-sm"
-                                        on:click={handleCopyToClipboard}
-                                        title="Copy raw markdown to clipboard"
+                                    <button
+                                            class="btn btn-info btn-sm"
+                                            on:click={handleCopyToClipboard}
+                                            title="Copy raw markdown to clipboard"
                                     >
                                         📋 Copy Markdown
                                     </button>
@@ -415,17 +426,20 @@
                                         {conversionResult.length.toLocaleString()} characters
                                     </div>
                                 </div>
-                                
+
                                 <div class="border border-base-300 rounded-lg max-h-96 overflow-y-auto">
                                     {#if viewMode === 'preview'}
-                                        <!-- Rendered Markdown Preview -->
-                                        <div class="prose prose-sm max-w-none p-4" style="background-color: oklch(var(--b1));">
-                                            {@html renderedMarkdown}
+                                        <!-- Rendered Markdown Preview using svelte-exmarkdown -->
+                                        <div class="prose prose-sm max-w-none p-4"
+                                             style="background-color: oklch(var(--b1));">
+                                            <Markdown md={conversionResult} plugins={markdownPlugins}/>
                                         </div>
                                     {:else}
                                         <!-- Raw Markdown with Syntax Highlighting -->
                                         <div class="relative">
-                                            <pre class="language-markdown p-4 m-0 text-sm rounded-lg overflow-x-auto" style="background-color: oklch(var(--b2));"><code class="language-markdown">{conversionResult}</code></pre>
+                                            <pre class="language-markdown p-4 m-0 text-sm rounded-lg overflow-x-auto"
+                                                 style="background-color: oklch(var(--b2));"><code
+                                                    class="language-markdown">{conversionResult}</code></pre>
                                         </div>
                                     {/if}
                                 </div>

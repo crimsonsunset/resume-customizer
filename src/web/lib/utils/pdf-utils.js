@@ -89,61 +89,9 @@ export const addDocumentHeader = (markdown, metadata) => {
   return documentHeader + markdown
 }
 
-/**
- * Render markdown to HTML with syntax highlighting
- * @param {string} markdown - Raw markdown content
- * @param {object} options - Rendering options
- * @param {boolean} [options.breaks] - Enable line breaks
- * @param {boolean} [options.gfm] - Enable GitHub Flavored Markdown
- * @returns {Promise<string>} Rendered HTML
- */
-export const renderMarkdownToHtml = async (markdown, options = {}) => {
-  const { breaks = true, gfm = true } = options
 
-  try {
-    const { marked } = await import('marked')
-    const hljs = await import('highlight.js')
-    
-    // Configure marked with syntax highlighting
-    marked.setOptions({
-      highlight(code, lang) {
-        if (lang && hljs.default.getLanguage(lang)) {
-          try {
-            return hljs.default.highlight(code, { language: lang }).value
-          } catch (error) {
-            console.warn('Highlight.js error:', error)
-          }
-        }
-        return hljs.default.highlightAuto(code).value
-      },
-      breaks,
-      gfm
-    })
-    
-    return marked.parse(markdown)
-  } catch (error) {
-    console.error('Markdown rendering error:', error)
-    // Fallback to preformatted text if rendering fails
-    return `<pre>${markdown}</pre>`
-  }
-}
 
-/**
- * Apply syntax highlighting to existing code elements in the DOM
- * @param {string} [selector] - CSS selector for code elements
- * @returns {Promise<void>}
- */
-export const applySyntaxHighlighting = async (selector = '.language-markdown code') => {
-  try {
-    const hljs = await import('highlight.js')
-    const codeElements = document.querySelectorAll(selector)
-    for (const element of codeElements) {
-      hljs.default.highlightElement(element)
-    }
-  } catch (error) {
-    console.warn('Syntax highlighting failed:', error)
-  }
-}
+
 
 /**
  * Create YAML frontmatter for markdown file
