@@ -99,9 +99,11 @@
 </script>
 
 <style>
-  .stat-item {
-    @apply p-3 bg-base-100 rounded-lg border border-base-200 hover:bg-base-200/50 transition-colors text-center;
-  }
+    @reference "../../app.css";
+    
+    .stat-item {
+        @apply p-3 bg-base-100 rounded-lg border border-base-200 hover:bg-base-200/50 transition-colors text-center;
+    }
 </style>
 
 <!-- Quick Stats -->

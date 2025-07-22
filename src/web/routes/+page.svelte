@@ -14,7 +14,6 @@
     import ResumeStats from '@web/lib/components/ResumeStats.svelte'
     import ComingSoonFeatures from '@web/lib/components/ComingSoonFeatures.svelte'
     import MobileMenu from '@web/lib/components/ui/MobileMenu.svelte'
-    import { startCase } from 'lodash-es'
     import {
         densityInitializedStore,
         densityStore,
@@ -32,12 +31,12 @@
 
     // Resume state management
     let selectedVersion = data.preset || 'full'
-    
+
     // Calculate total years of experience dynamically from data
-    $: totalExperienceYears = data.sections?.experience && data.sections?.projects 
-        ? calculateTotalExperienceYears(data.sections.experience, data.sections.projects)
-        : 10 // fallback
-    
+    $: totalExperienceYears = data.sections?.experience && data.sections?.projects
+                              ? calculateTotalExperienceYears(data.sections.experience, data.sections.projects)
+                              : 10 // fallback
+
     let experienceYears = 0 // Years of experience filter (0 = all, 1-N = filter by years) - will be set to totalExperienceYears
 
     // Set experienceYears from timeframe store (URL) or default to all experience
@@ -48,18 +47,18 @@
             experienceYears = totalExperienceYears
         }
     }
-    
 
 
     // Use stores for URL state management
     let visibleSections = {}
+    let sectionsInitialized = false
     $: mounted = $mountedStore
-    
+
     // Mobile drawer state
     let mobileDrawerOpen = false
     $: density = $densityStore
     $: timeframe = $timeframeStore
-    
+
     // Preset transition flag to prevent reactive loops
     let isPresetTransitioning = false
 
@@ -67,31 +66,31 @@
     $: hasActiveFilters = (() => {
         // Check if preset is not default (full)
         if (selectedVersion !== 'full') return true
-        
+
         // Check if density is not default (100%)
         if (density !== 100) return true
-        
+
         // Check if timeframe is not default (all years)
         if (totalExperienceYears && experienceYears < totalExperienceYears) return true
-        
+
         // Check if any sections are unchecked (always applies now)
         if (Object.keys(visibleSections).length > 0) {
             const hasUncheckedSections = Object.values(visibleSections).some(visible => !visible)
             if (hasUncheckedSections) return true
         }
-        
+
         return false
     })()
 
     // Reset function - direct store updates for immediate UI response
     const resetFilters = () => {
         console.log('🔄 Resetting filters directly...')
-        
+
         // 1. Directly update all stores to default values
         densityStore.set(100)
         timeframeStore.set(totalExperienceYears) // Reset to all years
         console.log('✅ Updated density to 100%, timeframe to', totalExperienceYears, 'years')
-        
+
         // 2. Reset all sections to visible
         const allSectionsVisible = {}
         for (const section of data.availableSections) {
@@ -99,25 +98,25 @@
         }
         sectionVisibilityStore.set(allSectionsVisible)
         console.log('✅ Reset all sections to visible:', Object.keys(allSectionsVisible))
-        
+
         // 3. Reset preset to 'full'
         selectedVersion = 'full'
         console.log('✅ Reset preset to full')
-        
+
         // 4. Update local variables to match stores (ensure sync)
         experienceYears = totalExperienceYears
         visibleSections = {...allSectionsVisible}
         console.log('✅ Synced local variables')
-        
+
         // 5. Show reset toast notification
         showToast('↻ Reset to full professional history', 'preset')
-        
+
         // 6. Navigate to clean URL for bookmarking
-        goto('/', { 
+        goto('/', {
             noScroll: true,
             keepFocus: true
         })
-        
+
         console.log('🎯 Reset complete - stores updated directly!')
     }
 
@@ -127,15 +126,23 @@
         // Block section sync during preset transitions to prevent loops
         isPresetTransitioning = true
         console.log('🎯 Preset transition started, blocking section sync')
-        
+
         if (!Object.keys($sectionVisibilityStore).length) {
             // First load: initialize sections from URL
             initializeSections($page.url.searchParams, data.availableSections)
             console.log('✅ Initialized sections from URL')
+
+            // Set flag immediately after initialization as backup
+            delay(() => {
+                if (!sectionsInitialized && Object.keys($sectionVisibilityStore).length > 0) {
+                    visibleSections = {...$sectionVisibilityStore}
+                    sectionsInitialized = true
+                }
+            }, 10)
         } else {
             // Preset change: preserve existing state for sections that exist
             handlePresetChange(data.availableSections, $sectionVisibilityStore)
-            
+
             // Show toast notification for preset changes (but not during reset)
             const currentPreset = data.availablePresets?.find(p => p.value === (data.preset || 'full'))
             if (currentPreset && mounted && currentPreset.value !== 'full' && selectedVersion !== 'full') {
@@ -143,10 +150,10 @@
                     showToast(`✅ ${currentPreset.name} applied`, 'preset')
                 }, 200) // Small delay to ensure transition is visible
             }
-            
+
             console.log('🔄 Preset change handled')
         }
-        
+
         // Clear transition flag after brief delay to allow section sync to resume
         delay(() => {
             isPresetTransitioning = false
@@ -155,16 +162,19 @@
     }
 
     // Sync store changes to local visibleSections (one-way: store -> local)
-    $: if (Object.keys($sectionVisibilityStore).length > 0) {
+    $: if (Object.keys($sectionVisibilityStore).length > 0 && mounted) {
         visibleSections = {...$sectionVisibilityStore}
+        if (!sectionsInitialized) {
+            sectionsInitialized = true
+        }
     }
 
     // Sync visibleSections changes back to store and URL (but skip during preset transitions)
-    $: if (mounted && Object.keys(visibleSections).length > 0 && !isPresetTransitioning) {
+    // Only run after sectionsInitialized flag is set to prevent premature execution
+    $: if (mounted && sectionsInitialized && Object.keys(visibleSections).length > 0 && !isPresetTransitioning) {
         // Only update store if visibleSections differs from store (avoid infinite loops)
         if (JSON.stringify(visibleSections) !== JSON.stringify($sectionVisibilityStore)) {
             updateSectionVisibility(visibleSections, $page.url, true)
-            console.log('🔗 Updated URL from section changes')
         }
     }
 
@@ -178,8 +188,6 @@
         if (!$densityInitializedStore) {
             initializeDensity($page.url.searchParams)
         }
-
-        console.log('🚀 Resume Customizer Loaded!')
     })
 
 
@@ -202,12 +210,12 @@
 
     const exportToPDF = async () => {
         if (isExportingPDF) return // Prevent multiple simultaneous exports
-        
+
         isExportingPDF = true
-        
+
         try {
             console.log('🔄 Generating PDF...')
-            
+
             // Show preparing toast immediately
             showToast('📋 Preparing Resume Download...', 'info')
 
@@ -271,7 +279,7 @@
             if (currentThemeColors) {
                 console.log(`🎨 Theme colors: Primary=${currentThemeColors.primary}, Secondary=${currentThemeColors.secondary}`)
             }
-            
+
             const response = await fetch('/api/generate-pdf-gotenberg', {
                 method: 'POST',
                 headers: {
@@ -319,7 +327,6 @@
     }
 
 
-
     // Helper function to check if a section is available in current preset
     const isSectionAvailable = (section) => {
         return data.availableSections && data.availableSections.includes(section)
@@ -333,7 +340,7 @@
         personality: data.availableSections ? data.availableSections.filter(s => ['activities', 'objective'].includes(s)) : []
         // Note: 'location' excluded from filtering since it's already displayed in the resume header
     }
-    
+
     // Get current preset info for display
     $: currentPreset = data.availablePresets?.find(p => p.value === selectedVersion) || data.availablePresets?.[0]
 
@@ -427,10 +434,10 @@
                 {/if}
             </div>
             {#if hasActiveFilters}
-                <button 
-                    class="btn btn-outline btn-secondary btn-sm transition-all hover:scale-105 active:scale-95"
-                    on:click={resetFilters}
-                    title="Reset all filters to default"
+                <button
+                        class="btn btn-outline btn-secondary btn-sm transition-all hover:scale-105 active:scale-95"
+                        on:click={resetFilters}
+                        title="Reset all filters to default"
                 >
                     ↻ Reset
                 </button>
@@ -439,8 +446,8 @@
         <div class="flex items-center space-x-4">
             <ThemeSelector/>
             <button class="btn btn-primary m-1"
-                disabled={isExportingPDF}
-                on:click={exportToPDF}>
+                    disabled={isExportingPDF}
+                    on:click={exportToPDF}>
                 {#if isExportingPDF}
                     <span class="loading loading-spinner loading-sm"></span>
                 {:else}
@@ -454,38 +461,43 @@
 <!-- DaisyUI Drawer Layout -->
 <div class="drawer lg:drawer-open min-h-screen bg-base-200" in:fade={{ delay: 100, duration: 400 }}>
     <!-- Hidden checkbox to control drawer state -->
-    <input id="mobile-drawer" type="checkbox" class="drawer-toggle" bind:checked={mobileDrawerOpen} />
-    
+    <input id="mobile-drawer" type="checkbox" class="drawer-toggle" bind:checked={mobileDrawerOpen}/>
+
     <!-- Main content area -->
     <div class="drawer-content flex flex-col">
         <!-- Mobile Header (visible on mobile only) -->
         <header class="block md:hidden bg-base-100 border-b border-base-300 px-4 py-3 relative z-50">
             <div class="flex justify-between items-center">
                 <!-- Hamburger/Close Menu Button -->
-                <label for="mobile-drawer" class="btn btn-ghost btn-sm p-2 hover:bg-base-200 active:scale-95" aria-label={mobileDrawerOpen ? "Close menu" : "Open menu"}>
+                <label for="mobile-drawer" class="btn btn-ghost btn-sm p-2 hover:bg-base-200 active:scale-95"
+                       aria-label={mobileDrawerOpen ? "Close menu" : "Open menu"}>
                     {#if mobileDrawerOpen}
                         <!-- X/Close Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-6 w-6 stroke-current">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             class="inline-block h-6 w-6 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     {:else}
                         <!-- Hamburger Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-6 w-6 stroke-current">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             class="inline-block h-6 w-6 stroke-current">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     {/if}
                 </label>
-                
+
                 <!-- App Title + Current Preset + Reset -->
                 <div class="flex-1 text-center">
                     <div class="flex items-center justify-center space-x-2">
                         <h1 class="text-lg font-bold text-primary">Resume Optimizer</h1>
                         {#if hasActiveFilters}
-                            <button 
-                                class="btn btn-outline btn-secondary btn-xs transition-all hover:scale-105 active:scale-95"
-                                on:click={resetFilters}
-                                title="Reset all filters to default"
-                                aria-label="Reset filters"
+                            <button
+                                    class="btn btn-outline btn-secondary btn-xs transition-all hover:scale-105 active:scale-95"
+                                    on:click={resetFilters}
+                                    title="Reset all filters to default"
+                                    aria-label="Reset filters"
                             >
                                 ↻
                             </button>
@@ -500,12 +512,11 @@
                         </div>
                     {/if}
                 </div>
-                
+
                 <!-- Mobile Menu (Ellipsis with Download PDF + Theme) -->
-                <MobileMenu onExportToPDF={exportToPDF} {isExportingPDF} />
+                <MobileMenu onExportToPDF={exportToPDF} {isExportingPDF}/>
             </div>
         </header>
-        
 
 
         <!-- Resume Content (full width on mobile, beside sidebar on desktop) -->
@@ -525,12 +536,12 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Sidebar/Drawer -->
     <div class="drawer-side">
         <!-- Overlay that closes drawer when clicked -->
         <label for="mobile-drawer" aria-label="Close menu" class="drawer-overlay"></label>
-        
+
         <!-- Sidebar content -->
         <div class="bg-base-100 text-base-content min-h-full w-96 border-r border-base-300 overflow-y-auto">
             <div class="p-6 pt-24 lg:pt-6 space-y-6">
