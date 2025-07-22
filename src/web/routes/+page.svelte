@@ -247,9 +247,9 @@
             const currentYear = getYear(today)
             const filename = `joseph-sangiorgio-resume-${currentYear}.pdf`
 
-            // Call the PDF generation API - use preset method for web app, CSS method for compatibility
+            // Call the Gotenberg PDF generation API - use preset method for web app, CSS method for compatibility
             console.log(`📄 Generating PDF with preset: ${selectedVersion}`)
-            const response = await fetch('/api/generate-pdf', {
+            const response = await fetch('/api/generate-pdf-gotenberg', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -291,99 +291,7 @@
         }
     }
 
-    // Gotenberg PDF test function - uses real resume data 
-    const testGotenbergPDF = async () => {
-        try {
-            console.log('🧪 Testing Gotenberg with real resume data...')
 
-            // Get the current resume HTML content (same as regular PDF export)
-            const resumeElement = document.querySelector('.resume-viewer')
-            if (!resumeElement) {
-                throw new Error('Resume content not found')
-            }
-
-            const resumeHTML = resumeElement.innerHTML
-
-            // Extract CSS styles from the page (same as regular PDF export)
-            const allStyles = []
-
-            // Get inline styles from style tags
-            const styleTags = document.querySelectorAll('style')
-            styleTags.forEach(style => {
-                if (style.textContent) {
-                    allStyles.push(style.textContent)
-                }
-            })
-
-            // Get relevant CSS from linked stylesheets (that we can access)
-            try {
-                Array.from(document.styleSheets).forEach(sheet => {
-                    try {
-                        if (sheet.cssRules) {
-                            const rules = Array.from(sheet.cssRules)
-                                .map(rule => rule.cssText)
-                                .join('\n')
-                            if (rules) {
-                                allStyles.push(rules)
-                            }
-                        }
-                    } catch (e) {
-                        // Skip stylesheets we can't access (CORS issues)
-                        console.warn('Could not access stylesheet:', e)
-                    }
-                })
-            } catch (e) {
-                console.warn('Could not access stylesheets:', e)
-            }
-
-            const combinedCSS = allStyles.join('\n\n')
-
-            // Generate filename with gotenberg suffix
-            const today = new Date()
-            const currentYear = getYear(today)
-            const filename = `joseph-sangiorgio-resume-${currentYear}-gotenberg.pdf`
-
-            // Call Gotenberg API with same data structure as regular PDF export
-            console.log(`🧪 Generating Gotenberg PDF with preset: ${selectedVersion}`)
-            const response = await fetch('/api/generate-pdf-gotenberg', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    html: resumeHTML,
-                    preset: selectedVersion,     // Use same preset as regular export
-                    css: combinedCSS,           // Same extracted CSS
-                    cssMethod: 'preset',        // Use preset method
-                    filename: filename
-                })
-            })
-
-            if (!response.ok) {
-                throw new Error(`Gotenberg failed: ${response.status} ${response.statusText}`)
-            }
-
-            // Show toast notification
-            showToast('🧪 Gotenberg PDF download started!', 'success')
-
-            // Download the PDF
-            const blob = await response.blob()
-            const url = URL.createObjectURL(blob)
-            const a = document.createElement('a')
-            a.href = url
-            a.download = filename
-            a.style.display = 'none'
-            document.body.appendChild(a)
-            a.click()
-            document.body.removeChild(a)
-            URL.revokeObjectURL(url)
-
-            console.log('✅ Gotenberg PDF download started:', filename)
-        } catch (error) {
-            console.error('❌ Gotenberg test failed:', error)
-            showToast(`❌ Gotenberg test failed: ${error.message}`, 'error')
-        }
-    }
 
     // Helper function to check if a section is available in current preset
     const isSectionAvailable = (section) => {
@@ -506,10 +414,6 @@
             <button class="btn btn-primary m-1"
                 on:click={exportToPDF}>
                 ⬇️ Download PDF
-            </button>
-            <button class="btn btn-secondary btn-outline m-1"
-                on:click={testGotenbergPDF}>
-                🧪 Test
             </button>
         </div>
     </div>

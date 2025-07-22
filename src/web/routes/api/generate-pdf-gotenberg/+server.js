@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit'
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
+import { GOTENBERG_URL } from '$env/static/private'
 
 /**
  * Load CSS template based on preset name with fallback
@@ -37,6 +38,11 @@ async function loadCssTemplate(preset) {
  */
 export async function POST({ request }) {
   try {
+    // Check if Gotenberg URL is configured
+    if (!GOTENBERG_URL) {
+      throw new Error('GOTENBERG_URL environment variable is not set')
+    }
+    
     const { html, preset = 'full', css, cssMethod = 'css', filename = 'resume-gotenberg.pdf' } = await request.json()
     
     if (!html) {
@@ -57,7 +63,7 @@ export async function POST({ request }) {
        formData.append('files', new Blob([testHtml], { type: 'text/html' }), 'index.html')
        
        // eslint-disable-next-line n/no-unsupported-features/node-builtins
-       const response = await fetch('http://localhost:5555/forms/chromium/convert/html', {
+       const response = await fetch(`${GOTENBERG_URL}/forms/chromium/convert/html`, {
         method: 'POST',
         body: formData
       })
@@ -123,7 +129,7 @@ export async function POST({ request }) {
     formData.append('marginRight', '0.1')
     
     // eslint-disable-next-line n/no-unsupported-features/node-builtins
-    const response = await fetch('http://localhost:5555/forms/chromium/convert/html', {
+    const response = await fetch(`${GOTENBERG_URL}/forms/chromium/convert/html`, {
       method: 'POST',
       body: formData
     })
