@@ -20,6 +20,7 @@ The Resume Customizer uses **Gotenberg** for PDF generation, providing reliable,
 ### 1. API Endpoint (`/api/generate-pdf-gotenberg/+server.js`)
 - Handles PDF generation requests
 - Loads CSS templates based on preset
+- **Theme Color Processing** - Applies DaisyUI theme colors to CSS variables (`--color-primary`, `--color-secondary`)
 - Processes HTML with CSS injection
 - Uses SvelteKit's `$env/static/private` for environment variables
 - Sends requests to Gotenberg service
@@ -28,7 +29,8 @@ The Resume Customizer uses **Gotenberg** for PDF generation, providing reliable,
 ### 2. Frontend Integration (`+page.svelte`)
 - Main "Download PDF" button uses Gotenberg
 - Extracts resume HTML and CSS from page
-- Sends data to Gotenberg API endpoint
+- **Theme Color Extraction** - Captures current DaisyUI theme colors from `.resume-viewer` element
+- Sends data to Gotenberg API endpoint with theme colors
 - Handles file download
 
 ### 3. CSS Template System

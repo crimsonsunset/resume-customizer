@@ -11,6 +11,7 @@ The web application provides a comprehensive resume customization experience wit
 - **Mobile-First Responsive Design** - DaisyUI drawer with hamburger menu for optimal mobile experience
 - **Strategic Content Curation** - Index-based selection system for intelligent content optimization
 - **34 DaisyUI Themes** - Complete theme system with seamless switching
+- **Theme-Aware PDF Export** - Generated PDFs automatically inherit current theme colors for visual cohesion
 - **DaisyUI Wrapper Components** - Consistent UI with Button, Toggle, Card, Badge, and Checkbox wrappers
 - **Universal Section Rendering** - All 11 resume sections with consistent architecture
 - **URL State Management** - Bookmarkable resume configurations with compact encoding (`?preset=one-page&sections=exp,proj,edu,skills`)
