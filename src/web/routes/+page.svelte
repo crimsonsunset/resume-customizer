@@ -291,6 +291,36 @@
         }
     }
 
+    // Simple Gotenberg test function
+    const testGotenbergPDF = async () => {
+        try {
+            console.log('🧪 Testing Gotenberg...')
+            
+            const response = await fetch('/api/generate-pdf-gotenberg', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ html: '<h1>🧪 Gotenberg Test</h1><p>This PDF was generated using Gotenberg!</p>' })
+            })
+
+            if (!response.ok) {
+                throw new Error(`Failed: ${response.status}`)
+            }
+
+            // Download the PDF
+            const blob = await response.blob()
+            const url = URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            a.href = url
+            a.download = 'gotenberg-test.pdf'
+            a.click()
+            URL.revokeObjectURL(url)
+
+            console.log('✅ Gotenberg test successful')
+        } catch (error) {
+            console.error('❌ Gotenberg test failed:', error)
+            showToast(`❌ Gotenberg test failed: ${error.message}`, 'error')
+        }
+    }
 
     // Helper function to check if a section is available in current preset
     const isSectionAvailable = (section) => {
@@ -413,6 +443,10 @@
             <button class="btn btn-primary m-1"
                 on:click={exportToPDF}>
                 ⬇️ Download PDF
+            </button>
+            <button class="btn btn-secondary btn-outline m-1"
+                on:click={testGotenbergPDF}>
+                🧪 Test
             </button>
         </div>
     </div>
