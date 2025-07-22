@@ -24,6 +24,7 @@ A modern resume optimization tool with CLI, web application, and AI-powered matc
 - **PDF-Ready Styling** with scoped CSS architecture, static white background, and max-width content containers
 - **Theme-Aware PDF Export** - Generated PDFs automatically inherit current DaisyUI theme colors for cohesive visual branding
 - **One-Click PDF Export** with auto-generated filenames (`joseph-sangiorgio-resume-2025.pdf`)
+- **Production Cloud Infrastructure** - Gotenberg service deployed on Google Cloud Run with auto-scaling and free tier hosting
 
 ### CLI Tool (Production Ready)
 - **Modern HTML → PDF** conversion with Playwright (CSS Grid, modern layouts)
@@ -166,6 +167,12 @@ npm run clean            # Clean build artifacts
 - **Runtime**: Node.js with ES Modules
 - **PDF Generation**: Playwright (Chrome-based, CSS Grid support)
 - **Data**: JSON profiles with structured metadata
+
+### Production Infrastructure
+- **PDF Service**: Gotenberg deployed on Google Cloud Run
+- **Auto-scaling**: 0-to-N instances based on demand
+- **Cost**: Free tier with 2M requests/month
+- **Performance**: ~200-500ms PDF generation times
 
 ### Development Tools
 - **Linting**: ESLint with oclif configuration

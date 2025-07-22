@@ -122,7 +122,8 @@
     }
 
     // Initialize from URL parameters on first load (with transition guard)
-    $: if (data.availableSections) {
+    // Add mounted guard to prevent hydration race condition
+    $: if (data.availableSections && mounted) {
         // Block section sync during preset transitions to prevent loops
         isPresetTransitioning = true
         console.log('🎯 Preset transition started, blocking section sync')

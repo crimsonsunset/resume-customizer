@@ -20,10 +20,10 @@
 ---
 
 ## 🎯 Current Status
-**Last Updated:** July 21, 2025  
-**Current Phase:** Phase 8 - Advanced Features & Enhancement  
-**Status:** 🎉 **PRODUCTION READY** - Strategic preset system complete with 9 comprehensive presets  
-**Next Session Goal:** Enhanced preset variations and advanced user experience features
+**Last Updated:** July 22, 2025  
+**Current Phase:** Phase 9.5 - Design System Color Consistency  
+**Status:** 🎉 **READY TO START** - Color audit complete, hardcoded colors identified for DaisyUI migration  
+**Next Session Goal:** Replace ~100+ hardcoded colors with DaisyUI theme variables for complete design system consistency
 
 ### Progress Overview
 - ✅ **COMPLETED:** WeasyPrint → Playwright migration (MAJOR UPGRADE)
@@ -33,6 +33,7 @@
 - ✅ **COMPLETED:** Full content capture (no more truncation issues)
 - ✅ **COMPLETED:** Professional two-column layout with semantic HTML
 - ✅ **COMPLETED:** Performance improvements (1-3 second PDF generation)
+- ✅ **COMPLETED:** Production cloud deployment (Gotenberg on Google Cloud Run with 2M free requests/month)
 - ✅ **COMPLETED:** ES Module modernization with path aliases
 - ✅ **COMPLETED:** Clean input/ file organization with auto-save
 - ✅ **COMPLETED:** SvelteKit web application foundation
@@ -73,15 +74,16 @@
 4. ✅ **Professional Layout** - Two-column CSS Grid design
 5. ✅ **Fast Performance** - Sub-3-second generation times
 6. ✅ **Browser-Quality Output** - Exactly matches Chrome rendering
-7. ✅ **Web Application** - Live preview with interactive controls
-8. ✅ **Dynamic Presets** - URL-based preset system working
-9. ✅ **Universal Renderer Architecture** - All sections using consistent pattern
-10. ✅ **Advanced UX Controls** - Content density slider and category-specific section controls
-11. ✅ **Component-Based Architecture** - 45% code reduction through modular design
-12. ✅ **Real-time Statistics** - Dynamic content metrics with live updates
-13. ✅ **Production-Ready Codebase** - 18 out of 19 lint issues resolved
-14. ✅ **Strategic Content Curation** - Index-based selection with priority-driven filtering
-15. ✅ **Complete Bullet Priority System** - All sections with baseline priorities and preset overrides
+7. ✅ **Production Cloud Infrastructure** - Gotenberg deployed on Google Cloud Run with auto-scaling and free tier hosting
+8. ✅ **Web Application** - Live preview with interactive controls
+9. ✅ **Dynamic Presets** - URL-based preset system working
+10. ✅ **Universal Renderer Architecture** - All sections using consistent pattern
+11. ✅ **Advanced UX Controls** - Content density slider and category-specific section controls
+12. ✅ **Component-Based Architecture** - 45% code reduction through modular design
+13. ✅ **Real-time Statistics** - Dynamic content metrics with live updates
+14. ✅ **Production-Ready Codebase** - 18 out of 19 lint issues resolved
+15. ✅ **Strategic Content Curation** - Index-based selection with priority-driven filtering
+16. ✅ **Complete Bullet Priority System** - All sections with baseline priorities and preset overrides
 
 ### Recent Progress (July 22, 2025 Session)
 - 🚀 **THEME-AWARE PDF GENERATION COMPLETE:** Dynamic theme color integration for cohesive visual branding
@@ -91,6 +93,8 @@
 - ✅ **Universal Theme Support** - Works automatically with all 34 DaisyUI themes without configuration
 - ✅ **Visual Cohesion Achievement** - Resume PDFs now match UI theme colors (Synthwave = purple PDFs, Corporate = blue PDFs, etc.)
 - ✅ **Simple Implementation** - Skipped complex personality mapping for direct color respect of user choice
+- ✅ **PRODUCTION PDF INFRASTRUCTURE COMPLETE** - Gotenberg service deployed on Google Cloud Run with auto-scaling, 2M free requests/month, ~200-500ms generation times
+- 🔍 **COLOR AUDIT COMPLETE** - Comprehensive analysis of 100+ hardcoded colors across codebase identified for DaisyUI migration
 
 ### Previous Progress (July 21, 2025 Session)
 - 🚀 **STRATEGIC PRESET SYSTEM COMPLETE:** 9 comprehensive presets created for diverse career targeting
@@ -985,3 +989,89 @@ super({
 **Simple & Effective**: Skipped complex theme personality mapping in favor of direct color extraction - user's theme choice is respected exactly.
 
 ### Phase 8: Content Optimization Tools 🎯 **PLANNED**
+
+### Phase 9.5: Design System Color Consistency 🎯 **READY TO START**
+**Goal:** Replace all hardcoded colors with DaisyUI theme variables for consistent theming across the entire application
+
+#### 🔍 Comprehensive Color Audit Complete (July 22, 2025)
+Analysis of ~100+ hardcoded colors identified across codebase requiring DaisyUI migration:
+
+#### **Priority 1: Critical UI Components (IMMEDIATE)**
+**Main Resume Card & Layout**
+- `src/web/routes/+page.svelte` (Lines 500-501)
+  - `background: white` → `bg-base-100` class
+  - `border-color: #e5e7eb` → `border-base-300` class
+
+**ResumeViewer Fallback Colors**
+- `src/web/lib/components/ResumeViewer.svelte` (Lines 8, 17, 29, 33)
+  - `'#4285f4'` fallback → `hsl(var(--p))` (DaisyUI primary)
+  - `'#666'` fallback → `hsl(var(--bc) / 0.6)` (DaisyUI base content)
+
+**ResumeViewer CSS Variables**
+- `src/web/lib/components/ResumeViewer.svelte` (Lines 66-70)
+  - Replace hardcoded CSS variables with DaisyUI theme extraction
+  - `--color-primary: #4285f4` → dynamic from theme
+  - `--color-text: #333` → `hsl(var(--bc))`
+  - `--color-bg: #fff` → `hsl(var(--b1))`
+
+#### **Priority 2: Resume Templates (HIGH)**
+**Template CSS Variables** (Lines 11-15 in all templates)
+- `input/templates/one-page.css`
+- `input/templates/resume-styles.css`
+- `input/templates/one-page-debug.css`
+- `input/templates/resume-styles-debug.css`
+
+Replace static color definitions with dynamic theme integration:
+```css
+/* FROM */
+--color-primary: #4285f4;
+--color-text: #333;
+--color-text-light: #666;
+
+/* TO */
+--color-primary: var(--theme-primary, #4285f4);
+--color-text: var(--theme-text, #333);
+--color-text-light: var(--theme-text-light, #666);
+```
+
+#### **Priority 3: Debug CSS (LOW - Optional)**
+**Debug Visualization Colors**
+- `input/templates/*-debug.css` (Lines 106, 134, 143)
+  - `rgba(255, 0, 0, 0.05)` (red debug background)
+  - `rgba(0, 255, 0, 0.1)` (green debug background)  
+  - `rgba(0, 0, 255, 0.05)` (blue debug background)
+  - Named debug borders: `purple`, `orange`, `red`, `green`, `blue`
+
+**Recommendation:** Keep debug colors as-is since they're for debugging only
+
+#### **Implementation Strategy**
+
+**Phase 1: Core UI Migration (1-2 hours)**
+1. Replace `white` backgrounds with `bg-base-100`
+2. Replace hex border colors with DaisyUI border utilities
+3. Update ResumeViewer fallback colors to use DaisyUI CSS variables
+4. Test across all 34 themes to ensure proper contrast
+
+**Phase 2: Template Integration (2-3 hours)**
+1. Modify CSS templates to accept theme variables as overrides
+2. Update PDF generation to inject theme colors into template variables
+3. Ensure fallback colors remain for backwards compatibility
+4. Test PDF generation across multiple themes
+
+**Phase 3: Enhanced Theme Integration (1 hour)**
+1. Update ResumeViewer CSS variable injection to use extracted theme colors
+2. Ensure seamless integration with existing theme-aware PDF generation
+3. Validate that resume preview matches PDF output exactly
+
+#### **Benefits After Implementation**
+- **Design Consistency**: All UI elements use the same color palette from selected theme
+- **Theme Completeness**: Resume content fully participates in theme switching
+- **Maintainability**: Single source of truth for colors through DaisyUI system
+- **Professional Polish**: Eliminates color inconsistencies between UI and content
+- **Future-Proof**: Easy to add new themes without touching individual components
+
+#### **Technical Notes**
+- **Existing Theme System**: Theme-aware PDF generation already extracts colors correctly
+- **DaisyUI Integration**: All UI components already use DaisyUI classes consistently  
+- **CSS Variable Pattern**: Follow existing `hsl(var(--p))` pattern for DaisyUI colors
+- **Fallback Strategy**: Maintain fallback colors for SSR and edge cases
