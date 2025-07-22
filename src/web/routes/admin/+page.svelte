@@ -188,8 +188,6 @@
 <svelte:head>
     <title>Admin - PDF to Markdown Converter</title>
     <meta name="description" content="Admin interface for client-side PDF to Markdown conversion"/>
-    <!-- Highlight.js CSS for syntax highlighting -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
     <!-- Custom styles for prose and markdown display -->
     <style>
         .prose {

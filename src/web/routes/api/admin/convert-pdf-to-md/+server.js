@@ -34,7 +34,6 @@ export async function POST({ request }) {
     console.log(`🔄 Converting PDF to Markdown: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB)`)
 
     // Create form data for Gotenberg
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     const gotenbergFormData = new FormData()
     gotenbergFormData.append('files', file, file.name)
 
@@ -93,7 +92,6 @@ This is a demonstration of the admin interface functionality.`
 
     console.log(`✅ Conversion to Markdown complete (${markdown.length} characters)`)
 
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return new Response(JSON.stringify({
       success: true,
       markdown,
@@ -110,7 +108,6 @@ This is a demonstration of the admin interface functionality.`
     console.error('❌ PDF to Markdown conversion failed:', error_)
     
     // Return structured error response
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return new Response(JSON.stringify({
       success: false,
       error: error_.message || 'Unknown conversion error'

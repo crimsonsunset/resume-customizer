@@ -1,3 +1,6 @@
+/* CSS imports must come first */
+@import "highlight.js/styles/github.css";
+
 /* Tailwind CSS 4 + DaisyUI 5 */
 @import "tailwindcss";
 @plugin "daisyui" {

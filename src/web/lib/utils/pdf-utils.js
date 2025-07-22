@@ -8,7 +8,7 @@
  * Convert PDF file to markdown using client-side processing
  * @param {File} file - PDF file object
  * @param {object} options - Conversion options
- * @param {function} [options.onProgress] - Progress callback function
+ * @param {Function} [options.onProgress] - Progress callback function
  * @returns {Promise<{markdown: string, metadata: object}>} Conversion result with metadata
  */
 export const convertPdfToMarkdown = async (file, options = {}) => {
@@ -93,8 +93,8 @@ export const addDocumentHeader = (markdown, metadata) => {
  * Render markdown to HTML with syntax highlighting
  * @param {string} markdown - Raw markdown content
  * @param {object} options - Rendering options
- * @param {boolean} [options.breaks=true] - Enable line breaks
- * @param {boolean} [options.gfm=true] - Enable GitHub Flavored Markdown
+ * @param {boolean} [options.breaks] - Enable line breaks
+ * @param {boolean} [options.gfm] - Enable GitHub Flavored Markdown
  * @returns {Promise<string>} Rendered HTML
  */
 export const renderMarkdownToHtml = async (markdown, options = {}) => {
@@ -130,7 +130,7 @@ export const renderMarkdownToHtml = async (markdown, options = {}) => {
 
 /**
  * Apply syntax highlighting to existing code elements in the DOM
- * @param {string} [selector='.language-markdown code'] - CSS selector for code elements
+ * @param {string} [selector] - CSS selector for code elements
  * @returns {Promise<void>}
  */
 export const applySyntaxHighlighting = async (selector = '.language-markdown code') => {
@@ -168,8 +168,8 @@ content_length: ${metadata.contentLength}
  * @param {string} markdown - Markdown content
  * @param {object} metadata - File metadata
  * @param {object} options - Download options
- * @param {boolean} [options.includeFrontmatter=true] - Include YAML frontmatter
- * @param {function} [options.onSuccess] - Success callback
+ * @param {boolean} [options.includeFrontmatter] - Include YAML frontmatter
+ * @param {Function} [options.onSuccess] - Success callback
  */
 export const downloadMarkdownFile = (markdown, metadata, options = {}) => {
   const { includeFrontmatter = true, onSuccess } = options
@@ -231,7 +231,7 @@ export const copyMarkdownToClipboard = async (markdown) => {
 /**
  * Format file size for display
  * @param {number} bytes - File size in bytes
- * @param {number} [decimals=2] - Number of decimal places
+ * @param {number} [decimals] - Number of decimal places
  * @returns {string} Formatted file size string
  */
 export const formatFileSize = (bytes, decimals = 2) => {
@@ -247,29 +247,47 @@ export const formatFileSize = (bytes, decimals = 2) => {
 }
 
 /**
+ * Validate PDF file type and size
+ * @param {File} file - File to validate
+ * @returns {boolean} True if valid
+ */
+const validatePdfFile = (file) => {
+  if (file.type !== 'application/pdf') {
+    throw new Error('Only PDF files are supported')
+  }
+  
+  const maxSize = 100 * 1024 * 1024 // 100MB
+  if (file.size > maxSize) {
+    throw new Error('File size exceeds 100MB limit')
+  }
+  
+  return true
+}
+
+/**
+ * Handle keyboard activation for file input
+ * @param {Event} event - Keyboard event
+ */
+const handleKeyboardActivation = (event) => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault()
+    // Trigger file input click
+    const fileInput = document.querySelector('input[type="file"]')
+    fileInput?.click()
+  }
+}
+
+/**
  * Handle file drag and drop events with PDF validation
  * @param {object} config - Configuration object
- * @param {function} config.onFileSelect - File selection handler
- * @param {function} [config.onDragOver] - Drag over handler
- * @param {function} [config.onDragLeave] - Drag leave handler  
- * @param {function} [config.onError] - Error handler
+ * @param {Function} config.onFileSelect - File selection handler
+ * @param {Function} [config.onDragOver] - Drag over handler
+ * @param {Function} [config.onDragLeave] - Drag leave handler  
+ * @param {Function} [config.onError] - Error handler
  * @returns {object} Event handlers object
  */
 export const createPdfDropHandlers = (config) => {
   const { onFileSelect, onDragOver, onDragLeave, onError } = config
-  
-  const validatePdfFile = (file) => {
-    if (file.type !== 'application/pdf') {
-      throw new Error('Only PDF files are supported')
-    }
-    
-    const maxSize = 100 * 1024 * 1024 // 100MB
-    if (file.size > maxSize) {
-      throw new Error('File size exceeds 100MB limit')
-    }
-    
-    return true
-  }
   
   const handleDragOver = (event) => {
     event.preventDefault()
@@ -311,15 +329,6 @@ export const createPdfDropHandlers = (config) => {
         console.error('File validation failed:', error)
         onError?.(error)
       }
-    }
-  }
-  
-  const handleKeyboardActivation = (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      // Trigger file input click
-      const fileInput = document.querySelector('input[type="file"]')
-      fileInput?.click()
     }
   }
   
