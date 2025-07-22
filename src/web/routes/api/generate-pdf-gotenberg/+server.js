@@ -112,8 +112,16 @@ export async function POST({ request }) {
     const formData = new FormData()
     formData.append('files', new Blob([processedHtml], { type: 'text/html' }), 'index.html')
     
-    // Send to Gotenberg
+    // Send to Gotenberg with minimal compression to fit one page
     console.log(`📡 Sending resume to Gotenberg...`)
+    
+    // Add minimal scaling to compress content slightly
+    formData.append('scale', '0.97')  // 2% smaller to fit better
+    formData.append('marginTop', '0.1')
+    formData.append('marginBottom', '0.1')
+    formData.append('marginLeft', '0.1')
+    formData.append('marginRight', '0.1')
+    
     // eslint-disable-next-line n/no-unsupported-features/node-builtins
     const response = await fetch('http://localhost:5555/forms/chromium/convert/html', {
       method: 'POST',
