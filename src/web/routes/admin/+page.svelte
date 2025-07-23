@@ -14,15 +14,18 @@
     // Markdown plugins for better rendering
     const markdownPlugins = [gfmPlugin()]
 
-    // File upload state
+    // App state
     let selectedFile = null
     let isConverting = false
     let conversionResult = null
     let errorMessage = null
     let dragOver = false
-
-    // Results display state
     let viewMode = 'preview' // 'preview' or 'raw'
+
+    // Computed state for UI modes
+    $: hasContent = Boolean(conversionResult)
+    $: showInitialDropzone = !hasContent && !isConverting
+    $: showViewer = hasContent && !isConverting
 
     // Toast notification system
     let toastMessage = ''
@@ -36,6 +39,15 @@
         delay(() => {
             toastVisible = false
         }, 3000)
+    }
+
+    // Reset state to show initial dropzone
+    const resetToInitial = () => {
+        selectedFile = null
+        conversionResult = null
+        errorMessage = null
+        isConverting = false
+        viewMode = 'preview'
     }
 
     // File handling with auto-conversion
@@ -300,184 +312,174 @@
     </style>
 </svelte:head>
 
-<div class="min-h-screen bg-base-200 p-4">
-    <div class="max-w-6xl mx-auto">
-        <!-- Header -->
-        <div class="mb-8">
-            <h1 class="text-3xl font-bold text-primary mb-2">🔧 Admin Interface</h1>
-            <p class="text-base-content/70">Client-side PDF processing with @opendocsg/pdf2md</p>
-            <div class="mt-2 text-sm text-base-content/60">
-                ✅ Fully private • No server uploads • Professional quality conversion
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- File Upload Section -->
-            <div class="card bg-base-100 shadow-lg">
-                <div class="card-body">
-                    <h2 class="card-title text-xl mb-4">📁 File Upload</h2>
-
-                    <!-- Drag & Drop Zone -->
-                    <div
-                            role="button"
-                            tabindex="0"
-                            class="border-2 border-dashed border-base-300 rounded-lg p-8 text-center transition-colors {dragOver ? 'border-primary bg-primary/10' : ''}"
-                            on:dragover={handleDragOver}
-                            on:dragleave={handleDragLeave}
-                            on:drop={handleDrop}
-                            on:keydown={(e) => e.key === 'Enter' && document.querySelector('input[type="file"]').click()}
-                    >
-                        <div class="space-y-4">
-                            <div class="text-6xl">📄</div>
-                            <div>
-                                <p class="text-lg font-medium">Drop PDF file here</p>
-                                <p class="text-sm text-base-content/60">or click to browse</p>
-                                <p class="text-xs text-base-content/50">Max size: 100MB • Client-side processing</p>
-                            </div>
-                            <input
-                                    type="file"
-                                    accept=".pdf"
-                                    on:change={handleFileSelect}
-                                    class="file-input file-input-bordered w-full max-w-xs"
-                            />
-                        </div>
+<!-- STATE 1: Initial Dropzone (nothing uploaded) -->
+{#if showInitialDropzone}
+    <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content text-center">
+            <div class="max-w-2xl">
+                <div class="mb-8">
+                    <h1 class="text-5xl font-bold text-primary mb-4">🔧 Admin Interface</h1>
+                    <p class="text-xl text-base-content/70 mb-2">Client-side PDF processing with @opendocsg/pdf2md</p>
+                    <div class="text-sm text-base-content/60">
+                        ✅ Fully private • No server uploads • Professional quality conversion
                     </div>
-
-                    <!-- File Info -->
-                    {#if selectedFile}
-                        <div class="mt-4 p-4 bg-base-200 rounded-lg">
-                            <h3 class="font-medium mb-2">Selected File:</h3>
-                            <div class="text-sm space-y-1">
-                                <p><strong>Name:</strong> {selectedFile.name}</p>
-                                <p><strong>Type:</strong> {selectedFile.type}</p>
-                                <p><strong>Size:</strong> {(selectedFile.size / 1024 / 1024).toFixed(2)} MB</p>
-                            </div>
-                        </div>
-                    {/if}
-
-                    <!-- Error Message -->
-                    {#if errorMessage}
-                        <div class="mt-4 alert alert-error">
-                            <span>❌ {errorMessage}</span>
-                        </div>
-                    {/if}
-
-                    <!-- Convert Button -->
-                    <!-- Conversion Status -->
-                    {#if isConverting}
-                        <div class="mt-6 flex items-center justify-center gap-2 text-info">
-                            <span class="loading loading-spinner loading-sm"></span>
-                            <span>Converting PDF to Markdown...</span>
-                        </div>
-                    {/if}
                 </div>
-            </div>
-
-            <!-- Results Section -->
-            <div class="card bg-base-100 shadow-lg">
-                <div class="card-body">
-                    <h2 class="card-title text-xl mb-4">📝 Conversion Results</h2>
-
-                    {#if conversionResult}
-                        <div class="space-y-4">
-                            <!-- Action Bar -->
-                            <div class="flex flex-wrap gap-2 items-center justify-between">
-                                <!-- View Toggle Switch -->
-                                <div class="form-control">
-                                    <label class="label cursor-pointer gap-3">
-                                        <span class="label-text text-sm">👁️ Preview</span>
-                                        <input
-                                                type="checkbox"
-                                                class="toggle toggle-sm"
-                                                checked={viewMode === 'raw'}
-                                                on:change={handleViewModeToggle}
-                                        />
-                                        <span class="label-text text-sm">📄 Raw</span>
-                                    </label>
-                                </div>
-
-                                <!-- Action Buttons -->
-                                <div class="flex gap-2">
-                                    <button
-                                            class="btn btn-success btn-sm"
-                                            on:click={handleDownload}
-                                            title="Download with YAML frontmatter"
-                                    >
-                                        ⬇️ Download .md
-                                    </button>
-                                    <button
-                                            class="btn btn-info btn-sm"
-                                            on:click={handleCopyToClipboard}
-                                            title="Copy raw markdown to clipboard"
-                                    >
-                                        📋 Copy Markdown
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Content Display -->
-                            <div class="space-y-2">
-                                <div class="flex items-center justify-between">
-                                    <h3 class="font-medium">
-                                        {viewMode === 'preview' ? 'Rendered Preview:' : 'Raw Markdown:'}
-                                    </h3>
-                                    <div class="text-xs text-base-content/60">
-                                        {conversionResult.length.toLocaleString()} characters
-                                    </div>
-                                </div>
-
-                                <div class="border border-base-300 rounded-lg max-h-96 overflow-y-auto">
-                                    {#if viewMode === 'preview'}
-                                        <!-- Rendered Markdown Preview using svelte-exmarkdown -->
-                                        <div class="prose prose-sm max-w-none p-4"
-                                             style="background-color: oklch(var(--b1));">
-                                            <Markdown md={conversionResult} plugins={markdownPlugins}/>
-                                        </div>
-                                    {:else}
-                                        <!-- Raw Markdown with Syntax Highlighting -->
-                                        <div class="relative">
-                                            <pre class="language-markdown p-4 m-0 text-sm rounded-lg overflow-x-auto"
-                                                 style="background-color: oklch(var(--b2));"><code
-                                                    class="language-markdown">{conversionResult}</code></pre>
-                                        </div>
-                                    {/if}
-                                </div>
-                            </div>
+                
+                <!-- Big Dropzone -->
+                <div 
+                    role="button"
+                    tabindex="0"
+                    class="card bg-base-100 shadow-2xl border-2 border-dashed border-base-300 transition-all duration-300 hover:border-primary hover:shadow-xl cursor-pointer {dragOver ? 'border-primary bg-primary/5 shadow-2xl scale-105' : ''}"
+                    on:dragover={handleDragOver}
+                    on:dragleave={handleDragLeave}
+                    on:drop={handleDrop}
+                    on:keydown={(e) => e.key === 'Enter' && document.querySelector('input[type="file"]').click()}
+                    on:click={() => document.querySelector('input[type="file"]').click()}
+                >
+                    <div class="card-body p-16">
+                        <div class="text-8xl mb-6 opacity-60">📄</div>
+                        <h2 class="text-3xl font-bold mb-4">Drop PDF Here</h2>
+                        <p class="text-lg text-base-content/70 mb-6">
+                            Drag and drop your PDF file here, or click to browse
+                        </p>
+                        <div class="space-y-2 text-sm text-base-content/60">
+                            <p>📁 Maximum file size: 100MB</p>
+                            <p>🔒 All processing happens in your browser</p>
+                            <p>⚡ Instant conversion with professional output</p>
                         </div>
-                    {:else}
-                        <div class="text-center py-8 text-base-content/60">
-                            <div class="text-4xl mb-4">📝</div>
-                            <p>Convert a PDF file to see the markdown result here</p>
-                            <p class="text-sm mt-2">Preview with rendered formatting + download with metadata</p>
-                        </div>
-                    {/if}
-                </div>
-            </div>
-        </div>
-
-        <!-- Future Features -->
-        <div class="mt-8 card bg-base-100 shadow-lg">
-            <div class="card-body">
-                <h2 class="card-title text-xl mb-4">🚀 Coming Soon</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="p-4 bg-base-200 rounded-lg">
-                        <h3 class="font-medium mb-2">📄 HTML to PDF</h3>
-                        <p class="text-sm text-base-content/60">Convert HTML files to PDF</p>
-                    </div>
-                    <div class="p-4 bg-base-200 rounded-lg">
-                        <h3 class="font-medium mb-2">📊 Excel to PDF</h3>
-                        <p class="text-sm text-base-content/60">Convert Excel spreadsheets to PDF</p>
-                    </div>
-                    <div class="p-4 bg-base-200 rounded-lg">
-                        <h3 class="font-medium mb-2">📝 Word to PDF</h3>
-                        <p class="text-sm text-base-content/60">Convert Word documents to PDF</p>
+                        
+                        <!-- Hidden file input -->
+                        <input 
+                            type="file" 
+                            accept=".pdf"
+                            on:change={handleFileSelect}
+                            class="hidden"
+                        />
+                        
+                        {#if errorMessage}
+                            <div class="alert alert-error mt-6">
+                                <span>❌ {errorMessage}</span>
+                            </div>
+                        {/if}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+{/if}
+
+<!-- STATE 2: Markdown Viewer (content uploaded) -->
+{#if showViewer}
+    <div class="min-h-screen bg-base-200">
+        <!-- Header with controls -->
+        <div class="navbar bg-base-100 shadow-sm">
+            <div class="navbar-start">
+                <button class="btn btn-ghost" on:click={resetToInitial}>
+                    ← Back
+                </button>
+            </div>
+            <div class="navbar-center">
+                <h1 class="text-xl font-bold">📝 Markdown Viewer</h1>
+            </div>
+            <div class="navbar-end gap-2">
+                <!-- View Toggle -->
+                <div class="form-control">
+                    <label class="label cursor-pointer gap-2">
+                        <span class="label-text text-sm">👁️ Preview</span>
+                        <input 
+                            type="checkbox" 
+                            class="toggle toggle-sm" 
+                            checked={viewMode === 'raw'}
+                            on:change={handleViewModeToggle}
+                        />
+                        <span class="label-text text-sm">📄 Raw</span>
+                    </label>
+                </div>
+                
+                <!-- Action buttons -->
+                <button 
+                    class="btn btn-success btn-sm"
+                    on:click={handleDownload}
+                    title="Download with YAML frontmatter"
+                >
+                    ⬇️ Download
+                </button>
+                <button 
+                    class="btn btn-info btn-sm"
+                    on:click={handleCopyToClipboard}
+                    title="Copy raw markdown to clipboard"
+                >
+                    📋 Copy
+                </button>
+            </div>
+        </div>
+
+        <!-- Full screen markdown viewer -->
+        <div class="container mx-auto p-4 max-w-none">
+            <div class="card bg-base-100 shadow-lg min-h-[calc(100vh-8rem)]">
+                <div class="card-body p-0">
+                    {#if viewMode === 'preview'}
+                        <!-- Rendered Markdown Preview -->
+                        <div class="prose prose-lg max-w-none p-8 min-h-full">
+                            <Markdown md={conversionResult} plugins={markdownPlugins} />
+                        </div>
+                    {:else}
+                        <!-- Raw Markdown -->
+                        <div class="w-full h-full">
+                            <pre class="language-markdown p-8 m-0 text-sm h-full overflow-auto bg-base-100"><code class="language-markdown">{conversionResult}</code></pre>
+                        </div>
+                    {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Upload Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <div 
+            role="button"
+            tabindex="0"
+            class="btn btn-circle btn-lg btn-primary shadow-2xl hover:scale-110 transition-transform {dragOver ? 'scale-125 shadow-primary/50' : ''}"
+            on:dragover={handleDragOver}
+            on:dragleave={handleDragLeave}
+            on:drop={handleDrop}
+            on:keydown={(e) => e.key === 'Enter' && document.querySelector('#floating-file-input').click()}
+            on:click={() => document.querySelector('#floating-file-input').click()}
+            title="Upload another PDF"
+        >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+        </div>
+        
+        <!-- Hidden file input for floating button -->
+        <input 
+            id="floating-file-input"
+            type="file" 
+            accept=".pdf"
+            on:change={handleFileSelect}
+            class="hidden"
+        />
+    </div>
+{/if}
+
+<!-- Loading State -->
+{#if isConverting}
+    <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content text-center">
+            <div>
+                <div class="loading loading-spinner loading-lg text-primary mb-4"></div>
+                <h2 class="text-3xl font-bold mb-4">Converting PDF to Markdown</h2>
+                <p class="text-lg text-base-content/70">
+                    Processing your PDF file using @opendocsg/pdf2md...
+                </p>
+                <div class="mt-4 text-sm text-base-content/60">
+                    This may take a few moments depending on file size
+                </div>
+            </div>
+        </div>
+    </div>
+{/if}
 
 <!-- Toast Notification -->
 {#if toastVisible}
