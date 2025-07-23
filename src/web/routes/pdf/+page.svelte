@@ -185,13 +185,13 @@
     }
 
     onMount(() => {
-        console.log('🔧 Admin page mounted')
+        console.log('📄 PDF tools page mounted')
     })
 </script>
 
 <svelte:head>
-    <title>Admin - PDF to Markdown Converter</title>
-    <meta name="description" content="Admin interface for client-side PDF to Markdown conversion"/>
+    <title>PDF Tools - PDF to Markdown Converter</title>
+    <meta name="description" content="PDF processing tools for client-side PDF to Markdown conversion"/>
     <!-- Custom styles for prose and markdown display -->
     <style>
         .prose {
@@ -318,7 +318,7 @@
         <div class="hero-content text-center">
             <div class="max-w-2xl">
                 <div class="mb-8">
-                    <h1 class="text-5xl font-bold text-primary mb-4">🔧 Admin Interface</h1>
+                    <h1 class="text-5xl font-bold text-primary mb-4">📄 PDF Tools</h1>
                     <p class="text-xl text-base-content/70 mb-2">Client-side PDF processing with @opendocsg/pdf2md</p>
                     <div class="text-sm text-base-content/60">
                         ✅ Fully private • No server uploads • Professional quality conversion
