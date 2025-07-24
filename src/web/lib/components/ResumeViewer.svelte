@@ -19,14 +19,14 @@
                 secondary: secondaryColor || '#666'
             }
             
-            console.log(`🎨 Theme: ${$currentTheme} → Primary: ${colors.primary}, Secondary: ${colors.secondary}`)
+    
             return colors
         } catch (error) {
             console.warn('🎨 Theme color extraction failed:', error)
         }
         
         // Fallback colors
-        console.log(`🎨 Using fallback colors for theme: ${$currentTheme}`)
+        
         return { primary: '#4285f4', secondary: '#666' }
     }
 
@@ -38,7 +38,7 @@
         const newColors = extractThemeColors()
         if (JSON.stringify(newColors) !== JSON.stringify(themeColors)) {
             themeColors = newColors
-            console.log(`🎨 Resume colors updated:`, themeColors)
+    
         }
     }
 

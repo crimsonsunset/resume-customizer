@@ -225,7 +225,7 @@ export function applyPreset(rawData, presetName) {
   // Merge preset with raw data
   try {
     const merged = mergePresetWithRawData(rawData, preset)
-    console.log(`✅ Successfully applied preset: ${preset.meta?.name || presetName}`)
+  
     return merged
   } catch (error) {
     console.error(`❌ Failed to merge preset: ${error.message}`)

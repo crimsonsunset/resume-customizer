@@ -74,7 +74,10 @@ export default [
       // Allow SvelteKit imports like $app/environment
       'import/no-unresolved': ['error', { 
         ignore: ['^\\$app/', '^\\$env/', '^\\$lib/', '^\\$service-worker']
-      }]
+      }],
+      
+      // Allow browser APIs in client-side code
+      'n/no-unsupported-features/node-builtins': 'off'
     }
   }
 ] 

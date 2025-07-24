@@ -113,7 +113,6 @@ export async function POST({ request }) {
     console.log(`✅ PDF generated successfully: ${filename}`)
     
     // Return PDF as download
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return new Response(pdf, {
       headers: {
         'Content-Type': 'application/pdf',

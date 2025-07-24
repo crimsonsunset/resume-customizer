@@ -10,7 +10,7 @@
 
   // Debug logging
   $: {
-    console.log(`📰 Headline Debug: Density ${bulletDensity}% ${shouldShow ? '>=' : '<'} required ${requiredDensity}% - ${shouldShow ? 'showing' : 'hiding'} section`)
+
   }
 </script>
 

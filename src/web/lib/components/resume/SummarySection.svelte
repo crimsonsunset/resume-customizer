@@ -11,7 +11,7 @@
 
   // Debug logging
   $: {
-    console.log(`📝 Summary Debug: Density ${bulletDensity}% ${shouldShow ? '>=' : '<'} required ${requiredDensity}% - ${shouldShow ? 'showing' : 'hiding'} section`)
+
   }
 </script>
 

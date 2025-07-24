@@ -52,9 +52,7 @@ export class ActivitiesRenderer {
     let activities = activitiesData?.activities || []
     const personalInterests = activitiesData?.personal_interests || []
     
-    console.log(`🎭 ActivitiesRenderer Debug:`)
-    console.log(`  📊 Input: ${activities.length} activities, ${personalInterests.length} personal interests`)
-    console.log(`  🎯 Density: ${this.bulletDensity}%`)
+
     
     // Apply timeframe filtering if specified
     const filters = this.config || {}

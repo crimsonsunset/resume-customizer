@@ -1,4 +1,4 @@
-import { has, sortBy } from 'lodash-es'
+
 
 // Context-to-Category mappings organized by priority (higher priority = lower number)
 const CATEGORY_CONTEXTS = {
@@ -136,7 +136,7 @@ export class SkillsRenderer {
    */
   getSkillData(skillsInventory, skillName) {
     // Find skill by matching name
-    for (const [skillKey, skillData] of Object.entries(skillsInventory.skills)) {
+    for (const [, skillData] of Object.entries(skillsInventory.skills)) {
       if (skillData.name === skillName) {
         return {
           priority: skillData.priority || 5, // Default priority if missing
@@ -208,7 +208,7 @@ export class SkillsRenderer {
    * Generates categorized skills from skills-inventory.json
    */
   generateSkillsFromInventory(skillsInventory, bulletDensity = 100) {
-    console.log('🛠️ Skills Debug: Using skills inventory data')
+    
     
     if (!skillsInventory.skills) {
       console.warn('⚠️ Skills inventory missing skills object')
@@ -226,20 +226,16 @@ export class SkillsRenderer {
     // Calculate priority threshold - inverted so higher density shows more skills
     // 100% density → threshold 1 (show all), 10% density → threshold 10 (show only highest)
     const priorityThreshold = Math.ceil((110 - bulletDensity) / 10)
-    console.log(`🛠️ Skills Debug: Density ${bulletDensity}%, Priority threshold: ${priorityThreshold}`)
-
-         // Track filtering stats
-     const totalSkills = Object.keys(skillsInventory.skills).length
-     let filteredSkills = 0
+    
 
     // Process each skill from inventory
-    for (const [skillKey, skillData] of Object.entries(skillsInventory.skills)) {
+    for (const [, skillData] of Object.entries(skillsInventory.skills)) {
       // Skip skills below priority threshold
       if (skillData.priority && skillData.priority < priorityThreshold) {
         continue
       }
       
-      filteredSkills++
+
       const skillName = skillData.name
       const contexts = skillData.contexts || []
       
@@ -254,7 +250,7 @@ export class SkillsRenderer {
       }
     }
 
-    console.log(`🛠️ Skills Debug: After priority filtering: ${filteredSkills} skills (was ${totalSkills})`)
+    
 
     // Remove OS-related skills from other categories
     for (const [categoryName, skillsArray] of Object.entries(categories)) {
@@ -279,13 +275,7 @@ export class SkillsRenderer {
         return scoreB - scoreA
       })
       
-      // Debug: Show top 3 skills in each category with their scores
-      const topSkills = categories[category].slice(0, 3).map(skill => {
-        const data = this.getSkillData(skillsInventory, skill)
-        const score = (data.priority * 0.6) + (data.marketDemand * 0.4)
-        return `${skill}(${score.toFixed(1)})`
-      })
-      console.log(`🔢 ${category} top skills:`, topSkills.join(', '))
+      // Debug: Show top 3 skills in each category with their scores (removed for production)
     }
     
     // Add hardcoded Operating Systems category and filter OS keywords from other categories
@@ -304,12 +294,9 @@ export class SkillsRenderer {
     const filteredCategories = { ...categories }
     
     // Show Operating Systems category only when density >= 80% (senior/focused resume)
-    if (bulletDensity < 80 && filteredCategories['Operating Systems']) {
-      delete filteredCategories['Operating Systems']
-      console.log('🛠️ Skills Debug: Operating Systems filtered out (density < 80%)')
-    } else if (bulletDensity >= 80 && filteredCategories['Operating Systems']) {
-      console.log('🛠️ Skills Debug: Operating Systems included (density >= 80%)')
-    }
+          if (bulletDensity < 80 && filteredCategories['Operating Systems']) {
+        delete filteredCategories['Operating Systems']
+      }
     
     return filteredCategories
   }

@@ -277,7 +277,7 @@
             // Call the Gotenberg PDF generation API - use preset method for web app, CSS method for compatibility
             console.log(`📄 Generating PDF with preset: ${selectedVersion}`)
             if (currentThemeColors) {
-                console.log(`🎨 Theme colors: Primary=${currentThemeColors.primary}, Secondary=${currentThemeColors.secondary}`)
+    
             }
 
             const response = await fetch('/api/generate-pdf-gotenberg', {

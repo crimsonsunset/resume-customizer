@@ -2,7 +2,7 @@
  * Date utilities for resume data
  * Handles dynamic calculation of "Present" entries
  */
-import { parse, differenceInMonths, differenceInYears, format, startOfMonth } from 'date-fns';
+import { parse, differenceInMonths, differenceInYears, startOfMonth } from 'date-fns';
 
 /**
  * Parses date strings in various formats and returns a Date object
@@ -210,7 +210,7 @@ export function calculateTotalExperienceYears(experienceData, projectsData) {
   // Calculate years difference using date-fns
   const totalYears = differenceInYears(now, earliestDate)
   
-  console.log(`📅 Total experience span: ${totalYears} years (from ${format(earliestDate, 'MMM yyyy')} to now)`)
+
   
   return Math.max(totalYears, 1) // Minimum 1 year
 } 
