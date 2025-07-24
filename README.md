@@ -34,6 +34,8 @@ A modern resume optimization tool with CLI, web application, and AI-powered matc
 
 ## 🚀 Quick Start
 
+*For current development priorities and session planning, see [`docs/next-session.md`](docs/next-session.md)*
+
 ### Web Application
 ```bash
 # Install dependencies
@@ -133,6 +135,17 @@ npm run format           # Format code with Prettier
 npm run clean            # Clean build artifacts
 ```
 
+## 📚 Documentation
+
+### Project Documentation
+- **`docs/roadmap.md`** - Complete project roadmap and historical progress tracking
+- **`docs/next-session.md`** - Active session planning and immediate priorities
+- **`docs/state-resolution.md`** - Technical architecture decisions and state management
+
+### System Documentation
+- **`docs/system/bullet-priority-system.md`** - Core content curation and filtering logic
+- **`docs/system/pdf-generation-system.md`** - PDF generation architecture and deployment
+
 ## 🎯 Project Organization
 
 ### Input Structure (Type-based)
@@ -182,6 +195,8 @@ npm run clean            # Clean build artifacts
 - **Deployment**: Netlify-ready structure
 
 ## 📋 Roadmap
+
+*For detailed progress tracking and current status, see [`docs/roadmap.md`](docs/roadmap.md)*
 
 - ✅ **Phase 1A**: CLI tool with modern PDF generation
 - ✅ **Phase 1B**: SvelteKit web application with theme system
