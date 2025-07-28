@@ -81,7 +81,7 @@
       6,
       8
     ],
-    "company": "Jibe, an iCIMS Company",
+    "company": "iCIMS",
     "description": "• Broadened responsibilities to include managing all teams supporting backend services in iCIMS Attract line of business• Responsible for absorbing and integrating a newly-acquired budding marketing automation application into the CRM; marrying two projects of vastly different maturity levels into one cohesive, enterprise-ready product • Brought all projects into A-level grades within the SonarQube, Dependency Track, and Veracode quality analysis tools• Partnered with the service side of iCIMS to create an easy-to-use bug reporting system that encouraged implementation partners to call-out and queue-up defects in real-time for rapid fixes • Created Team-level dashboards that combined information from various platforms (bitbucket, allstacks, jira, etc) and provided a ground-level picture of sprint over sprint performance both at the individual and combined point of view• Oversaw, managed, and led to completion complex cross-department initiatives such as: universal login solution via Auth0, integration into customized analytics service, robust logging via Sumo Logic, and metrics reporting via NewRelic",
     "duration": "Feb 2021 - Mar 2023 · 2 yrs 2 mos",
     "skills": [
@@ -103,7 +103,7 @@
       "Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording",
       "Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team"
     ],
-    "company": "Jibe, an iCIMS Company",
+    "company": "iCIMS",
     "description": "• The CRM application is one of the main reasons Jibe is acquired by iCIMS - The product immediately replaces iCIMS’• Breadth of management doubled overnight, inherited a group of developers of varied experience and skill sets• Lead newly formed, larger team through delivery of a multi-month build out of a brand new event management module• Extracted customized angular material component library into satellite application (Storybook) that could be maintained alongside core codebase• Became WCAG 2.2AA compliant by focusing team energy and dev hours on augmenting existing accessibility features• Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording • Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team",
     "duration": "Jun 2019 - Feb 2021 · 1 yr 9 mos",
     "skills": [
