@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@netlify/functions": "^2.8.2",
+    "@opendocsg/pdf2md": "^0.2.1",
     "@sveltejs/adapter-netlify": "^5.0.2",
     "@sveltejs/kit": "^2.22.5",
     "@sveltejs/vite-plugin-svelte": "^5.1.1",
@@ -39,6 +40,7 @@
     "lodash-es": "^4.17.21",
     "playwright": "^1.54.0",
     "svelte": "^5.35.6",
+    "svelte-exmarkdown": "^5.0.1",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {

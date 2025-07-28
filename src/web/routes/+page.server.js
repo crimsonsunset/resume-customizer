@@ -76,22 +76,22 @@ function loadAvailablePresets() {
   }
 }
 
+// eslint-disable-next-line complexity
 export async function load({ url }) {
   try {
-    console.log('🔄 Starting server load...')
+
     
     // Load available presets
     const availablePresets = loadAvailablePresets()
-    console.log('📋 Available presets:', availablePresets.map(p => p.name))
+
     
     // Load raw JSON data
     const rawData = loadAllProfileSections()
-    console.log('📊 Raw data loaded successfully')
-    console.log('🔍 Raw data structure:', Object.keys(rawData))
+
     
     // Get preset parameter
     const presetParam = url.searchParams.get('preset')
-    console.log('🎯 Preset parameter:', presetParam)
+
     
     // Get density and timeframe parameters 
     const densityParam = Number.parseInt(url.searchParams.get('density') || '100', 10)
@@ -100,9 +100,7 @@ export async function load({ url }) {
     
     // Apply preset if specified
     const finalData = presetParam ? applyPreset(rawData, presetParam) : rawData
-    console.log('✅ Final data prepared')
-    console.log('🔍 Final data structure:', Object.keys(finalData))
-    console.log('🔍 Final data.sections:', Object.keys(finalData.sections || {}))
+
     
     // Log basic info
     console.log('👤 Basic info:', {
@@ -431,12 +429,12 @@ export async function load({ url }) {
     }
     
     const filteredStats = {
-      experience: finalData.sections?.experience?.preset_filters?.selected_indices !== undefined ?
-                  finalData.sections.experience.preset_filters.selected_indices.length :
-                  (Array.isArray(finalData.sections?.experience) ? finalData.sections.experience.length : 0),
-      projects: finalData.sections?.projects?.preset_filters?.selected_indices !== undefined ?
-                finalData.sections.projects.preset_filters.selected_indices.length :
-                (Array.isArray(finalData.sections?.projects) ? finalData.sections.projects.length : 0),
+      experience: finalData.sections?.experience?.preset_filters?.selected_indices === undefined ?
+                  (Array.isArray(finalData.sections?.experience) ? finalData.sections.experience.length : 0) :
+                  finalData.sections.experience.preset_filters.selected_indices.length,
+      projects: finalData.sections?.projects?.preset_filters?.selected_indices === undefined ?
+                (Array.isArray(finalData.sections?.projects) ? finalData.sections.projects.length : 0) :
+                finalData.sections.projects.preset_filters.selected_indices.length,
       skills: finalData.sections?.skills?.preset_skills ?
               Object.values(finalData.sections.skills.preset_skills).reduce((total, categorySkills) =>
                   total + (Array.isArray(categorySkills) ? categorySkills.length : 0), 0) :
@@ -444,9 +442,9 @@ export async function load({ url }) {
       // Calculate other filtered counts based on actual rendered sections
       // education: Array.isArray(finalData.sections?.education?.education) ? finalData.sections.education.education.length : 0,
       // certifications: Array.isArray(finalData.sections?.certifications) ? finalData.sections.certifications.length : 0,
-      recommendations: finalData.sections?.recommendations?.preset_filters?.selected_indices !== undefined ? 
-                       finalData.sections.recommendations.preset_filters.selected_indices.length :
-                       (finalData.sections?.recommendations?.received?.length || 0),
+      recommendations: finalData.sections?.recommendations?.preset_filters?.selected_indices === undefined ? 
+                       (finalData.sections?.recommendations?.received?.length || 0) :
+                       finalData.sections.recommendations.preset_filters.selected_indices.length,
       // activities: Array.isArray(finalData.sections?.activities?.activities) ? finalData.sections.activities.activities.length : 0,
       // volunteering: Array.isArray(finalData.sections?.volunteering) ? finalData.sections.volunteering.length : 0,
       // 'honors-awards': Array.isArray(finalData.sections?.['honors-awards']) ? finalData.sections['honors-awards'].length : 0

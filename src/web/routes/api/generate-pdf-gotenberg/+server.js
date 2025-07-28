@@ -58,11 +58,9 @@ export async function POST({ request }) {
 </body>
 </html>`
       
-             // eslint-disable-next-line n/no-unsupported-features/node-builtins
        const formData = new FormData()
        formData.append('files', new Blob([testHtml], { type: 'text/html' }), 'index.html')
        
-       // eslint-disable-next-line n/no-unsupported-features/node-builtins
        const response = await fetch(`${GOTENBERG_URL}/forms/chromium/convert/html`, {
         method: 'POST',
         body: formData
@@ -73,7 +71,6 @@ export async function POST({ request }) {
       }
       
              const pdfBuffer = await response.arrayBuffer()
-       // eslint-disable-next-line n/no-unsupported-features/node-builtins
        return new Response(pdfBuffer, {
         headers: {
           'Content-Type': 'application/pdf',
@@ -125,7 +122,6 @@ export async function POST({ request }) {
     }
     
     // Create form data for Gotenberg
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     const formData = new FormData()
     formData.append('files', new Blob([processedHtml], { type: 'text/html' }), 'index.html')
     
@@ -139,7 +135,6 @@ export async function POST({ request }) {
     formData.append('marginLeft', '0.1')
     formData.append('marginRight', '0.1')
     
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     const response = await fetch(`${GOTENBERG_URL}/forms/chromium/convert/html`, {
       method: 'POST',
       body: formData
@@ -153,7 +148,6 @@ export async function POST({ request }) {
     console.log('✅ Gotenberg PDF generation successful')
     
     // Return PDF as download
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     return new Response(pdfBuffer, {
       headers: {
         'Content-Type': 'application/pdf',

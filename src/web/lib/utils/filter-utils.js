@@ -8,8 +8,8 @@ export const FilterUtils = {
   /**
    * Universal timeframe filtering for any section with date fields
    * @param {Array} items - Array of items to filter
-   * @param {Object} config - Filter configuration containing timeframeYears
-   * @param {Object} dateFieldConfig - Configuration for extracting dates from items
+   * @param {object} config - Filter configuration containing timeframeYears
+   * @param {object} dateFieldConfig - Configuration for extracting dates from items
    * @param {string} sectionName - Section name for logging
    * @returns {Array} Filtered array of items
    */
@@ -39,8 +39,8 @@ export const FilterUtils = {
 
   /**
    * Extract end date from item based on field configuration
-   * @param {Object} item - Item to extract date from
-   * @param {Object} dateFieldConfig - { field: string, format: string, parser?: function }
+   * @param {object} item - Item to extract date from
+   * @param {object} dateFieldConfig - { field: string, format: string, parser?: function }
    * @returns {Date|null} Extracted end date or null if can't parse
    */
   extractEndDate(item, dateFieldConfig) {
