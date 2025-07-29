@@ -18,7 +18,7 @@ const config = {
     
     // Files configuration
     files: {
-      assets: 'public',
+      assets: 'static',
       hooks: {
         client: 'src/web/hooks.client.js',
         server: 'src/web/hooks.server.js'
