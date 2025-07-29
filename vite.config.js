@@ -91,7 +91,26 @@ export default defineConfig(({ _command, _mode }) => {
     // Build configuration
     build: {
       // Suppress chunk size warnings for known large bundles (PDF libraries)
-      chunkSizeWarningLimit: 2000 // 2MB limit to suppress warnings for PDF bundle
+      chunkSizeWarningLimit: 2000, // 2MB limit to suppress warnings for PDF bundle
+      rollupOptions: {
+        output: {
+          // Manual chunk splitting - isolate PDF libraries using function approach
+          manualChunks(id) {
+            // PDF processing libraries - separate chunk loaded only when needed
+            if (id.includes('@opendocsg/pdf2md') || id.includes('unpdf')) {
+              return 'pdf-worker'
+            }
+            // Markdown rendering for PDF conversion
+            if (id.includes('svelte-exmarkdown')) {
+              return 'markdown-processor'
+            }
+            // Large vendor libraries
+            if (id.includes('node_modules')) {
+              return 'vendor'
+            }
+          }
+        }
+      }
     },
     
     // Development server settings
