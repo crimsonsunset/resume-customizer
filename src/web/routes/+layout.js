@@ -1,4 +1,4 @@
-import seoConfig from '../config/seo.json'
+import seoConfig from '@web/config/seo.json'
 
 /**
  * Layout load function that provides SEO configuration to all pages
