@@ -1,0 +1,81 @@
+{
+  "default": {
+    "title": "Joe Sangiorgio - Engineering Leader & Resume Optimizer",
+    "description": "Engineering leader with 10+ years at Disney & iCIMS. View my optimized resume created with this intelligent resume customizer tool featuring AI-powered content curation.",
+    "keywords": "engineering leader, resume optimizer, AI resume, tech resume, SvelteKit, React, Node.js, team leadership, Disney, iCIMS, FORA",
+    "author": "Joe Sangiorgio",
+    "siteName": "Resume Optimizer",
+    "canonical": "https://resume.joesangiorgio.com",
+    "imageURL": "https://resume.joesangiorgio.com/og-image.png",
+    "openGraph": true,
+    "twitter": true,
+    "schemaOrg": true,
+    "jsonld": {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Joe Sangiorgio",
+      "jobTitle": "Engineering Leader",
+      "description": "Engineering leader with 10+ years experience at Fortune 500 companies including Disney and enterprise SaaS leader iCIMS",
+      "url": "https://resume.joesangiorgio.com",
+      "sameAs": [
+        "https://linkedin.com/in/joesangiorgio",
+        "https://joesangiorgio.com"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "FORA"
+      },
+      "alumniOf": [
+        {
+          "@type": "Organization",
+          "name": "iCIMS"
+        },
+        {
+          "@type": "Organization", 
+          "name": "Marvel Entertainment"
+        },
+        {
+          "@type": "Organization",
+          "name": "Disney"
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Binghamton University",
+          "description": "Bachelor of Science, Computer Science"
+        }
+      ],
+      "knowsAbout": [
+        "JavaScript",
+        "React",
+        "Node.js", 
+        "TypeScript",
+        "Engineering Management",
+        "Team Leadership",
+        "Product Strategy",
+        "Software Architecture",
+        "AI-Assisted Development"
+      ]
+    }
+  },
+  "pages": {
+    "/": {
+      "title": "Joe Sangiorgio - Engineering Leader & Resume Optimizer",
+      "type": "profile"
+    },
+    "/pdf": {
+      "title": "Joe Sangiorgio Resume - PDF View",
+      "description": "Download Joe Sangiorgio's optimized resume in PDF format. Engineering leader with expertise in React, Node.js, and team leadership."
+    }
+  },
+  "social": {
+    "twitter": {
+      "creator": "@joesangiorgio",
+      "site": "@resumeoptimizer"
+    },
+    "openGraph": {
+      "type": "profile",
+      "locale": "en_US",
+      "siteName": "Resume Optimizer"
+    }
+  }
+}

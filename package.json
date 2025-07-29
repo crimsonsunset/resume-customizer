@@ -53,6 +53,7 @@
     "postcss-load-config": "^6.0.1",
     "prettier": "^3.0.0",
     "shx": "^0.3.4",
+    "sk-seo": "^0.5.4",
     "vite": "^6.0.0"
   },
   "engines": {
