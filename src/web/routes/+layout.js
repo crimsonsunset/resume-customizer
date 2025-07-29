@@ -18,27 +18,24 @@ export const load = async ({ url, route }) => {
   // Build canonical URL
   const canonical = url.origin + url.pathname
   
-  // Merge configurations with URL-specific data
+  // Merge configurations with URL-specific data for sk-seo
   const seoData = {
-    ...baseSeo,
-    ...pageConfig,
+    // Basic meta tags
+    title: pageConfig.title || baseSeo.title,
+    description: pageConfig.description || baseSeo.description,
+    keywords: baseSeo.keywords,
+    author: baseSeo.author,
     canonical,
-    // Add current URL to Open Graph
-    openGraph: {
-      ...seoConfig.social.openGraph,
-      url: canonical,
-      title: pageConfig.title || baseSeo.title,
-      description: pageConfig.description || baseSeo.description,
-      image: baseSeo.imageURL
-    },
-    // Add Twitter card data
-    twitter: {
-      ...seoConfig.social.twitter,
-      title: pageConfig.title || baseSeo.title,
-      description: pageConfig.description || baseSeo.description,
-      image: baseSeo.imageURL
-    },
-    // Update JSON-LD with current URL
+    
+    // Image for social sharing
+    imageURL: baseSeo.imageURL,
+    
+    // Enable sk-seo's built-in Open Graph and Twitter Card generation
+    openGraph: true,
+    twitter: true,
+    schemaOrg: baseSeo.schemaOrg,
+    
+    // JSON-LD structured data
     jsonld: {
       ...baseSeo.jsonld,
       url: canonical

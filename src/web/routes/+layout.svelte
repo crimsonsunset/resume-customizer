@@ -19,11 +19,12 @@
   })
 </script>
 
-<!-- SEO meta tags - sk-seo library approach -->
+<!-- SEO meta tags - proper sk-seo implementation with native imageURL support -->
 <SEO 
   title={data?.seo?.title}
   description={data?.seo?.description}
   canonical={data?.seo?.canonical}
+  imageURL={data?.seo?.imageURL}
   openGraph={data?.seo?.openGraph}
   twitter={data?.seo?.twitter}
   jsonLd={data?.seo?.jsonld}
