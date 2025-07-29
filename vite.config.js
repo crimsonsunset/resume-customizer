@@ -4,6 +4,7 @@ import { sveltekit } from '@sveltejs/kit/vite'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { existsSync, unlinkSync } from 'node:fs'
+import { visualizer } from 'rollup-plugin-visualizer'
 import dateUpdaterPlugin from './src/shared/vite-plugin-date-updater.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -50,6 +51,14 @@ export default defineConfig(({ _command, _mode }) => {
     plugins: [
       sveltekit(),
       dateUpdaterPlugin(),
+      // Bundle analyzer - generates bundle-analysis.html
+      visualizer({
+        filename: 'dist/bundle-analysis.html',
+        open: false, // Don't auto-open browser
+        gzipSize: true,
+        brotliSize: true,
+        template: 'treemap' // Shows bundle composition as treemap
+      }),
       // Custom plugin to exclude Netlify config files from being copied to build
       {
         name: 'exclude-netlify-configs',
@@ -77,6 +86,31 @@ export default defineConfig(({ _command, _mode }) => {
     // Path aliases (matches tsconfig.json)
     resolve: {
       alias: aliases
+    },
+    
+    // Build configuration
+    build: {
+      // Suppress chunk size warnings for known large bundles (PDF libraries)
+      chunkSizeWarningLimit: 2000, // 2MB limit to suppress warnings for PDF bundle
+      rollupOptions: {
+        output: {
+          // Manual chunk splitting - isolate PDF libraries using function approach
+          manualChunks(id) {
+            // PDF processing libraries - separate chunk loaded only when needed
+            if (id.includes('@opendocsg/pdf2md') || id.includes('unpdf')) {
+              return 'pdf-worker'
+            }
+            // Markdown rendering for PDF conversion
+            if (id.includes('svelte-exmarkdown')) {
+              return 'markdown-processor'
+            }
+            // Large vendor libraries
+            if (id.includes('node_modules')) {
+              return 'vendor'
+            }
+          }
+        }
+      }
     },
     
     // Development server settings

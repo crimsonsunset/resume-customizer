@@ -24,7 +24,8 @@
     "html-to-pdf": "npm run cli -- html-to-pdf",
     "json-to-html": "npm run cli -- json-to-html",
     "json-to-pdf": "npm run cli -- json-to-pdf",
-    "update-dates": "node src/shared/update-dates.js"
+    "update-dates": "node src/shared/update-dates.js",
+    "bundle-analyzer": "npm run build:web && open dist/bundle-analysis.html"
   },
   "dependencies": {
     "@netlify/functions": "^2.8.2",
@@ -47,11 +48,13 @@
     "@eslint/compat": "^1.2.3",
     "@oclif/prettier-config": "^0.2.1",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^24.1.0",
     "eslint": "^9.16.0",
     "eslint-config-oclif": "^6.0.0",
     "eslint-config-prettier": "^10.0.1",
     "postcss-load-config": "^6.0.1",
     "prettier": "^3.0.0",
+    "rollup-plugin-visualizer": "^6.0.3",
     "shx": "^0.3.4",
     "sk-seo": "^0.5.4",
     "vite": "^6.0.0"
