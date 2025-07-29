@@ -1,5 +1,6 @@
 # Resume Optimizer
 
+
 A modern resume optimization tool with CLI, web application, and AI-powered matching capabilities.
 
 ## ✨ Features
