@@ -8,6 +8,7 @@
     import {calculateTotalExperienceYears} from '@shared/date-utils.js'
     import ThemeSelector from '@web/lib/components/ThemeSelector.svelte'
     import ResumeViewer from '@web/lib/components/ResumeViewer.svelte'
+    import LazyResumeLoader from '@web/lib/components/LazyResumeLoader.svelte'
     import PresetSelector from '@web/lib/components/PresetSelector.svelte'
     import SectionControls from '@web/lib/components/SectionControls.svelte'
     import DensityControls from '@web/lib/components/DensityControls.svelte'
@@ -526,9 +527,11 @@
                     <div class="card shadow-sm border" style="background: white; border-color: #e5e7eb;">
                         <div class="card-body p-4 md:p-8" style="background: white;">
                             <ResumeViewer>
-                                <div class="resume-with-visibility-controls">
-                                    {@html data.resumeContent}
-                                </div>
+                                <LazyResumeLoader 
+                                    {data} 
+                                    densityParam={density}
+                                    timeframeParam={experienceYears}
+                                />
                             </ResumeViewer>
                         </div>
                     </div>

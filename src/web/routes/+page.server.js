@@ -3,22 +3,8 @@ import { loadAllProfileSections, applyPreset, loadPreset } from '@shared/preset-
 import { readdirSync } from 'node:fs'
 import path from 'node:path'
 
-// Import resume section components
+// Import resume header for initial SSR
 import ResumeHeader from '@web/lib/components/resume/ResumeHeader.svelte'
-import ObjectiveSection from '@web/lib/components/resume/ObjectiveSection.svelte'
-import ExperienceSection from '@web/lib/components/resume/ExperienceSection.svelte'
-import SkillsSection from '@web/lib/components/resume/SkillsSection.svelte'
-import ProjectsSection from '@web/lib/components/resume/ProjectsSection.svelte'
-import EducationSection from '@web/lib/components/resume/EducationSection.svelte'
-import CoursesSection from '@web/lib/components/resume/CoursesSection.svelte'
-import CertificationsSection from '@web/lib/components/resume/CertificationsSection.svelte'
-import VolunteeringSection from '@web/lib/components/resume/VolunteeringSection.svelte'
-import HonorsAwardsSection from '@web/lib/components/resume/HonorsAwardsSection.svelte'
-import RecommendationsSection from '@web/lib/components/resume/RecommendationsSection.svelte'
-import ActivitiesSection from '@web/lib/components/resume/ActivitiesSection.svelte'
-import HeadlineSection from '@web/lib/components/resume/HeadlineSection.svelte'
-import LocationSection from '@web/lib/components/resume/LocationSection.svelte'
-import SummarySection from '@web/lib/components/resume/SummarySection.svelte'
 
 /**
  * Loads available presets from the presets directory
@@ -192,181 +178,18 @@ export async function load({ url }) {
       firstCertOrg: finalData.sections?.certifications?.[0]?.issuing_organization || 'none'
     })
     
-    // Render each component with the data
-    console.log('🎨 Rendering ResumeHeader...')
+    // Render header for initial load information only
     const headerResult = render(ResumeHeader, { 
       props: { 
-        basicInfo: finalData.basic_info 
+        profile: finalData,
+        sections: finalData.sections || {},
+        basicInfo: finalData.basic_info || {}
       } 
     })
     console.log('✅ ResumeHeader rendered, length:', headerResult.body.length)
     
-    // Create component renderers map
-    const componentRenderers = {
-      objective: () => render(ObjectiveSection, { 
-        props: { 
-          objective: finalData.objective || null,
-          bulletDensity: densityParam,
-          profile: finalData
-        } 
-      }),
-      experience() {
-        const baseConfig = finalData.sections?.experience?.preset_filters || {}
-        const config = {
-          ...baseConfig,
-          timeframeYears: timeframeParam > 0 ? timeframeParam : null
-        }
-        return render(ExperienceSection, { 
-          props: { 
-            experiences: finalData.sections?.experience || [],
-            bulletDensity: densityParam,
-            config
-          } 
-        })
-      },
-      skills: () => render(SkillsSection, { 
-        props: { 
-          skillsData: finalData.sections?.skills || { skills: [] },
-          bulletDensity: densityParam,
-          config: finalData.sections?.skills?.preset_filters || {}
-        } 
-      }),
-      projects() {
-        const baseConfig = finalData.sections?.projects?.preset_filters || {}
-        const config = {
-          ...baseConfig,
-          timeframeYears: timeframeParam > 0 ? timeframeParam : null
-        }
-        return render(ProjectsSection, { 
-          props: { 
-            projects: finalData.sections?.projects || [],
-            bulletDensity: densityParam,
-            config
-          } 
-        })
-      },
-      education() {
-        const baseConfig = finalData.sections?.education?.preset_filters || {}
-        const config = {
-          ...baseConfig,
-          timeframeYears: timeframeParam > 0 ? timeframeParam : null
-        }
-        return render(EducationSection, { 
-          props: { 
-            education: finalData.sections?.education?.education || [],
-            config
-          } 
-        })
-      },
-      courses() {
-        const baseConfig = finalData.sections?.courses?.preset_filters || {}
-        const config = {
-          ...baseConfig,
-          timeframeYears: timeframeParam > 0 ? timeframeParam : null
-        }
-        return render(CoursesSection, { 
-          props: { 
-            courses: finalData.sections?.education?.courses || [],
-            bulletDensity: densityParam,
-            config,
-            profile: finalData
-          } 
-        })
-      },
-      certifications() {
-        const baseConfig = finalData.sections?.certifications?.preset_filters || {}
-        const config = {
-          ...baseConfig,
-          timeframeYears: timeframeParam > 0 ? timeframeParam : null
-        }
-        return render(CertificationsSection, { 
-          props: { 
-            certifications: finalData.sections?.certifications || [],
-            bulletDensity: densityParam,
-            config,
-            profile: finalData
-          } 
-        })
-      },
-      volunteering() {
-        const baseConfig = finalData.sections?.volunteering?.preset_filters || {}
-        const config = {
-          ...baseConfig,
-          timeframeYears: timeframeParam > 0 ? timeframeParam : null
-        }
-        return render(VolunteeringSection, { 
-          props: { 
-            volunteering: finalData.sections?.volunteering || [],
-            bulletDensity: densityParam,
-            config,
-            profile: finalData
-          } 
-        })
-      },
-      'honors-awards'() {
-        const baseConfig = finalData.sections?.['honors-awards']?.preset_filters || {}
-        const config = {
-          ...baseConfig,
-          timeframeYears: timeframeParam > 0 ? timeframeParam : null
-        }
-        return render(HonorsAwardsSection, { 
-          props: { 
-            honorsAwards: finalData.sections?.['honors-awards'] || [],
-            bulletDensity: densityParam,
-            config,
-            profile: finalData
-          } 
-        })
-      },
-      recommendations() {
-        const baseConfig = finalData.sections?.recommendations?.preset_filters || {}
-        const config = {
-          ...baseConfig,
-          timeframeYears: timeframeParam > 0 ? timeframeParam : null
-        }
-        return render(RecommendationsSection, { 
-          props: { 
-            recommendations: finalData.sections?.recommendations || { received: [] },
-            bulletDensity: densityParam,
-            config
-          } 
-        })
-      },
-      activities() {
-        const baseConfig = finalData.sections?.activities?.preset_filters || {}
-        const config = {
-          ...baseConfig,
-          timeframeYears: timeframeParam > 0 ? timeframeParam : null
-        }
-        return render(ActivitiesSection, { 
-          props: { 
-            activities: finalData.sections?.activities || {},
-            bulletDensity: densityParam,
-            config
-          } 
-        })
-      },
-      headline: () => render(HeadlineSection, {
-        props: {
-          headline: finalData.basic_info?.headline || '',
-          bulletDensity: densityParam,
-          profile: finalData
-        }
-      }),
-      location: () => render(LocationSection, {
-        props: {
-          location: finalData.basic_info?.location || ''
-        }
-        // Note: location renderer kept for future use but excluded from user controls (shown in header)
-      }),
-      summary: () => render(SummarySection, {
-        props: {
-          summary: finalData.basic_info?.summary || '',
-          bulletDensity: densityParam,
-          profile: finalData
-        }
-      })
-    }
+    // NOTE: Moving to client-side progressive loading for better performance
+    // Server-side rendering of all sections removed to reduce initial bundle size
     
     // Get section order from data or use default
     const sectionOrder = finalData.sections_order || ['headline', 'objective', 'summary', 'education', 'skills', 'experience', 'projects', 'honors-awards', 'volunteering', 'activities', 'certifications', 'courses', 'location', 'recommendations']
@@ -381,39 +204,11 @@ export async function load({ url }) {
       'location' // Special section that's derived from basic_info
     ].filter((section, index, arr) => arr.indexOf(section) === index) // Remove duplicates
     
-    // Render sections in specified order and track visibility
-    const sectionResults = []
-    const actuallyVisibleSections = []
-    const EMPTY_SECTION_THRESHOLD = 100 // Sections with content below this are considered empty/filtered
-    
-    for (const sectionName of sectionOrder) {
-      if (componentRenderers[sectionName]) {
-        console.log(`🎨 Rendering ${sectionName}Section...`)
-        const result = componentRenderers[sectionName]()
-        const isVisible = result.body.length > EMPTY_SECTION_THRESHOLD
-        console.log(`✅ ${sectionName}Section rendered, length: ${result.body.length}${isVisible ? ' (visible)' : ' (filtered out)'}`)
-        
-        if (isVisible) {
-          actuallyVisibleSections.push(sectionName)
-        }
-        
-        sectionResults.push(result.body)
-      }
-    }
-    
-    console.log('🔍 Actually visible sections:', actuallyVisibleSections)
-    
-    // Combine header + sections in order with proper CSS Grid structure
-    const resumeContent = `
-      ${headerResult.body}
-      <div class="resume-content">
-        ${sectionResults.join('\n')}
-      </div>
-    `
-    
-    console.log('🎨 Components rendered successfully')
-    console.log('📏 Total content length:', resumeContent.length)
-    console.log('🔍 Content preview:', resumeContent.slice(0, 200))
+    console.log('🎨 Client-side progressive loading enabled')
+    console.log('📊 Data prepared for lazy loading:', {
+      sectionsCount: Object.keys(finalData.sections || {}).length,
+      sectionOrder: sectionOrder.length
+    })
     
         // Calculate both filtered and total counts from actual raw data
     const totalCounts = {
@@ -453,25 +248,38 @@ export async function load({ url }) {
     
     
     return {
-      resumeContent,
+      resumeContent: null, // No server-rendered content
       preset: presetParam || 'full',
       bulletDensity: densityParam,
       availablePresets,
       availableSections: sectionOrder, // Add the sections that are actually rendered
       totalAvailableSections: allPossibleSections, // All possible sections regardless of preset
-      actuallyVisibleSections, // Sections that are visible after density filtering
+      actuallyVisibleSections: [], // No server-side visibility tracking
       sections: finalData.sections, // Add the actual section data for stats calculation
       filteredStats, // Add pre-calculated filtered stats
-      totalCounts // Add total counts for comparison
+      totalStats: totalCounts,
+      data: finalData, // Pass full data for client-side rendering
+      sections_order: sectionOrder,
+      ...data
     }
+    
   } catch (error) {
-    console.error('❌ Error in server load:', error.message)
-    console.error('❌ Stack:', error.stack)
+    console.error('❌ Error in load function:', error)
+    
     return {
-      resumeContent: `<p>Error: ${error.message}</p>`,
+      resumeContent: null,
+      error: error.message,
       preset: 'full',
       bulletDensity: 100,
-      availablePresets: [{ value: 'full', name: 'Comprehensive Resume', description: 'Complete professional history and achievements' }]
+      availablePresets: [],
+      availableSections: [],
+      totalAvailableSections: [],
+      actuallyVisibleSections: [],
+      sections: {},
+      filteredStats: {},
+      totalStats: {},
+      data: null,
+      sections_order: []
     }
   }
 } 

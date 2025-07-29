@@ -33,7 +33,10 @@ export const convertPdfToMarkdown = async (file, options = {}) => {
 
   try {
     // Import pdf2md dynamically for client-side processing
-    const pdf2md = await import('@opendocsg/pdf2md')
+    // const pdf2md = await import('@opendocsg/pdf2md')
+    
+    // TEMPORARILY DISABLED - Testing bundle size
+    throw new Error('PDF conversion temporarily disabled for testing')
     
     onProgress?.('Converting file to buffer...')
     
@@ -44,26 +47,26 @@ export const convertPdfToMarkdown = async (file, options = {}) => {
     onProgress?.('Extracting text from PDF...')
 
     // Convert PDF to markdown using pdf2md
-    const markdown = await pdf2md.default(fileBuffer)
-    console.log('✅ PDF conversion completed')
+    // const markdown = await pdf2md.default(fileBuffer)
+    // console.log('✅ PDF conversion completed')
 
-    if (!markdown || !markdown.trim()) {
-      throw new Error('No content could be extracted from the PDF. The PDF might be image-based, encrypted, or corrupted.')
-    }
+    // if (!markdown || !markdown.trim()) {
+    //   throw new Error('No content could be extracted from the PDF. The PDF might be image-based, encrypted, or corrupted.')
+    // }
 
     // Create metadata
     const metadata = {
       originalFilename: file.name,
       fileSize: file.size,
       fileSizeMB: (file.size / 1024 / 1024).toFixed(2),
-      contentLength: markdown.length,
+      contentLength: 0, // Placeholder, will be updated after conversion
       convertedAt: new Date().toISOString(),
-      convertedWith: '@opendocsg/pdf2md'
+      convertedWith: 'Placeholder' // Placeholder, will be updated after conversion
     }
 
     onProgress?.('Conversion completed successfully!')
 
-    return { markdown, metadata }
+    return { markdown: '', metadata } // Return empty markdown as conversion is disabled
 
   } catch (error) {
     console.error('❌ PDF to Markdown conversion failed:', error)

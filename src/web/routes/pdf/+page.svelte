@@ -2,17 +2,41 @@
     import {onMount, tick} from 'svelte'
     import {browser} from '$app/environment'
     import {delay} from 'lodash-es'
-    import Markdown from 'svelte-exmarkdown'
-    import {gfmPlugin} from 'svelte-exmarkdown/gfm'
-    import {
-        convertPdfToMarkdown,
-        addDocumentHeader,
-        downloadMarkdownFile,
-        copyMarkdownToClipboard
-    } from '$lib/utils/pdf-utils.js'
+    // Dynamic imports to prevent bundling in main chunk
+    // import Markdown from 'svelte-exmarkdown'
+    // import {gfmPlugin} from 'svelte-exmarkdown/gfm'
+    // import {
+    //     convertPdfToMarkdown,
+    //     addDocumentHeader,
+    //     downloadMarkdownFile,
+    //     copyMarkdownToClipboard
+    // } from '$lib/utils/pdf-utils.js'
+
+    // PDF utility functions - loaded dynamically
+    let pdfUtils = null
 
     // Markdown plugins for better rendering
-    const markdownPlugins = [gfmPlugin()]
+    // const markdownPlugins = [gfmPlugin()]
+    let markdownPlugins = []
+    let MarkdownComponent = null
+
+    // Dynamic imports for markdown processing
+    onMount(async () => {
+        if (browser) {
+            try {
+                const [markdownModule, gfmModule, pdfUtilsModule] = await Promise.all([
+                    import('svelte-exmarkdown'),
+                    import('svelte-exmarkdown/gfm'),
+                    import('$lib/utils/pdf-utils.js')
+                ])
+                MarkdownComponent = markdownModule.default
+                markdownPlugins = [gfmModule.gfmPlugin()]
+                pdfUtils = pdfUtilsModule
+            } catch (error) {
+                console.error('Failed to load modules:', error)
+            }
+        }
+    })
 
     // App state
     let selectedFile = null
@@ -109,15 +133,22 @@
         conversionResult = null
 
         try {
+            // Ensure utilities are loaded
+            if (!pdfUtils) {
+                showToast('⏳ Loading PDF processing tools...', 'info')
+                const pdfUtilsModule = await import('$lib/utils/pdf-utils.js')
+                pdfUtils = pdfUtilsModule
+            }
+
             console.log('🔄 Converting PDF to Markdown using @opendocsg/pdf2md...')
 
             // Use utility for conversion with progress callback
-            const {markdown, metadata} = await convertPdfToMarkdown(selectedFile, {
+            const {markdown, metadata} = await pdfUtils.convertPdfToMarkdown(selectedFile, {
                 onProgress: (message) => showToast(message, 'info')
             })
 
             // Add document header using utility
-            const finalMarkdown = addDocumentHeader(markdown, metadata)
+            const finalMarkdown = pdfUtils.addDocumentHeader(markdown, metadata)
             conversionResult = finalMarkdown
 
             // Set to preview mode (svelte-exmarkdown will handle rendering)
@@ -167,16 +198,35 @@
             convertedWith: '@opendocsg/pdf2md'
         }
 
-        downloadMarkdownFile(conversionResult, metadata, {
-            onSuccess: (filename) => showToast(`📥 ${filename} download started!`, 'success')
-        })
+        // Download markdown file
+        function downloadMarkdownAsFile() {
+            if (!conversionResult) return
+
+            // Ensure utilities are loaded
+            if (!pdfUtils) {
+                showToast('⚠️ PDF utilities not loaded yet', 'error')
+                return
+            }
+
+            pdfUtils.downloadMarkdownFile(conversionResult, metadata, {
+                onSuccess: (filename) => showToast(`📥 ${filename} download started!`, 'success')
+            })
+        }
+
+        downloadMarkdownAsFile()
     }
 
-    // Copy to clipboard using utility
-    const handleCopyToClipboard = async () => {
+    // Copy markdown to clipboard
+    async function copyToClipboard() {
         if (!conversionResult) return
 
-        const success = await copyMarkdownToClipboard(conversionResult)
+        // Ensure utilities are loaded
+        if (!pdfUtils) {
+            showToast('⚠️ PDF utilities not loaded yet', 'error')
+            return
+        }
+
+        const success = await pdfUtils.copyMarkdownToClipboard(conversionResult)
         if (success) {
             showToast('📋 Markdown copied to clipboard!', 'success')
         } else {
@@ -406,7 +456,7 @@
                 </button>
                 <button 
                     class="btn btn-info btn-sm"
-                    on:click={handleCopyToClipboard}
+                    on:click={copyToClipboard}
                     title="Copy raw markdown to clipboard"
                 >
                     📋 Copy
@@ -421,7 +471,14 @@
                     {#if viewMode === 'preview'}
                         <!-- Rendered Markdown Preview -->
                         <div class="prose prose-lg max-w-none p-8 min-h-full">
-                            <Markdown md={conversionResult} plugins={markdownPlugins} />
+                            {#if MarkdownComponent}
+                                <MarkdownComponent md={conversionResult} plugins={markdownPlugins} />
+                            {:else}
+                                <div class="text-center py-16">
+                                    <div class="loading loading-spinner loading-lg text-primary"></div>
+                                    <p class="mt-4 text-lg text-base-content/70">Loading Markdown renderer...</p>
+                                </div>
+                            {/if}
                         </div>
                     {:else}
                         <!-- Raw Markdown -->

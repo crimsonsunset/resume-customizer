@@ -10,6 +10,7 @@
     "build": "npm run build:cli && npm run build:web",
     "build:cli": "BUILD_CLI=true vite build",
     "build:web": "vite build",
+    "bundle-analyzer": "npm run build:web && open dist/bundle-analysis.html",
     "lint": "eslint src/",
     "lint:fix": "eslint --fix src/",
     "format": "prettier --write .",
@@ -28,7 +29,6 @@
   },
   "dependencies": {
     "@netlify/functions": "^2.8.2",
-    "@opendocsg/pdf2md": "^0.2.1",
     "@sveltejs/adapter-netlify": "^5.0.2",
     "@sveltejs/kit": "^2.22.5",
     "@sveltejs/vite-plugin-svelte": "^5.1.1",
@@ -52,6 +52,7 @@
     "eslint-config-prettier": "^10.0.1",
     "postcss-load-config": "^6.0.1",
     "prettier": "^3.0.0",
+    "rollup-plugin-visualizer": "^6.0.3",
     "shx": "^0.3.4",
     "sk-seo": "^0.5.4",
     "vite": "^6.0.0"
