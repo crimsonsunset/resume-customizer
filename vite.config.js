@@ -4,6 +4,7 @@ import { sveltekit } from '@sveltejs/kit/vite'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { existsSync, unlinkSync } from 'node:fs'
+import { visualizer } from 'rollup-plugin-visualizer'
 import dateUpdaterPlugin from './src/shared/vite-plugin-date-updater.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -50,6 +51,14 @@ export default defineConfig(({ _command, _mode }) => {
     plugins: [
       sveltekit(),
       dateUpdaterPlugin(),
+      // Bundle analyzer - generates bundle-analysis.html
+      visualizer({
+        filename: 'dist/bundle-analysis.html',
+        open: false, // Don't auto-open browser
+        gzipSize: true,
+        brotliSize: true,
+        template: 'treemap' // Shows bundle composition as treemap
+      }),
       // Custom plugin to exclude Netlify config files from being copied to build
       {
         name: 'exclude-netlify-configs',
