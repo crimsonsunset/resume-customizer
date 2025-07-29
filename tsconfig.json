@@ -1,3 +1,9 @@
 {
-  "extends": "./.svelte-kit/tsconfig.json"
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    // Essential fallback settings only - let SvelteKit handle paths
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
 } 
