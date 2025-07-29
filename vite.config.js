@@ -88,6 +88,12 @@ export default defineConfig(({ _command, _mode }) => {
       alias: aliases
     },
     
+    // Build configuration
+    build: {
+      // Suppress chunk size warnings for known large bundles (PDF libraries)
+      chunkSizeWarningLimit: 2000 // 2MB limit to suppress warnings for PDF bundle
+    },
+    
     // Development server settings
     server: {
       port: 3000,

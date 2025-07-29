@@ -110,7 +110,7 @@
     }
 
     /* Reset and base styles */
-    .resume-viewer * {
+    :global(.resume-viewer *) {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
