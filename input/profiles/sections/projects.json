@@ -2,7 +2,7 @@
   {
     "name": "Fora Suite of Products",
     "company": "FORA",
-    "date": "Jan 2024 - Present · 1 yr 6 mos",
+    "date": "Jan 2024 - Present · 1 yr 7 mos",
     "description": "• Architected comprehensive error boundary system with automatic component wrapping via custom Vite plugin, Rollbar integration, error classification, and context-aware reporting with feature flag data• Developed Instagram story-style UI system for meeting content navigation with multi-panel architecture, read/unread tracking, advanced interactions, and deep-linking capabilities• Built enterprise-grade tour platform with guided onboarding, dynamic configuration, and integrated analytics for user engagement tracking• Extended admin platform capabilities with robust error handling, dynamic form validation components, and enhanced onboarding user experience",
     "bulletPoints": [
       "Architected comprehensive error boundary system with automatic component wrapping via custom Vite plugin, Rollbar integration, error classification, and context-aware reporting with feature flag data",
@@ -27,7 +27,7 @@
   {
     "name": "Home Automation Platform",
     "company": "Personal",
-    "date": "Oct 2017 - Present · 7 yrs 9 mos",
+    "date": "Oct 2017 - Present · 7 yrs 10 mos",
     "description": "• Configured a heavily customized version of Home Assistant, an python-based open source home automation platform• Utilized Jinja2 templates to create actions, scripts and automations that link together several IoT devices• Wrote YAML configuration to enable communication across entities to one centralized Raspberry Pi3 server• Made server frontend globally accessible by enabling port forwarding and adding SSL certificate from LetsEncrypt.org• Created several different home-grown utility scripts and frontend widgets to further tailor and extend the platform • Contributed to Home Assistant community, posted aforementioned utility scripts for other members to use",
     "bulletPoints": [
       "Configured a heavily customized version of Home Assistant, an python-based open source home automation platform",
@@ -56,7 +56,7 @@
   {
     "name": "JoeSangiorgio.com",
     "company": "Personal",
-    "date": "Jun 2017 - Present · 8 yrs 1 mo",
+    "date": "Jun 2017 - Present · 8 yrs 2 mos",
     "description": "• Data driven dashboard style portfolio site built on Vue; complete with user preference menu and sitewide tour prompt• Aggregates all professional/personal information and serves and entry point for hiring managers• Driven by publicly available API: written in Node.js, documented with Swagger, and hosted on Heroku • Uses many Vue addon libraries, such as Vuetify for UI components, and vue-router for native browser routing",
     "bulletPoints": [
       "Data driven dashboard style portfolio site built on Vue; complete with user preference menu and sitewide tour prompt",
