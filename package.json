@@ -40,6 +40,7 @@
     "date-fns": "^4.1.0",
     "lodash-es": "^4.17.21",
     "playwright": "^1.54.0",
+    "shepherd.js": "^14.5.1",
     "svelte": "^5.35.6",
     "svelte-exmarkdown": "^5.0.1",
     "tailwindcss": "^4.1.11"

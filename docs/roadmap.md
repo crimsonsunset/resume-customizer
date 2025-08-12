@@ -1003,6 +1003,182 @@ onMount(async () => {
 
 ---
 
+### Phase 12.5: Interactive Tour Implementation 🎯 **PLANNED**
+**Goal:** Implement Shepherd.js guided tour to solve critical UX issues through interactive onboarding
+
+#### **Strategic Solution to Phase 12 Issues**
+The interactive tour directly addresses **3 of 4 critical UX problems** identified in Phase 12:
+- ✅ **Value Proposition Confusion** → Tour demonstrates interactivity immediately
+- ✅ **Hidden Desktop Controls** → Tour guides users to all features  
+- ✅ **Feature Discovery** → Tour showcases optimization capabilities
+- ✅ **Tool Understanding** → Tour proves this is not a static resume
+
+#### **Technical Implementation**
+
+**Phase 12.5.1: Tour Configuration System (2 hours)**
+- 📁 **Location**: `src/web/config/tour-config.json` (following `seo.json` pattern)
+- 🔧 **Structure**: JSON-based configuration for steps, buttons, responsive behavior
+- 🎯 **Benefits**: Maintainable, version-controlled, environment-specific configs
+
+**Phase 12.5.2: Tour State Management (1 hour)**  
+- 📁 **Location**: `src/web/lib/stores/tour-state.js` (following existing store patterns)
+- 🔧 **Features**: `tourActiveStore`, `tourCompletedState`, localStorage persistence
+- 🎯 **Integration**: Follows `theme.js` and `url-state.js` patterns exactly
+
+**Phase 12.5.3: Tour Component Implementation (3 hours)**
+- 📁 **Location**: `src/web/lib/components/TourGuide.svelte`
+- 🔧 **Architecture**: Event dispatchers, onMount lifecycle, DaisyUI styling integration
+- 🎯 **Features**: Responsive steps (mobile vs desktop), theme-aware styling
+
+**Phase 12.5.4: Main Page Integration (1 hour)**
+- 🔧 **Data Attributes**: Add `data-tour="*"` to existing elements
+- 🎯 **Component**: Add `<TourGuide>` following existing component patterns
+- 📱 **Responsive**: Different tour flows for mobile vs desktop users
+
+#### **Tour Flow Design**
+
+**Step 1: Value Proposition (Critical UX Fix)**
+```json
+{
+  "title": "🎯 Interactive Resume Optimizer",
+  "text": "This isn't just a resume - it's an intelligent tool that customizes content based on your needs.",
+  "purpose": "Immediately clarify tool interactivity vs static resume"
+}
+```
+
+**Step 2: Preset Demonstration**  
+```json
+{
+  "attachTo": "[data-tour='preset-selector']",
+  "text": "Try different presets optimized for different roles and situations.",
+  "purpose": "Show core optimization feature"
+}
+```
+
+**Step 3: Content Filtering (Signature Feature)**
+```json
+{
+  "attachTo": "[data-tour='density-controls']", 
+  "text": "Adjust content density based on priority rankings.",
+  "purpose": "Demonstrate intelligent filtering system"
+}
+```
+
+**Step 4: Control Access (Desktop vs Mobile)**
+```json
+{
+  "desktop": { "attachTo": "[data-tour='desktop-controls']", "text": "All features accessible in header" },
+  "mobile": { "attachTo": "[data-tour='mobile-menu']", "text": "Access features through menu" },
+  "purpose": "Solve hidden controls discoverability issue"
+}
+```
+
+**Step 5: PDF Generation (Complete Flow)**
+```json
+{
+  "attachTo": "[data-tour='pdf-download']",
+  "text": "Generate your optimized resume with current settings.",
+  "purpose": "Complete the user journey"
+}
+```
+
+#### **Technical Architecture**
+
+**Library Selection: Shepherd.js**
+- **Cost**: $50 lifetime license for commercial use (5 projects)
+- **Bundle**: ~15KB (12.5% increase to current 120KB bundle)
+- **License**: Free for development, reasonable commercial terms
+- **Integration**: Framework-agnostic, works perfectly with Svelte
+
+**Pattern Integration:**
+- ✅ **Component Architecture**: Follows existing Svelte component patterns
+- ✅ **Store Management**: Follows `theme.js` and `url-state.js` patterns  
+- ✅ **Event Handling**: Uses `createEventDispatcher` like other components
+- ✅ **Styling**: Integrates with DaisyUI theme system
+- ✅ **Configuration**: JSON config follows `seo.json` precedent
+- ✅ **Lodash Usage**: Uses `delay()` instead of `setTimeout`
+
+**File Structure:**
+```
+src/web/
+├── config/
+│   ├── seo.json           # ✅ Existing  
+│   └── tour-config.json   # 🆕 New tour configuration
+├── lib/
+│   ├── stores/
+│   │   └── tour-state.js  # 🆕 Tour state management
+│   └── components/
+│       └── TourGuide.svelte # 🆕 Main tour component
+```
+
+#### **ROI Analysis**
+
+**Investment:**
+- **Development Time**: ~7 hours total implementation
+- **Bundle Impact**: +15KB (12.5% increase, still 87% smaller than original)
+- **License Cost**: $50 lifetime (essentially $10/project if using all 5 slots)
+
+**Return:**
+- **Solves 75% of critical UX issues** (3 of 4 from Phase 12)
+- **Reduces user confusion** and bounce rate from value proposition problems
+- **Increases feature adoption** by making hidden controls discoverable  
+- **Professional differentiation** from basic resume builders
+- **Immediate user education** vs relying on static explainer text
+
+#### **Implementation Priority**
+
+**Sequence within Phase 12:**
+1. **Phase 12.1**: Fix mobile PDF download (CRITICAL - do first)
+2. **Phase 12.5**: Implement tour system (HIGH - solves multiple issues)  
+3. **Phase 12.2**: Add static explainer text (MEDIUM - complement to tour)
+4. **Phase 12.3**: Expose desktop controls (MEDIUM - tour guides users to them)
+
+**Rationale**: Tour implementation has highest impact-to-effort ratio and solves multiple critical issues simultaneously.
+
+#### **Success Metrics**
+
+**User Behavior:**
+- ✅ **Tour Completion Rate**: >70% of users complete full tour
+- ✅ **Feature Discovery**: Users interact with density controls after tour
+- ✅ **Preset Switching**: Users try different presets during/after tour
+- ✅ **PDF Generation**: Users successfully download PDF after tour
+
+**Business Impact:**
+- ✅ **Reduced Bounce Rate**: Lower exit rate on first visit
+- ✅ **Increased Engagement**: Higher time-on-site and feature usage
+- ✅ **Value Clarification**: Users understand tool capabilities immediately
+- ✅ **Professional Impression**: Tour demonstrates sophisticated functionality
+
+#### **Future Enhancements**
+
+**Phase 12.6: Advanced Tour Features (Optional)**
+- **Contextual Tours**: Different tours based on user behavior patterns
+- **Feature-Specific Tours**: Mini-tours for new features as they're added
+- **Analytics Integration**: Track tour effectiveness and optimize steps
+- **A/B Testing**: Test different tour flows for conversion optimization
+
+#### **Benefits Achieved**
+
+**Technical Excellence:**
+- ✅ **Seamless Integration**: Follows all existing architectural patterns
+- ✅ **Performance Optimized**: Minimal bundle impact on highly optimized codebase
+- ✅ **Maintainable**: JSON configuration enables non-developer content updates
+- ✅ **Future-Proof**: Extensible system for additional onboarding flows
+
+**User Experience:**
+- ✅ **Immediate Clarity**: Users understand tool purpose within 30 seconds
+- ✅ **Feature Discovery**: Guided exposure to all optimization capabilities
+- ✅ **Professional Polish**: Sophisticated onboarding experience
+- ✅ **Reduced Friction**: Eliminates confusion barriers to engagement
+
+**Business Value:**
+- ✅ **Cost-Effective**: $50 investment solves multiple critical UX issues
+- ✅ **Scalable Solution**: Tour system can expand with new features
+- ✅ **Competitive Advantage**: Professional onboarding differentiates from basic tools
+- ✅ **User Retention**: Better first impressions lead to higher conversion rates
+
+---
+
 ## 🔧 Future Technical Improvements
 
 ### Code Quality & Consistency Improvements

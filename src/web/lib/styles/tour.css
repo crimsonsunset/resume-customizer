@@ -1,0 +1,187 @@
+/* Resume Customizer Tour Styling - DaisyUI Integration */
+
+/* Tour Step Container - Fully Solid */
+.custom-tour-step {
+  background: hsl(var(--b1)) !important;
+  color: hsl(var(--bc)) !important;
+  border: 1px solid hsl(var(--b3)) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 10px 15px -3px rgba(0, 0, 0, 0.2) !important;
+  max-width: 400px !important;
+  font-family: inherit !important;
+  opacity: 1 !important;
+  z-index: 9999 !important;
+}
+
+/* Ensure ALL Shepherd elements are fully solid */
+.shepherd-element,
+.shepherd-content,
+.custom-tour-step .shepherd-element {
+  background: hsl(var(--b1)) !important;
+  opacity: 1 !important;
+  z-index: 9999 !important;
+}
+
+/* Tour Header */
+.custom-tour-step .shepherd-header {
+  background: hsl(var(--b1)) !important;
+  border-bottom: 1px solid hsl(var(--b3)) !important;
+  border-radius: 0.75rem 0.75rem 0 0 !important;
+  padding: 1rem !important;
+  opacity: 1 !important;
+}
+
+/* Tour Title */
+.custom-tour-step .shepherd-title {
+  color: hsl(var(--bc)) !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  margin: 0 !important;
+  font-family: inherit !important;
+}
+
+/* Tour Content */
+.custom-tour-step .shepherd-text {
+  padding: 1rem !important;
+  line-height: 1.6 !important;
+  color: hsl(var(--bc)) !important;
+  font-family: inherit !important;
+  background: hsl(var(--b1)) !important;
+  opacity: 1 !important;
+}
+
+/* Tour Footer */
+.custom-tour-step .shepherd-footer {
+  padding: 1rem !important;
+  background: hsl(var(--b1)) !important;
+  border-top: 1px solid hsl(var(--b3)) !important;
+  border-radius: 0 0 0.75rem 0.75rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  opacity: 1 !important;
+}
+
+/* Tour Buttons - DaisyUI Button Classes */
+.custom-tour-step .shepherd-button {
+  font-family: inherit !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 0.375rem !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  min-height: 2.5rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+/* Primary Button (Next/Start) */
+.custom-tour-step .shepherd-button.shepherd-button-primary {
+  background: hsl(var(--p)) !important;
+  color: hsl(var(--pc)) !important;
+}
+
+.custom-tour-step .shepherd-button.shepherd-button-primary:hover {
+  background: hsl(var(--p) / 0.8) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Secondary Button (Back) */
+.custom-tour-step .shepherd-button.shepherd-button-secondary {
+  background: hsl(var(--s)) !important;
+  color: hsl(var(--sc)) !important;
+}
+
+.custom-tour-step .shepherd-button.shepherd-button-secondary:hover {
+  background: hsl(var(--s) / 0.8) !important;
+}
+
+/* Cancel Button */
+.custom-tour-step .shepherd-cancel-icon {
+  background: none !important;
+  border: none !important;
+  color: hsl(var(--bc) / 0.6) !important;
+  font-size: 1.5rem !important;
+  cursor: pointer !important;
+  padding: 0.25rem !important;
+  border-radius: 0.25rem !important;
+  position: absolute !important;
+  top: 0.75rem !important;
+  right: 0.75rem !important;
+  width: 2rem !important;
+  height: 2rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.custom-tour-step .shepherd-cancel-icon:hover {
+  background: hsl(var(--b3)) !important;
+  color: hsl(var(--bc)) !important;
+}
+
+/* Progress indicator */
+.custom-tour-step .shepherd-progress {
+  background: hsl(var(--b3)) !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+  margin: 0.5rem 0 !important;
+}
+
+.custom-tour-step .shepherd-progress-bar {
+  background: hsl(var(--p)) !important;
+  height: 100% !important;
+  border-radius: 2px !important;
+  transition: width 0.3s ease !important;
+}
+
+/* Modal Overlay - Very light overlay */
+.shepherd-modal-overlay-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(1px) !important;
+  z-index: 9998 !important;
+}
+
+/* When modal is visible */
+.shepherd-modal-overlay-container.shepherd-modal-is-visible {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Ensure tour step is above overlay */
+.shepherd-step {
+  z-index: 9999 !important;
+}
+
+/* Element Highlighting - Stronger effect against dark background */
+.shepherd-target-highlight {
+  border: 3px solid hsl(var(--p)) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 0 0 6px hsl(var(--p) / 0.4), 0 0 20px hsl(var(--p) / 0.6) !important;
+  background: hsl(var(--b1)) !important;
+  position: relative !important;
+  z-index: 10001 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .custom-tour-step {
+    max-width: 320px !important;
+    margin: 1rem !important;
+  }
+  
+  .custom-tour-step .shepherd-text {
+    font-size: 0.875rem !important;
+  }
+  
+  .custom-tour-step .shepherd-title {
+    font-size: 1rem !important;
+  }
+}
