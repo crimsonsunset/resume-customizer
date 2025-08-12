@@ -55,9 +55,7 @@
         return {
           popover: {
             title: step.title,
-            description: step.text,
-            side: 'center',
-            align: 'center'
+            description: step.text
           }
         }
       }
@@ -80,8 +78,6 @@
       allowClose: true,
       allowKeyboardControl: true,
       disableActiveInteraction: false,
-      overlayColor: 'rgba(0, 0, 0, 0.1)',
-      popoverClass: 'driver-popover bg-base-100 text-base-content shadow-xl rounded-xl border border-base-300',
       progressText: '{{current}} of {{total}}',
       nextBtnText: 'Next →',
       prevBtnText: '← Previous', 
