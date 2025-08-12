@@ -2,14 +2,14 @@
   "settings": {
     "enabled": true,
     "autoStart": true,
-    "useModalOverlay": true,
+    "useModalOverlay": false,
     "showProgress": true,
     "theme": "resume-intelligence"
   },
   "defaultStepOptions": {
     "cancelIcon": { "enabled": true },
     "scrollTo": { "behavior": "smooth", "block": "center" },
-    "classes": "bg-base-100 text-base-content shadow-xl rounded-xl border border-base-300 max-w-md",
+    "classes": "modal-box max-w-md sm:max-w-sm",
     "when": {
       "show": "function() { console.log('Tour step showing'); }"
     }

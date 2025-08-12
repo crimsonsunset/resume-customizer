@@ -1,11 +1,9 @@
 /* Tailwind CSS 4 + DaisyUI 5 */
 @import "tailwindcss";
+@import "./lib/styles/tour.css";
 @plugin "daisyui" {
   themes: all;
 }
-
-/* Tour styling with DaisyUI integration */
-@import "./lib/styles/tour.css";
 
 /* Global styles for web-ui scope */
 .web-ui * {
