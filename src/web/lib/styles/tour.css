@@ -1,41 +1,37 @@
-/* DaisyUI Modal Integration for Shepherd.js */
+/* Driver.js + DaisyUI Integration */
 
-/* Map Shepherd elements to DaisyUI modal structure */
-.shepherd-element {
+/* Driver.js popover styling with DaisyUI */
+.driver-popover {
+  @apply bg-base-100 text-base-content shadow-xl rounded-xl border border-base-300 max-w-sm;
   z-index: 9999;
 }
 
-.shepherd-step {
-  z-index: 9999;
+.driver-popover-title {
+  @apply text-lg font-bold p-4 pb-2;
 }
 
-/* Apply DaisyUI modal-action class to footer */
-.shepherd-footer {
-  @apply modal-action;
+.driver-popover-description {
+  @apply p-4 pt-2 leading-relaxed;
 }
 
-/* Apply DaisyUI typography to title */
-.shepherd-title {
-  @apply text-lg font-bold;
+.driver-popover-footer {
+  @apply p-4 pt-2 flex justify-between items-center gap-2;
 }
 
-/* Apply DaisyUI typography to text */
-.shepherd-text {
-  @apply py-4;
+/* Driver.js buttons with DaisyUI styling */
+.driver-popover-prev-btn {
+  @apply btn btn-ghost btn-sm;
 }
 
-/* Cancel button - Shepherd-specific positioning */
-.shepherd-cancel-icon {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
+.driver-popover-next-btn {
+  @apply btn btn-primary btn-sm;
 }
 
-/* Element Highlighting - Simple and clean */
-.shepherd-target-highlight {
-  border: 2px solid hsl(var(--p));
-  border-radius: 0.5rem;
-  box-shadow: 0 0 0 4px hsl(var(--p) / 0.2);
-  position: relative;
-  z-index: 10001;
+.driver-popover-close-btn {
+  @apply btn btn-ghost btn-sm;
+}
+
+/* Element highlighting */
+.driver-highlighted-element {
+  @apply ring-2 ring-primary ring-offset-2 ring-offset-base-100 rounded-lg;
 }

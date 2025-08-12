@@ -1,5 +1,6 @@
 /* Tailwind CSS 4 + DaisyUI 5 */
 @import "tailwindcss";
+@import "driver.js/dist/driver.css";
 @import "./lib/styles/tour.css";
 @plugin "daisyui" {
   themes: all;
