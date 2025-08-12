@@ -17,6 +17,7 @@
   let driverObj
   let mounted = false
   let driver
+  let escapeHandler
   
   export let autoStart = false
   export let showTourButton = true
@@ -48,33 +49,69 @@
     if (!driver || !mounted) return
     
     // Convert tour config to Driver.js format
-    const steps = tourConfig.steps.map(step => ({
-      element: step.attachTo?.element || 'body',
-      popover: {
-        title: step.title,
-        description: step.text,
-        side: step.attachTo?.on || 'bottom',
-        align: 'start'
+    const steps = tourConfig.steps.map(step => {
+      // Special handling for the welcome step (no attachTo = centered)
+      if (!step.attachTo) {
+        return {
+          popover: {
+            title: step.title,
+            description: step.text,
+            side: 'center',
+            align: 'center'
+          }
+        }
       }
-    }))
+      
+      // Regular steps with element attachment
+      return {
+        element: step.attachTo.element,
+        popover: {
+          title: step.title,
+          description: step.text,
+          side: step.attachTo.on || 'bottom',
+          align: 'start'
+        }
+      }
+    })
 
     driverObj = driver({
       showProgress: true,
       smoothScroll: true,
       allowClose: true,
-      overlayColor: 'rgba(0, 0, 0, 0.05)',
+      allowKeyboardControl: true,
+      disableActiveInteraction: false,
+      overlayColor: 'rgba(0, 0, 0, 0.1)',
+      popoverClass: 'driver-popover bg-base-100 text-base-content shadow-xl rounded-xl border border-base-300',
+      progressText: '{{current}} of {{total}}',
+      nextBtnText: 'Next →',
+      prevBtnText: '← Previous', 
+      doneBtnText: 'Done ✨',
+      closeBtnText: '✕',
       steps: steps,
       onDestroyed: () => {
         markTourCompleted()
         dispatch('tourCompleted')
         console.log('🎯 Tour completed successfully')
+        removeEscapeListener()
       },
       onDestroyStarted: () => {
         cancelTourState()
         dispatch('tourCancelled')
         console.log('🚫 Tour cancelled by user')
+        removeEscapeListener()
+      },
+      onCloseClick: () => {
+        console.log('🚫 Close button clicked')
+        driverObj?.destroy()
+      },
+      onDoneClick: () => {
+        console.log('✅ Done button clicked')
+        driverObj?.destroy()
       }
     })
+    
+    // Add explicit ESC key listener since Driver.js doesn't always handle it properly
+    addEscapeListener()
   }
   
   /**
@@ -99,7 +136,33 @@
     }
   }
   
+  /**
+   * Add escape key listener for tour
+   */
+  const addEscapeListener = () => {
+    escapeHandler = (event) => {
+      if (event.key === 'Escape' && driverObj && mounted) {
+        console.log('🔑 ESC key pressed - closing tour')
+        event.preventDefault()
+        event.stopPropagation()
+        driverObj.destroy()
+      }
+    }
+    document.addEventListener('keydown', escapeHandler, true)
+  }
+  
+  /**
+   * Remove escape key listener
+   */
+  const removeEscapeListener = () => {
+    if (escapeHandler) {
+      document.removeEventListener('keydown', escapeHandler, true)
+      escapeHandler = null
+    }
+  }
+  
   onDestroy(() => {
+    removeEscapeListener()
     if (driverObj) {
       driverObj.destroy()
     }

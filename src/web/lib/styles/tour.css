@@ -1,37 +1,108 @@
 /* Driver.js + DaisyUI Integration */
 
-/* Driver.js popover styling with DaisyUI */
+/* Enhanced popover styling */
 .driver-popover {
-  @apply bg-base-100 text-base-content shadow-xl rounded-xl border border-base-300 max-w-sm;
-  z-index: 9999;
+  font-family: inherit !important;
+  z-index: 10000 !important;
+  min-width: 320px !important;
+  max-width: 480px !important;
+  width: auto !important;
 }
 
-.driver-popover-title {
-  @apply text-lg font-bold p-4 pb-2;
+/* Center the welcome step popover */
+.driver-popover-wrapper:first-child .driver-popover {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  margin: 0 !important;
 }
 
-.driver-popover-description {
-  @apply p-4 pt-2 leading-relaxed;
+/* Fallback centering for popovers without element attachment */
+.driver-popover:not([style*="top"]):not([style*="left"]) {
+  position: fixed !important;
+  top: 50vh !important;
+  left: 50vw !important;
+  transform: translate(-50%, -50%) !important;
 }
 
-.driver-popover-footer {
-  @apply p-4 pt-2 flex justify-between items-center gap-2;
+/* Mobile responsive width */
+@media (max-width: 640px) {
+  .driver-popover {
+    min-width: 280px !important;
+    max-width: calc(100vw - 2rem) !important;
+  }
+  
+  /* Centered modals on mobile */
+  .driver-popover-wrapper:first-child .driver-popover,
+  .driver-popover:not([style*="top"]):not([style*="left"]) {
+    max-width: calc(100vw - 3rem) !important;
+    margin: 1.5rem !important;
+  }
 }
 
-/* Driver.js buttons with DaisyUI styling */
-.driver-popover-prev-btn {
-  @apply btn btn-ghost btn-sm;
+.driver-popover .driver-popover-title {
+  @apply text-lg font-bold text-base-content p-4 pb-2;
+  margin: 0 !important;
 }
 
-.driver-popover-next-btn {
-  @apply btn btn-primary btn-sm;
+.driver-popover .driver-popover-description {
+  @apply text-base-content p-4 pt-2 leading-relaxed;
+  margin: 0 !important;
 }
 
-.driver-popover-close-btn {
-  @apply btn btn-ghost btn-sm;
+.driver-popover .driver-popover-footer {
+  @apply p-4 pt-2 flex justify-between items-center gap-3;
 }
 
-/* Element highlighting */
+/* Progress indicator styling */
+.driver-popover .driver-popover-progress-text {
+  @apply text-sm text-base-content/70 font-medium;
+}
+
+/* Enhanced button styling with DaisyUI */
+.driver-popover .driver-popover-prev-btn {
+  @apply btn btn-ghost btn-sm hover:btn-primary hover:text-primary-content transition-all duration-200;
+  border: none !important;
+  background: transparent !important;
+}
+
+.driver-popover .driver-popover-next-btn {
+  @apply btn btn-primary btn-sm hover:brightness-110 transition-all duration-200;
+  border: none !important;
+}
+
+.driver-popover .driver-popover-close-btn {
+  @apply btn btn-circle btn-ghost btn-xs absolute top-3 right-3 hover:btn-error hover:text-error-content transition-all duration-200;
+  border: none !important;
+  background: transparent !important;
+  cursor: pointer !important;
+  z-index: 10002 !important;
+}
+
+/* Ensure buttons are interactive */
+.driver-popover .driver-popover-prev-btn,
+.driver-popover .driver-popover-next-btn,
+.driver-popover .driver-popover-close-btn {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Better overlay for focus */
+.driver-overlay {
+  background: rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(1px);
+  z-index: 9998 !important;
+}
+
+/* Ensure popover is always above overlay */
+.driver-popover-wrapper {
+  z-index: 10001 !important;
+}
+
+/* Element highlighting with glow effect */
 .driver-highlighted-element {
-  @apply ring-2 ring-primary ring-offset-2 ring-offset-base-100 rounded-lg;
+  @apply rounded-lg;
+  box-shadow: 0 0 0 2px hsl(var(--p)), 0 0 20px hsl(var(--p) / 0.3) !important;
+  z-index: 9999 !important;
 }
