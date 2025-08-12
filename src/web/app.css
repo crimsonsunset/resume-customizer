@@ -4,6 +4,9 @@
   themes: all;
 }
 
+/* Tour styling with DaisyUI integration */
+@import "./lib/styles/tour.css";
+
 /* Global styles for web-ui scope */
 .web-ui * {
   box-sizing: border-box;

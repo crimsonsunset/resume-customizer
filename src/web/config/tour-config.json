@@ -9,7 +9,7 @@
   "defaultStepOptions": {
     "cancelIcon": { "enabled": true },
     "scrollTo": { "behavior": "smooth", "block": "center" },
-    "classes": "custom-tour-step",
+    "classes": "bg-base-100 text-base-content shadow-xl rounded-xl border border-base-300 max-w-md",
     "when": {
       "show": "function() { console.log('Tour step showing'); }"
     }

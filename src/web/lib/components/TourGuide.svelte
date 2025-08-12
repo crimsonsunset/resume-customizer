@@ -27,9 +27,6 @@
       const shepherdModule = await import('shepherd.js')
       Shepherd = shepherdModule.default
       
-      // Import our custom tour CSS dynamically
-      import('../styles/tour.css')
-      
       delay(() => {
         mounted = true
         initializeTour()
