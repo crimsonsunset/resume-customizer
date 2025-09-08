@@ -6,7 +6,7 @@
 
     // Extract colors from DaisyUI theme (simplified approach)
     function extractThemeColors() {
-        if (!browser) return { primary: '#4285f4', secondary: '#666' } // fallback for SSR
+        if (!browser) return { primary: 'hsl(var(--p))', secondary: 'hsl(var(--bc) / 0.6)' } // DaisyUI fallback for SSR
         
         try {
             // DaisyUI provides --color-primary and --color-secondary directly in usable format
@@ -15,8 +15,8 @@
             const secondaryColor = computedStyle.getPropertyValue('--color-secondary').trim()
             
             const colors = {
-                primary: primaryColor || '#4285f4',
-                secondary: secondaryColor || '#666'
+                primary: primaryColor || 'hsl(var(--p))',
+                secondary: secondaryColor || 'hsl(var(--bc) / 0.6)'
             }
             
     
@@ -27,11 +27,11 @@
         
         // Fallback colors
         
-        return { primary: '#4285f4', secondary: '#666' }
+        return { primary: 'hsl(var(--p))', secondary: 'hsl(var(--bc) / 0.6)' }
     }
 
     // Reactive theme colors
-    let themeColors = { primary: '#4285f4', secondary: '#666' }
+    let themeColors = { primary: 'hsl(var(--p))', secondary: 'hsl(var(--bc) / 0.6)' }
     
     // Update theme colors when theme changes
     $: if (browser && $currentTheme) {
@@ -63,12 +63,12 @@
         --font-size-h3: 10pt;
         --font-size-small: 8pt;
 
-        /* Colors - primary will be overridden dynamically */
-        --color-primary: #4285f4;
-        --color-text: #333;
-        --color-text-light: #666;
-        --color-text-medium: #555;
-        --color-bg: #fff;
+        /* Colors - theme-aware with DaisyUI fallbacks */
+        --color-primary: #4285f4; /* Will be overridden dynamically */
+        --color-text: hsl(var(--bc));
+        --color-text-light: hsl(var(--bc) / 0.6);
+        --color-text-medium: hsl(var(--bc) / 0.8);
+        --color-bg: hsl(var(--b1));
 
         /* Layout */
         --page-width: 8.5in;
@@ -97,7 +97,7 @@
         font-size: var(--font-size-base);
         line-height: var(--line-height-normal);
         color: var(--color-text);
-        background: white;
+        background: var(--color-bg);
         /* Web-specific: limit width to page size and center */
         max-width: var(--page-width);
         margin: 0 auto;
@@ -135,7 +135,7 @@
         margin-bottom: var(--spacing-header);
         padding-bottom: var(--spacing-xl);
         border-bottom: 2px solid var(--color-primary);
-        background: white;
+        background: var(--color-bg);
         /* Debug: Show header boundaries */
     }
 
@@ -156,7 +156,7 @@
 
     /* Main content using CSS Grid - Optimized for better balance */
     .resume-viewer :global(.resume-content) {
-        background: white;
+        background: var(--color-bg);
         display: grid;
         grid-template-columns: var(--column-left-width) 1fr;
         column-gap: var(--column-gap);
@@ -385,7 +385,7 @@
         margin: 0;
         margin-bottom: var(--spacing-md);
         padding: 8px;
-        background-color: #f8f9fa;
+        background-color: hsl(var(--b2));
         border-left: 4px solid var(--color-secondary);
         border-radius: 4px;
         font-size: var(--font-size-base);
