@@ -8,12 +8,12 @@
     --font-size-h3: 10pt;
     --font-size-small: 8pt;
     
-    /* Colors */
-    --color-primary: #4285f4;
-    --color-text: #333;
-    --color-text-light: #666;
-    --color-text-medium: #555;
-    --color-bg: #fff;
+    /* Colors - Theme-aware with fallbacks */
+    --color-primary: var(--theme-primary, #4285f4);
+    --color-text: var(--theme-text, #333);
+    --color-text-light: var(--theme-text-light, #666);
+    --color-text-medium: var(--theme-text-medium, #555);
+    --color-bg: var(--theme-bg, #fff);
     
     /* Layout */
     --page-width: 8.5in;
