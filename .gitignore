@@ -39,6 +39,8 @@ Thumbs.db
 public/
 .vuepress/dist/
 .specstory/
+.cursorignore
+.cursor
 
 # Output directories
 #output/
