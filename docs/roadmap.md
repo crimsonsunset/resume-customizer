@@ -23,7 +23,7 @@
 **Last Updated:** July 29, 2025  
 **Current Phase:** Phase 12 - Critical UX & QA Issue Resolution  
 **Status:** 🚨 **URGENT PRIORITIES** - User testing feedback reveals critical UX issues requiring immediate attention  
-**Next Session Goal:** Fix mobile PDF download, add value proposition text, expose desktop controls
+**Next Session Goal:** Add value proposition text, expose desktop controls, improve mobile text readability
 
 ### Progress Overview
 - ✅ **COMPLETED:** WeasyPrint → Playwright migration (MAJOR UPGRADE)
@@ -68,7 +68,7 @@
 - ✅ **COMPLETED:** Priority framework documentation - Generalist ranking system for universal appeal
 - ✅ **COMPLETED:** Phase 10 - Social Media Optimization & SEO Enhancement with professional meta tags, Open Graph/Twitter cards, social sharing image, and JSON-LD schema
 - ✅ **COMPLETED:** Phase 11 - Performance Optimization & Bundle Analysis with 93% bundle size reduction and sub-1 second loading
-- 🚨 **URGENT:** Phase 12 - Critical UX & QA Issue Resolution (mobile PDF download, value proposition text, desktop controls)
+- 🚨 **URGENT:** Phase 12 - Critical UX & QA Issue Resolution (value proposition text, desktop controls, mobile text readability)
 
 ### Core Use Cases Achieved
 1. ✅ **Modern CSS Support** - CSS Grid, Flexbox, all modern features working
@@ -938,32 +938,26 @@ onMount(async () => {
 **Goal:** Address critical user experience issues identified through QA testing and user feedback
 
 #### **Problem Identification** 
-- 🚨 **Mobile PDF Download Failure**: PDF generation broken on mobile devices (network error)
 - 🎯 **Value Proposition Confusion**: Users think this is just Joe's resume, not an interactive tool
 - 🖥️ **Hidden Desktop Controls**: Optimizer controls only visible in mobile menu, not desktop header
+- 📱 **Mobile Text Readability**: Need better text size and layout for mobile touch-friendliness
 - 📱 **Overwhelming Default**: "Comprehensive" preset shows too much content, should default to focused view
 
 #### **Critical UX Issues (IMMEDIATE)**
 
-**Phase 12.1: Mobile PDF Download Fix (CRITICAL)**
-- 🔧 **Issue**: PDF generation fails on mobile devices with network errors
-- 🎯 **Impact**: Core functionality broken for ~50% of users
-- 📋 **Solution**: Debug mobile-specific PDF generation pathway
-- ⚡ **Priority**: IMMEDIATE - Blocking user experience
-
-**Phase 12.2: Value Proposition Clarity (HIGH)**
+**Phase 12.1: Value Proposition Clarity (HIGH)**
 - 🔧 **Issue**: Users don't understand this is an interactive resume customization tool
 - 🎯 **Impact**: Users bounce thinking it's just a static resume
 - 📋 **Solution**: Add prominent explainer text: "Use this tool to explore my experience and see how I can help your team"
 - ⚡ **Priority**: HIGH - User retention and understanding
 
-**Phase 12.3: Desktop Control Visibility (HIGH)**
+**Phase 12.2: Desktop Control Visibility (HIGH)**
 - 🔧 **Issue**: Resume optimizer controls hidden on desktop, only in mobile hamburger menu
 - 🎯 **Impact**: Desktop users can't access core functionality
 - 📋 **Solution**: Expose key controls (preset, density, sections) in desktop header
 - ⚡ **Priority**: HIGH - Feature discoverability
 
-**Phase 12.4: Default Preset Optimization (MEDIUM)**
+**Phase 12.3: Default Preset Optimization (MEDIUM)**
 - 🔧 **Issue**: "Comprehensive" preset overwhelming with 14+ sections
 - 🎯 **Impact**: Information overload, poor first impression
 - 📋 **Solution**: Default to "One-Page" or "Senior Engineering Leadership" preset
@@ -990,16 +984,16 @@ onMount(async () => {
 - Maintain clean desktop aesthetic while improving functionality
 
 #### **Success Metrics**
-- ✅ **Mobile PDF Success Rate**: 95%+ successful downloads across devices
 - ✅ **User Understanding**: Clear tool purpose from landing experience
 - ✅ **Feature Discovery**: Desktop users find and use optimization controls
 - ✅ **First Impression**: Focused, professional default view that demonstrates value
+- ✅ **Mobile Experience**: Improved text readability and touch-friendly interface
 
 #### **Benefits Expected**
-- 📱 **Universal Access**: PDF functionality works across all devices
 - 🎯 **Clear Positioning**: Users understand tool value immediately
 - 🖥️ **Desktop Parity**: Full feature access regardless of device
 - 💪 **Professional First Impression**: Focused, relevant content by default
+- 📱 **Enhanced Mobile UX**: Better readability and touch-friendly interface
 
 ---
 
@@ -1128,12 +1122,12 @@ src/web/
 #### **Implementation Priority**
 
 **Sequence within Phase 12:**
-1. **Phase 12.1**: Fix mobile PDF download (CRITICAL - do first)
-2. **Phase 12.5**: Implement tour system (HIGH - solves multiple issues)  
-3. **Phase 12.2**: Add static explainer text (MEDIUM - complement to tour)
-4. **Phase 12.3**: Expose desktop controls (MEDIUM - tour guides users to them)
+1. **Phase 12.1**: Add value proposition clarity (HIGH - user understanding)
+2. **Phase 12.2**: Expose desktop controls (HIGH - feature discoverability)  
+3. **Phase 12.3**: Default preset optimization (MEDIUM - better first impression)
+4. **Phase 12.5**: Implement tour system (MEDIUM - comprehensive solution)
 
-**Rationale**: Tour implementation has highest impact-to-effort ratio and solves multiple critical issues simultaneously.
+**Rationale**: Value proposition clarity and desktop control visibility are the highest priority UX issues affecting user engagement and feature discovery.
 
 #### **Success Metrics**
 
