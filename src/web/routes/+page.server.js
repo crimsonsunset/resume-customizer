@@ -41,6 +41,21 @@ function loadAvailablePresets() {
     // Load each preset file
     for (const file of files) {
       const presetName = file.replace('.json', '')
+      
+      // Temporarily comment out presets that aren't ready
+      // TODO: Remove these filters when presets are fully curated
+      const hiddenPresets = [
+        'startup-pioneer',
+        'ai-innovation-leader', 
+        'consultant-advisory',
+        'tech-teacher-coach'
+      ]
+      
+      if (hiddenPresets.includes(presetName)) {
+        console.log(`🚧 Temporarily hiding preset: ${presetName}`)
+        continue // Skip this preset
+      }
+      
       const preset = loadPreset(presetName)
       if (preset && preset.meta) {
         presets.push({
