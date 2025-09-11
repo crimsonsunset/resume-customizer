@@ -291,7 +291,8 @@
                     css: combinedCSS,           // Also send extracted CSS as fallback
                     cssMethod: 'preset',        // Tell backend to prefer preset method
                     filename: filename,
-                    themeColors: currentThemeColors  // Pass current theme colors for PDF styling
+                    themeColors: currentThemeColors,  // Pass current theme colors for PDF styling
+                    debug: data.debug           // Pass debug flag from URL parameter
                 })
             })
 
@@ -426,12 +427,17 @@
         <div class="flex items-center space-x-4">
             <div>
                 <h1 class="text-2xl font-bold text-primary">Resume Optimizer</h1>
-                {#if currentPreset && selectedVersion !== 'full'}
-                    <p class="text-sm text-base-content/60 flex items-center space-x-1 mt-1">
-                        <span class="badge badge-primary badge-xs opacity-80">Preset</span>
-                        <span>{currentPreset.name}</span>
-                    </p>
-                {/if}
+                <div class="flex items-center gap-2 mt-1">
+                    {#if data.debug}
+                        <span class="badge badge-warning badge-xs">🐛 Debug Mode</span>
+                    {/if}
+                    {#if currentPreset && selectedVersion !== 'full'}
+                        <p class="text-sm text-base-content/60 flex items-center space-x-1">
+                            <span class="badge badge-primary badge-xs opacity-80">Preset</span>
+                            <span>{currentPreset.name}</span>
+                        </p>
+                    {/if}
+                </div>
             </div>
             {#if hasActiveFilters}
                 <button
@@ -503,14 +509,17 @@
                             </button>
                         {/if}
                     </div>
-                    {#if currentPreset && selectedVersion !== 'full'}
-                        <div class="text-center">
+                    <div class="flex flex-col items-center gap-1">
+                        {#if data.debug}
+                            <span class="badge badge-warning badge-xs">🐛 Debug Mode</span>
+                        {/if}
+                        {#if currentPreset && selectedVersion !== 'full'}
                             <p class="text-xs text-base-content/60 flex items-center justify-center space-x-1">
                                 <span class="badge badge-primary badge-xs opacity-80">Preset</span>
                                 <span>{currentPreset.name}</span>
                             </p>
-                        </div>
-                    {/if}
+                        {/if}
+                    </div>
                 </div>
 
                 <!-- Mobile Menu (Ellipsis with Download PDF + Theme) -->

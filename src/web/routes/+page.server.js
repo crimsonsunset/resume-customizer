@@ -98,6 +98,12 @@ export async function load({ url }) {
     const timeframeParam = Number.parseInt(url.searchParams.get('timeframe') || '0', 10) // 0 = all years
     console.log('📏 Density parameter:', densityParam, 'Timeframe:', timeframeParam === 0 ? 'all years' : `${timeframeParam} years`)
     
+    // Get debug parameter
+    const debugParam = url.searchParams.get('debug') === 'true'
+    if (debugParam) {
+      console.log('🐛 Debug mode activated - PDFs will use debug CSS templates')
+    }
+    
     // Apply preset if specified
     const finalData = presetParam ? applyPreset(rawData, presetParam) : rawData
 
@@ -456,6 +462,7 @@ export async function load({ url }) {
       resumeContent,
       preset: presetParam || 'full',
       bulletDensity: densityParam,
+      debug: debugParam, // Pass debug flag to frontend
       availablePresets,
       availableSections: sectionOrder, // Add the sections that are actually rendered
       totalAvailableSections: allPossibleSections, // All possible sections regardless of preset

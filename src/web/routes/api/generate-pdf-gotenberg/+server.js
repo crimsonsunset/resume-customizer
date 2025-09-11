@@ -6,26 +6,29 @@ import { GOTENBERG_URL } from '$env/static/private'
 /**
  * Load CSS template based on preset name with fallback
  * @param {string} preset - The preset name (e.g., 'one-page', 'technical')
+ * @param {boolean} debug - Whether to load debug version with visual boundaries
  * @returns {Promise<string>} CSS content
  */
-async function loadCssTemplate(preset) {
+async function loadCssTemplate(preset, debug = false) {
   try {
-    // Try preset-specific CSS first: preset-name.css
+    const debugSuffix = debug ? '-debug' : ''
+    
+    // Try preset-specific CSS first: preset-name.css or preset-name-debug.css
     if (preset && preset !== 'full') {
       try {
-        const presetCssPath = path.join(process.cwd(), 'input', 'templates', `${preset}.css`)
+        const presetCssPath = path.join(process.cwd(), 'input', 'templates', `${preset}${debugSuffix}.css`)
         const css = await readFile(presetCssPath, 'utf8')
-        console.log(`✅ Loaded preset CSS: ${preset}.css`)
+        console.log(`✅ Loaded preset CSS: ${preset}${debugSuffix}.css`)
         return css
       } catch {
-        console.log(`⚠️ No preset CSS found for ${preset}, using default`)
+        console.log(`⚠️ No preset CSS found for ${preset}${debugSuffix}, using default`)
       }
     }
     
-    // Fallback to default resume-styles.css
-    const defaultCssPath = path.join(process.cwd(), 'input', 'templates', 'resume-styles.css')
+    // Fallback to default resume-styles.css or resume-styles-debug.css
+    const defaultCssPath = path.join(process.cwd(), 'input', 'templates', `resume-styles${debugSuffix}.css`)
     const css = await readFile(defaultCssPath, 'utf8')
-    console.log('✅ Loaded default CSS: resume-styles.css')
+    console.log(`✅ Loaded default CSS: resume-styles${debugSuffix}.css`)
     return css
   } catch (error_) {
     console.error('❌ Failed to load CSS template:', error_.message)
@@ -43,7 +46,7 @@ export async function POST({ request }) {
       throw new Error('GOTENBERG_URL environment variable is not set')
     }
     
-    const { html, preset = 'full', css, cssMethod = 'css', filename = 'resume-gotenberg.pdf', themeColors } = await request.json()
+    const { html, preset = 'full', css, cssMethod = 'css', filename = 'resume-gotenberg.pdf', themeColors, debug = false } = await request.json()
     
     if (!html) {
       // If no HTML provided, run simple test
@@ -79,15 +82,15 @@ export async function POST({ request }) {
       })
     }
     
-    console.log(`🧪 Generating PDF with Gotenberg - method: ${cssMethod}, preset: ${preset}`)
+    console.log(`🧪 Generating PDF with Gotenberg - method: ${cssMethod}, preset: ${preset}${debug ? ' (DEBUG MODE)' : ''}`)
     if (themeColors) {
       console.log(`🎨 Applying theme colors: Primary=${themeColors.primary}, Secondary=${themeColors.secondary}`)
     }
     
     // Determine CSS based on method (same logic as Playwright version)
     let finalCss = cssMethod === 'preset' 
-      ? await loadCssTemplate(preset)  // Use preset-based CSS loading
-      : css || await loadCssTemplate(preset)  // Use direct CSS for compatibility
+      ? await loadCssTemplate(preset, debug)  // Use preset-based CSS loading
+      : css || await loadCssTemplate(preset, debug)  // Use direct CSS for compatibility
     
     // Apply theme colors to CSS if provided
     if (themeColors && finalCss) {
