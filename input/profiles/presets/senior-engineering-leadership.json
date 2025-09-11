@@ -24,39 +24,67 @@
       "Programming Languages": [
         "JavaScript/TypeScript",
         "Python",
+        "Java",
         "SQL",
         "HTML",
-        "CSS/Sass"
+        "CSS/Sass",
+        "PHP",
+        "XML",
+        "JSON",
+        "YAML"
       ],
       "Frameworks & Libraries": [
         "React",
-        "Node.js",
-        "Angular",
+        "Node.js", 
         "Express",
-        "NestJS",
-        "GraphQL"
-      ],
-      "Tools & Platforms": [
-        "Jira",
-        "GitHub",
-        "CI/CD",
-        "AWS",
-        "Docker",
         "MongoDB",
         "PostgreSQL",
-        "SonarQube",
-        "Veracode",
+        "Next.js",
+        "Redux",
+        "React Router",
+        "GraphQL",
+        "Material-UI/MUI",
+        "Angular",
+        "Tailwind CSS",
+        "JWT",
+        "OAuth",
+        "Redis"
+      ],
+      "Tools & Platforms": [
+        "Git",
+        "GitHub", 
+        "AWS",
+        "Docker",
+        "CI/CD",
+        "npm",
+        "Command Line",
+        "Jest",
+        "Jira",
+        "GitHub Actions",
+        "ESLint",
+        "Prettier", 
+        "VS Code",
+        "Cursor",
         "New Relic",
-        "Allstacks"
+        "Lighthouse",
+        "Google Analytics",
+        "Figma",
+        "Nginx",
+        "CloudFlare"
       ],
       "Concepts & Methodologies": [
-        "Software Architecture",
-        "System Integration",
-        "Quality Assurance",
+        "System Design",
+        "Software Architecture", 
+        "Agile Methodologies",
+        "Scrum",
         "Performance Optimization",
         "Security Compliance",
+        "Quality Assurance",
+        "API Development",
         "Data Migration",
-        "Technical Debt Management"
+        "Technical Debt Management",
+        "Progressive Web Applications (PWAs)",
+        "Internationalization"
       ]
     },
     "experience": {
@@ -77,13 +105,13 @@
       "bullet_priority_threshold": 7,
       "bullet_priorities_overrides": {
         "0": [8, 4, 10, 8],
-        "3": [8, 8, 10, 4],
+        "3": [8, 8, 4, 4],
         "4": [10, 8, 10, 10],
         "6": [10, 4, 4, 10, 4, 4, 8, 8],
         "7": [10, 8, 4, 4, 10],
         "8": [10, 4, 4, 10, 8, 4, 4],
         "9": [10, 10, 4, 10, 4, 4],
-        "11": [10, 8, 10, 4, 4, 4, 4, 10, 4]
+        "11": [10, 8, 4, 4, 4, 4, 4, 10, 4]
       }
     },
     "sections_order": ["headline", "education", "skills", "experience", "projects"]
