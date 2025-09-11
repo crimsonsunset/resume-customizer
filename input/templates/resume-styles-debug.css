@@ -101,6 +101,15 @@ body {
     color: var(--color-text-light);
 }
 
+.header a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
 /* Main content using CSS Grid - Optimized for better balance */
 .resume-content {
     border: 3px solid red;

@@ -14,7 +14,9 @@
         "Technical Vision & Roadmapping",
         "Cross-team Collaboration",
         "Code Review",
-        "Technical Documentation"
+        "Technical Documentation",
+        "Software Development Life Cycle (SDLC)",
+        "Requirements Analysis"
       ],
       "Programming Languages": [
         "JavaScript/TypeScript",
@@ -32,37 +34,70 @@
         "React",
         "Redux",
         "React Router",
+        "React Hook Form",
+        "React Native",
+        "Zustand",
+        "Framer Motion",
         "Angular",
         "RxJS",
         "Vue.js",
+        "Next.js",
+        "SvelteKit",
         "Node.js",
         "Express",
-        "NestJS",
+        "Nest.js",
         "GraphQL",
         "Mongoose",
         "Socket.io",
-        "Next.js",
-        "SvelteKit"
+        "MUI",
+        "Tailwind",
+        "Bootstrap",
+        "Styled Components",
+        "Enterprise AI APIs",
+        "Prompt Engineering",
+        "LLMs",
+        "Blockchain",
+        "WebRTC",
+        "Storybook",
+        "Service Workers",
+        "Auth0"
       ],
       "Tools & Platforms": [
+        "Jira",
+        "Notion",
         "Git",
         "GitHub",
         "GitHub Actions",
+        "CI/CD",
+        "Cursor",
+        "npm",
+        "Command Line Tools",
+        "Webpack",
+        "Vite",
+        "ESLint",
+        "Prettier",
+        "Jest",
+        "Cypress",
+        "Playwright",
+        "Vitest",
+        "AWS",
         "Docker",
         "Kubernetes",
-        "AWS",
         "Netlify",
         "MongoDB",
         "PostgreSQL",
         "Redis",
-        "Webpack",
-        "Vite",
-        "Jest",
-        "Cypress",
-        "Playwright",
-        "ESLint",
-        "Prettier",
-        "SonarQube"
+        "Google Analytics",
+        "New Relic",
+        "Rollbar",
+        "Lighthouse",
+        "Sumologic",
+        "Allstacks",
+        "Figma",
+        "Headless CMS",
+        "Nginx",
+        "CloudFlare",
+        "Mapping APIs"
       ],
       "Concepts & Methodologies": [
         "Software Architectural Design",
@@ -76,7 +111,10 @@
         "CI/CD",
         "Code Quality",
         "Technical Debt Management",
-        "Scalability Solutions"
+        "API Development",
+        "Data Visualization",
+        "Progressive Web Applications (PWAs)",
+        "Internationalization"
       ]
     },
     "experience": {
@@ -96,18 +134,24 @@
       }
     },
     "projects": {
-      "selected_indices": [0, 1, 2, 3, 7, 12],
+      "selected_indices": [0, 2, 3, 6, 7, 8, 9, 11, 13, 14],
       "bullet_priority_threshold": 6,
       "bullet_priorities_overrides": {
-        "0": [10, 8, 9, 8],
-        "1": [7, 8, 7, 7, 8, 7],
-        "2": [7, 6, 8, 7],
-        "3": [10, 9, 9, 9]
+        "0": [10, 8, 0, 0],
+        "2": [0, 0, 8, 8],
+        "3": [10, 10, 10, 0],
+        "6": [10, 0, 0, 10, 0, 0, 0, 0],
+        "7": [0, 10, 0, 8, 0],
+        "8": [0, 0, 10, 0, 0, 0, 10],
+        "9": [10, 0, 10, 0, 0, 0],
+        "11": [0, 10, 10, 0, 0, 0, 8, 0, 0],
+        "13": [10, 10, 0, 0, 0, 0],
+        "14": [10, 10, 10, 0, 0, 0]
       }
     },
     "recommendations": {
       "selected_indices": []
     },
-    "sections_order": ["headline", "education", "skills", "experience", "projects"]
+    "sections_order": ["skills", "experience", "projects"]
   }
 } 
