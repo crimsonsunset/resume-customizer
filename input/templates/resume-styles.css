@@ -99,9 +99,20 @@ body {
     color: var(--color-text-light);
 }
 
+.header .links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
 .header a {
-    color: var(--color-primary);
+    color: var(--color-text-light);
     text-decoration: none;
+}
+
+.header .separator {
+    color: var(--color-primary);
 }
 
 .header a:hover {

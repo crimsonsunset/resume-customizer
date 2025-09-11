@@ -154,6 +154,26 @@
         color: var(--color-text-light);
     }
 
+    .resume-viewer :global(.header p.links) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .resume-viewer :global(.header a) {
+        color: var(--color-secondary);
+        text-decoration: none;
+    }
+
+    .resume-viewer :global(.header a:hover) {
+        text-decoration: underline;
+    }
+
+    .resume-viewer :global(.header .separator) {
+        color: var(--color-primary);
+    }
+
     /* Main content using CSS Grid - Optimized for better balance */
     .resume-viewer :global(.resume-content) {
         background: white;
