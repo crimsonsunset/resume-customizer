@@ -29,6 +29,12 @@ Thumbs.db
 *.swp
 *.swo
 *~
+reposense-config
+reposense-report
+reposense-temp
+.playwright-mcp
+reposense.jar
+repo_config.csv
 
 # Cache directories
 .cache/
