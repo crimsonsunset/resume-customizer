@@ -1,0 +1,30 @@
+[
+  {
+    "company": "Marvel Entertainment",
+    "title": "Senior Front End Engineer",
+    "timeFrame": "Jan 2018 - Present",
+    "logo": "marvel",
+    "description": "• Lead developer for Marvel.com sitewide overhaul, responsible for creating a future facing ES6/7 React codebase • Head of Front End Development for custom Content Management System built on React/Redux • Utilized ESHint, StyleLint, Husky, and JSDoc to enforce company-wide front end coding standards for all contributors • Implemented test-driven development by creating a full test suite for Marvel.com components using jest and enzyme • Managed interns through fundamentals of web development by familiarizing them with Marvel.com codebase and introducing them to other projects within the company • Mentored interns through code review sessions in order to ensure that they produced quality work"
+  },
+  {
+    "company": "Marvel Entertainment",
+    "title": "Web Interface Developer",
+    "timeFrame": "Jun 2015 - Jan 2018",
+    "logo": "marvel",
+    "description": "• Lead development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.   • Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular • Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone • Created thorough documentation within each codebase and on Confluence for general stakeholders to view • Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries"
+  },
+  {
+    "company": "Rutgers University",
+    "title": "Full Stack Web Development Instructor",
+    "timeFrame": "Feb 2017 - Present",
+    "logo": "rutgers",
+    "description": "• Taught a six-month long intensive full stack bootcamp to students with no prior coding experience • Lesson plans covered a multitude of JavaScript topics which spanned the entire stack • Topics included: HTML5, CSS, Javascript, jQuery, Git, Node, Express, MySQL, MongoDB, React, Computer Science, Deployment, and more • Provided ongoing assistance to students as they progressed through the course, both remotely and inside the classroom • Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned • Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6 • Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository"
+  },
+  {
+    "company": "ScrollMotion",
+    "title": "Front End Developer",
+    "timeFrame": "June 2012 - Jun 2015",
+    "logo": "scrollmotion",
+    "description": "• Built highly interactive iPad applications from scratch for a variety of enterprise customers • Utilized high-level JavaScript to marry complex backend structures with pixel-perfect front end design • Spearheaded development that brought fully functional charting solution to the platform, allowing the company to reach new customers and adding value and depth to the product • Worked with assorted APIs to incorporate external data and advanced functionality into apps • Developed a suite of python scripts to help workflow and reduce latency in the build process"
+  }
+]

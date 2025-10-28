@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Childhood",
+    "location": "Staten Island, NY",
+    "date": "November 1989 - September 2004",
+    "icon": "child_friendly",
+    "descriptionArr": [
+      "Born: November 19, 1989",
+      "Went to Elementary School",
+      "Wanted to be Batman",
+      "Had unhealthy obsession with legos",
+      "Played many baseball, hockey, tennis, etc.",
+      "Learned to play the trombone",
+      "Had tonsils removed",
+      "Ate lots of candy"
+    ]
+  },
+  {
+    "name": "Teen Years",
+    "location": "Staten Island, NY",
+    "date": "September 2004 - August 2007",
+    "icon": "face",
+    "descriptionArr": [
+      "Attended Staten Island Technical High School",
+      "Made lifelong friends",
+      "Played football, tennis, and acted in school play",
+      "Had first jobs / Wrote for the local newspaper",
+      "Fell in love with engineering",
+      "Still wanted to be Batman"
+    ]
+  },
+  {
+    "name": "College Years",
+    "location": "Binghamton, NY",
+    "date": "August 2007 - May 2011",
+    "icon": "school",
+    "descriptionArr": [
+      "Attended the State University of New York at Binghamton",
+      "Had tumultuous but ultimately rewarding relationship with engineering",
+      "Made more lifelong friends",
+      "Played racquetball, logged many hours on the ski slopes",
+      "Became involved with Greek Life on Campus",
+      "Elected President of Theta Tau Professional Engineering Fraternity",
+      "Gave up dream of being Batman"
+    ]
+  },
+  {
+    "name": "Professional Career",
+    "location": "New York, NY",
+    "date": "May 2011 - Present",
+    "icon": "local_taxi",
+    "descriptionArr": [
+      "Became full stack developer",
+      "Lived in Murray Hill, then Upper East Side",
+      "Switch from racquetball to paddleball [$$$!]",
+      "Became obsessed with food truck culture, created corresponding blog",
+      "Started new Lord of the Rings-style quest for smarthome perfection. Barely made it out of the Shire.",
+      "Proclaimed undying love for javascript",
+      "New on-brand dream: Become Iron Man"
+    ]
+  }
+]
