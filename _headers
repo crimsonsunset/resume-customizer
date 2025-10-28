@@ -4,3 +4,9 @@
   cache-control: public
   cache-control: immutable
   cache-control: max-age=31536000
+
+# CORS headers for API endpoints
+/api/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Accept, Authorization
