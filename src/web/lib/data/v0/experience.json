@@ -1,30 +1,128 @@
 [
   {
+    "company": "FORA · Freelance",
+    "title": "Principal Engineer (Founding Team)",
+    "timeFrame": "Jan 2024 - Present · 1 yr 9 mos",
+    "logo": "fora",
+    "description": "• Pioneered enterprise-grade AI-assisted development practices, establishing quality standards and systematic workflows that transform AI chaos into production-ready code meeting rigorous review standards• Architected foundational technology stack by selecting and integrating key services (Statsig, Netlify, Rollbar, etc), enabling seamless deployment and scalable infrastructure• Influenced product strategy and technical direction by creating comprehensive product requirements, contributing to roadmap planning, and bridging product-engineering collaboration gaps• Orchestrated cross-platform development strategy across web frontend, serverless backend, administrative systems, and iOS app coordination, ensuring technical cohesion and scalability• Developed enterprise-grade tour platform with guided onboarding, dynamic configuration, and integrated analytics for user engagement tracking• Implemented marketing site with Prismic CMS integration, enabling dynamic content creation/management, sophisticated blog functionality, and proper social sharing• Developed progressive web app infrastructure and coordinated iOS development, delivering cross-platform mobile solutions with OneSignal notification architecture• Architected and developed developer experience platforms, including testing frameworks, custom administrative tooling, and automated release management"
+  },
+  {
+    "company": "iCIMS",
+    "title": "Director of Engineering",
+    "timeFrame": "Jan 2023 - Aug 2024 · 1 yr 8 mos",
+    "logo": "icims",
+    "description": "• Expanded scope of management to oversee multiple projects, managers, and geographically distributed teams throughout the company• Directed implementation of Apostrophe CMS for career site customization within Attract product, enabling clients to build branded recruitment experiences through visual editing and structured content management, working closely with vendor's product team to leverage emerging platform features• Led successful rollout of Mabl end-to-end testing framework, creating standardized processes which enabled team adoption of automated testing across development workflow• Created comprehensive playbook for unprecedented complex data migration for key customer, coordinating across multiple stakeholders organization-wide to synthesize expertise and establish a repeatable framework for similar initiatives• Accelerated progress on critical long-term project to modernize aging Node.js infrastructure across all Jibe products, executing methodical migration to NestJS while maintaining operational continuity of both systems"
+  },
+  {
+    "company": "iCIMS",
+    "title": "Senior Manager of Engineering",
+    "timeFrame": "Feb 2021 - Mar 2023 · 2 yrs 2 mos",
+    "logo": "icims",
+    "description": "• Broadened responsibilities to include managing all teams supporting backend services in iCIMS Attract line of business• Responsible for absorbing and integrating a newly-acquired budding marketing automation application into the CRM; marrying two projects of vastly different maturity levels into one cohesive, enterprise-ready product • Brought all projects into A-level grades within the SonarQube, Dependency Track, and Veracode quality analysis tools• Partnered with the service side of iCIMS to create an easy-to-use bug reporting system that encouraged implementation partners to call-out and queue-up defects in real-time for rapid fixes • Created Team-level dashboards that combined information from various platforms (bitbucket, allstacks, jira, etc) and provided a ground-level picture of sprint over sprint performance both at the individual and combined point of view• Oversaw, managed, and led to completion complex cross-department initiatives such as: universal login solution via Auth0, integration into customized analytics service, robust logging via Sumo Logic, and metrics reporting via NewRelic"
+  },
+  {
+    "company": "iCIMS",
+    "title": "Manager of Engineering",
+    "timeFrame": "Jun 2019 - Feb 2021 · 1 yr 9 mos",
+    "logo": "icims",
+    "description": "• The CRM application is one of the main reasons Jibe is acquired by iCIMS - The product immediately replaces iCIMS’• Breadth of management doubled overnight, inherited a group of developers of varied experience and skill sets• Lead newly formed, larger team through delivery of a multi-month build out of a brand new event management module• Extracted customized angular material component library into satellite application (Storybook) that could be maintained alongside core codebase• Became WCAG 2.2AA compliant by focusing team energy and dev hours on augmenting existing accessibility features• Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording • Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team"
+  },
+  {
+    "company": "Jibe, an iCIMS Company",
+    "title": "Manager of Frontend Engineering (acquired by iCIMS)",
+    "timeFrame": "Apr 2019 - Jun 2019 · 3 mos",
+    "logo": "icims",
+    "description": "• CRM product grew swiftly and began to appeal to a much larger market share as a direct result of prior work• Was given a team of [distributed] junior level developers to mentor, upskill, and nurture into a high-functioning unit• Grew this diverse team of developers into valuable, mature individual contributors who provided ongoing value to CRM• Took on sole responsibility for all pull request reviews for several months, as junior level employees came up to speed• Personally built out most complex integrations with external systems, such as SSO, scheduling, and resume importing• Introduced unit testing to all parts of the codebase, utilizing different strategies and test harnesses for each stack layer• CRM product was a major catalyst that triggered the Jibe/iCIMS acquisition; it enticed a much larger company to buy this more fully-featured, user-friendly, modern application rather than reworking their older piece of software"
+  },
+  {
+    "company": "Jibe, an iCIMS Company",
+    "title": "Lead Frontend Software Engineer",
+    "timeFrame": "Jun 2018 - Apr 2019 · 11 mos",
+    "logo": "icims",
+    "description": "• Initially brought on to single-handedly rewrite an underdeveloped CRM product from the outdated angularJS framework to a modern typescript/component-based Angular version• Was responsible for maintaining a “hybrid” angular app (ie: running both versions simultaneously) while the upgrade process elapsed• Successfully migrated the entire CRM application to modern angular/express/typescript stack, one view at a time• Worked closely with external freelance contractors to create an end-to-end testing suite that provided a safety net for the upgrade process; allowed for testing feature parity as each view completed migration• Worked with DevOps engineers to reconfigure the CI/CD pipeline; allowed for faster/modern build processes, CDN deploys, and coordination/gating with the end-to-end test suite"
+  },
+  {
     "company": "Marvel Entertainment",
     "title": "Senior Front End Engineer",
-    "timeFrame": "Jan 2018 - Present",
+    "timeFrame": "Jan 2018 - Jun 2018 · 6 mos",
     "logo": "marvel",
-    "description": "• Lead developer for Marvel.com sitewide overhaul, responsible for creating a future facing ES6/7 React codebase • Head of Front End Development for custom Content Management System built on React/Redux • Utilized ESHint, StyleLint, Husky, and JSDoc to enforce company-wide front end coding standards for all contributors • Implemented test-driven development by creating a full test suite for Marvel.com components using jest and enzyme • Managed interns through fundamentals of web development by familiarizing them with Marvel.com codebase and introducing them to other projects within the company • Mentored interns through code review sessions in order to ensure that they produced quality work"
+    "description": "• Lead developer for Marvel.com sitewide overhaul, responsible for creating a future facing ES6/7 React codebase • Head of Front End Development for custom Content Management System built on React/Redux • Utilized ESHint, StyleLint, Husky, and JSDoc to enforce company-wide front end coding standards for all contributors• Implemented test-driven development by creating a full test suite for Marvel.com components using jest and enzyme• Managed interns through fundamentals of web development by familiarizing them with Marvel.com codebase and introducing them to other projects within the company• Mentored interns through code review sessions in order to ensure that they produced quality work"
   },
   {
     "company": "Marvel Entertainment",
     "title": "Web Interface Developer",
-    "timeFrame": "Jun 2015 - Jan 2018",
+    "timeFrame": "Jun 2015 - Dec 2017 · 2 yrs 7 mos",
     "logo": "marvel",
-    "description": "• Lead development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.   • Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular • Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone • Created thorough documentation within each codebase and on Confluence for general stakeholders to view • Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries"
+    "description": "• Lead development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.• Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular • Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone• Created thorough documentation within each codebase and on Confluence for general stakeholders to view• Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries"
   },
   {
     "company": "Rutgers University",
     "title": "Full Stack Web Development Instructor",
-    "timeFrame": "Feb 2017 - Present",
+    "timeFrame": "Feb 2017 - Aug 2017 · 7 mos",
     "logo": "rutgers",
-    "description": "• Taught a six-month long intensive full stack bootcamp to students with no prior coding experience • Lesson plans covered a multitude of JavaScript topics which spanned the entire stack • Topics included: HTML5, CSS, Javascript, jQuery, Git, Node, Express, MySQL, MongoDB, React, Computer Science, Deployment, and more • Provided ongoing assistance to students as they progressed through the course, both remotely and inside the classroom • Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned • Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6 • Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository"
+    "description": "• Taught a six-month long intensive full stack bootcamp to students with no prior coding experience • Lesson plans covered a multitude of JavaScript topics which spanned the entire stack Topics included: HTML5, CSS, Javascript, jQuery, Git, Node, Express, MySQL, MongoDB, React, Computer Science, Deployment, and more • Provided ongoing assistance to students as they progressed through the course, both remotely and inside the classroom • Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned • Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6• Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository• Provide ongoing support as a substitute teacher as the need arises from other cohorts"
   },
   {
     "company": "ScrollMotion",
     "title": "Front End Developer",
-    "timeFrame": "June 2012 - Jun 2015",
+    "timeFrame": "Jun 2012 - Jun 2015 · 3 yrs 1 mo",
     "logo": "scrollmotion",
-    "description": "• Built highly interactive iPad applications from scratch for a variety of enterprise customers • Utilized high-level JavaScript to marry complex backend structures with pixel-perfect front end design • Spearheaded development that brought fully functional charting solution to the platform, allowing the company to reach new customers and adding value and depth to the product • Worked with assorted APIs to incorporate external data and advanced functionality into apps • Developed a suite of python scripts to help workflow and reduce latency in the build process"
+    "description": "• Built highly interactive iPad applications from scratch for a variety of enterprise customers• Utilized high-level JavaScript to marry complex backend structures with pixel-perfect front end design• Spearheaded development that brought fully functional charting solution to the platform, allowing the company to reach new customers and adding value and depth to the product• Worked with assorted APIs to incorporate external data and advanced functionality into apps• Developed a suite of python scripts to help workflow and reduce latency in the build process"
+  },
+  {
+    "company": "Vendome Group",
+    "title": "Junior Web Developer",
+    "timeFrame": "Sep 2011 - Jun 2012 · 10 mos",
+    "logo": "vendome",
+    "description": "• Created a variety of different pages featured on flagship websites using HTML, CSS, and Javascript• Used Photoshop to design custom content for prominent display on front page of corporate website• Utilized putty command-line interface to update Apache back-end server on a regular basis"
+  },
+  {
+    "company": "Sesame Workshop",
+    "title": "Consultant/Microsoft Exchange Administrator",
+    "timeFrame": "Jun 2011 - Sep 2011 · 4 mos",
+    "logo": "sesame",
+    "description": "• Assisted with company-wide migration from Novell Groupwise to Microsoft Outlook 2010• Guided users through the intricacies of Outlook, answering questions on a case-by-case basis• Personally configured multiple computers for the new email client on both Mac and Windows PCs"
+  },
+  {
+    "company": "State University of New York at Binghamton",
+    "title": "Microsoft Office Specialist",
+    "timeFrame": "Aug 2010 - Dec 2010 · 5 mos",
+    "logo": "js",
+    "description": "• Taught a semester-long class that stressed the essentials of computing• Obtained Microsoft Office Specialist certifications throughout the course of the semester• Communicated with a diverse background of people, ranging from 16 to 65 years old"
+  },
+  {
+    "company": "Port Authority of New York and New Jersey",
+    "title": "Technology Services Department - Database Intern",
+    "timeFrame": "Jun 2010 - Aug 2010 · 3 mos",
+    "logo": "js",
+    "description": "• Learned database programming with no prior experience• Worked in a team to create a web-based application embedded in the Port Authority website• Made use of many modern day industry standards such as XML and JQuery• Witnessed an entire software lifecycle, from requirements analysis to maintenance"
+  },
+  {
+    "company": "Port Authority of New York and New Jersey",
+    "title": "Technology Services Department - Management Intern",
+    "timeFrame": "Jun 2009 - Aug 2009 · 3 mos",
+    "logo": "js",
+    "description": "• Developed a fully functional web-based crime mapping solution for use within the Port Authority Police Dept• Built GIS data layers from the ground up, overlaying blueprints on satellite imagery• Learned two professional-use software suites within a small amount of time• Performed field analysis of specific sites in order to verify blueprint data• Contributed to a major ongoing Port Authority project"
+  },
+  {
+    "company": "Best Buy",
+    "title": "Computer Customer Specialist",
+    "timeFrame": "Oct 2006 - Jul 2008 · 1 yr 10 mos",
+    "logo": "js",
+    "description": "• Developed customer service and communication skills by assisting customers in purchasing new computers• Came in contact with many different types of people, often handling several at once• Generated store revenue by selling services based on customers needs"
+  },
+  {
+    "company": "Staten Island Advance",
+    "title": "Teen Correspondent – Fl!p Section",
+    "timeFrame": "Sep 2004 - Oct 2007 · 3 yrs 2 mos",
+    "logo": "js",
+    "description": "• Learned to hone in on inner thoughts and express them through written word• Published over thirty articles over times in the Sunday Advance• All articles of differing subject matter, with varying styles• Most published teen correspondent for the year of 2005"
+  },
+  {
+    "company": "New York Board of Trade",
+    "title": "Commodities Floor Clerk",
+    "timeFrame": "Jun 2005 - Sep 2006 · 1 yr 4 mos",
+    "logo": "js",
+    "description": "• Established a sense of responsibility, handling the company’s daily finances.• Took down and completed over 100 orders a day, filling at the client’s desired prices• Checked Victory’s daily trades, making sure every trade went through correctly• Repeatedly saved firm revenue by accurately checking statements"
   }
 ]

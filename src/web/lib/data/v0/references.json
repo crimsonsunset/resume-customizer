@@ -1,50 +1,146 @@
 [
   {
-    "name": "Hima Unnithan",
-    "title": "Full Stack Developer",
-    "date": "August 16, 2017",
-    "relationship": " Hima reported directly to Joseph",
-    "img": "../src/assets/pics/hima.jpg",
-    "body": "I had the opportunity to attend the Full Stack Development course at Rutgers under Joe’s tutelage. As an instructor, Joe was simply stellar, his knowledge level of all of the front and back end technologies covered were top class. <br/><br/> A Bootcamp, as I understand now, is extremely labor intensive and can be very frustrating. From Day-1 Joe made sure that we as students understood the basics of each technology and prompted us to ask questions to improve our understanding of the topic covered. I, being a back end coder for four years had trouble initially with a few front end topics, Joe made sure he was available at all times to answer any questions and mentor and guide me to become a full stack developer.<br/><br/>Being a TA now for the same course, I understand the difficulties of teaching an intensive boot camp course. For such a course, the effort has to come from the top, the level of effort Joe put in as an instructor inspired a lot of us to grind through. All throughout the course, he would listen patiently to our questions and not just answer us, but try to guide us step by step to reach the answer. He empathized with students when complex topics were taught and provided us with all the required resources which allowed us to be successful. Joe has a great sense of humor, which helped a lot during frustrating times, and I greatly admire Joe’s ability to command a room and get people on board with understanding complex topics.<br/><br/> To me Joe is a great mentor, guide and teacher, I considered myself extremely lucky that I was guided by Joe towards my journey to be a Full Stack Developer. Any employer would be lucky to have an employee like Joe and any student would be blessed to have a tutor like him. To quote Albert Einstein, “It is the supreme art of the teacher to awaken joy in creative expression and knowledge”, and Joe succeeded in that. Thanks Again Joe, wish you all the success in your future endeavors."
+    "name": "Matthew Moran",
+    "title": "Backend Software Engineer at Noom",
+    "date": "September 9, 2024",
+    "relationship": "Matthew reported directly to Joe",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "I had the pleasure of working with Joe for over five years at iCIMS. I began my career as an intern on Joe's team, and he remained my manager. Joe's technical background made him an exceptional manager since he truly understood the intricacies of our work. He knew each team member's strengths and how to position us effectively during development, which helped keep the team focused on high-impact projects. When projects were taking too long or weren't worth the development effort, Joe knew exactly when to step in and provide guidance.Joe's dedication to our team was unmatched. Even as his responsibilities expanded to managing multiple teams, he always made time for one-on-one meetings, ensuring I received the support and mentorship I needed. He was a strong advocate for all of us, consistently highlighting our contributions to upper management. Personally, Joe played a huge role in shaping my career, offering invaluable advice on how to grow in the software engineering field.Joe's leadership was a key factor in our team's success. He had the ability to balance deep technical insight with a genuine focus on employee development, making him an outstanding leader. I'm grateful for everything I learned from him, and any team would be lucky to have him."
+  },
+  {
+    "name": "Alex Wong",
+    "title": "Software Architect at iCIMS",
+    "date": "August 28, 2024",
+    "relationship": "Alex worked with Joe on the same team",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "I had the pleasure of working with and growing with Joe, leading our portfolio of recruitment marketing software during his time at iCIMS. I personally saw the impact of his charisma, empathy, and leadership by the strengthening of his teams. His engineering background and personality gives him a knack on how to connect to the people he works with. Joe's ability to make strategic decisions and bring together key people made a significant difference in the success of our organization. His guidance and insight are invaluable, and I'm confident that any team he joins will benefit greatly from his leadership. I would be considerably happy to work with Joe again."
+  },
+  {
+    "name": "Abuzar Amini",
+    "title": "VP, Engineering @ iCIMS | Startup Founder | ex-Apple",
+    "date": "August 23, 2024",
+    "relationship": "Abuzar managed Joe directly",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "It was an absolute privilege to have Joe as a direct report. He is a rare engineering leader who excels in both fast-paced startup environments and larger, more structured enterprises. Throughout our time working together, I witnessed his evolution from a hands-on engineering manager to a director with a significantly expanded scope of responsibility. In every stage of his growth, Joe consistently prioritized the well-being and development of his team while ensuring alignment with the overarching business goals."
+  },
+  {
+    "name": "Balaji V M",
+    "title": "Principal Software Engineer at iCIMS",
+    "date": "August 17, 2024",
+    "relationship": "Balaji reported directly to Joe",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "Joe is an excellent, highly skilled, and knowledgeable manager. I have been working under his supervision for three years now. He sets realistic goals and gives reasonable deadlines to complete those goals. In addition, he is a good listener who always pays attention to the details. His understanding of people's needs is outstanding, so much so that everyone working under him feels comfortable. On top of that, Joe is a great motivator. He instills positive energy in every team member, keeping everyone focused on what needs to be achieved.Joe is not only friendly and helpful but also goes above and beyond to maintain the team spirit. Moreover, I have seen him working his way through numerous challenges and crises with a calm demeanor. He prioritizes quick responses to ensure a tight feedback loop with anyone he's working with, regardless of the topic at hand. I feel proud to have worked under his guidance, and I strongly recommend him for any engineering management position."
+  },
+  {
+    "name": "Alex Schlumpf",
+    "title": "Senior Software Engineer at HubSpot",
+    "date": "August 8, 2024",
+    "relationship": "Alex reported directly to Joe",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "Joe exemplifies what it means to be a leader of a team. I can attribute the opportunities for growth in my career to the responsibilities and challenges that Joe entrusted me with. I always felt comfortable discussing my technical opinions and project pain-points with Joe, as he has strong instincts for how to turn blockers into autonomous, repeatable processes. The trust we shared empowered me to take a lead in delivering to the deadlines for our products, and supporting our internal stakeholders and customers of our platform. In our time together, Joe developed me from an intern to a senior engineer. It was made clear to me early on that if I focused on delivering to the expectations of my role and beyond, Joe would work hard on the back end to promote my career growth. Joe's support and encouragement to always state my opinion in meetings is just one example of how he always had my back as his direct. I am truly thankful to Joe for being a driving force in my career development."
+  },
+  {
+    "name": "Matteo Hernandez",
+    "title": "Senior Product Manager at iCIMS",
+    "date": "August 1, 2024",
+    "relationship": "Joe was senior to Matteo but didn't manage Matteo directly",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "I have worked with Joe directly for 3 years as his product counterpart. Joe is the complete package – technical, analytical, rational, and methodical, but also empathetic, easy-going, well-spoken, and a good listener. He always cuts right to the heart of every problem and effectively balances attention to detail with getting stuff done. He truly cares about his people. His professional opinions are of very high value."
+  },
+  {
+    "name": "Elyza Bleau",
+    "title": "November 7, 2023, Elyza reported directly to Joe",
+    "date": "November 7, 2023",
+    "relationship": "Elyza reported directly to Joe",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "Since late 2019, Joe has served as my direct manager, and I've been consistently impressed by his supportive and dedicated approach. He actively engages in bi-weekly one-on-one meetings and tailors our discussions to align with my unique career aspirations.Throughout his tenure at iCIMS, Joe has consistently demonstrated exemplary leadership and has progressed within the company. He maintains a keen awareness of ongoing developments, ensuring that his team stays informed and involved as necessary. I was happy Joe took a chance on me when I transitioned into the software development field and his guidance has been invaluable. Even amid the shift to remote work, he has kept strong and effective communication practices.As my manager, Joe demonstrates a genuine commitment to understanding my needs to help my experience as an individual contributor. He values my input and ensures that my opinions are heard—an aspect that's often rare in corporate settings. I recently approached him feeling uncertain about my role within my team and the company compared to my career goals. Joe listened attentively and worked with me to find constructive solutions. His ability to dissect the details, seek further clarification, and subsequently address my concerns left me feeling heard and satisfied with the result. Joe's proficiency in software engineering, coupled with his expanding communication skills, shines brilliantly in his role as a director. Under his guidance, I have thrived as an individual contributor.Joe's exceptional technical acumen, interpersonal skills, and dedication to discerning the priorities within each team he manages make him an outstanding engineering director—a true asset to any company."
+  },
+  {
+    "name": "Brian Parrish",
+    "title": "Staff Software Engineer @ Fora",
+    "date": "June 15, 2022",
+    "relationship": "Brian reported directly to Joe",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "Joe and I built fullstack web applications together for multiple years while navigating team changes, company acquisitions, and large shifts in processes and personnel. Throughout all of these challenges, I always felt organized, supported, and prioritized not only as a team member but as an individual. I began working with Joe as a junior engineer and worked under his leadership until a senior designation, and I have tremendous appreciation for his significant role in my development as a professional. He was patient and supportive, and was never afraid to give me opportunities to challenge myself and have an impact on the team, which helped me tremendously in growing as an engineer. Joe is an empathetic and brilliant manager who's positive impacts on products, teams, individuals, and the business as a whole are immeasurable."
+  },
+  {
+    "name": "Narmadha Viswanathan",
+    "title": "Senior Software Engineer at iCIMS",
+    "date": "July 23, 2021",
+    "relationship": "Narmadha reported directly to Joe",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "I have had the pleasure of working with Joe for two years and directly reporting to him for a couple of months now. During my initial months at Jibe (later acquired by iCIMS) he helped get me up to speed with front end technologies. He is always available to provide support, and always answers my questions patiently. Joe is an excellent manager. He ensures that his teams are comfortable and does everything he can to help us when we hit any type of roadblock. He makes sure we have all the required resources to get our work done. Joe is also exceptional at backing his teams during a crisis. When things do not go as planned, he is able to communicate effectively with the team responsible for fixing the issue and the affected stakeholders. His levelheadedness in these situations is a useful tool to help decisively remediate any outages that occur. It is a breeze working under Joe. I have never felt any pressure or stress in the months I have spent as his direct report. He is patient and eager to listen to any concerns I have in our 1:1 meetings. He is always open to my suggestions and can implement them in short order. He checks if we need help on a personal level as well which is amazing. I am glad I've had the opportunity to work with him and I am looking forward to doing outstanding work at iCIMS together in the future."
+  },
+  {
+    "name": "Boris Kozak",
+    "title": "Engineering @ Instagram, nonprofit director, Rutgers sponsor instructor, UMD alum #goterps",
+    "date": "March 17, 2021",
+    "relationship": "Boris managed Joe directly",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "Joe is one of the most talented engineering leaders that I've had the pleasure of managing and mentoring.Joe empowers his teams to unlock their full potential and maximize their performance. He possesses a rare combination of being an exceptional individual contributor, a strong technical manager, and an inspiring people motivator. He has the ability to oversee a project and its constituent initiatives from start to finish. This includes allocating and budgeting resources, coordinating communication across multiple teams, and ensuring that important deadlines are met. His prowess for thriving in ambiguity is an immeasurable asset to our engineering organization. In our time working together, Joe managed multiple teams and workstreams and collaborated cross-functionally to deliver software that spanned numerous portfolios. Joe is an active conversation starter, calls out roadblocks as they arise, and autonomously does the work necessary to keep his teams unhindered so they can focus on coding. Because of this, Joe's teams were consistently some of the highest velocity teams in the organization. When his teams achieve noteworthy milestones, Joe is diligent to celebrate shared wins, driving overall morale and portfolio success. Additionally, Joe is prompt and available for discussion, not only to the team but to everyone in the business.In my one on ones with Joe, I was consistently impressed with how he makes both small and large tweaks within his workforce, shifting resources to accommodate constantly changing business priorities. He leverages his teams' individual strengths, efficiently delegates work and combines their contributions to deliver remarkable output.On the ground level, Joe was the catalyst to fundamentally changing (for the better) the way that his team thought about unit test coverage, accessibility, and internationalization. Joe rallied his team behind all of these concepts, and was able to bring his software portfolios to enterprise-grade readiness.I was always impressed with Joe's continuous educational investment in himself and his team members. Joe is a lifelong learner, always looking for new ways to grow his skills and keep on top of his profession. Outside work hours, he would opt into both technical and managerial training sessions via podcasts and educational videos. It's clear that Joe not only creates software for a day job, but absorbs any content that he can get his hands on to make himself a stronger people and technical manager.A role model for collaboration and creative problem-solving, Joe was always highly regarded by both his direct reports and senior leaders at Jibe and iCIMS. It's been a career highlight working with Joe, and I hope we get to work together again in the future."
+  },
+  {
+    "name": "Josh Mazen",
+    "title": "AI Software Engineer",
+    "date": "December 1, 2020",
+    "relationship": "Josh managed Joe directly",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "Joe is not only an excellent programmer, he is a compassionate manager, a thoughtful leader, and a great mentor. On day 1, he came into the Jibe office and was able to grasp an unfamiliar tech stack with ease. He picked up the nuances of Angular extremely quickly and was even able to wire up a custom-built hybrid AngularJS/Angular bundle. His curiosity goes beyond \"What can I do to get the job done\"; he genuinely wants a deep understanding of the technology with which he works. At any point, Joe has been able to accommodate my own questions ranging from implementation best practices to career goals. He advocates for his fellow engineers and helps drive conversations with stakeholders to an understanding of the challenges we face in building and maintaining our architecture. His expectations are always high but reasonable, and he will never shy away from praise or constructive criticism. He continues to inspire his employees, myself included, to reach higher and assume more responsibility when the opportunity presents itself. Joe is a phenomenal co-worker, and my career would not be the same were he not in it."
+  },
+  {
+    "name": "Matthew Smith",
+    "title": "Engineering Manager • Front-End Developer • Emoji Connoisseur ☀️ React • JavaScript • CSS",
+    "date": "September 29, 2019",
+    "relationship": "Matthew managed Joe directly",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "Joe fearlessly led the charge toward new technologies and techniques across a number of high-profile Marvel projects. His involvement proved foundational in getting the new marvel.com underway, and our team benefited greatly from his trailblazing. Joe has proven time and again to dive headfirst into projects and has never shied away from getting his hands dirty in any front-end task asked of him. I greatly valued his input and welcomed his new efforts in leadership and mentoring on top of his development work."
+  },
+  {
+    "name": "Sharmin Kazi",
+    "title": "August 9, 2018, Sharmin worked with Joe on the same team",
+    "date": "August 9, 2018",
+    "relationship": "Sharmin worked with Joe on the same team",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "I had the pleasure of working with Joseph at Marvel for about two years on various projects. During this time, I was always impressed with how diligent he was with his work. I've tested both small and large tickets and projects that Joseph worked on and always found that the work was thorough and consistently well documented. Joseph always goes beyond his role as a Developer and makes sure to communicate clearly and thinks about the larger picture. As a result, my testing of his work rarely ever yielded major issues. Joseph is someone who carries the team towards success with his diligence, attention to detail, and ability to cooperate constructively."
+  },
+  {
+    "name": "Jazzy Guo",
+    "title": "Software Engineer",
+    "date": "August 9, 2018",
+    "relationship": "Jazzy reported directly to Joe",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "During my Frontend Development internship at Marvel, I had the pleasure of working under Joe, who was the Senior Frontend at the time. He provided me with patience and understanding, and really helped me reach my potential under his supervision. He was always available when I needed assistance, and always gave good support.Under Joe's management, I was able to hone my skills with React, and my passion for the field was simply strengthened by his own passion for coding. He was not afraid of giving me tasks that seemed out of my league, but that really shows his faith in his juniors – which I thank him highly for. Overall, Joe is excellent at supervision and is a superb teacher. I would be honored to work with him again someday and I would highly recommend him to any team looking for a lead developer."
+  },
+  {
+    "name": "Alan Wong",
+    "title": "Senior Software Engineer at Walt Disney Direct-to-Consumer & International",
+    "date": "July 18, 2018",
+    "relationship": "Alan worked with Joe on the same team",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "Working with Joe was great. Very open to ideas while standing his ground on what he believed in. Passionate without the attitude. You learn a lot about a developer when you are in the trenches with him/her. Especially when working on a redesign of a new site from the bottom up. Ideas will clash and problems will arise. I am glad Joe was around throughout the life of the project."
   },
   {
     "name": "Dave Bokil",
-    "title": "Full Stack Web Developer/Experienced Manager",
+    "title": "Director of Product at National Basketball Players Association (NBPA)",
     "date": "August 3, 2017",
-    "relationship": "Dave reported directly to Joseph",
-    "img": "../src/assets/pics/dave.jpg",
-    "body": "Quite simply, Joe is an all-star instructor with a natural ability to lead. I was fortunate to be a student of his at Rutgers University’s Coding Bootcamp. Thanks to his enthusiasm and dedication, I was able to quickly comprehend complex JavaScript topics. Speaking as an experienced adjunct college professor, it was inspiring for me to witness Joe in action. He constantly found ways to capture the classroom’s attention with ease. Moreover, I respect that his presentation of the material went beyond textbook learning: he is an accomplished developer, and was eager to bring his own invaluable, practical experience to instruction in the classroom.<br/><br/>In addition to being an excellent teacher, Joe has a natural ability to lead and mentor teams. I witnessed this firsthand as he effortlessly guided class teams in building full stack web applications. His direction and advice was vital to my success in this endeavor, from application conception to polished minimum viable product. He inspired and pushed my team in directions which enabled us to build the most thorough and modern application that we could.<br/><br/> I thoroughly enjoyed being in class with Joe and I’m confident that he would bring the same energy to any position that requires him to lead and motivate a team. I enthusiastically endorse him and recommend you strongly consider him."
+    "relationship": "Dave reported directly to Joe",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "Quite simply, Joe is an all-star instructor with a natural ability to lead. I was fortunate to be a student of his at Rutgers University's Coding Bootcamp. Thanks to his enthusiasm and dedication, I was able to quickly comprehend complex JavaScript topics. Speaking as an experienced adjunct college professor, it was inspiring for me to witness Joe in action. He constantly found ways to capture the classroom's attention with ease. Moreover, I respect that his presentation of the material went beyond textbook learning: he is an accomplished developer, and was eager to bring his own invaluable, practical experience to instruction in the classroom.In addition to being an excellent teacher, Joe has a natural ability to lead and mentor teams. I witnessed this firsthand as he effortlessly guided class teams in building full stack web applications. His direction and advice was vital to my success in this endeavor, from application conception to polished minimum viable product. He inspired and pushed my team in directions which enabled us to build the most thorough and modern application that we could.I thoroughly enjoyed being in class with Joe and I'm confident that he would bring the same energy to any position that requires him to lead and motivate a team. I enthusiastically endorse him and recommend you strongly consider him."
   },
   {
     "name": "Diaeddin Motan",
-    "title": "Full Stack Web Developer",
+    "title": "Software Engineer at JPMorgan Chase & Co.",
     "date": "August 2, 2017",
-    "relationship": "Diaeddin reported directly to Joseph",
-    "img": "../src/assets/pics/dean.jpg",
-    "body": "I had the honor of being Joseph’s student while attending the Rutgers Coding Bootcamp. I think I have never experienced a teacher that is quite as patient and friendly as Joseph. His ability to breakdown difficult concepts and deliver them with enthusiasm is unparalleled.<br/><br/>Joseph has the rare ability to empathize with the learner. As a student, being exposed to new technologies and abstract ideas can become overwhelming. By being able to put himself in their shoes, he can guide them through the journey and anticipate problems and pitfalls that may arise. His method was not only to present information but create a path of discovery enabling the student to fully grasp the concepts being discussed.<br/><br/>His dedication to his craft is remarkable. Aside from possessing a deep knowledge of the technologies, he is able to deliver the material with enthusiasm while constantly improving his delivery methods by assessing the progress and engagement of the class. By delivering content with humor and providing times to reflect upon the journey, he was able to keep the classes’ morale high and focus on point.<br/><br/>At no time during the course did I feel that I was on my own. Whether having trouble with a new library or framework, or simply looking for help with my resume or career advice, Joseph was consistently available to answer questions or provide guidance. <br/><br/>To say that having Joseph as a teacher was a privilege would be an understatement. I entered RCB with basic knowledge of web technologies and have since been skilled as a confident web developer. His dedication, empathy and enthusiasm for his craft and students are evident in everything he does. I credit him in being instrumental in my journey in web development. I cannot recommend someone more highly."
+    "relationship": "Diaeddin reported directly to Joe",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "I had the honor of being Joseph's student while attending the Rutgers Coding Bootcamp. I think I have never experienced a teacher that is quite as patient and friendly as Joseph. His ability to breakdown difficult concepts and deliver them with enthusiasm is unparalleled.Joseph has the rare ability to empathize with the learner. As a student, being exposed to new technologies and abstract ideas can become overwhelming. By being able to put himself in their shoes, he can guide them through the journey and anticipate problems and pitfalls that may arise. His method was not only to present information but create a path of discovery enabling the student to fully grasp the concepts being discussed.His dedication to his craft is remarkable. Aside from possessing a deep knowledge of the technologies, he is able to deliver the material with enthusiasm while constantly improving his delivery methods by assessing the progress and engagement of the class. By delivering content with humor and providing times to reflect upon the journey, he was able to keep the classes' morale high and focus on point.At no time during the course did I feel that I was on my own. Whether having trouble with a new library or framework, or simply looking for help with my resume or career advice, Joseph was consistently available to answer questions or provide guidance. To say that having Joseph as a teacher was a privilege would be an understatement. I entered RCB with basic knowledge of web technologies and have since been skilled as a confident web developer. His dedication, empathy and enthusiasm for his craft and students are evident in everything he does. I credit him in being instrumental in my journey in web development. I cannot recommend someone more highly."
   },
   {
     "name": "Craig Ramey",
-    "title": "Web Developer at UA Builders Group",
+    "title": "Staff Software Engineer at Zip Co",
     "date": "July 14, 2017",
-    "relationship": "Craig reported directly to Joseph",
-    "img": "../src/assets/pics/craig.jpg",
-    "body": "Joe is an excellent instructor at the Rutgers Coding Bootcamp. His ability to take complex topics and convey them in an easy to consume, and concise manner is very impressive.<br/><br/>Joe has an experienced understanding of Web Development, which was apparent through the myriad of topics we covered in class. His ability and passion is clearly apparent to his colleagues and enrollees. He is able to motivate and challenge our students, and tends to tailor his approach to meet the needs of each one of them. He has the ability to mentor and guide young developers to the right path without providing them with the answer.<br/><br/>He took extra steps outside the classroom to ensure the best experience for the person enrolled in class. When the course culminated with React and Redux, Joe took it upon himself to actually rewrite the curriculum so that the students could have the most up to date educational experience.<br/><br/>After projects, Joe took the time to give an in-depth code review to each and every group. The extra hours he dedicated to providing this feedback proved invaluable to the students. The experience of a code review and suggestion of better time management led to a marked improvement in the quality of future work.<br/><br/>It was a pleasure working with Joe and I highly recommend him for any managerial engineering role."
-  },
-  {
-    "name": "James Larkin",
-    "title": "Full Stack Web Developer",
-    "date": "June 26, 2017",
-    "relationship": "James reported directly to Joseph",
-    "img": "../src/assets/pics/james.jpg",
-    "body": "Joe is super-efficient and encouraging as an instructor. I had the opportunity to take a course Joe was teaching as part of the program at Rutgers Coding Bootcamp. He was always willing to answer any questions and was able to quickly debug any issues students had while coding.<br/><br/>It was clear to me that Joe was extremely knowledgeable about JavaScript and coding in general but he was always able to find a way to share that knowledge and explain topics so everyone in class could understand. He really has a knack for disarming difficult concepts even to those of us who were seeing JavaScript for the first time.<br/><br/>I was continually impressed by his ability to keep the entire class going by providing a light and motivating atmosphere. Joe’s sense of humor had the class laughing even as we struggled through the difficult course material. I really enjoyed being in the great classroom environment that Joe created and I think that he would do great at any position that required him to lead and motivate a team!"
-  },
-  {
-    "name": "Ben Ratner",
-    "title": "Javascript Developer at StudioLabs, LLC",
-    "date": "May 31, 2017",
-    "relationship": "Ben reported directly to Joseph",
-    "img": "../src/assets/pics/ben.jpg",
-    "body": "My internship at Marvel was by far the most positive and rewarding work experiences I’ve ever had, and much of that was due to Joe taking on the role of my mentor. When I started at Marvel, Joe led me through the projects I would be working on and the technologies the team used, and I was able to start writing real code quickly. It is through his guidance that I learned so much during my time there.<br/><br/>In addition to being an excellent teacher and mentor, Joe is an incredibly skilled developer. I spent eight months working alongside him and I was routinely astounded at the quality of his code, even while he was managing multiple projects and his other corporate responsibilities. He and I worked most closely on a rewrite of an internal company tool, where a traditional jQuery page was converted into modern ES6 ReactJS. The result was one of the company’s most functional tools with a great user experience across the board.<br/><br/>Joe approaches his work and his colleagues with an open mind and a sense of humor. These qualities set him apart and make him not only a technical asset, but an asset to the company culture at large. His unique blend of mentorship and coding skill makes him a great fit for any team looking for developers."
+    "relationship": "Craig reported directly to Joe",
+    "img": "../src/assets/pics/placeholder.svg",
+    "body": "Joe is an excellent instructor at the Rutgers Coding Bootcamp. His ability to take complex topics and convey them in an easy to consume, and concise manner is very impressive.Joe has an experienced understanding of Web Development, which was apparent through the myriad of topics we covered in class. His ability and passion is clearly apparent to his colleagues and enrollees. He is able to motivate and challenge our students, and tends to tailor his approach to meet the needs of each one of them. He has the ability to mentor and guide young developers to the right path without providing them with the answer.He took extra steps outside the classroom to ensure the best experience for the person enrolled in class. When the course culminated with React and Redux, Joe took it upon himself to actually rewrite the curriculum so that the students could have the most up to date educational experience.After projects, Joe took the time to give an in-depth code review to each and every group. The extra hours he dedicated to providing this feedback proved invaluable to the students. The experience of a code review and suggestion of better time management led to a marked improvement in the quality of future work.It was a pleasure working with Joe and I highly recommend him for any managerial engineering role."
   }
 ]
