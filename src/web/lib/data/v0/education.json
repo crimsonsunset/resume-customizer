@@ -3,31 +3,20 @@
     "name": "State University of New York at Binghamton",
     "title": "Bachelors of Science - Computer Science <small>Minor in General Engineering </small>",
     "date": "August 2007 – May 2011",
-    "img": "https://media.licdn.com/mpr/mpr/shrinknp_100_100/AAEAAQAAAAAAAAJ4AAAAJGY4ODY4YjgwLTk5N2MtNDNhZC04YWViLWUwYTI5NTkyZmMyZg.png",
+    "img": "/assets/locations/binghamton.jpg",
     "description": "• Theta Tau Professional Engineering Fraternity [President] • Snocats Skiing/Snowboarding Club • Racquetball Club • Tennis Club",
     "imgArr": [
-      "http://az616578.vo.msecnd.net/files/2017/02/26/6362373673602705401797046446_1280_profile.jpg",
-      "http://www.interkal.com/wp-content/uploads/2015/01/Binghamton4_1606x906.jpg",
-      "http://media.advance.net/newyorkupstatecom_national_desk_blog/photo/2016/08/24/suny-binghamton-university-4c06049fab09a429.jpg",
-      "https://www.binghamton.edu/admissions/img/hi-res/visit.jpg",
-      "https://www.binghamton.edu/blog/uploads/20160521_SOMComm065_jk.jpg",
-      "http://www.fjgaylor.com/BU-06.JPG",
-      "https://upload.wikimedia.org/wikipedia/en/4/47/Binghamton_University_clock_tower.jpg"
+      "/assets/locations/binghamton.jpg"
     ]
   },
   {
     "name": "Staten Island Technical High School",
     "title": "High School Diploma - National Honors Society",
     "date": "August 2004 – June 2007",
-    "img": "../src/assets/sitech.png",
+    "img": "/assets/locations/si-tech.jpg",
     "description": "• Football Team • Yearbook Committee • Annual Student-Directed Play • Tennis Team ",
     "imgArr": [
-      "http://img.thedailybeast.com/image/upload/v1492197231/galleries/2014/08/27/25-best-high-schools-in-the-northeast/3_Staten_Island_bfx9va.bmp",
-      "https://i.ytimg.com/vi/hHdQgPsauGM/maxresdefault.jpg",
-      "https://ny.chalkbeat.org/wp-content/uploads/2009/09/_device-memory_home_user_pictures_img00054.jpg",
-      "http://media.silive.com/latest_news/photo/staten-island-tech-graduation-4a0aa4eb34940200.jpg",
-      "https://i.ytimg.com/vi/1zZJ8bwNTxg/maxresdefault.jpg",
-      "https://s3.amazonaws.com/bandlogos.ussba.trigonroad.com/41B94274-B7EF-82EE-EF9E3F150A0FBCD7.jpg"
+      "/assets/locations/si-tech.jpg"
     ]
   }
 ]
