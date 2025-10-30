@@ -47,7 +47,7 @@
   {
     "name": "Professional Career",
     "location": "New York, NY",
-    "date": "May 2011 - Present",
+    "date": "May 2011 - August 2019",
     "icon": "local_taxi",
     "descriptionArr": [
       "Became full stack developer",
@@ -56,7 +56,47 @@
       "Became obsessed with food truck culture, created corresponding blog",
       "Started new Lord of the Rings-style quest for smarthome perfection. Barely made it out of the Shire.",
       "Proclaimed undying love for javascript",
+      "Met future wife and got married August 2019",
       "New on-brand dream: Become Iron Man"
+    ]
+  },
+  {
+    "name": "The Remote Revolution",
+    "location": "New York, NY → Everywhere",
+    "date": "August 2019 - January 2022",
+    "icon": "laptop_mac",
+    "descriptionArr": [
+      "Moved to iCIMS, became engineering leader",
+      "Pandemic happened. Office? What office?",
+      "Discovered hoodies are acceptable meeting attire",
+      "Led distributed teams across multiple time zones",
+      "Smart home quest intensified—too much time at home",
+      "Dream evolved: See the entire US"
+    ]
+  },
+  {
+    "name": "The Nomadic Period",
+    "location": "Various (AirBnBs across America)",
+    "date": "January 2022 - June 2023",
+    "icon": "card_travel",
+    "descriptionArr": [
+      "Lived out of suitcases for 18 months",
+      "Discovered hotel WiFi is a spectrum of disappointment",
+      "Went full digital nomad before it was cool",
+      "Mountains and snowboarding started calling louder than NYC sirens"
+    ]
+  },
+  {
+    "name": "The Denver Domestic",
+    "location": "Denver, CO",
+    "date": "June 2023 - Present",
+    "icon": "filter_hdr",
+    "descriptionArr": [
+      "Settled in Denver, wife's hometown",
+      "Traded subway crowds for mountain views",
+      "Joined FORA as Principal Engineer on founding team, pioneered AI-assisted development practices",
+      "Smart home quest continues—now with altitude",
+      "Less people, more breathing room, same javascript obsession"
     ]
   }
 ]
