@@ -1,0 +1,21 @@
+{
+  "name": "resume-customizer",
+  "description": "Modern resume optimization tool with CLI, web application, and AI-powered matching capabilities for tailoring resumes to job descriptions",
+  "topics": [
+    "resume",
+    "cli",
+    "web-app",
+    "sveltekit",
+    "oclif",
+    "ai-matching",
+    "career-tools",
+    "optimization",
+    "pdf-generation"
+  ],
+  "website": "https://resume.joesangiorgio.com/",
+  "visibility": "public",
+  "has_issues": true,
+  "has_wiki": false,
+  "has_projects": false
+}
+
