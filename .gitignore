@@ -43,6 +43,7 @@ repo_config.csv
 .nuxt/
 .svelte-kit/
 public/
+build/
 .vuepress/dist/
 .specstory/
 .cursorignore

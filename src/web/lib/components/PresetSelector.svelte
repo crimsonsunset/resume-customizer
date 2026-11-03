@@ -1,6 +1,6 @@
 <script>
   import { delay } from 'lodash-es'
-  import { page } from '$app/stores'
+  import { page } from '$app/state'
   import { navigateToPreset } from '@web/lib/stores/url-state.js'
   
   export let selectedVersion
@@ -17,7 +17,7 @@
     showPresetDropdown = false
     
     // Navigate to new preset URL using clean utility
-    navigateToPreset(presetValue, $page.url)
+    navigateToPreset(presetValue, page.url)
   }
   
   // Get current preset info for display

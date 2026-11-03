@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit'
-import skillsData from '$lib/data/v0/skills.json'
+import skillsData from '#lib/data/v0/skills.json'
 
 /**
  * GET endpoint for skills information

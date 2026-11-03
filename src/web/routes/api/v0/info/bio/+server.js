@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit'
-import bioData from '$lib/data/v0/bio.json'
+import bioData from '#lib/data/v0/bio.json'
 
 /**
  * GET endpoint for bio information

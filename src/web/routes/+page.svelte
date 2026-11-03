@@ -3,7 +3,7 @@
     import {fade} from 'svelte/transition'
     import {delay} from 'lodash-es'
     import {getYear} from 'date-fns'
-    import {page} from '$app/stores'
+    import {page} from '$app/state'
     import {goto} from '$app/navigation'
     import {calculateTotalExperienceYears} from '@shared/date-utils.js'
     import ThemeSelector from '@web/lib/components/ThemeSelector.svelte'
@@ -129,7 +129,7 @@
 
         if (!Object.keys($sectionVisibilityStore).length) {
             // First load: initialize sections from URL
-            initializeSections($page.url.searchParams, data.availableSections)
+            initializeSections(page.url.searchParams, data.availableSections)
             console.log('✅ Initialized sections from URL')
 
             // Set flag immediately after initialization as backup
@@ -174,7 +174,7 @@
     $: if (mounted && sectionsInitialized && Object.keys(visibleSections).length > 0 && !isPresetTransitioning) {
         // Only update store if visibleSections differs from store (avoid infinite loops)
         if (JSON.stringify(visibleSections) !== JSON.stringify($sectionVisibilityStore)) {
-            updateSectionVisibility(visibleSections, $page.url, true)
+            updateSectionVisibility(visibleSections, page.url, true)
         }
     }
 
@@ -186,7 +186,7 @@
 
         // Initialize density from URL parameters on mount only
         if (!$densityInitializedStore) {
-            initializeDensity($page.url.searchParams)
+            initializeDensity(page.url.searchParams)
         }
     })
 
@@ -562,10 +562,10 @@
                         {density}
                         {experienceYears}
                         {totalExperienceYears}
-                        on:densityChange={(e) => updateFilters(e.detail.density, experienceYears, $page.url)}
+                        on:densityChange={(e) => updateFilters(e.detail.density, experienceYears, page.url)}
                         on:yearsChange={(e) => {
                             experienceYears = e.detail.experienceYears
-                            updateFilters(density, experienceYears, $page.url)
+                            updateFilters(density, experienceYears, page.url)
                             console.log('🕐 Years changed:', experienceYears, 'of', totalExperienceYears, 'total')
                         }}
                 />

@@ -1,6 +1,8 @@
 // eslint-disable-next-line n/no-unpublished-import
 import { defineConfig } from 'vite'
 import { sveltekit } from '@sveltejs/kit/vite'
+import adapter from '@sveltejs/adapter-netlify'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { existsSync, unlinkSync } from 'node:fs'
@@ -49,7 +51,22 @@ export default defineConfig(({ _command, _mode }) => {
   // SvelteKit web app configuration
   return {
     plugins: [
-      sveltekit(),
+      sveltekit({
+        preprocess: vitePreprocess(),
+        adapter: adapter(),
+        appDir: 'src/web',
+        files: {
+          assets: 'static',
+          hooks: {
+            client: 'src/web/hooks.client.js',
+            server: 'src/web/hooks.server.js'
+          },
+          params: 'src/web/params',
+          routes: 'src/web/routes',
+          serviceWorker: 'src/web/service-worker.js',
+          appTemplate: 'src/web/app.html'
+        }
+      }),
       dateUpdaterPlugin(),
       // Bundle analyzer - generates bundle-analysis.html
       visualizer({

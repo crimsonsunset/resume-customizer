@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit'
-import experienceData from '$lib/data/v0/experience.json'
+import experienceData from '#lib/data/v0/experience.json'
 
 /**
  * GET endpoint for experience information

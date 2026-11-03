@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit'
-import { GOTENBERG_URL } from '$env/static/private'
+import { GOTENBERG_URL } from '$app/env/private'
 
 /**
  * Convert PDF to Markdown using Gotenberg

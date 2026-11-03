@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit'
-import educationData from '$lib/data/v0/education.json'
+import educationData from '#lib/data/v0/education.json'
 
 /**
  * GET endpoint for education information

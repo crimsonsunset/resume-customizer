@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit'
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
-import { GOTENBERG_URL } from '$env/static/private'
+import { GOTENBERG_URL } from '$app/env/private'
 
 /**
  * Load CSS template based on preset name with fallback

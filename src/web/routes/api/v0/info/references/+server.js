@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit'
-import referencesData from '$lib/data/v0/references.json'
+import referencesData from '#lib/data/v0/references.json'
 
 /**
  * GET endpoint for references information
