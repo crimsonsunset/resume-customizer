@@ -1,6 +1,44 @@
 [
   {
     "bulletPoints": [
+      "Lead engineering for a multi-tenant recruiting communication platform that integrates with iCIMS, Ashby and SuccessFactors, setting technical direction through 189 planning docs, reviewing 199 teammate pull requests, and scoping work across 524 Jira tickets",
+      "Stayed hands-on while leading, authoring 237 merged pull requests and resolving 230 tickets in under a year across frontend, backend, security rules, and infrastructure",
+      "Replaced hand-maintained Firestore security rules with generated, tested output by forking an open-source rules DSL, building an intermediate representation and emitter, and adding a parity suite that verifies backend permission logic against the rules emulator",
+      "Hardened multi-tenant security by adding server-side capability enforcement, access revocation for deactivated members, and rate limiting on AI chat, and by fixing Firestore rules edge cases",
+      "Built core Sync AI features directly into the product, including streaming responses, retrieval with source citations, a skill registry and intent router, and an EEOC classifier guardrail",
+      "Delivered Typesense-backed search with a Cmd+K command palette, operator filters, saved searches, and shareable URL state",
+      "Consolidated separate frontend and backend repositories into a pnpm and Turborepo monorepo with PR preview deployments, automated changelogs, and a dependency audit gate that took open advisories to zero",
+      "Controlled AI costs with an OpenRouter spend cap and Slack alerting"
+    ],
+    "bullet_priorities": [
+      10,
+      8,
+      9,
+      9,
+      10,
+      6,
+      8,
+      6
+    ],
+    "company": "Sync2Hire",
+    "description": "• Lead engineering for a multi-tenant recruiting communication platform that integrates with iCIMS, Ashby and SuccessFactors, setting technical direction through 189 planning docs, reviewing 199 teammate pull requests, and scoping work across 524 Jira tickets• Stayed hands-on while leading, authoring 237 merged pull requests and resolving 230 tickets in under a year across frontend, backend, security rules, and infrastructure• Replaced hand-maintained Firestore security rules with generated, tested output by forking an open-source rules DSL, building an intermediate representation and emitter, and adding a parity suite that verifies backend permission logic against the rules emulator• Hardened multi-tenant security by adding server-side capability enforcement, access revocation for deactivated members, and rate limiting on AI chat, and by fixing Firestore rules edge cases• Built core Sync AI features directly into the product, including streaming responses, retrieval with source citations, a skill registry and intent router, and an EEOC classifier guardrail• Delivered Typesense-backed search with a Cmd+K command palette, operator filters, saved searches, and shareable URL state• Consolidated separate frontend and backend repositories into a pnpm and Turborepo monorepo with PR preview deployments, automated changelogs, and a dependency audit gate that took open advisories to zero• Controlled AI costs with an OpenRouter spend cap and Slack alerting",
+    "duration": "Jan 2026 - Present · 10 mos",
+    "skills": [
+      "Technical Leadership",
+      "Engineering Management",
+      "Artificial Intelligence (AI)",
+      "AI Software Development",
+      "LLMs",
+      "Software Architectural Design",
+      "TypeScript",
+      "React.js",
+      "Node.js",
+      "CI/CD"
+    ],
+    "title": "Head of Engineering"
+  },
+  {
+    "bulletPoints": [
       "Pioneered enterprise-grade AI-assisted development practices, establishing quality standards and systematic workflows that transform AI chaos into production-ready code meeting rigorous review standards",
       "Architected foundational technology stack by selecting and integrating key services (Statsig, Netlify, Rollbar, etc), enabling seamless deployment and scalable infrastructure",
       "Influenced product strategy and technical direction by creating comprehensive product requirements, contributing to roadmap planning, and bridging product-engineering collaboration gaps",
@@ -22,7 +60,7 @@
     ],
     "company": "FORA · Freelance",
     "description": "• Pioneered enterprise-grade AI-assisted development practices, establishing quality standards and systematic workflows that transform AI chaos into production-ready code meeting rigorous review standards• Architected foundational technology stack by selecting and integrating key services (Statsig, Netlify, Rollbar, etc), enabling seamless deployment and scalable infrastructure• Influenced product strategy and technical direction by creating comprehensive product requirements, contributing to roadmap planning, and bridging product-engineering collaboration gaps• Orchestrated cross-platform development strategy across web frontend, serverless backend, administrative systems, and iOS app coordination, ensuring technical cohesion and scalability• Developed enterprise-grade tour platform with guided onboarding, dynamic configuration, and integrated analytics for user engagement tracking• Implemented marketing site with Prismic CMS integration, enabling dynamic content creation/management, sophisticated blog functionality, and proper social sharing• Developed progressive web app infrastructure and coordinated iOS development, delivering cross-platform mobile solutions with OneSignal notification architecture• Architected and developed developer experience platforms, including testing frameworks, custom administrative tooling, and automated release management",
-    "duration": "Jan 2024 - Present · 1 yr 9 mos",
+    "duration": "Jan 2024 - Dec 2025 · 2 yrs",
     "skills": [
       "JavaScript",
       "Product Strategy",
