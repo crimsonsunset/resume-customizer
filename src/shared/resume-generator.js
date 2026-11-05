@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { formatISO } from 'date-fns';
+import { isManagementRole } from './role-utils.js';
 
 /**
  * Resume generator that creates different versions from profile.json
@@ -105,11 +106,7 @@ class ResumeGenerator {
 
     // Apply version-specific filtering
     if (config.experience_filter === 'management_roles_only') {
-      experiences = experiences.filter(exp => 
-        exp.title.toLowerCase().includes('manager') || 
-        exp.title.toLowerCase().includes('director') ||
-        exp.title.toLowerCase().includes('lead')
-      );
+      experiences = experiences.filter(exp => isManagementRole(exp.title));
     }
 
     // Apply experience limit
