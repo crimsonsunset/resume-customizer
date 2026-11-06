@@ -1,27 +1,27 @@
 [
   {
     "bulletPoints": [
-      "Lead engineering for a multi-tenant recruiting communication platform that integrates with iCIMS, Ashby and SuccessFactors, setting technical direction through 189 planning docs, reviewing 199 teammate pull requests, and scoping work across 524 Jira tickets",
-      "Stayed hands-on while leading, authoring 237 merged pull requests and resolving 230 tickets in under a year across frontend, backend, security rules, and infrastructure",
-      "Replaced hand-maintained Firestore security rules with generated, tested output by forking an open-source rules DSL, building an intermediate representation and emitter, and adding a parity suite that verifies backend permission logic against the rules emulator",
-      "Hardened multi-tenant security by adding server-side capability enforcement, access revocation for deactivated members, and rate limiting on AI chat, and by fixing Firestore rules edge cases",
-      "Built core Sync AI features directly into the product, including streaming responses, retrieval with source citations, a skill registry and intent router, and an EEOC classifier guardrail",
-      "Delivered Typesense-backed search with a Cmd+K command palette, operator filters, saved searches, and shareable URL state",
-      "Consolidated separate frontend and backend repositories into a pnpm and Turborepo monorepo with PR preview deployments, automated changelogs, and a dependency audit gate that took open advisories to zero",
-      "Controlled AI costs with an OpenRouter spend cap and Slack alerting"
+      "Led engineering and product at an early-stage startup, owning roadmap, architecture, release, QA and security while still shipping core features hands-on",
+      "Picked and stood up our vendor stack, then built the bottom-up cost model we took to leadership and investors",
+      "Built end-to-end QA and docs as one system: Playwright tests run against staging, then regenerate and publish the help site with every prod release, so it never needs manual updates",
+      "Automated work outside engineering: daily call notes become Jira product ideas, plus monthly health, backup and secret audits",
+      "Built CI/CD from scratch: nightly staging, deliberate manual prod promotion, and one-click rollback that undoes its own data migrations when relevant, plus an automatically generated changelog and Jira release for every deploy",
+      "Built RAG for Sync AI from scratch: encrypted HR policy uploads, an automated parse, chunk and embed pipeline, vector retrieval, and answers that cite their source documents",
+      "Built Sync AI as a platform, not a chatbot: a model-agnostic skill router, streamed and cited answers, search, and a dashboard of proactive signals that flag stalled candidates and pipelines before anyone asks",
+      "Built robust search from index to UI: hybrid keyword and vector retrieval, per-user access scoping, and a Cmd+K palette with extensive filtering, saved searches and shareable links"
     ],
     "bullet_priorities": [
       10,
-      8,
-      9,
-      9,
-      10,
       6,
+      7,
+      5,
+      9,
       8,
-      6
+      9,
+      8
     ],
     "company": "Sync2Hire",
-    "description": "• Lead engineering for a multi-tenant recruiting communication platform that integrates with iCIMS, Ashby and SuccessFactors, setting technical direction through 189 planning docs, reviewing 199 teammate pull requests, and scoping work across 524 Jira tickets• Stayed hands-on while leading, authoring 237 merged pull requests and resolving 230 tickets in under a year across frontend, backend, security rules, and infrastructure• Replaced hand-maintained Firestore security rules with generated, tested output by forking an open-source rules DSL, building an intermediate representation and emitter, and adding a parity suite that verifies backend permission logic against the rules emulator• Hardened multi-tenant security by adding server-side capability enforcement, access revocation for deactivated members, and rate limiting on AI chat, and by fixing Firestore rules edge cases• Built core Sync AI features directly into the product, including streaming responses, retrieval with source citations, a skill registry and intent router, and an EEOC classifier guardrail• Delivered Typesense-backed search with a Cmd+K command palette, operator filters, saved searches, and shareable URL state• Consolidated separate frontend and backend repositories into a pnpm and Turborepo monorepo with PR preview deployments, automated changelogs, and a dependency audit gate that took open advisories to zero• Controlled AI costs with an OpenRouter spend cap and Slack alerting",
+    "description": "• Led engineering and product at an early-stage startup, owning roadmap, architecture, release, QA and security while still shipping core features hands-on• Picked and stood up our vendor stack, then built the bottom-up cost model we took to leadership and investors• Built end-to-end QA and docs as one system: Playwright tests run against staging, then regenerate and publish the help site with every prod release, so it never needs manual updates• Automated work outside engineering: daily call notes become Jira product ideas, plus monthly health, backup and secret audits• Built CI/CD from scratch: nightly staging, deliberate manual prod promotion, and one-click rollback that undoes its own data migrations when relevant, plus an automatically generated changelog and Jira release for every deploy• Built RAG for Sync AI from scratch: encrypted HR policy uploads, an automated parse, chunk and embed pipeline, vector retrieval, and answers that cite their source documents• Built Sync AI as a platform, not a chatbot: a model-agnostic skill router, streamed and cited answers, search, and a dashboard of proactive signals that flag stalled candidates and pipelines before anyone asks• Built robust search from index to UI: hybrid keyword and vector retrieval, per-user access scoping, and a Cmd+K palette with extensive filtering, saved searches and shareable links",
     "duration": "Jan 2026 - Present · 10 mos",
     "skills": [
       "Technical Leadership",
