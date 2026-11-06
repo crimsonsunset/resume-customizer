@@ -2,7 +2,7 @@
   {
     "name": "Fora Suite of Products",
     "company": "FORA",
-    "date": "Jan 2024 - Present · 1 yr 9 mos",
+    "date": "Jan 2024 - Present · 2 yrs 10 mos",
     "description": "• Architected comprehensive error boundary system with automatic component wrapping via custom Vite plugin, Rollbar integration, error classification, and context-aware reporting with feature flag data• Developed Instagram story-style UI system for meeting content navigation with multi-panel architecture, read/unread tracking, advanced interactions, and deep-linking capabilities• Built enterprise-grade tour platform with guided onboarding, dynamic configuration, and integrated analytics for user engagement tracking• Extended admin platform capabilities with robust error handling, dynamic form validation components, and enhanced onboarding user experience",
     "bulletPoints": [
       "Architected comprehensive error boundary system with automatic component wrapping via custom Vite plugin, Rollbar integration, error classification, and context-aware reporting with feature flag data",
@@ -27,7 +27,7 @@
   {
     "name": "Home Automation Platform",
     "company": "Personal",
-    "date": "Oct 2017 - Present · 8 yrs",
+    "date": "Oct 2017 - Present · 9 yrs 1 mo",
     "description": "• Configured a heavily customized version of Home Assistant, an python-based open source home automation platform• Utilized Jinja2 templates to create actions, scripts and automations that link together several IoT devices• Wrote YAML configuration to enable communication across entities to one centralized Raspberry Pi3 server• Made server frontend globally accessible by enabling port forwarding and adding SSL certificate from LetsEncrypt.org• Created several different home-grown utility scripts and frontend widgets to further tailor and extend the platform • Contributed to Home Assistant community, posted aforementioned utility scripts for other members to use",
     "bulletPoints": [
       "Configured a heavily customized version of Home Assistant, an python-based open source home automation platform",
@@ -56,7 +56,7 @@
   {
     "name": "JoeSangiorgio.com",
     "company": "Personal",
-    "date": "Jun 2017 - Present · 8 yrs 4 mos",
+    "date": "Jun 2017 - Present · 9 yrs 5 mos",
     "description": "• Data driven dashboard style portfolio site built on Vue; complete with user preference menu and sitewide tour prompt• Aggregates all professional/personal information and serves and entry point for hiring managers• Driven by publicly available API: written in Node.js, documented with Swagger, and hosted on Heroku • Uses many Vue addon libraries, such as Vuetify for UI components, and vue-router for native browser routing",
     "bulletPoints": [
       "Data driven dashboard style portfolio site built on Vue; complete with user preference menu and sitewide tour prompt",
@@ -500,5 +500,187 @@
       6,
       6
     ]
+  },
+  {
+    "name": "McpMux",
+    "company": "Personal",
+    "date": "May 2026 - Present · 6 mos",
+    "description": "• Forked an open-source Rust/Tauri MCP gateway and extended it into the hub for my whole agent setup. It runs on a home server and every machine and AI client connects through it• Built a meta-gateway: agents get search, schema and invoke tools instead of a giant tool dump, so context stays small no matter how many servers are installed• Built workspace bindings: each project maps to its own tool set across machines by git remote, with per-session overrides and a Cursor hook, so opening a folder routes to the right servers and credentials on its own• Built a web admin mode: an HTTP server and REST API that mirror every desktop command, so the full UI works from a browser• Added server account clones and a rebuilt custom server editor, so one server can run under several accounts (work and personal) without hand-editing JSON• Hardened session and connection handling (reconnects, retries, idle cleanup), backed by Rust and Playwright tests, CI E2E and a design doc per feature",
+    "bulletPoints": [
+      "Forked an open-source Rust/Tauri MCP gateway and extended it into the hub for my whole agent setup. It runs on a home server and every machine and AI client connects through it",
+      "Built a meta-gateway: agents get search, schema and invoke tools instead of a giant tool dump, so context stays small no matter how many servers are installed",
+      "Built workspace bindings: each project maps to its own tool set across machines by git remote, with per-session overrides and a Cursor hook, so opening a folder routes to the right servers and credentials on its own",
+      "Built a web admin mode: an HTTP server and REST API that mirror every desktop command, so the full UI works from a browser",
+      "Added server account clones and a rebuilt custom server editor, so one server can run under several accounts (work and personal) without hand-editing JSON",
+      "Hardened session and connection handling (reconnects, retries, idle cleanup), backed by Rust and Playwright tests, CI E2E and a design doc per feature"
+    ],
+    "skills": [
+      "Rust",
+      "Tauri",
+      "TypeScript",
+      "React",
+      "MCP",
+      "Playwright"
+    ],
+    "bullet_priorities": [
+      8,
+      10,
+      9,
+      7,
+      7,
+      6
+    ],
+    "url": "https://github.com/crimsonsunset/mcp-mux"
+  },
+  {
+    "name": "when.band",
+    "company": "Personal",
+    "date": "Oct 2025 - Present · 1 yr 1 mo",
+    "description": "• Built when.band solo, from idea to live product: a crowdsourced platform that tells concertgoers when the music actually starts at a venue• Designed submission around how people actually report: chat with an AI agent, upload a photo, or fill out a plain form• Added accounts, voting and reputation so the community data stays trustworthy• Stood up the whole product stack myself: auth, background jobs, separate staging and prod, analytics and LLM tracing• Wrote evals for the AI paths plus end-to-end tests, so prompt changes cannot quietly break extraction",
+    "bulletPoints": [
+      "Built when.band solo, from idea to live product: a crowdsourced platform that tells concertgoers when the music actually starts at a venue",
+      "Designed submission around how people actually report: chat with an AI agent, upload a photo, or fill out a plain form",
+      "Added accounts, voting and reputation so the community data stays trustworthy",
+      "Stood up the whole product stack myself: auth, background jobs, separate staging and prod, analytics and LLM tracing",
+      "Wrote evals for the AI paths plus end-to-end tests, so prompt changes cannot quietly break extraction"
+    ],
+    "skills": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma",
+      "LLMs",
+      "Playwright"
+    ],
+    "bullet_priorities": [
+      10,
+      8,
+      7,
+      8,
+      7
+    ],
+    "url": "https://when.band"
+  },
+  {
+    "name": "Car Thing Browser Audio Control",
+    "company": "Personal",
+    "date": "Jul 2025 - Present · 1 yr 4 mos",
+    "description": "• Built a system that lets a Spotify Car Thing control audio playing in Chrome, with a TypeScript Chrome extension, a DeskThing app and shared packages in one monorepo• Designed it around pluggable per-site handlers, so adding a new audio site means writing one adapter instead of touching the core• Made DJ mixes behave like playlists: the display tracks which song is playing inside a long mix, and skip, favorite and scrobbling act on that song• Wrote the extension in strict TypeScript with a React popup, and moved the build to CRXJS/Vite with hot reload• Added an idle fallback so the Car Thing drops back to Spotify when nothing is playing in the browser• Extended a forked macOS menu bar app in Swift/SwiftUI to show and control the same browser audio, with auto-switching between players and a source switcher",
+    "bulletPoints": [
+      "Built a system that lets a Spotify Car Thing control audio playing in Chrome, with a TypeScript Chrome extension, a DeskThing app and shared packages in one monorepo",
+      "Designed it around pluggable per-site handlers, so adding a new audio site means writing one adapter instead of touching the core",
+      "Made DJ mixes behave like playlists: the display tracks which song is playing inside a long mix, and skip, favorite and scrobbling act on that song",
+      "Wrote the extension in strict TypeScript with a React popup, and moved the build to CRXJS/Vite with hot reload",
+      "Added an idle fallback so the Car Thing drops back to Spotify when nothing is playing in the browser",
+      "Extended a forked macOS menu bar app in Swift/SwiftUI to show and control the same browser audio, with auto-switching between players and a source switcher"
+    ],
+    "skills": [
+      "TypeScript",
+      "React",
+      "Chrome Extensions",
+      "Swift",
+      "SwiftUI",
+      "Vite",
+      "WebSocket"
+    ],
+    "bullet_priorities": [
+      8,
+      7,
+      9,
+      6,
+      6,
+      6
+    ],
+    "url": ""
+  },
+  {
+    "name": "jsg-logger",
+    "company": "Personal",
+    "date": "Aug 2025 - Present · 1 yr 3 mos",
+    "description": "• Built and published a logger to npm that runs the same in the browser, CLI and server, and detects which one it is in on its own• Gave each environment output that fits it: readable color in the console, structured JSON in production• Designed log levels that cascade from global to component to individual file, so I can turn up debugging on one file without drowning in noise• Added automatic redaction of secrets, plus an optional DevTools panel that stays out of the bundle unless you turn it on• Shipped it with TypeScript types, tests and an automated publish pipeline. It is the logger across all my own projects",
+    "bulletPoints": [
+      "Built and published a logger to npm that runs the same in the browser, CLI and server, and detects which one it is in on its own",
+      "Gave each environment output that fits it: readable color in the console, structured JSON in production",
+      "Designed log levels that cascade from global to component to individual file, so I can turn up debugging on one file without drowning in noise",
+      "Added automatic redaction of secrets, plus an optional DevTools panel that stays out of the bundle unless you turn it on",
+      "Shipped it with TypeScript types, tests and an automated publish pipeline. It is the logger across all my own projects"
+    ],
+    "skills": [
+      "TypeScript",
+      "JavaScript",
+      "npm",
+      "Node.js"
+    ],
+    "bullet_priorities": [
+      8,
+      6,
+      8,
+      7,
+      6
+    ],
+    "url": "https://www.npmjs.com/package/@crimsonsunset/jsg-logger"
+  },
+  {
+    "name": "Floppy (open-source fork)",
+    "company": "Personal",
+    "date": "Sep 2026 - Present · 2 mos",
+    "description": "• Contributed to an open-source, self-hosted media tracker (Django, Celery, React), working from my own fork and sending changes upstream• Added a YouTube video type with upserted plays, so videos land in History and stay off the metadata providers and the calendar• Built a music track detail page that looks up unlistened tracks on MusicBrainz, and filled in genres on scrobble• Made Home Screen rows configurable (album, artist, track or all three) and fixed the drag and drop so the order you see is the order saved• Cut the test cycle by building a script that picks which tests to run from the diff, plus one that screenshots a PR before and after• Added a one-command dev server with browser auto-refresh and a sample-library seeder, so a fresh checkout is usable in minutes",
+    "bulletPoints": [
+      "Contributed to an open-source, self-hosted media tracker (Django, Celery, React), working from my own fork and sending changes upstream",
+      "Added a YouTube video type with upserted plays, so videos land in History and stay off the metadata providers and the calendar",
+      "Built a music track detail page that looks up unlistened tracks on MusicBrainz, and filled in genres on scrobble",
+      "Made Home Screen rows configurable (album, artist, track or all three) and fixed the drag and drop so the order you see is the order saved",
+      "Cut the test cycle by building a script that picks which tests to run from the diff, plus one that screenshots a PR before and after",
+      "Added a one-command dev server with browser auto-refresh and a sample-library seeder, so a fresh checkout is usable in minutes"
+    ],
+    "skills": [
+      "Python",
+      "Django",
+      "Celery",
+      "React",
+      "MusicBrainz"
+    ],
+    "bullet_priorities": [
+      6,
+      8,
+      7,
+      6,
+      7,
+      5
+    ],
+    "url": "https://github.com/crimsonsunset/Floppy"
+  },
+  {
+    "name": "Personal Agent Platform",
+    "company": "Personal",
+    "date": "Sep 2025 - Present · 1 yr 2 mos",
+    "description": "• Built a personal agent platform on my own home servers: saved links, a searchable knowledge base and coding agents all working together• Built an ingestion pipeline that pulls saved links and watchlists from dozens of services into one place, then enriches each with transcripts, summaries and metadata (local speech-to-text, vision models)• Connected the pieces end to end: anything I save is exported into the knowledge base on a schedule, so it becomes searchable without me doing anything• Stood up a private RAG stack that indexes my notes, docs and bookmarks, so I can ask questions across everything I have saved or written• Built a dispatch layer that hands a task to a Cursor agent in an isolated git worktree, takes its questions in a Slack thread and returns a PR• Run it all as always-on services with scheduled jobs, so it keeps working without me touching it",
+    "bulletPoints": [
+      "Built a personal agent platform on my own home servers: saved links, a searchable knowledge base and coding agents all working together",
+      "Built an ingestion pipeline that pulls saved links and watchlists from dozens of services into one place, then enriches each with transcripts, summaries and metadata (local speech-to-text, vision models)",
+      "Connected the pieces end to end: anything I save is exported into the knowledge base on a schedule, so it becomes searchable without me doing anything",
+      "Stood up a private RAG stack that indexes my notes, docs and bookmarks, so I can ask questions across everything I have saved or written",
+      "Built a dispatch layer that hands a task to a Cursor agent in an isolated git worktree, takes its questions in a Slack thread and returns a PR",
+      "Run it all as always-on services with scheduled jobs, so it keeps working without me touching it"
+    ],
+    "skills": [
+      "TypeScript",
+      "Rust",
+      "Node.js",
+      "LLMs",
+      "RAG",
+      "MCP",
+      "Docker"
+    ],
+    "bullet_priorities": [
+      8,
+      7,
+      9,
+      8,
+      8,
+      5
+    ],
+    "url": ""
   }
 ]

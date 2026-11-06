@@ -1,6 +1,44 @@
 [
   {
     "bulletPoints": [
+      "Led engineering and product at an early-stage startup, owning roadmap, architecture, release, QA and security while still shipping core features hands-on",
+      "Architected Sync AI as a platform, not a chatbot: a model-agnostic skill router, streamed and cited answers, and a dashboard of proactive signals that flag stalled candidates and pipelines before anyone asks",
+      "Developed RAG for Sync AI: encrypted HR policy uploads, a parse, chunk and embed pipeline, vector retrieval, and answers that cite their source documents",
+      "Built CI/CD from scratch with nightly staging, deliberate manual prod promotion, and a one-click rollback that undoes its own data migrations",
+      "Delivered robust search from index to UI: hybrid keyword and vector retrieval, per-user access scoping, and a Cmd+K palette with extensive filtering, saved searches and shareable links",
+      "Engineered end-to-end QA and docs as one system: Playwright tests run against staging, then regenerate and publish the help site with every prod release, so it never needs manual updates",
+      "Picked and stood up our vendor stack, then built the bottom-up cost model we took to leadership and investors",
+      "Automated work outside engineering, turning daily call notes into Jira product ideas and running monthly health, backup and secret audits"
+    ],
+    "bullet_priorities": [
+      10,
+      9,
+      8,
+      9,
+      8,
+      7,
+      6,
+      5
+    ],
+    "company": "Sync2Hire",
+    "description": "• Led engineering and product at an early-stage startup, owning roadmap, architecture, release, QA and security while still shipping core features hands-on• Architected Sync AI as a platform, not a chatbot: a model-agnostic skill router, streamed and cited answers, and a dashboard of proactive signals that flag stalled candidates and pipelines before anyone asks• Developed RAG for Sync AI: encrypted HR policy uploads, a parse, chunk and embed pipeline, vector retrieval, and answers that cite their source documents• Built CI/CD from scratch with nightly staging, deliberate manual prod promotion, and a one-click rollback that undoes its own data migrations• Delivered robust search from index to UI: hybrid keyword and vector retrieval, per-user access scoping, and a Cmd+K palette with extensive filtering, saved searches and shareable links• Engineered end-to-end QA and docs as one system: Playwright tests run against staging, then regenerate and publish the help site with every prod release, so it never needs manual updates• Picked and stood up our vendor stack, then built the bottom-up cost model we took to leadership and investors• Automated work outside engineering, turning daily call notes into Jira product ideas and running monthly health, backup and secret audits",
+    "duration": "Jan 2026 - Present · 10 mos",
+    "skills": [
+      "Technical Leadership",
+      "Engineering Management",
+      "Artificial Intelligence (AI)",
+      "AI Software Development",
+      "LLMs",
+      "Software Architectural Design",
+      "TypeScript",
+      "React.js",
+      "Node.js",
+      "CI/CD"
+    ],
+    "title": "Head of Engineering (Founding Team)"
+  },
+  {
+    "bulletPoints": [
       "Pioneered enterprise-grade AI-assisted development practices, establishing quality standards and systematic workflows that transform AI chaos into production-ready code meeting rigorous review standards",
       "Architected foundational technology stack by selecting and integrating key services (Statsig, Netlify, Rollbar, etc), enabling seamless deployment and scalable infrastructure",
       "Influenced product strategy and technical direction by creating comprehensive product requirements, contributing to roadmap planning, and bridging product-engineering collaboration gaps",
@@ -22,7 +60,7 @@
     ],
     "company": "FORA · Freelance",
     "description": "• Pioneered enterprise-grade AI-assisted development practices, establishing quality standards and systematic workflows that transform AI chaos into production-ready code meeting rigorous review standards• Architected foundational technology stack by selecting and integrating key services (Statsig, Netlify, Rollbar, etc), enabling seamless deployment and scalable infrastructure• Influenced product strategy and technical direction by creating comprehensive product requirements, contributing to roadmap planning, and bridging product-engineering collaboration gaps• Orchestrated cross-platform development strategy across web frontend, serverless backend, administrative systems, and iOS app coordination, ensuring technical cohesion and scalability• Developed enterprise-grade tour platform with guided onboarding, dynamic configuration, and integrated analytics for user engagement tracking• Implemented marketing site with Prismic CMS integration, enabling dynamic content creation/management, sophisticated blog functionality, and proper social sharing• Developed progressive web app infrastructure and coordinated iOS development, delivering cross-platform mobile solutions with OneSignal notification architecture• Architected and developed developer experience platforms, including testing frameworks, custom administrative tooling, and automated release management",
-    "duration": "Jan 2024 - Present · 1 yr 9 mos",
+    "duration": "Jan 2024 - Dec 2025 · 2 yrs",
     "skills": [
       "JavaScript",
       "Product Strategy",
@@ -95,16 +133,16 @@
   },
   {
     "bulletPoints": [
-      "The CRM application is one of the main reasons Jibe is acquired by iCIMS - The product immediately replaces iCIMS’",
+      "The CRM application was one of the main reasons Jibe was acquired by iCIMS - The product immediately replaced iCIMS’",
       "Breadth of management doubled overnight, inherited a group of developers of varied experience and skill sets",
-      "Lead newly formed, larger team through delivery of a multi-month build out of a brand new event management module",
+      "Led newly formed, larger team through delivery of a multi-month build out of a brand new event management module",
       "Extracted customized angular material component library into satellite application (Storybook) that could be maintained alongside core codebase",
       "Became WCAG 2.2AA compliant by focusing team energy and dev hours on augmenting existing accessibility features",
       "Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording",
       "Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team"
     ],
     "company": "iCIMS",
-    "description": "• The CRM application is one of the main reasons Jibe is acquired by iCIMS - The product immediately replaces iCIMS’• Breadth of management doubled overnight, inherited a group of developers of varied experience and skill sets• Lead newly formed, larger team through delivery of a multi-month build out of a brand new event management module• Extracted customized angular material component library into satellite application (Storybook) that could be maintained alongside core codebase• Became WCAG 2.2AA compliant by focusing team energy and dev hours on augmenting existing accessibility features• Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording • Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team",
+    "description": "• The CRM application was one of the main reasons Jibe was acquired by iCIMS - The product immediately replaced iCIMS’• Breadth of management doubled overnight, inherited a group of developers of varied experience and skill sets• Led newly formed, larger team through delivery of a multi-month build out of a brand new event management module• Extracted customized angular material component library into satellite application (Storybook) that could be maintained alongside core codebase• Became WCAG 2.2AA compliant by focusing team energy and dev hours on augmenting existing accessibility features• Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording • Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team",
     "duration": "Jun 2019 - Feb 2021 · 1 yr 9 mos",
     "skills": [
       "Stakeholder Management",
@@ -206,14 +244,14 @@
   },
   {
     "bulletPoints": [
-      "Lead development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.",
+      "Led development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.",
       "Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular",
       "Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone",
       "Created thorough documentation within each codebase and on Confluence for general stakeholders to view",
       "Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries"
     ],
     "company": "Marvel Entertainment",
-    "description": "• Lead development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.• Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular • Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone• Created thorough documentation within each codebase and on Confluence for general stakeholders to view• Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries",
+    "description": "• Led development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.• Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular • Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone• Created thorough documentation within each codebase and on Confluence for general stakeholders to view• Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries",
     "duration": "Jun 2015 - Dec 2017 · 2 yrs 7 mos",
     "skills": [
       "Agile Methodologies"
@@ -235,10 +273,10 @@
       "Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned",
       "Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6",
       "Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository",
-      "Provide ongoing support as a substitute teacher as the need arises from other cohorts"
+      "Provided ongoing support as a substitute teacher as the need arose from other cohorts"
     ],
     "company": "Rutgers University",
-    "description": "• Taught a six-month long intensive full stack bootcamp to students with no prior coding experience • Lesson plans covered a multitude of JavaScript topics which spanned the entire stack Topics included: HTML5, CSS, Javascript, jQuery, Git, Node, Express, MySQL, MongoDB, React, Computer Science, Deployment, and more • Provided ongoing assistance to students as they progressed through the course, both remotely and inside the classroom • Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned • Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6• Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository• Provide ongoing support as a substitute teacher as the need arises from other cohorts",
+    "description": "• Taught a six-month long intensive full stack bootcamp to students with no prior coding experience • Lesson plans covered a multitude of JavaScript topics which spanned the entire stack Topics included: HTML5, CSS, Javascript, jQuery, Git, Node, Express, MySQL, MongoDB, React, Computer Science, Deployment, and more • Provided ongoing assistance to students as they progressed through the course, both remotely and inside the classroom • Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned • Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6• Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository• Provided ongoing support as a substitute teacher as the need arose from other cohorts",
     "duration": "Feb 2017 - Aug 2017 · 7 mos",
     "skills": [
       "Agile Methodologies"

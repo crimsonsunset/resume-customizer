@@ -1,4 +1,5 @@
 import { SectionRenderer } from '@web/lib/utils/section-renderer.js'
+import { FilterUtils } from '@web/lib/utils/filter-utils.js'
 import { parseExperienceDateRange } from '@shared/date-utils.js'
 
 /**
@@ -96,15 +97,7 @@ ${SectionRenderer.renderBullets(bullets)}`
     }
     
     // Apply management role filtering
-    if (filters.experience_filter === 'management_roles_only') {
-      filtered = filtered.filter(exp => {
-        const title = exp.title.toLowerCase()
-        return title.includes('manager') || 
-               title.includes('director') ||
-               title.includes('lead') ||
-               title.includes('principal')
-      })
-    }
+    filtered = FilterUtils.filterByRole(filtered, filters.experience_filter)
     
     // Apply index-based selection (replaces max_entries)
     if (filters.selected_indices && Array.isArray(filters.selected_indices)) {

@@ -1,4 +1,5 @@
 import { parseExperienceDateRange, parseResumeDate } from '@shared/date-utils.js'
+import { isManagementRole } from '@shared/role-utils.js'
 
 /**
  * Universal filter utilities for resume sections
@@ -133,13 +134,7 @@ export const FilterUtils = {
     if (!roleFilter) return items
     
     if (roleFilter === 'management_roles_only') {
-      return items.filter(item => {
-        const title = item[titleField]?.toLowerCase() || ''
-        return title.includes('manager') || 
-               title.includes('director') ||
-               title.includes('lead') ||
-               title.includes('principal')
-      })
+      return items.filter(item => isManagementRole(item[titleField]))
     }
     
     return items

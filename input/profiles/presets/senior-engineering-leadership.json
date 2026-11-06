@@ -22,6 +22,7 @@
         "Mentoring & Development"
       ],
       "Programming Languages": [
+        "Rust",
         "JavaScript/TypeScript",
         "Python",
         "Java",
@@ -73,6 +74,10 @@
         "CloudFlare"
       ],
       "Concepts & Methodologies": [
+        "MCP",
+        "Agentic Workflows",
+        "RAG",
+        "LLM Evals",
         "System Design",
         "Software Architecture", 
         "Agile Methodologies",
@@ -88,16 +93,16 @@
       ]
     },
     "experience": {
-      "selected_indices": [0, 1, 2, 3, 5, 6, 9],
+      "selected_indices": [0, 1, 2, 3, 4, 6, 7, 10],
       "bullet_priority_threshold": 7,
       "bullet_priorities_overrides": {
-        "0": [8, 8, 10, 10, 4, 4, 4, 4],
-        "1": [10, 8, 4, 10, 4],
-        "2": [10, 10, 4, 4, 8, 10],
-        "3": [10, 10, 10, 4, 4, 4, 4],
-        "5": [8, 4, 4, 8, 4],
-        "6": [4, 8, 10, 4, 10, 10],
-        "9": [10, 4, 10, 10, 4, 4, 4]
+        "1": [8, 8, 10, 10, 4, 4, 4, 4],
+        "2": [10, 8, 4, 10, 4],
+        "3": [10, 10, 4, 4, 8, 10],
+        "4": [10, 10, 10, 4, 4, 4, 4],
+        "6": [8, 4, 4, 8, 4],
+        "7": [4, 8, 10, 4, 10, 10],
+        "10": [10, 4, 10, 10, 4, 4, 4]
       }
     },
     "projects": {
