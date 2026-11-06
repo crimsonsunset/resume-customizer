@@ -133,16 +133,16 @@
   },
   {
     "bulletPoints": [
-      "The CRM application is one of the main reasons Jibe is acquired by iCIMS - The product immediately replaces iCIMS’",
+      "The CRM application was one of the main reasons Jibe was acquired by iCIMS - The product immediately replaced iCIMS’",
       "Breadth of management doubled overnight, inherited a group of developers of varied experience and skill sets",
-      "Lead newly formed, larger team through delivery of a multi-month build out of a brand new event management module",
+      "Led newly formed, larger team through delivery of a multi-month build out of a brand new event management module",
       "Extracted customized angular material component library into satellite application (Storybook) that could be maintained alongside core codebase",
       "Became WCAG 2.2AA compliant by focusing team energy and dev hours on augmenting existing accessibility features",
       "Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording",
       "Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team"
     ],
     "company": "iCIMS",
-    "description": "• The CRM application is one of the main reasons Jibe is acquired by iCIMS - The product immediately replaces iCIMS’• Breadth of management doubled overnight, inherited a group of developers of varied experience and skill sets• Lead newly formed, larger team through delivery of a multi-month build out of a brand new event management module• Extracted customized angular material component library into satellite application (Storybook) that could be maintained alongside core codebase• Became WCAG 2.2AA compliant by focusing team energy and dev hours on augmenting existing accessibility features• Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording • Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team",
+    "description": "• The CRM application was one of the main reasons Jibe was acquired by iCIMS - The product immediately replaced iCIMS’• Breadth of management doubled overnight, inherited a group of developers of varied experience and skill sets• Led newly formed, larger team through delivery of a multi-month build out of a brand new event management module• Extracted customized angular material component library into satellite application (Storybook) that could be maintained alongside core codebase• Became WCAG 2.2AA compliant by focusing team energy and dev hours on augmenting existing accessibility features• Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording • Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team",
     "duration": "Jun 2019 - Feb 2021 · 1 yr 9 mos",
     "skills": [
       "Stakeholder Management",
@@ -244,14 +244,14 @@
   },
   {
     "bulletPoints": [
-      "Lead development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.",
+      "Led development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.",
       "Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular",
       "Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone",
       "Created thorough documentation within each codebase and on Confluence for general stakeholders to view",
       "Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries"
     ],
     "company": "Marvel Entertainment",
-    "description": "• Lead development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.• Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular • Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone• Created thorough documentation within each codebase and on Confluence for general stakeholders to view• Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries",
+    "description": "• Led development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.• Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular • Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone• Created thorough documentation within each codebase and on Confluence for general stakeholders to view• Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries",
     "duration": "Jun 2015 - Dec 2017 · 2 yrs 7 mos",
     "skills": [
       "Agile Methodologies"
@@ -273,10 +273,10 @@
       "Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned",
       "Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6",
       "Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository",
-      "Provide ongoing support as a substitute teacher as the need arises from other cohorts"
+      "Provided ongoing support as a substitute teacher as the need arose from other cohorts"
     ],
     "company": "Rutgers University",
-    "description": "• Taught a six-month long intensive full stack bootcamp to students with no prior coding experience • Lesson plans covered a multitude of JavaScript topics which spanned the entire stack Topics included: HTML5, CSS, Javascript, jQuery, Git, Node, Express, MySQL, MongoDB, React, Computer Science, Deployment, and more • Provided ongoing assistance to students as they progressed through the course, both remotely and inside the classroom • Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned • Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6• Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository• Provide ongoing support as a substitute teacher as the need arises from other cohorts",
+    "description": "• Taught a six-month long intensive full stack bootcamp to students with no prior coding experience • Lesson plans covered a multitude of JavaScript topics which spanned the entire stack Topics included: HTML5, CSS, Javascript, jQuery, Git, Node, Express, MySQL, MongoDB, React, Computer Science, Deployment, and more • Provided ongoing assistance to students as they progressed through the course, both remotely and inside the classroom • Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned • Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6• Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository• Provided ongoing support as a substitute teacher as the need arose from other cohorts",
     "duration": "Feb 2017 - Aug 2017 · 7 mos",
     "skills": [
       "Agile Methodologies"
