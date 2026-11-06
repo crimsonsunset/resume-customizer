@@ -20,6 +20,7 @@
         "Process Improvement"
       ],
       "Programming Languages": [
+        "Rust",
         "JavaScript/Typescript",
         "JSX",
         "HTML",
@@ -102,6 +103,8 @@
         "Mapping APIs"
       ],
       "Concepts & Methodologies": [
+        "MCP",
+        "Agentic Workflows",
         "REST APIs",
         "Web APIs",
         "3rd Party Integrations",

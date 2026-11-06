@@ -19,6 +19,7 @@
         "Change Management"
       ],
       "Programming Languages": [
+        "Rust",
         "JavaScript/TypeScript",
         "Python",
         "HTML",
@@ -56,6 +57,10 @@
         "Figma"
       ],
       "Concepts & Methodologies": [
+        "MCP",
+        "Agentic Workflows",
+        "RAG",
+        "LLM Evals",
         "Artificial Intelligence (AI)",
         "AI-Assisted Development",
         "Machine Learning Integration",

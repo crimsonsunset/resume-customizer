@@ -22,6 +22,7 @@
         "Mentoring & Development"
       ],
       "Programming Languages": [
+        "Rust",
         "JavaScript/TypeScript",
         "Python",
         "Java",
@@ -73,6 +74,10 @@
         "CloudFlare"
       ],
       "Concepts & Methodologies": [
+        "MCP",
+        "Agentic Workflows",
+        "RAG",
+        "LLM Evals",
         "System Design",
         "Software Architecture", 
         "Agile Methodologies",
