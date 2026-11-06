@@ -1,0 +1,34 @@
+{
+  "settings": {
+    "enabled": true,
+    "autoStart": true,
+    "showProgress": true,
+    "smoothScroll": true,
+    "allowClose": true
+  },
+  "steps": [
+    {
+      "id": "welcome",
+      "title": "🎯 This Isn't Just a Resume - It's Resume Intelligence",
+      "text": "Welcome! What you're looking at isn't a static document - it's an intelligent resume optimization system built by an engineering leader with 15+ years of experience.<br><br>This tool uses priority-based content curation, intelligent filtering algorithms, and dynamic preset configurations to automatically optimize resume content for different roles and situations.<br><br>Think of it as having a career strategist, technical writer, and design expert working together to present the most relevant version of this professional background for any opportunity.<br><br>Let me show you how sophisticated resume optimization actually works..."
+    },
+    {
+      "id": "presets",
+      "title": "📋 Watch Intelligent Content Adaptation",
+      "text": "Here's where the magic happens. Each preset isn't just a different layout - it's a completely different strategic presentation of the same professional data.<br><br><strong>Right now you're seeing</strong>: The comprehensive view with 14+ sections and full detail<br><br><strong>Watch this transformation</strong>: I'm going to switch to the 'Senior Engineering Leadership' preset. Notice how the system automatically:<br>• Emphasizes management and team-building achievements<br>• Prioritizes strategic technical decisions over implementation details<br>• Surfaces cross-functional collaboration and business impact<br>• Reorganizes content based on leadership-specific priority rankings<br><br>This isn't just hiding/showing sections - it's <strong>intelligent content curation</strong> where every bullet point has been ranked for relevance to different career paths.<br><br>Go ahead, try switching between 'Comprehensive' and 'Senior Engineering Leadership' to see the same professional background optimized for completely different audiences.",
+      "attachTo": { "element": "[data-tour='preset-selector']", "on": "bottom" }
+    },
+    {
+      "id": "controls",
+      "title": "🎛️ Master the Optimization Controls",
+      "text": "Now here's where this becomes truly powerful - you have granular control over the optimization engine.<br><br><strong>Content Density Slider</strong>: This isn't just 'show more/less' - it's priority-threshold filtering. Every bullet point in this resume has been assigned a strategic priority score (1-10) based on:<br>• Universal appeal across industries<br>• Technical sophistication level<br>• Business impact and leadership scope<br>• Innovation and award recognition<br><br><strong>Watch what happens</strong>: Move the slider from 100% to 50%. The system keeps only the highest-priority content - the stuff that impresses CTOs, hiring managers, and technical leaders regardless of specific role requirements.<br><br><strong>Section Controls</strong>: Want to craft a story for a specific opportunity? Toggle entire sections on/off. The priority filtering still applies within your selected sections.<br><br><strong>The Result</strong>: Instead of a generic resume, you get strategically curated content that maximizes impact while staying relevant to your target role.<br><br>Try adjusting the density slider now - watch how the content intelligently adapts!",
+      "attachTo": { "element": "[data-tour='density-controls']", "on": "left" }
+    },
+    {
+      "id": "pdf-output",
+      "title": "📄 Get Interview-Ready Results",
+      "text": "Here's the final piece of the sophistication: professional PDF generation that maintains your optimization choices.<br><br><strong>What makes this special</strong>:<br>• <strong>Theme-Aware Generation</strong>: The PDF automatically inherits your selected UI theme colors for visual cohesion<br>• <strong>Cloud Infrastructure</strong>: Generated using enterprise-grade Gotenberg service on Google Cloud Run<br>• <strong>Pixel-Perfect Quality</strong>: Browser-quality rendering with modern CSS Grid layouts<br>• <strong>Smart Filename</strong>: Auto-generates professional filenames like 'joe-sangiorgio-senior-leadership-2025.pdf'<br><br><strong>The Result</strong>: You get a resume that doesn't just look professional - it demonstrates that you understand and use sophisticated technical tools.<br><br>The PDF you download represents hours of strategic thinking about content priority, audience targeting, and professional presentation - all automated through intelligent systems.<br><br>This isn't just a resume generator - it's a demonstration of how technology can solve complex professional challenges.",
+      "attachTo": { "element": "[data-tour='pdf-download']", "on": "top" }
+    }
+  ]
+}

@@ -14,6 +14,7 @@
     import ResumeStats from '@web/lib/components/ResumeStats.svelte'
     import ComingSoonFeatures from '@web/lib/components/ComingSoonFeatures.svelte'
     import MobileMenu from '@web/lib/components/ui/MobileMenu.svelte'
+    import TourGuide from '@web/lib/components/TourGuide.svelte'
     import {
         densityInitializedStore,
         densityStore,
@@ -26,6 +27,7 @@
         updateFilters,
         updateSectionVisibility
     } from '@web/lib/stores/url-state.js'
+    import { tourCompletedState } from '@web/lib/stores/tour-state.js'
 
     export let data
 
@@ -449,11 +451,12 @@
                 </button>
             {/if}
         </div>
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-4" data-tour="desktop-controls">
             <ThemeSelector/>
             <button class="btn btn-primary m-1"
                     disabled={isExportingPDF}
-                    on:click={exportToPDF}>
+                    on:click={exportToPDF}
+                    data-tour="pdf-download">
                 {#if isExportingPDF}
                     <span class="loading loading-spinner loading-sm"></span>
                 {:else}
@@ -523,7 +526,7 @@
                 </div>
 
                 <!-- Mobile Menu (Ellipsis with Download PDF + Theme) -->
-                <MobileMenu onExportToPDF={exportToPDF} {isExportingPDF}/>
+                <MobileMenu onExportToPDF={exportToPDF} {isExportingPDF} data-tour="mobile-menu"/>
             </div>
         </header>
 
@@ -554,11 +557,14 @@
         <!-- Sidebar content -->
         <div class="bg-base-100 text-base-content min-h-full w-96 border-r border-base-300 overflow-y-auto">
             <div class="p-6 pt-24 lg:pt-6 space-y-6">
-                <PresetSelector bind:selectedVersion={selectedVersion} availablePresets={data.availablePresets}/>
+                <div data-tour="preset-selector">
+                    <PresetSelector bind:selectedVersion={selectedVersion} availablePresets={data.availablePresets}/>
+                </div>
 
                 <SectionControls bind:visibleSections={visibleSections} {availableSectionsByCategory}/>
 
-                <DensityControls
+                <div data-tour="density-controls">
+                    <DensityControls
                         {density}
                         {experienceYears}
                         {totalExperienceYears}
@@ -568,9 +574,21 @@
                             updateFilters(density, experienceYears, page.url)
                             console.log('🕐 Years changed:', experienceYears, 'of', totalExperienceYears, 'total')
                         }}
-                />
+                    />
+                </div>
 
                 <ResumeStats {data} {visibleSections} {density}/>
+
+                <!-- Tour Guide Component -->
+                <div class="flex justify-center mb-4">
+                    <TourGuide 
+                        autoStart={!$tourCompletedState}
+                        showTourButton={true}
+                        on:tourCompleted={() => console.log('🎯 Tour completed successfully')}
+                        on:tourStarted={() => console.log('🎯 Tour started')}
+                        on:tourCancelled={() => console.log('🚫 Tour cancelled')}
+                    />
+                </div>
 
                 <ComingSoonFeatures/>
             </div>

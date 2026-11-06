@@ -1,0 +1,35 @@
+/* Driver.js Proper Theming - No CSS Fighting */
+
+/* Driver.js CSS Custom Properties Integration */
+:root {
+  /* DaisyUI color integration */
+  --driver-text-color: hsl(var(--bc));
+  --driver-background-color: hsl(var(--b1));
+  --driver-border-color: hsl(var(--b3));
+  --driver-primary-color: hsl(var(--p));
+  --driver-primary-text: hsl(var(--pc));
+  
+  /* Layout properties */
+  --driver-popover-border-radius: 0.75rem;
+  --driver-popover-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --driver-popover-font-family: inherit;
+  --driver-popover-max-width: 400px;
+  --driver-popover-padding: 1rem;
+  
+  /* Overlay */
+  --driver-overlay-color: rgba(0, 0, 0, 0.1);
+  
+  /* Highlighted element */
+  --driver-highlighted-element-border: 2px solid hsl(var(--p));
+  --driver-highlighted-element-shadow: 0 0 0 4px hsl(var(--p) / 0.2);
+}
+
+/* Let Driver.js handle all positioning naturally */
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+  :root {
+    --driver-popover-max-width: calc(100vw - 2rem);
+    --driver-popover-padding: 0.75rem;
+  }
+}
