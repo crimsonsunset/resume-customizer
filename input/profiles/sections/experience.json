@@ -1,27 +1,27 @@
 [
   {
     "bulletPoints": [
-      "Lead engineering for a multi-tenant recruiting communication platform that integrates with iCIMS, Ashby and SuccessFactors, setting technical direction through 189 planning docs, reviewing 199 teammate pull requests, and scoping work across 524 Jira tickets",
-      "Stayed hands-on while leading, authoring 237 merged pull requests and resolving 230 tickets in under a year across frontend, backend, security rules, and infrastructure",
-      "Replaced hand-maintained Firestore security rules with generated, tested output by forking an open-source rules DSL, building an intermediate representation and emitter, and adding a parity suite that verifies backend permission logic against the rules emulator",
-      "Hardened multi-tenant security by adding server-side capability enforcement, access revocation for deactivated members, and rate limiting on AI chat, and by fixing Firestore rules edge cases",
-      "Built core Sync AI features directly into the product, including streaming responses, retrieval with source citations, a skill registry and intent router, and an EEOC classifier guardrail",
-      "Delivered Typesense-backed search with a Cmd+K command palette, operator filters, saved searches, and shareable URL state",
-      "Consolidated separate frontend and backend repositories into a pnpm and Turborepo monorepo with PR preview deployments, automated changelogs, and a dependency audit gate that took open advisories to zero",
-      "Controlled AI costs with an OpenRouter spend cap and Slack alerting"
+      "Led engineering and product at an early-stage startup, owning roadmap, architecture, release, QA and security while still shipping core features hands-on",
+      "Picked and stood up our vendor stack, then built the bottom-up cost model we took to leadership and investors",
+      "Built end-to-end QA and docs as one system: Playwright tests run against staging, then regenerate and publish the help site with every prod release, so it never needs manual updates",
+      "Automated work outside engineering: daily call notes become Jira product ideas, plus monthly health, backup and secret audits",
+      "Built CI/CD from scratch: nightly staging, deliberate manual prod promotion, and one-click rollback that undoes its own data migrations when relevant, plus an automatically generated changelog and Jira release for every deploy",
+      "Built RAG for Sync AI from scratch: encrypted HR policy uploads, an automated parse, chunk and embed pipeline, vector retrieval, and answers that cite their source documents",
+      "Built Sync AI as a platform, not a chatbot: a model-agnostic skill router, streamed and cited answers, search, and a dashboard of proactive signals that flag stalled candidates and pipelines before anyone asks",
+      "Built robust search from index to UI: hybrid keyword and vector retrieval, per-user access scoping, and a Cmd+K palette with extensive filtering, saved searches and shareable links"
     ],
     "bullet_priorities": [
       10,
-      8,
-      9,
-      9,
-      10,
       6,
+      7,
+      5,
+      9,
       8,
-      6
+      9,
+      8
     ],
     "company": "Sync2Hire",
-    "description": "• Lead engineering for a multi-tenant recruiting communication platform that integrates with iCIMS, Ashby and SuccessFactors, setting technical direction through 189 planning docs, reviewing 199 teammate pull requests, and scoping work across 524 Jira tickets• Stayed hands-on while leading, authoring 237 merged pull requests and resolving 230 tickets in under a year across frontend, backend, security rules, and infrastructure• Replaced hand-maintained Firestore security rules with generated, tested output by forking an open-source rules DSL, building an intermediate representation and emitter, and adding a parity suite that verifies backend permission logic against the rules emulator• Hardened multi-tenant security by adding server-side capability enforcement, access revocation for deactivated members, and rate limiting on AI chat, and by fixing Firestore rules edge cases• Built core Sync AI features directly into the product, including streaming responses, retrieval with source citations, a skill registry and intent router, and an EEOC classifier guardrail• Delivered Typesense-backed search with a Cmd+K command palette, operator filters, saved searches, and shareable URL state• Consolidated separate frontend and backend repositories into a pnpm and Turborepo monorepo with PR preview deployments, automated changelogs, and a dependency audit gate that took open advisories to zero• Controlled AI costs with an OpenRouter spend cap and Slack alerting",
+    "description": "• Led engineering and product at an early-stage startup, owning roadmap, architecture, release, QA and security while still shipping core features hands-on• Picked and stood up our vendor stack, then built the bottom-up cost model we took to leadership and investors• Built end-to-end QA and docs as one system: Playwright tests run against staging, then regenerate and publish the help site with every prod release, so it never needs manual updates• Automated work outside engineering: daily call notes become Jira product ideas, plus monthly health, backup and secret audits• Built CI/CD from scratch: nightly staging, deliberate manual prod promotion, and one-click rollback that undoes its own data migrations when relevant, plus an automatically generated changelog and Jira release for every deploy• Built RAG for Sync AI from scratch: encrypted HR policy uploads, an automated parse, chunk and embed pipeline, vector retrieval, and answers that cite their source documents• Built Sync AI as a platform, not a chatbot: a model-agnostic skill router, streamed and cited answers, search, and a dashboard of proactive signals that flag stalled candidates and pipelines before anyone asks• Built robust search from index to UI: hybrid keyword and vector retrieval, per-user access scoping, and a Cmd+K palette with extensive filtering, saved searches and shareable links",
     "duration": "Jan 2026 - Present · 10 mos",
     "skills": [
       "Technical Leadership",
@@ -133,16 +133,16 @@
   },
   {
     "bulletPoints": [
-      "The CRM application is one of the main reasons Jibe is acquired by iCIMS - The product immediately replaces iCIMS’",
+      "The CRM application was one of the main reasons Jibe was acquired by iCIMS - The product immediately replaced iCIMS’",
       "Breadth of management doubled overnight, inherited a group of developers of varied experience and skill sets",
-      "Lead newly formed, larger team through delivery of a multi-month build out of a brand new event management module",
+      "Led newly formed, larger team through delivery of a multi-month build out of a brand new event management module",
       "Extracted customized angular material component library into satellite application (Storybook) that could be maintained alongside core codebase",
       "Became WCAG 2.2AA compliant by focusing team energy and dev hours on augmenting existing accessibility features",
       "Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording",
       "Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team"
     ],
     "company": "iCIMS",
-    "description": "• The CRM application is one of the main reasons Jibe is acquired by iCIMS - The product immediately replaces iCIMS’• Breadth of management doubled overnight, inherited a group of developers of varied experience and skill sets• Lead newly formed, larger team through delivery of a multi-month build out of a brand new event management module• Extracted customized angular material component library into satellite application (Storybook) that could be maintained alongside core codebase• Became WCAG 2.2AA compliant by focusing team energy and dev hours on augmenting existing accessibility features• Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording • Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team",
+    "description": "• The CRM application was one of the main reasons Jibe was acquired by iCIMS - The product immediately replaced iCIMS’• Breadth of management doubled overnight, inherited a group of developers of varied experience and skill sets• Led newly formed, larger team through delivery of a multi-month build out of a brand new event management module• Extracted customized angular material component library into satellite application (Storybook) that could be maintained alongside core codebase• Became WCAG 2.2AA compliant by focusing team energy and dev hours on augmenting existing accessibility features• Introduced internationalization to the CRM, by completing a massive effort to extract & translate all user visible wording • Created highly customized Jira tooling that streamlined ticket management for a rapidly-growing CRM team",
     "duration": "Jun 2019 - Feb 2021 · 1 yr 9 mos",
     "skills": [
       "Stakeholder Management",
@@ -244,14 +244,14 @@
   },
   {
     "bulletPoints": [
-      "Lead development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.",
+      "Led development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.",
       "Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular",
       "Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone",
       "Created thorough documentation within each codebase and on Confluence for general stakeholders to view",
       "Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries"
     ],
     "company": "Marvel Entertainment",
-    "description": "• Lead development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.• Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular • Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone• Created thorough documentation within each codebase and on Confluence for general stakeholders to view• Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries",
+    "description": "• Led development on Marvel’s first React project, utilizing ES6 syntax, Webpack build chain, Block Element Modifier Sass styling, and highly structured components for optimal reusability.• Primary stakeholder in supporting and developing the internal digital comic authoring tool, built on Angular • Designed/developed core components of read.marvel.com, the Marvel Unlimited web interface, written in Backbone• Created thorough documentation within each codebase and on Confluence for general stakeholders to view• Built assorted different static and dynamic pages for the Marvel.com website, utilizing jQuery, Backbone, and other proprietary internal JavaScript libraries",
     "duration": "Jun 2015 - Dec 2017 · 2 yrs 7 mos",
     "skills": [
       "Agile Methodologies"
@@ -273,10 +273,10 @@
       "Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned",
       "Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6",
       "Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository",
-      "Provide ongoing support as a substitute teacher as the need arises from other cohorts"
+      "Provided ongoing support as a substitute teacher as the need arose from other cohorts"
     ],
     "company": "Rutgers University",
-    "description": "• Taught a six-month long intensive full stack bootcamp to students with no prior coding experience • Lesson plans covered a multitude of JavaScript topics which spanned the entire stack Topics included: HTML5, CSS, Javascript, jQuery, Git, Node, Express, MySQL, MongoDB, React, Computer Science, Deployment, and more • Provided ongoing assistance to students as they progressed through the course, both remotely and inside the classroom • Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned • Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6• Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository• Provide ongoing support as a substitute teacher as the need arises from other cohorts",
+    "description": "• Taught a six-month long intensive full stack bootcamp to students with no prior coding experience • Lesson plans covered a multitude of JavaScript topics which spanned the entire stack Topics included: HTML5, CSS, Javascript, jQuery, Git, Node, Express, MySQL, MongoDB, React, Computer Science, Deployment, and more • Provided ongoing assistance to students as they progressed through the course, both remotely and inside the classroom • Served as a mentor and senior developer to students, course correcting and explaining concepts as they learned • Rewrote the entire React portion of the curriculum, switching from deprecated ES5 syntax to more future-friendly ES6• Contributed to a nationwide shared lesson plan by submitting merge requests to shared repository• Provided ongoing support as a substitute teacher as the need arose from other cohorts",
     "duration": "Feb 2017 - Aug 2017 · 7 mos",
     "skills": [
       "Agile Methodologies"
