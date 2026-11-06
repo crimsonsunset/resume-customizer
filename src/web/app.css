@@ -1,5 +1,5 @@
 /* Tailwind CSS 4 + DaisyUI 5 */
-@import "tailwindcss";
+@import "tailwindcss/index.css";
 @plugin "daisyui" {
   themes: all;
 }

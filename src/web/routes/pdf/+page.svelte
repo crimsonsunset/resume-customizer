@@ -44,7 +44,7 @@
             console.log('🔄 Loading PDF processing components...')
             
             // Load PDF utilities
-            const pdfModule = await import('$lib/utils/pdf-utils.js')
+            const pdfModule = await import('#lib/utils/pdf-utils.js')
             pdfUtils = {
                 convertPdfToMarkdown: pdfModule.convertPdfToMarkdown,
                 addDocumentHeader: pdfModule.addDocumentHeader,

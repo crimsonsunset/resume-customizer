@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit'
-import projectsData from '$lib/data/v0/projects.json'
+import projectsData from '#lib/data/v0/projects.json'
 
 /**
  * GET endpoint for projects information
