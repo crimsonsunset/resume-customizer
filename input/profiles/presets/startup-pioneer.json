@@ -17,6 +17,7 @@
         "Strategic Planning"
       ],
       "Programming Languages": [
+        "Rust",
         "JavaScript/TypeScript",
         "Python",
         "HTML",
@@ -54,6 +55,10 @@
         "Figma"
       ],
       "Concepts & Methodologies": [
+        "MCP",
+        "Agentic Workflows",
+        "RAG",
+        "LLM Evals",
         "Artificial Intelligence (AI)",
         "AI-Assisted Development",
         "Progressive Web Apps",

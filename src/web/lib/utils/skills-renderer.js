@@ -24,7 +24,7 @@ const CATEGORY_PRIORITY = {
 const OS_KEYWORDS = ['Windows', 'Mac', 'macOS', 'iOS', 'Android', 'Linux', 'Unix', 'Ubuntu', 'OS', 'Operating System']
 
 // Programming language name patterns for fallback categorization
-const PROGRAMMING_LANGUAGES = new Set(['C++', 'CSS/Sass', 'HTML', 'Java', 'JavaScript', 'JSON', 'JSX', 'PHP', 'Python', 'SQL', 'TypeScript', 'XML', 'YAML'])
+const PROGRAMMING_LANGUAGES = new Set(['C++', 'CSS/Sass', 'HTML', 'Java', 'JavaScript', 'JSON', 'JSX', 'PHP', 'Python', 'Rust', 'SQL', 'Swift', 'TypeScript', 'XML', 'YAML'])
 
 /**
  * SkillsRenderer handles the rendering of skills sections

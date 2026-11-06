@@ -19,6 +19,7 @@
         "Requirements Analysis"
       ],
       "Programming Languages": [
+        "Rust",
         "JavaScript/TypeScript",
         "Python",
         "Java",
@@ -100,6 +101,10 @@
         "Mapping APIs"
       ],
       "Concepts & Methodologies": [
+        "MCP",
+        "Agentic Workflows",
+        "RAG",
+        "LLM Evals",
         "Software Architectural Design",
         "System Integration",
         "Microservices Architecture",

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "lastUpdated": "2026-11-06",
-    "totalSkills": 207,
+    "totalSkills": 232,
     "source": "LinkedIn profile + experience analysis + session discussion + additional skills research + LinkedIn skills sync + resume skills sync + Sync2Hire stack (Nov 2026)"
   },
   "skills": {
@@ -2366,7 +2366,7 @@
       ],
       "marketDemand": "high",
       "trending": "up",
-      "priority": 5
+      "priority": 7
     },
     "turborepo": {
       "name": "Turborepo",
@@ -2441,7 +2441,7 @@
       ],
       "marketDemand": "high",
       "trending": "up",
-      "priority": 7
+      "priority": 9
     },
     "vectorsearch": {
       "name": "Vector Search",
@@ -2677,6 +2677,296 @@
       "marketDemand": "high",
       "trending": "stable",
       "priority": 5
+    },
+    "rust": {
+      "name": "Rust",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "backend",
+        "systems"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 8
+    },
+    "swift": {
+      "name": "Swift",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "mobile",
+        "ios"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 5
+    },
+    "prisma": {
+      "name": "Prisma",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "backend",
+        "database"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 6
+    },
+    "tauri": {
+      "name": "Tauri",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "frontend",
+        "backend"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 6
+    },
+    "mastra": {
+      "name": "Mastra",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "backend",
+        "ai"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 5
+    },
+    "django": {
+      "name": "Django",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "backend"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 6
+    },
+    "celery": {
+      "name": "Celery",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "backend"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 5
+    },
+    "better-auth": {
+      "name": "Better Auth",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "backend",
+        "authentication"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 4
+    },
+    "inngest": {
+      "name": "Inngest",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "backend",
+        "scheduling"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 4
+    },
+    "swiftui": {
+      "name": "SwiftUI",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "mobile",
+        "ios"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 4
+    },
+    "promptfoo": {
+      "name": "Promptfoo",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "testing",
+        "ai"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 5
+    },
+    "mcp-sdk": {
+      "name": "MCP SDK",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "backend",
+        "ai"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 6
+    },
+    "chrome-extensions": {
+      "name": "Chrome Extensions",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "devops",
+        "frontend"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 6
+    },
+    "posthog": {
+      "name": "PostHog",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "analytics"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 5
+    },
+    "sqlite": {
+      "name": "SQLite",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "devops",
+        "database"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 4
+    },
+    "ansible": {
+      "name": "Ansible",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "devops"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 3
+    },
+    "windmill": {
+      "name": "Windmill",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "devops",
+        "automation"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 4
+    },
+    "lightrag": {
+      "name": "LightRAG",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "devops",
+        "ai"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 4
+    },
+    "slack-api": {
+      "name": "Slack API",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "devops",
+        "integration"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 3
+    },
+    "mcp": {
+      "name": "MCP",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 10
+    },
+    "agentic-workflows": {
+      "name": "Agentic Workflows",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 10
+    },
+    "llm-evals": {
+      "name": "LLM Evals",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 8
+    },
+    "multi-agent-orchestration": {
+      "name": "Multi-Agent Orchestration",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 7
+    },
+    "llm-observability": {
+      "name": "LLM Observability",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "ai"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 6
+    },
+    "self-hosting-homelab": {
+      "name": "Self-Hosting / Homelab",
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "contexts": [
+        "development"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 6
     }
   }
 }
