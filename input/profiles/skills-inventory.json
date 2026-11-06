@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "lastUpdated": "2025-07-09",
-    "totalSkills": 187,
-    "source": "LinkedIn profile + experience analysis + session discussion + additional skills research + LinkedIn skills sync + resume skills sync"
+    "lastUpdated": "2026-11-06",
+    "totalSkills": 207,
+    "source": "LinkedIn profile + experience analysis + session discussion + additional skills research + LinkedIn skills sync + resume skills sync + Sync2Hire stack (Nov 2026)"
   },
   "skills": {
     "javascript": {
@@ -2314,6 +2314,369 @@
       "marketDemand": "medium",
       "trending": "stable",
       "priority": 1
+    },
+    "firebase": {
+      "name": "Firebase",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "devops",
+        "cloud"
+      ],
+      "relatedSkills": [
+        "gcp",
+        "firebaseauth"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 6
+    },
+    "typesense": {
+      "name": "Typesense",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "devops",
+        "search"
+      ],
+      "relatedSkills": null,
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 5
+    },
+    "openrouter": {
+      "name": "OpenRouter",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "devops",
+        "ai"
+      ],
+      "relatedSkills": [
+        "llms"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 5
+    },
+    "turborepo": {
+      "name": "Turborepo",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "devops",
+        "build-tools"
+      ],
+      "relatedSkills": [
+        "githubactions"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 4
+    },
+    "docusaurus": {
+      "name": "Docusaurus",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "devops",
+        "documentation"
+      ],
+      "relatedSkills": [
+        "playwright"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable",
+      "priority": 3
+    },
+    "sonarqube": {
+      "name": "SonarQube",
+      "aliases": [
+        "SonarCloud"
+      ],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "devops",
+        "code-quality"
+      ],
+      "relatedSkills": null,
+      "marketDemand": "medium",
+      "trending": "stable",
+      "priority": 4
+    },
+    "rag": {
+      "name": "RAG",
+      "aliases": [
+        "Retrieval-Augmented Generation"
+      ],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "ai",
+        "data"
+      ],
+      "relatedSkills": [
+        "llms",
+        "promptengineering"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 7
+    },
+    "vectorsearch": {
+      "name": "Vector Search",
+      "aliases": [
+        "Semantic Search"
+      ],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "ai",
+        "data"
+      ],
+      "relatedSkills": [
+        "rag"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 6
+    },
+    "multitenantarchitecture": {
+      "name": "Multi-Tenant Architecture",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "technical",
+        "architecture"
+      ],
+      "relatedSkills": [
+        "technicalarchitecture"
+      ],
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 6
+    },
+    "rolebasedaccesscontrol": {
+      "name": "Role-Based Access Control",
+      "aliases": [
+        "RBAC"
+      ],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "security",
+        "authentication"
+      ],
+      "relatedSkills": [
+        "firebaseauth"
+      ],
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 6
+    },
+    "eventdrivenarchitecture": {
+      "name": "Event-Driven Architecture",
+      "aliases": [
+        "Pub/Sub"
+      ],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "technical",
+        "architecture"
+      ],
+      "relatedSkills": [
+        "technicalarchitecture"
+      ],
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 5
+    },
+    "firestoresecurityrules": {
+      "name": "Firestore Security Rules",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "security",
+        "data"
+      ],
+      "relatedSkills": [
+        "firebase"
+      ],
+      "marketDemand": "medium",
+      "trending": "stable",
+      "priority": 5
+    },
+    "datamigrations": {
+      "name": "Data Migrations",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "data",
+        "development"
+      ],
+      "relatedSkills": null,
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 5
+    },
+    "featureflags": {
+      "name": "Feature Flags",
+      "aliases": [
+        "Feature Toggles"
+      ],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "development",
+        "process"
+      ],
+      "relatedSkills": null,
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 4
+    },
+    "shadcnui": {
+      "name": "shadcn/ui",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "frontend",
+        "styling"
+      ],
+      "relatedSkills": [
+        "react",
+        "tailwindcss"
+      ],
+      "marketDemand": "high",
+      "trending": "up",
+      "priority": 4
+    },
+    "tiptap": {
+      "name": "Tiptap",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "frontend",
+        "editor"
+      ],
+      "relatedSkills": [
+        "react"
+      ],
+      "marketDemand": "medium",
+      "trending": "up",
+      "priority": 3
+    },
+    "vendormanagement": {
+      "name": "Vendor Management",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "management",
+        "business"
+      ],
+      "relatedSkills": null,
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 6
+    },
+    "budgeting": {
+      "name": "Budgeting",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "management",
+        "business"
+      ],
+      "relatedSkills": null,
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 6
+    },
+    "releasemanagement": {
+      "name": "Release Management",
+      "aliases": [],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "management",
+        "devops"
+      ],
+      "relatedSkills": [
+        "cicd"
+      ],
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 6
+    },
+    "developerexperience": {
+      "name": "Developer Experience",
+      "aliases": [
+        "DX"
+      ],
+      "proficiency": "intermediate",
+      "yearsExperience": 1,
+      "lastUsed": null,
+      "linkedinEndorsements": null,
+      "contexts": [
+        "technical",
+        "development"
+      ],
+      "relatedSkills": null,
+      "marketDemand": "high",
+      "trending": "stable",
+      "priority": 5
     }
   }
 }
