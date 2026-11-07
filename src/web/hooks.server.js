@@ -12,10 +12,10 @@ const CORS_HEADERS = {
 /**
  * Handle hook - intercepts all requests
  * Automatically adds CORS headers to API routes
- * @param {Object} params
- * @param {Request} params.event - The request event
+ * @param {object} params - Hook parameters
+ * @param {object} params.event - The SvelteKit request event
  * @param {Function} params.resolve - Function to resolve the request
- * @returns {Promise<Response>}
+ * @returns {Promise<Response>} The response, with CORS headers on API routes
  */
 export async function handle({ event, resolve }) {
   // Check if this is an API route
@@ -34,9 +34,9 @@ export async function handle({ event, resolve }) {
     const response = await resolve(event)
 
     // Add CORS headers to the response
-    Object.entries(CORS_HEADERS).forEach(([key, value]) => {
+    for (const [key, value] of Object.entries(CORS_HEADERS)) {
       response.headers.set(key, value)
-    })
+    }
 
     return response
   }
