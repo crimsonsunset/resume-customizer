@@ -4,7 +4,7 @@
 
 | Field | Value |
 |---|---|
-| Gate | 2 (plan ready) |
+| Gate | 3 (code done, browser ACs pending Stage 4) |
 | Ticket | [#17](https://github.com/crimsonsunset/resume-customizer/issues/17) |
 | Branch | bugfix/17-verify-preset-sliders-kit3 |
 | Repos | resume-customizer |
@@ -15,7 +15,7 @@
 | Gates | all |
 | Updated | 2026-11-07 |
 
-**Status:** planned, nothing implemented.
+**Status:** Phase 3 (regression script) written, lint and build green. Phases 1 and 2 need the live browser run, so nothing is verified yet and no fix has been written.
 **Estimate:** about half a day.
 
 ## Overview
@@ -39,10 +39,13 @@ This ticket is **verify first, fix only what fails**. It is NOT the architecture
 | 2 | Fix style is `afterNavigate` re-sync. No runes conversion | Smallest diff for the gap found. Runes rewrite and URL-as-source-of-truth belong to #20 |
 | 3 | Add a small regression check whether or not a fix is needed | Chosen at Gate 1 |
 | 4 | No fix is written unless a check fails | Verify-first ticket |
+| 5 | AC 5 (back/forward) is checked on presets only | Density, timeframe and section changes use `goto(..., { replaceState: true })`, so they never create history entries. Only preset changes do. Back/forward after a preset change also exposes a second suspect: `selectedVersion` is set once from `data.preset` (`+page.svelte:33`), so the dropdown label can stay on the old preset after back |
+| 6 | Regression script lives at `scripts/url-state.check.js` | Kebab case with a type suffix, per repo convention |
 
 ## Scope
 
 **In**
+- Fix the pre-existing lint error and warnings from [#21](https://github.com/crimsonsunset/resume-customizer/issues/21) (found by this ticket's lint mirror; the PR will say `Closes #21`)
 - Run the five checks from #17 on `master` (and on `329b4dc` if anything fails)
 - If back/forward (or any check) fails: one `afterNavigate` in `src/web/routes/+page.svelte` that re-runs `initializeSections`, `initializeDensity` (which seeds density and timeframe) from `page.url.searchParams` on `popstate`, guarded so `goto` from our own handlers cannot loop
 - One regression script covering URL to state
@@ -69,8 +72,9 @@ Loop guard: only act on `popstate`. Handler-driven `goto` calls are `goto` navig
 |---|---|
 | `src/web/routes/+page.svelte` | Add `afterNavigate` re-sync. Only if a check fails |
 | `src/web/lib/stores/url-state.js` | Possibly a small `syncStoresFromURL(url, availableSections)` helper. Only if needed to avoid duplicating init logic |
-| `scripts/check-url-state.mjs` | Playwright check: preset, density, timeframe, sections, back/forward. Run with a `npm run check:url-state` script |
+| `scripts/url-state.check.js` | Playwright check: preset, back, density, timeframe, sections, deep link. Needs a running dev server (`BASE_URL`, default `http://localhost:3000`) |
 | `package.json` | `check:url-state` script |
+| `src/web/hooks.server.js`, `src/web/routes/+layout.js` | Lint cleanup from [#21](https://github.com/crimsonsunset/resume-customizer/issues/21), folded into this branch. No behavior change |
 | `docs/planning/17-verify-preset-sliders-kit3.md` | This doc |
 
 ## Phasing
@@ -87,7 +91,7 @@ Loop guard: only act on `popstate`. Handler-driven `goto` calls are `goto` navig
 **Outcome:** the failed check passes on a re-run, and the other four still pass.
 
 ### Phase 3: Regression check (about 1 to 2 hours)
-- Add `scripts/check-url-state.mjs` and `npm run check:url-state`. It covers the five checks and fails with a clear message when a store or URL does not follow.
+- Add `scripts/url-state.check.js` and `npm run check:url-state`. It covers the five checks and fails with a clear message when a store or URL does not follow.
 
 **Outcome:** `npm run check:url-state` exits 0 against a running dev server and exits non-zero when the Phase 2 fix is reverted (when a fix was needed).
 
@@ -100,11 +104,13 @@ Loop guard: only act on `popstate`. Handler-driven `goto` calls are `goto` navig
 5. Back/forward restores each state
 6. If A/B was needed, result recorded: Kit 3 regression or pre-existing
 7. `npm run check:url-state` exists and passes
-8. `npm run lint` and `npm run build:web` pass (Local CI Mirror; there is no CI workflow, so lint and build are the PR bar)
+8. `npm run lint` is clean and `npm run build:web` passes (Local CI Mirror; there is no CI workflow, so lint and build are the PR bar)
 
 ## Local CI Mirror
 
 No `.github/workflows`. Mirror is `npm run lint` and `GOTENBERG_URL=http://localhost:3000 npm run build:web` in the worktree. `npm test` is a stub.
+
+Result (2026-11-07): build passes. `npm run lint` initially reported 1 error and 6 warnings on `origin/master` (`hooks.server.js`, `+layout.js`), unrelated to this ticket. Fixed in this branch (`for…of` instead of `.forEach`, JSDoc types and descriptions) and closed via [#21](https://github.com/crimsonsunset/resume-customizer/issues/21). `npm run lint` is now clean and `scripts/url-state.check.js` lints clean. `npm run check:url-state` has not been run yet (needs the dev server, Stage 4).
 
 ## Related
 

@@ -25,6 +25,7 @@
     "clean": "shx rm -rf dist node_modules/.cache",
     "cli": "npm run build:cli --silent && node dist/cli/convert.js",
     "test": "echo 'No tests specified'",
+    "check:url-state": "node scripts/url-state.check.js",
     "html-to-pdf": "npm run cli -- html-to-pdf",
     "json-to-html": "npm run cli -- json-to-html",
     "json-to-pdf": "npm run cli -- json-to-pdf",
