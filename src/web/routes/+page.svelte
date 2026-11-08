@@ -30,7 +30,8 @@
     export let data
 
     // Resume state management
-    let selectedVersion = data.preset || 'full'
+    let selectedVersion
+    $: selectedVersion = data.preset || 'full'
 
     // Calculate total years of experience dynamically from data
     $: totalExperienceYears = data.sections?.experience && data.sections?.projects
@@ -112,10 +113,7 @@
         showToast('↻ Reset to full professional history', 'preset')
 
         // 6. Navigate to clean URL for bookmarking
-        goto('/', {
-            noScroll: true,
-            keepFocus: true
-        })
+        goto('/', { reset: false })
 
         console.log('🎯 Reset complete - stores updated directly!')
     }

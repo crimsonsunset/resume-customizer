@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store'
-import { browser } from '$app/environment'
+import { browser } from '$app/env'
 import { goto } from '$app/navigation'
 import { 
   initializeSectionVisibility, 
@@ -38,11 +38,7 @@ export const updateSectionVisibility = (newVisibility, currentURL, updateURL = t
   
   if (updateURL && browser) {
     const newURL = updateURLWithSections(currentURL, newVisibility)
-    goto(newURL.toString(), { 
-      replaceState: true, 
-      noScroll: true,
-      keepFocus: true
-    })
+    goto(newURL.toString(), { replace: true, reset: false })
   }
 }
 
@@ -76,10 +72,7 @@ export const navigateToPreset = (presetValue, currentURL) => {
   if (!browser) return
   
   const newURL = updateURLWithPreset(currentURL, presetValue)
-  goto(newURL.toString(), { 
-    noScroll: true,
-    keepFocus: true
-  })
+  goto(newURL.toString(), { reset: false })
 }
 
 /**
@@ -108,11 +101,7 @@ export const updateFilters = (density, timeframe, currentURL, updateURL = true) 
   
   if (updateURL && browser) {
     const newURL = updateURLWithDensity(currentURL, density, timeframe)
-    goto(newURL.toString(), { 
-      replaceState: true, 
-      noScroll: true,
-      keepFocus: true
-    })
+    goto(newURL.toString(), { replace: true, reset: false })
   }
 }
 
