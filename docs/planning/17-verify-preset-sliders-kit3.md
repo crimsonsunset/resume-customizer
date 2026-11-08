@@ -4,7 +4,7 @@
 
 | Field | Value |
 |---|---|
-| Gate | 3 (code done, browser ACs pending Stage 4) |
+| Gate | 4 (QA passed, ready for PR) |
 | Ticket | [#17](https://github.com/crimsonsunset/resume-customizer/issues/17) |
 | Branch | bugfix/17-verify-preset-sliders-kit3 |
 | Repos | resume-customizer |
@@ -15,7 +15,7 @@
 | Gates | all |
 | Updated | 2026-11-07 |
 
-**Status:** Phase 3 (regression script) written, lint and build green. Phases 1 and 2 need the live browser run, so nothing is verified yet and no fix has been written.
+**Status:** Verified with `npm run check:url-state` against Vite on port 3001. Two real bugs found and fixed (below). Lint and build green.
 **Estimate:** about half a day.
 
 ## Overview
@@ -30,6 +30,19 @@ This ticket is **verify first, fix only what fails**. It is NOT the architecture
 - `densityStore`, `timeframeStore` and `sectionVisibilityStore` are seeded from the URL once: `initializeDensity` in `onMount`, `initializeSections` on first load. A `goto` changes the URL but nothing writes the URL back into the stores. Back/forward is the likeliest failing check.
 - The same gap existed under `$page.url` on Kit 2, so it may predate #9. The `329b4dc` A/B settles that.
 - No test framework, no CI workflows, `npm test` is a stub. `playwright` is already a dependency.
+
+## QA result (2026-11-07)
+
+First run: 5 of 6 checks failed. The `$app/state` migration was not the cause. The Kit 2 to 3 upgrade in [#9](https://github.com/crimsonsunset/resume-customizer/pull/9) was.
+
+| # | Finding | Class | Fix |
+|---|---|---|---|
+| 1 | Kit 3 removed `goto` options `noScroll` and `keepFocus` (dev throws `goto_options_removed`, unhandled rejection, URL never changes). Every preset, slider and section URL update was dead. `replaceState` is also deprecated | Kit 3 regression | `src/web/lib/stores/url-state.js` (3 calls) and `src/web/routes/+page.svelte` (reset): use `{ replace: true, reset: false }` |
+| 2 | After preset change then back, content and URL restored but the dropdown label stayed on the new preset. `selectedVersion` was set once from `data.preset` | Pre-existing logic, not version related (not A/B'd against `329b4dc`) | `+page.svelte`: `$: selectedVersion = data.preset \|\| 'full'` |
+
+Also fixed in this branch at Joe's request: `$app/environment` is deprecated in Kit 3, so the 5 files importing `browser` from it now use `$app/env` (`url-state.js`, `theme.js`, `ResumeViewer.svelte`, `ResumeStats.svelte`, `pdf/+page.svelte`). A fresh page load logs no warnings or errors.
+
+`afterNavigate` (Decision 2) was not needed. Back restores URL, content and label once #1 and #2 are fixed. Density, timeframe and section changes never create history entries, so back/forward does not apply to them.
 
 ## Decisions
 
@@ -70,8 +83,9 @@ Loop guard: only act on `popstate`. Handler-driven `goto` calls are `goto` navig
 
 | File | Change |
 |---|---|
-| `src/web/routes/+page.svelte` | Add `afterNavigate` re-sync. Only if a check fails |
-| `src/web/lib/stores/url-state.js` | Possibly a small `syncStoresFromURL(url, availableSections)` helper. Only if needed to avoid duplicating init logic |
+| `src/web/routes/+page.svelte` | `goto` options updated for Kit 3, `selectedVersion` made reactive to `data.preset`. No `afterNavigate` needed |
+| `src/web/lib/stores/url-state.js` | `goto` options updated for Kit 3 |
+| `theme.js`, `ResumeViewer.svelte`, `ResumeStats.svelte`, `pdf/+page.svelte` | `$app/environment` to `$app/env` (deprecation) |
 | `scripts/url-state.check.js` | Playwright check: preset, back, density, timeframe, sections, deep link. Needs a running dev server (`BASE_URL`, default `http://localhost:3000`) |
 | `package.json` | `check:url-state` script |
 | `src/web/hooks.server.js`, `src/web/routes/+layout.js` | Lint cleanup from [#21](https://github.com/crimsonsunset/resume-customizer/issues/21), folded into this branch. No behavior change |
@@ -110,7 +124,7 @@ Loop guard: only act on `popstate`. Handler-driven `goto` calls are `goto` navig
 
 No `.github/workflows`. Mirror is `npm run lint` and `GOTENBERG_URL=http://localhost:3000 npm run build:web` in the worktree. `npm test` is a stub.
 
-Result (2026-11-07): build passes. `npm run lint` initially reported 1 error and 6 warnings on `origin/master` (`hooks.server.js`, `+layout.js`), unrelated to this ticket. Fixed in this branch (`for…of` instead of `.forEach`, JSDoc types and descriptions) and closed via [#21](https://github.com/crimsonsunset/resume-customizer/issues/21). `npm run lint` is now clean and `scripts/url-state.check.js` lints clean. `npm run check:url-state` has not been run yet (needs the dev server, Stage 4).
+Result (2026-11-07): build passes. `npm run lint` initially reported 1 error and 6 warnings on `origin/master` (`hooks.server.js`, `+layout.js`), unrelated to this ticket. Fixed in this branch (`for…of` instead of `.forEach`, JSDoc types and descriptions) and closed via [#21](https://github.com/crimsonsunset/resume-customizer/issues/21). `npm run lint` is now clean and `scripts/url-state.check.js` lints clean. After the QA fixes: lint clean, build passes, `npm run check:url-state` passes 6 of 6.
 
 ## Related
 
