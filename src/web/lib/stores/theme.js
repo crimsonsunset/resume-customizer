@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store'
-import { browser } from '$app/environment'
+import { browser } from '$app/env'
 
 // DaisyUI 5 built-in themes (34 themes for even grid)
 export const DAISY_THEMES = [

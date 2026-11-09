@@ -1,7 +1,7 @@
 <!-- ResumeViewer.svelte - Resume display component with scoped styling -->
 <script>
     import { onMount } from 'svelte'
-    import { browser } from '$app/environment'
+    import { browser } from '$app/env'
     import { currentTheme } from '@web/lib/stores/theme.js'
 
     // Extract colors from DaisyUI theme (simplified approach)

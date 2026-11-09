@@ -3,10 +3,10 @@ import seoConfig from '@web/config/seo.json'
 /**
  * Layout load function that provides SEO configuration to all pages
  * Integrates with sk-seo for automatic meta tag generation
- * @param {Object} params - SvelteKit load function parameters
+ * @param {object} params - SvelteKit load function parameters
  * @param {URL} params.url - Current page URL
- * @param {Object} params.route - Current route information
- * @returns {Object} SEO configuration for sk-seo component
+ * @param {object} params.route - Current route information
+ * @returns {object} SEO configuration for sk-seo component
  */
 export const load = async ({ url, route }) => {
   // Get base SEO configuration

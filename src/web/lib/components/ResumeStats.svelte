@@ -1,6 +1,6 @@
 <script>
   import { onMount, tick } from 'svelte'
-  import { browser } from '$app/environment'
+  import { browser } from '$app/env'
   
   export let data = {}
   export let visibleSections = {}
