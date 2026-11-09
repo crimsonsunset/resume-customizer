@@ -120,10 +120,13 @@ try {
 
   await check('section toggle updates URL and content, then restores', async () => {
     const toggle = page.locator('label', { hasText: /^\s*skills\s*$/i }).locator('input')
+    const skillsSection = page.locator('[data-section="skills"]')
     await toggle.uncheck()
     await waitForParam(page, 'sections', (value) => Boolean(value) && !value.split(',').includes('skills'))
+    await skillsSection.waitFor({ state: 'hidden', timeout: 5000 })
     await toggle.check()
     await waitForParam(page, 'sections', (value) => Boolean(value) && value.split(',').includes('skills'))
+    await skillsSection.waitFor({ state: 'visible', timeout: 5000 })
   })
 
   await check('deep link restores sliders from the URL', async () => {
