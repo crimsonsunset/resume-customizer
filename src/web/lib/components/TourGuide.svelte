@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from 'svelte'
   import { createEventDispatcher } from 'svelte'
   import { delay } from 'lodash-es'
+  import { get } from 'svelte/store'
   import { 
     tourActiveStore, 
     tourCompletedState, 
@@ -16,8 +17,11 @@
   
   let driverObj
   let mounted = false
+  let destroyed = false
   let driver
   let escapeHandler
+  let initTimerId
+  let autoStartTimerId
   
   export let autoStart = false
   export let showTourButton = true
@@ -26,27 +30,74 @@
     // Dynamic import for Driver.js to avoid SSR issues
     try {
       const driverModule = await import('driver.js')
+      if (destroyed) return
       driver = driverModule.driver
       
-      delay(() => {
+      initTimerId = delay(() => {
+        if (destroyed) return
         mounted = true
         initializeTour()
         
         // Auto-start for new users if enabled
-        if (autoStart && !$tourCompletedState && tourConfig.settings.enabled) {
-          delay(() => startTour(), 1000) // Delay to ensure page is fully loaded
+        if (autoStart && !get(tourCompletedState) && tourConfig.settings.enabled) {
+          autoStartTimerId = delay(() => {
+            if (destroyed) return
+            startTour()
+          }, 1000) // Delay to ensure page is fully loaded
         }
       }, 100)
     } catch (error) {
       console.error('Failed to load Driver.js:', error)
     }
   })
+
+  /**
+   * Open the mobile/tablet drawer when tour targets live inside it.
+   */
+  const ensureDrawerOpen = () => {
+    if (!window.matchMedia('(max-width: 1023px)').matches) return
+    const toggle = document.getElementById('mobile-drawer')
+    if (toggle && !toggle.checked) {
+      document.querySelector('label[for="mobile-drawer"]')?.click()
+    }
+  }
+
+  /**
+   * Open the mobile overflow menu so the PDF control is visible below md.
+   */
+  const ensureMobilePdfVisible = () => {
+    const pdfButton = document.querySelector("[data-tour='mobile-pdf-download']")
+    if (pdfButton && pdfButton.offsetParent !== null) return
+    document.querySelector("[data-tour='mobile-menu-trigger']")?.click()
+  }
+
+  /**
+   * Resolve the PDF tour target for the active breakpoint.
+   * @returns {Element|null} Visible PDF control element
+   */
+  const resolvePdfElement = () => {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      ensureMobilePdfVisible()
+      return document.querySelector("[data-tour='mobile-pdf-download']")
+    }
+    return document.querySelector("[data-tour='pdf-download']")
+  }
+
+  /**
+   * Resolve a drawer-hosted tour target, opening the drawer first when needed.
+   * @param {string} selector CSS selector for the target
+   * @returns {Element|null} Target element after drawer prep
+   */
+  const resolveDrawerElement = (selector) => {
+    ensureDrawerOpen()
+    return document.querySelector(selector)
+  }
   
   /**
    * Initialize the Driver.js tour with configuration
    */
   const initializeTour = () => {
-    if (!driver || !mounted) return
+    if (!driver || !mounted || destroyed) return
     
     // Convert tour config to Driver.js format
     const steps = tourConfig.steps.map(step => {
@@ -56,6 +107,31 @@
           popover: {
             title: step.title,
             description: step.text
+          }
+        }
+      }
+
+      if (step.id === 'pdf-output') {
+        return {
+          element: () => resolvePdfElement(),
+          popover: {
+            title: step.title,
+            description: step.text,
+            side: step.attachTo.on || 'top',
+            align: 'start'
+          }
+        }
+      }
+
+      if (step.id === 'presets' || step.id === 'controls') {
+        const selector = step.attachTo.element
+        return {
+          element: () => resolveDrawerElement(selector),
+          popover: {
+            title: step.title,
+            description: step.text,
+            side: step.attachTo.on || 'bottom',
+            align: 'start'
           }
         }
       }
@@ -84,39 +160,33 @@
       doneBtnText: 'Done ✨',
       closeBtnText: '✕',
       steps: steps,
-      onDestroyed: () => {
-        markTourCompleted()
-        dispatch('tourCompleted')
-        console.log('🎯 Tour completed successfully')
-        removeEscapeListener()
+      onDestroyStarted: (_element, _step, _opts) => {
+        // Driver.js waits here when this hook exists; continue teardown.
+        driverObj?.destroy()
       },
-      onDestroyStarted: () => {
+      onDestroyed: (_element, _step, opts) => {
+        removeEscapeListener()
+        if (opts?.reason === 'done') {
+          markTourCompleted()
+          dispatch('tourCompleted')
+          console.log('🎯 Tour completed successfully')
+          return
+        }
         cancelTourState()
         dispatch('tourCancelled')
         console.log('🚫 Tour cancelled by user')
-        removeEscapeListener()
-      },
-      onCloseClick: () => {
-        console.log('🚫 Close button clicked')
-        driverObj?.destroy()
-      },
-      onDoneClick: () => {
-        console.log('✅ Done button clicked')
-        driverObj?.destroy()
       }
     })
-    
-    // Add explicit ESC key listener since Driver.js doesn't always handle it properly
-    addEscapeListener()
   }
   
   /**
    * Start the tour manually
    */
   const startTour = () => {
-    if (driverObj && mounted && tourConfig.settings.enabled) {
+    if (driverObj && mounted && !destroyed && tourConfig.settings.enabled) {
       startTourState()
       dispatch('tourStarted')
+      addEscapeListener()
       driverObj.drive()
     }
   }
@@ -124,8 +194,8 @@
   /**
    * Reset and restart the tour
    */
-  const retakeTour = () => {
-    if (driverObj && mounted) {
+  export const retakeTour = () => {
+    if (driverObj && mounted && !destroyed) {
       // Reset completion state
       tourCompletedState.set(false)
       startTour()
@@ -133,16 +203,17 @@
   }
   
   /**
-   * Add escape key listener for tour
+   * Add escape key listener while the tour is active
    */
   const addEscapeListener = () => {
+    removeEscapeListener()
     escapeHandler = (event) => {
-      if (event.key === 'Escape' && driverObj && mounted) {
-        console.log('🔑 ESC key pressed - closing tour')
-        event.preventDefault()
-        event.stopPropagation()
-        driverObj.destroy()
-      }
+      if (event.key !== 'Escape') return
+      if (!get(tourActiveStore) || !driverObj) return
+      console.log('🔑 ESC key pressed - closing tour')
+      event.preventDefault()
+      event.stopPropagation()
+      driverObj.destroy()
     }
     document.addEventListener('keydown', escapeHandler, true)
   }
@@ -158,6 +229,9 @@
   }
   
   onDestroy(() => {
+    destroyed = true
+    if (initTimerId) clearTimeout(initTimerId)
+    if (autoStartTimerId) clearTimeout(autoStartTimerId)
     removeEscapeListener()
     if (driverObj) {
       driverObj.destroy()
@@ -188,5 +262,3 @@
     </Button>
   {/if}
 {/if}
-
-

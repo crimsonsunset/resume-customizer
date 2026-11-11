@@ -32,16 +32,20 @@ The Resume Customizer uses a **sophisticated, multi-layered content curation eng
 
 ## 📊 Available Presets
 
-The system includes **8 strategic presets**, each optimized for different career contexts:
+The system includes **8 preset JSON files** under `input/profiles/presets/`. The web dropdown only lists the curated subset below; the others still work via `?preset=<name>` while they finish curation (`+page.server.js` hides them from `availablePresets`).
 
+**In the dropdown today:**
 1. **`one-page.json`** (order: 1) - Space-constrained applications
-2. **`senior-engineering-leadership.json`** (order: 2) - Management-focused roles  
-3. **`startup-pioneer.json`** (order: 3) - Early-stage company positions
-4. **`ai-innovation-leader.json`** (order: 4) - AI/innovation leadership roles
-5. **`principal-ic-plus.json`** (order: 5) - Senior individual contributor positions
-6. **`consultant-advisory.json`** (order: 6) - Strategic consulting roles
-7. **`tech-teacher-coach.json`** (order: 7) - Educational/mentoring positions  
-8. **`reference-sheet.json`** (order: 8) - Pure testimonials document
+2. **`senior-engineering-leadership.json`** (order: 2) - Management-focused roles
+3. **`principal-ic-plus.json`** (order: 5) - Senior individual contributor positions
+4. **`reference-sheet.json`** (order: 8) - Pure testimonials document
+5. **`full`** (synthetic) - Comprehensive resume with no preset overrides
+
+**URL-only for now** (files exist; omitted from the dropdown):
+- **`startup-pioneer.json`** (order: 3) - Early-stage company positions → `?preset=startup-pioneer`
+- **`ai-innovation-leader.json`** (order: 4) - AI/innovation leadership roles → `?preset=ai-innovation-leader`
+- **`consultant-advisory.json`** (order: 6) - Strategic consulting roles → `?preset=consultant-advisory`
+- **`tech-teacher-coach.json`** (order: 7) - Educational/mentoring positions → `?preset=tech-teacher-coach`
 
 ### **Preset JSON Structure**
 
@@ -92,18 +96,20 @@ Presets completely replace the default skills with curated lists organized by ca
 ### **2. Experience Index Selection**
 The `selected_indices` array picks specific experiences by their position in the base array:
 
-**One-Page Example:**
+**One-Page Example** (matches `one-page.json`):
 ```json
 "experience": {
   "selected_indices": [0, 1, 2],  // First 3 experiences only
   "bullet_priority_threshold": 7,
   "bullet_priorities_overrides": {
-    "0": [10, 9, 10, 8, 6, 5, 6, 6],  // Override priorities for experience #0
-    "1": [10, 6, 6, 9, 8],            // Override priorities for experience #1
-    "2": [9, 10, 6, 6, 6, 8]          // Override priorities for experience #2
+    "1": [10, 9, 10, 8, 6, 5, 6, 6],  // Override priorities for experience #1
+    "2": [10, 6, 6, 9, 8],            // Override priorities for experience #2
+    "3": [9, 10, 6, 6, 6, 8]          // Override priorities for experience #3
   }
 }
 ```
+
+Override keys are base-array indices, not positions inside `selected_indices`. Index `0` is selected but has no override (base priorities apply).
 
 **Index Selection Strategy:**
 - **Strategic Picking**: Select most relevant experiences for target role
@@ -157,17 +163,19 @@ Presets can reorder entire sections:
 ```json
 {
   "overrides": {
-    "objective": null,        // Remove objective
-    "skills": null,          // Remove skills  
-    "experience": { "selected_indices": [] },  // Remove all experience
-    "projects": { "selected_indices": [] },    // Remove all projects
+    "objective": null,        // Ignored by merge (truthy-only); does not clear base objective
+    "skills": null,          // Ignored by merge (truthy-only); does not clear base skills
+    "experience": { "selected_indices": [] },  // Hide all experience entries
+    "projects": { "selected_indices": [] },    // Hide all projects
     "recommendations": { 
       "selected_indices": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14] 
     },
-    "sections_order": ["headline", "recommendations"]  // Only these two sections
+    "sections_order": ["headline", "recommendations"]  // Hides other sections from render order
   }
 }
 ```
+
+`mergePresetWithRawData` only applies truthy `objective` / `skills` overrides, so `null` is a no-op on base data. This preset hides those sections through `sections_order` (and empty `selected_indices` for experience/projects), not via null deletion.
 
 **Reference Sheet Strategy:**
 - **Pure Testimonials**: Only recommendations section visible
@@ -179,24 +187,26 @@ Presets can reorder entire sections:
 ```json
 {
   "experience": {
-    "selected_indices": [1, 2, 3, 4],  // Management roles
+    "selected_indices": [0, 1, 2, 3, 4, 6, 7, 10],
     "bullet_priority_threshold": 7,
     "bullet_priorities_overrides": {
-      "1": [10, 8, 7, 9, 8],  // Emphasize leadership bullets
-      "2": [10, 10, 7, 7, 8, 9],
-      "3": [9, 9, 8, 7, 7, 7, 6],
-      "4": [8, 9, 9, 7, 7, 6, 8]
+      "1": [8, 8, 10, 10, 4, 4, 4, 4],
+      "2": [10, 8, 4, 10, 4],
+      "3": [10, 10, 4, 4, 8, 10],
+      "4": [10, 10, 10, 4, 4, 4, 4],
+      "6": [8, 4, 4, 8, 4],
+      "7": [4, 8, 10, 4, 10, 10],
+      "10": [10, 4, 10, 10, 4, 4, 4]
     }
-  },
-  "recommendations": { "selected_indices": [0, 1, 2, 3] }
+  }
 }
 ```
 
 **Leadership Strategy:**
 - **Skills Emphasis**: "Engineering Management", "Strategic Planning", "Organizational Development"
-- **Role Selection**: Focuses on management positions (indices 1-4)
+- **Role Selection**: Broader leadership-relevant set (indices 0-4, 6, 7, 10), not only 1-4
 - **High Threshold**: `bullet_priority_threshold: 7` ensures only top-tier bullets
-- **Social Proof**: Includes recommendations for credibility
+- **No recommendations block**: This preset omits a recommendations override
 
 ### **Startup Pioneer** - Innovation Focus  
 ```json
@@ -228,9 +238,9 @@ Presets can reorder entire sections:
     "selected_indices": [0, 1, 2],
     "bullet_priority_threshold": 7,
     "bullet_priorities_overrides": {
-      "0": [10, 9, 10, 8, 6, 5, 6, 6],
-      "1": [10, 6, 6, 9, 8],
-      "2": [9, 10, 6, 6, 6, 8]
+      "1": [10, 9, 10, 8, 6, 5, 6, 6],
+      "2": [10, 6, 6, 9, 8],
+      "3": [9, 10, 6, 6, 6, 8]
     }
   },
   "projects": {
@@ -350,18 +360,18 @@ export async function load({ url }) {
 ### **Bullet Priority Resolution Order:**
 1. **Preset `bullet_priorities_overrides`** (highest precedence)
 2. **Base JSON `bullet_priorities`** (fallback)
-3. **Default threshold filtering** (when no priorities exist)
+3. **No priority filtering** (when priorities are absent, `SectionRenderer` returns all bullets; threshold/density filters are skipped)
 
 ### **Skills Resolution Order:**
 1. **Preset `skills` object** (complete replacement)
 2. **Skills inventory data** (skillsInventory.json)
 3. **Raw skills array** (profile sections)
 
-### **Content Selection Order:**
-1. **Preset `selected_indices`** (strategic picking)
-2. **Timeframe filtering** (years-based)
-3. **Priority threshold** (bullet-level filtering)
-4. **Density filtering** (fallback mechanism)
+### **Content Selection Order (experience):**
+1. **Timeframe filtering** runs first against the working list (years-based)
+2. **Role filtering** (`experience_filter`) applies next
+3. **`selected_indices` rebuilds from the original array** when present, so a selected older entry can reappear even if timeframe would have dropped it
+4. **Priority threshold** / **density filtering** then apply at the bullet level
 
 ---
 
@@ -409,13 +419,12 @@ To adjust the One-Page preset:
 
 ### **Testing Preset Changes**
 
-```bash
-# Test specific preset
-npm run dev:web
-# Navigate to: localhost:3000?preset=one-page
+The CLI `json-to-pdf` / `json-to-html` commands do not define `--preset` (or `--verbose` on `json-to-html`). Test presets through the web app:
 
-# Or use CLI for quick testing
-npm run json-to-pdf -- --preset one-page -o test-onepage.pdf
+```bash
+npm run dev:web
+# Navigate to: http://localhost:3000?preset=one-page
+# URL-only presets work the same way, e.g. ?preset=startup-pioneer
 ```
 
 ---
@@ -516,11 +525,12 @@ const preset = generatePresetFromJobDescription(jobDescriptionText)
 # Check preset structure
 cat input/profiles/presets/one-page.json | jq '.'
 
-# Test preset application
-npm run json-to-html -- --preset one-page --verbose
-
 # Validate all presets
 ls input/profiles/presets/*.json | xargs -I {} bash -c 'echo {}; cat {} | jq .'
+
+# Exercise a preset in the browser (CLI has no --preset flag)
+npm run dev:web
+# open http://localhost:3000?preset=one-page
 ```
 
 ---
@@ -533,4 +543,4 @@ ls input/profiles/presets/*.json | xargs -I {} bash -c 'echo {}; cat {} | jq .'
 
 ---
 
-*Last Updated: September 10, 2025*
+*Last Updated: November 11, 2026*

@@ -11,14 +11,53 @@ export const tourActiveStore = writable(false)
 export const tourCompletedStore = writable(false)
 
 /**
+ * Read a localStorage value without letting storage errors break the page.
+ * @param {string} key Storage key
+ * @returns {string|null} Stored value, or null when unavailable
+ */
+const safeGetItem = (key) => {
+  if (!browser) return null
+  try {
+    return localStorage.getItem(key)
+  } catch (error) {
+    console.warn('Tour storage read failed:', error)
+    return null
+  }
+}
+
+/**
+ * Write a localStorage value without letting storage errors break the page.
+ * @param {string} key Storage key
+ * @param {string} value Value to persist
+ */
+const safeSetItem = (key, value) => {
+  if (!browser) return
+  try {
+    localStorage.setItem(key, value)
+  } catch (error) {
+    console.warn('Tour storage write failed:', error)
+  }
+}
+
+/**
+ * Remove a localStorage value without letting storage errors break the page.
+ * @param {string} key Storage key
+ */
+const safeRemoveItem = (key) => {
+  if (!browser) return
+  try {
+    localStorage.removeItem(key)
+  } catch (error) {
+    console.warn('Tour storage remove failed:', error)
+  }
+}
+
+/**
  * Get initial tour completion state from localStorage
  * @returns {boolean} Whether tour has been completed
  */
 const getTourCompleted = () => {
-  if (browser) {
-    return localStorage.getItem('resume-tour-completed') === 'true'
-  }
-  return false
+  return safeGetItem('resume-tour-completed') === 'true'
 }
 
 // Initialize tour completion state
@@ -27,7 +66,7 @@ export const tourCompletedState = writable(getTourCompleted())
 // Subscribe to changes and persist to localStorage
 if (browser) {
   tourCompletedState.subscribe((completed) => {
-    localStorage.setItem('resume-tour-completed', completed.toString())
+    safeSetItem('resume-tour-completed', completed.toString())
   })
 }
 
@@ -58,7 +97,7 @@ export const resetTour = () => {
   tourActiveStore.set(false)
   
   if (browser) {
-    localStorage.removeItem('resume-tour-completed')
+    safeRemoveItem('resume-tour-completed')
     console.log('🔄 Tour state reset')
   }
 }

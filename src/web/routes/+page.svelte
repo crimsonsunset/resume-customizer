@@ -58,6 +58,7 @@
 
     // Mobile drawer state
     let mobileDrawerOpen = false
+    let tourGuide
     $: density = $densityStore
     $: timeframe = $timeframeStore
 
@@ -526,7 +527,7 @@
                 </div>
 
                 <!-- Mobile Menu (Ellipsis with Download PDF + Theme) -->
-                <MobileMenu onExportToPDF={exportToPDF} {isExportingPDF} data-tour="mobile-menu"/>
+                <MobileMenu onExportToPDF={exportToPDF} {isExportingPDF}/>
             </div>
         </header>
 
@@ -582,6 +583,7 @@
                 <!-- Tour Guide Component -->
                 <div class="flex justify-center mb-4">
                     <TourGuide 
+                        bind:this={tourGuide}
                         autoStart={!$tourCompletedState}
                         showTourButton={true}
                         on:tourCompleted={() => console.log('🎯 Tour completed successfully')}
@@ -590,7 +592,7 @@
                     />
                 </div>
 
-                <ComingSoonFeatures/>
+                <ComingSoonFeatures on:retakeTour={() => tourGuide?.retakeTour()}/>
             </div>
         </div>
     </div>
