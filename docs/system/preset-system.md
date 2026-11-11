@@ -371,7 +371,7 @@ export async function load({ url }) {
 1. **Timeframe filtering** runs first against the working list (years-based)
 2. **Role filtering** (`experience_filter`) applies next
 3. **`selected_indices` rebuilds from the original array** when present, so a selected older entry can reappear even if timeframe would have dropped it
-4. **Priority threshold** / **density filtering** then apply at the bullet level
+4. **Bullet filtering**: `bullet_priority_threshold` takes precedence over density. When the threshold is set, `SectionRenderer` uses it and skips density filtering (so changing density does not change One-Page experience bullets). Density filtering only applies when no threshold is set.
 
 ---
 
