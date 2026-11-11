@@ -45,12 +45,13 @@
 
 <svelte:window on:click={handleClickOutside} />
 
-<div class="mobile-menu-dropdown dropdown dropdown-end" class:dropdown-open={isOpen}>
+<div class="mobile-menu-dropdown dropdown dropdown-end" class:dropdown-open={isOpen} data-tour="mobile-menu">
   <!-- Ellipsis trigger button -->
   <div 
     tabindex="0" 
     role="button" 
     class="btn btn-ghost btn-sm p-2 hover:bg-base-200 active:scale-95"
+    data-tour="mobile-menu-trigger"
     on:click={toggleMenu}
     on:keydown={(e) => e.key === 'Enter' && toggleMenu()}
     aria-label="More options"
@@ -66,6 +67,7 @@
     <div class="flex justify-center my-3">
       <button 
         class="btn btn-sm w-3/4 justify-center font-medium bg-primary text-primary-content border-primary hover:bg-primary-focus"
+        data-tour="mobile-pdf-download"
         disabled={isExportingPDF}
         on:click={handleExportToPDF}
       >
