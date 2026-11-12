@@ -1,5 +1,38 @@
 [
   {
+    "name": "Sync2Hire Application",
+    "company": "Sync2Hire",
+    "date": "Jan 2026 - Present · 10 mos",
+    "description": "• Designed and built the AI features users work with in the app, including Q&A, catch-up and hiring decision tools• Developed RAG for Sync AI: encrypted HR policy uploads, a parse, chunk and embed pipeline, vector retrieval, and answers that cite their source documents• Added natural-language search that classifies intent, extracts filters with an LLM, relaxes them when nothing matches, and cites the messages it used• Delivered robust search from index to UI: hybrid keyword and vector retrieval, per-user access scoping, and a Cmd+K palette with extensive filtering, saved searches and shareable links• Replaced our hand-written Firestore rules with generated, tested output, built on a forked and extended open-source DSL library• Engineered end-to-end QA and docs as one system: Playwright tests run against staging, then regenerate and publish the help site with every prod release, so it never needs manual updates",
+    "bulletPoints": [
+      "Designed and built the AI features users work with in the app, including Q&A, catch-up and hiring decision tools",
+      "Developed RAG for Sync AI: encrypted HR policy uploads, a parse, chunk and embed pipeline, vector retrieval, and answers that cite their source documents",
+      "Added natural-language search that classifies intent, extracts filters with an LLM, relaxes them when nothing matches, and cites the messages it used",
+      "Delivered robust search from index to UI: hybrid keyword and vector retrieval, per-user access scoping, and a Cmd+K palette with extensive filtering, saved searches and shareable links",
+      "Replaced our hand-written Firestore rules with generated, tested output, built on a forked and extended open-source DSL library",
+      "Engineered end-to-end QA and docs as one system: Playwright tests run against staging, then regenerate and publish the help site with every prod release, so it never needs manual updates"
+    ],
+    "skills": [
+      "Firebase",
+      "TypeScript",
+      "React.js",
+      "Typesense",
+      "RAG",
+      "OpenRouter",
+      "Playwright",
+      "Firestore Security Rules"
+    ],
+    "bullet_priorities": [
+      10,
+      9,
+      8,
+      8,
+      9,
+      7
+    ],
+    "url": "https://sync2hire.com"
+  },
+  {
     "name": "Fora Suite of Products",
     "company": "FORA",
     "date": "Jan 2024 - Present · 2 yrs 10 mos",
