@@ -2,26 +2,20 @@
   {
     "bulletPoints": [
       "Led engineering and product at an early-stage startup, owning roadmap, architecture, release, QA and security while still shipping core features hands-on",
-      "Architected Sync AI as a platform, not a chatbot: a model-agnostic skill router, streamed and cited answers, and a dashboard of proactive signals that flag stalled candidates and pipelines before anyone asks",
-      "Developed RAG for Sync AI: encrypted HR policy uploads, a parse, chunk and embed pipeline, vector retrieval, and answers that cite their source documents",
+      "Architected Sync AI as a platform, not a chatbot: a model-agnostic skill router, streamed and cited answers, and a dashboard of proactive signals that flag stalled candidates and pipelines",
       "Built CI/CD from scratch with nightly staging, deliberate manual prod promotion, and a one-click rollback that undoes its own data migrations",
-      "Delivered robust search from index to UI: hybrid keyword and vector retrieval, per-user access scoping, and a Cmd+K palette with extensive filtering, saved searches and shareable links",
-      "Engineered end-to-end QA and docs as one system: Playwright tests run against staging, then regenerate and publish the help site with every prod release, so it never needs manual updates",
       "Picked and stood up our vendor stack, then built the bottom-up cost model we took to leadership and investors",
       "Automated work outside engineering, turning daily call notes into Jira product ideas and running monthly health, backup and secret audits"
     ],
     "bullet_priorities": [
       10,
       9,
-      8,
       9,
-      8,
-      7,
       6,
       5
     ],
     "company": "Sync2Hire",
-    "description": "• Led engineering and product at an early-stage startup, owning roadmap, architecture, release, QA and security while still shipping core features hands-on• Architected Sync AI as a platform, not a chatbot: a model-agnostic skill router, streamed and cited answers, and a dashboard of proactive signals that flag stalled candidates and pipelines before anyone asks• Developed RAG for Sync AI: encrypted HR policy uploads, a parse, chunk and embed pipeline, vector retrieval, and answers that cite their source documents• Built CI/CD from scratch with nightly staging, deliberate manual prod promotion, and a one-click rollback that undoes its own data migrations• Delivered robust search from index to UI: hybrid keyword and vector retrieval, per-user access scoping, and a Cmd+K palette with extensive filtering, saved searches and shareable links• Engineered end-to-end QA and docs as one system: Playwright tests run against staging, then regenerate and publish the help site with every prod release, so it never needs manual updates• Picked and stood up our vendor stack, then built the bottom-up cost model we took to leadership and investors• Automated work outside engineering, turning daily call notes into Jira product ideas and running monthly health, backup and secret audits",
+    "description": "• Led engineering and product at an early-stage startup, owning roadmap, architecture, release, QA and security while still shipping core features hands-on• Architected Sync AI as a platform, not a chatbot: a model-agnostic skill router, streamed and cited answers, and a dashboard of proactive signals that flag stalled candidates and pipelines• Built CI/CD from scratch with nightly staging, deliberate manual prod promotion, and a one-click rollback that undoes its own data migrations• Picked and stood up our vendor stack, then built the bottom-up cost model we took to leadership and investors• Automated work outside engineering, turning daily call notes into Jira product ideas and running monthly health, backup and secret audits",
     "duration": "Jan 2026 - Present · 10 mos",
     "skills": [
       "Technical Leadership",

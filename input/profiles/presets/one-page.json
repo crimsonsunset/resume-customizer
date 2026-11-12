@@ -130,11 +130,11 @@
       }
     },
     "projects": {
-      "selected_indices": [0, 6],
+      "selected_indices": [1, 7],
       "bullet_priority_threshold": 7,
       "bullet_priorities_overrides": {
-        "0": [10, 7, 9, 6],
-        "6": [10, 7, 6, 9, 6, 6, 6, 8]
+        "1": [10, 7, 9, 6],
+        "7": [10, 7, 6, 9, 6, 6, 6, 8]
       }
     },
     "recommendations": {
